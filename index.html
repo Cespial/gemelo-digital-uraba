@@ -928,6 +928,26 @@
             </div>
         </div>
 
+        <!-- Executive Summary -->
+        <div class="card" style="border-color: rgba(0,255,136,0.2); background: rgba(0,255,136,0.03);">
+            <div class="card-header">
+                <span class="card-title" style="color: var(--accent-green);">Resumen Ejecutivo</span>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-secondary);line-height:1.8;">
+                <span style="color:var(--accent-green);">Hub Casa Verde:</span> 25.4 km del puerto<br>
+                <span style="color:var(--accent-green);">Distancia OSRM:</span> 34.8 min sin congestion<br>
+                <span style="color:var(--accent-green);">Fincas a &lt;15min del Hub:</span> 14 de 20<br>
+                <span style="color:var(--accent-green);">Eliminacion tractomulas:</span> ~89% en via<br>
+                <span style="color:var(--accent-green);">Riesgo inundacion Hub:</span> FUERA DE ZONA<br>
+                <hr style="border-color:rgba(0,255,136,0.1);margin:6px 0;">
+                <span style="color:var(--text-muted);font-size:9px;">
+                    Datos: OSRM, UPRA, IDEAM, Augura, INVIAS<br>
+                    20 fincas simuladas, rutas reales verificadas<br>
+                    Sprint 0 — Observatorio de Datos y Analisis SAS
+                </span>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -1355,13 +1375,13 @@ BANANA_ZONES.forEach(zone => {
 });
 
 // ---- ROADS ----
-// Main road
+// Main road - Troncal del Uraba (critical for congestion analysis)
 L.polyline(ROADS.principal.coords, {
     color: '#ffffff',
-    weight: 3,
-    opacity: 0.6,
+    weight: 3.5,
+    opacity: 0.7,
     lineCap: 'round'
-}).bindPopup(`<div class="popup-title">${ROADS.principal.name}</div><div class="popup-row"><span class="popup-label">Tipo:</span><span class="popup-val">Via Nacional</span></div><div class="popup-row"><span class="popup-label">TPDA estimado:</span><span class="popup-val">~8,000 veh/dia</span></div>`).addTo(layers.roads);
+}).bindPopup(`<div class="popup-title">${ROADS.principal.name}</div><div class="popup-row"><span class="popup-label">Tipo:</span><span class="popup-val">Via Nacional Ruta 62</span></div><div class="popup-row"><span class="popup-label">TPDA estimado:</span><span class="popup-val">~8,000 veh/dia</span></div><div class="popup-row"><span class="popup-label">Fuente:</span><span class="popup-val">INVIAS / OSM</span></div>`).addTo(layers.roads);
 
 // Via Puerto
 L.polyline(ROADS.viaPuerto.coords, {
@@ -1369,7 +1389,7 @@ L.polyline(ROADS.viaPuerto.coords, {
     weight: 2,
     opacity: 0.5,
     dashArray: '6, 4'
-}).bindPopup(`<div class="popup-title">${ROADS.viaPuerto.name}</div>`).addTo(layers.roads);
+}).bindPopup(`<div class="popup-title">${ROADS.viaPuerto.name}</div><div class="popup-row"><span class="popup-label">Acceso:</span><span class="popup-val">Via hacia Bahia Colombia</span></div>`).addTo(layers.roads);
 
 // Via Zungo
 L.polyline(ROADS.viaZungo.coords, {
@@ -1377,7 +1397,29 @@ L.polyline(ROADS.viaZungo.coords, {
     weight: 2,
     opacity: 0.4,
     dashArray: '6, 4'
-}).bindPopup(`<div class="popup-title">${ROADS.viaZungo.name}</div>`).addTo(layers.roads);
+}).bindPopup(`<div class="popup-title">${ROADS.viaZungo.name}</div><div class="popup-row"><span class="popup-label">Hacia:</span><span class="popup-val">Aeropuerto Zungo / Carepa</span></div>`).addTo(layers.roads);
+
+// Load full OSM road network from external file if available
+fetch('data/osm_roads.geojson')
+    .then(r => r.json())
+    .then(geojson => {
+        const roadStyles = {
+            trunk: { color: '#dddddd', weight: 2.5, opacity: 0.4 },
+            primary: { color: '#cccccc', weight: 2, opacity: 0.35 },
+            secondary: { color: '#999999', weight: 1.5, opacity: 0.25 },
+            tertiary: { color: '#666666', weight: 1, opacity: 0.15 },
+            trunk_link: { color: '#bbbbbb', weight: 1.5, opacity: 0.3 },
+            tertiary_link: { color: '#555555', weight: 0.8, opacity: 0.1 }
+        };
+        geojson.features.forEach(feat => {
+            const hw = feat.properties.highway;
+            const style = roadStyles[hw] || roadStyles.tertiary;
+            const coords = feat.geometry.coordinates.map(c => [c[1], c[0]]);
+            L.polyline(coords, { ...style, lineCap: 'round' }).addTo(layers.roads);
+        });
+        console.log(`Loaded ${geojson.features.length} OSM road segments`);
+    })
+    .catch(() => console.log('OSM roads file not found, using simplified network'));
 
 // ---- RIVERS ----
 RIVERS.forEach(river => {
