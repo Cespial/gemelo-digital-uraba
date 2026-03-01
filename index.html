@@ -231,6 +231,7 @@
         <label class="ly"><input type="checkbox" id="ly-roads" checked onchange="toggleLy('roads')"><span class="ly-sw"></span><span class="ly-t">Red vial OSM (299 seg.)</span></label>
         <label class="ly"><input type="checkbox" id="ly-farms" checked onchange="toggleLy('farms')"><span class="ly-sw"></span><span class="ly-t">Fincas simuladas (n=20)</span></label>
         <label class="ly"><input type="checkbox" id="ly-routes" checked onchange="toggleLy('routes')"><span class="ly-sw"></span><span class="ly-t">Rutas OSRM</span></label>
+        <label class="ly"><input type="checkbox" id="ly-isochrone" checked onchange="toggleLy('isochrone')"><span class="ly-sw"></span><span class="ly-t">Isocronas Hub (15/30/45 min)</span></label>
         <label class="ly"><input type="checkbox" id="ly-flood" onchange="toggleLy('flood')"><span class="ly-sw"></span><span class="ly-t">Zona inundacion (proxy POMCA)</span></label>
         <label class="ly"><input type="checkbox" id="ly-rivers" checked onchange="toggleLy('rivers')"><span class="ly-sw"></span><span class="ly-t">Hidrografia OSM (759 seg.)</span></label>
         <div class="div"></div>
@@ -248,6 +249,7 @@
         Hidrografia: OSM Overpass (759 seg: rios, quebradas, canales)<br>
         Ruteo: OSRM router.project-osrm.org (41 rutas, geometria completa)<br>
         Inundacion: IDEAM WMS + proxy POMCA Rio Leon<br>
+        Isocronas: Mapbox Isochrone API (driving, 15/30/45 min)<br>
         Trafico real: Google Maps Distance Matrix API<br>
         Produccion: Augura 2023 / parametros G20<br>
         Mapa base: Mapbox Dark v11<br><br>
@@ -273,6 +275,11 @@
         <div class="mi-i"><div class="mi-ln" style="background:var(--red);"></div>Ruta directa (ancho=vol)</div>
         <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Hub&amp;Spoke</div>
         <div class="mi-i"><div class="mi-c" style="background:rgba(56,152,255,0.25);border:1px solid rgba(56,152,255,0.5);"></div>Zona inundacion</div>
+        <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+        <div class="mi-t" style="margin-top:4px;">ISOCRONAS HUB</div>
+        <div class="mi-i"><div class="mi-c" style="background:rgba(0,232,120,0.15);border:1px solid rgba(0,232,120,0.4);"></div>15 min</div>
+        <div class="mi-i"><div class="mi-c" style="background:rgba(240,160,48,0.12);border:1px solid rgba(240,160,48,0.4);"></div>30 min</div>
+        <div class="mi-i"><div class="mi-c" style="background:rgba(255,59,78,0.1);border:1px solid rgba(255,59,78,0.3);"></div>45 min</div>
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
         <div class="mi-i"><div class="mi-c" style="background:transparent;border:1.5px solid #e088ff;"></div>Limite municipal</div>
         <div class="mi-i"><div class="mi-c" style="background:rgba(180,140,255,0.08);border:1px solid rgba(180,140,255,0.3);"></div>Vereda</div>
@@ -311,6 +318,32 @@
         <button onclick="fetchGMapsTraffic()" style="width:100%;margin-top:8px;padding:6px;background:var(--bg4);border:1px solid var(--border);border-radius:4px;color:var(--yellow);font-family:'JetBrains Mono',monospace;font-size:9px;cursor:pointer;">ACTUALIZAR TRAFICO EN VIVO</button>
     </div>
 
+    <!-- Logistics Costs -->
+    <div class="c" id="cost-card">
+        <div class="c-h"><span class="c-t">Costos Logisticos</span><span class="badge badge-b">$/CAJA</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;">Modelo parametrico basado en distancia, tiempo y flota</div>
+        <div class="kpi-g">
+            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$386</div><div class="kpi-l">$/caja Directo</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$298</div><div class="kpi-l">$/caja Hub</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-save">-23%</div><div class="kpi-l">Ahorro $/caja</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">$502M</div><div class="kpi-l">Ahorro anual</div></div>
+        </div>
+        <div style="margin-top:8px;">
+            <div class="sl-t" style="margin-bottom:4px;">Desglose por componente ($/caja)</div>
+            <table class="od-t" style="font-size:8px;">
+                <thead><tr><th>Componente</th><th style="color:var(--red);">Directo</th><th style="color:var(--green);">Hub</th><th>Delta</th></tr></thead>
+                <tbody id="cost-detail">
+                    <tr><td>Combustible</td><td id="cd-fuel-d">$148</td><td id="cd-fuel-h">$108</td><td class="sav" id="cd-fuel-s">-27%</td></tr>
+                    <tr><td>Conductor</td><td id="cd-drv-d">$82</td><td id="cd-drv-h">$58</td><td class="sav" id="cd-drv-s">-29%</td></tr>
+                    <tr><td>Peajes</td><td id="cd-toll-d">$35</td><td id="cd-toll-h">$18</td><td class="sav" id="cd-toll-s">-49%</td></tr>
+                    <tr><td>Desgaste vehic.</td><td id="cd-wear-d">$68</td><td id="cd-wear-h">$52</td><td class="sav" id="cd-wear-s">-24%</td></tr>
+                    <tr><td>Consolidacion Hub</td><td id="cd-cons-d">--</td><td id="cd-cons-h">$42</td><td style="color:var(--yellow);" id="cd-cons-s">+$42</td></tr>
+                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$386</td><td style="color:var(--green);" id="cd-tot-h">$298</td><td class="sav" id="cd-tot-s">-23%</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="c">
         <div class="c-h"><span class="c-t">Capacidad Hub</span></div>
         <div class="kpi-g">
@@ -342,8 +375,9 @@
         <div class="c-h"><span class="c-t" style="color:var(--green);">Resumen Ejecutivo</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);line-height:1.8;">
             <span style="color:var(--green);">Hub-Puerto OSRM:</span> 25.4 km / 34.8 min<br>
-            <span style="color:var(--green);">Fincas &lt;15min Hub:</span> 14 de 20<br>
+            <span style="color:var(--green);">Isocronas Hub:</span> <span id="iso-stats">cargando...</span><br>
             <span style="color:var(--green);">Eliminacion tractomulas:</span> ~89% en via<br>
+            <span style="color:var(--green);">Ahorro logistico:</span> <span id="exec-cost-save">calculando...</span><br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
             <span style="color:var(--green);">Municipios:</span> 9 con limites DANE<br>
             <span style="color:var(--green);">Veredas:</span> 611 con limites UPRA<br>
@@ -467,6 +501,18 @@ setLoad(15);
 // Convert route coords to GeoJSON LineString
 function routeGJ(coords){
     return {type:'Feature',geometry:{type:'LineString',coordinates:coords.map(c=>[c[1],c[0]])}};
+}
+
+// Point-in-polygon (ray casting)
+function isPointInPolygon(point, feature){
+    if(!feature||!feature.geometry) return false;
+    const ring=feature.geometry.coordinates[0];
+    let inside=false;
+    for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+        const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];
+        if(((yi>point[1])!==(yj>point[1]))&&(point[0]<(xj-xi)*(point[1]-yi)/(yj-yi)+xi)) inside=!inside;
+    }
+    return inside;
 }
 
 // Aptitude color helper
@@ -636,6 +682,65 @@ map.on('load',()=>{
     map.addSource('flood',{type:'geojson',data:floodGJ});
     map.addLayer({id:'flood-fill',type:'fill',source:'flood',paint:{'fill-color':'rgba(56,152,255,0.15)','fill-opacity':0.5},layout:{visibility:'none'}});
     map.addLayer({id:'flood-line',type:'line',source:'flood',paint:{'line-color':'rgba(56,152,255,0.5)','line-width':1.5},layout:{visibility:'none'}});
+
+    // ---- ISOCHRONES FROM HUB (Mapbox Isochrone API) ----
+    const isoToken = mapboxgl.accessToken;
+    const hubLng = NODES.hub.lng, hubLat = NODES.hub.lat;
+    fetch(`https://api.mapbox.com/isochrone/v1/mapbox/driving/${hubLng},${hubLat}?contours_minutes=15,30,45&polygons=true&access_token=${isoToken}`)
+    .then(r=>r.json()).then(gj=>{
+        map.addSource('isochrones',{type:'geojson',data:gj});
+        // 45 min (outermost, red)
+        map.addLayer({id:'iso-45-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],45],paint:{
+            'fill-color':'rgba(255,59,78,0.06)','fill-opacity':0.8
+        }});
+        map.addLayer({id:'iso-45-line',type:'line',source:'isochrones',filter:['==',['get','contour'],45],paint:{
+            'line-color':'rgba(255,59,78,0.4)','line-width':1.5,'line-dasharray':[4,3]
+        }});
+        // 30 min (middle, yellow)
+        map.addLayer({id:'iso-30-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],30],paint:{
+            'fill-color':'rgba(240,160,48,0.07)','fill-opacity':0.8
+        }});
+        map.addLayer({id:'iso-30-line',type:'line',source:'isochrones',filter:['==',['get','contour'],30],paint:{
+            'line-color':'rgba(240,160,48,0.5)','line-width':1.5,'line-dasharray':[4,3]
+        }});
+        // 15 min (innermost, green)
+        map.addLayer({id:'iso-15-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],15],paint:{
+            'fill-color':'rgba(0,232,120,0.08)','fill-opacity':0.8
+        }});
+        map.addLayer({id:'iso-15-line',type:'line',source:'isochrones',filter:['==',['get','contour'],15],paint:{
+            'line-color':'rgba(0,232,120,0.5)','line-width':1.5,'line-dasharray':[4,3]
+        }});
+        // Labels on isochrone borders
+        const labelFeats = gj.features.map(f=>{
+            const coords = f.geometry.coordinates[0];
+            // Pick northernmost point for label
+            let best = coords[0];
+            coords.forEach(c=>{if(c[1]>best[1]) best=c;});
+            return {type:'Feature',properties:{label:`${f.properties.contour} min`},geometry:{type:'Point',coordinates:best}};
+        });
+        map.addSource('iso-labels',{type:'geojson',data:{type:'FeatureCollection',features:labelFeats}});
+        map.addLayer({id:'iso-labels',type:'symbol',source:'iso-labels',layout:{
+            'text-field':['get','label'],
+            'text-size':10,
+            'text-font':['DIN Pro Medium','Arial Unicode MS Regular'],
+            'text-anchor':'bottom',
+            'text-offset':[0,-0.5]
+        },paint:{
+            'text-color':'#d8dce6',
+            'text-halo-color':'rgba(6,8,10,0.9)',
+            'text-halo-width':2
+        }});
+
+        // Count farms inside each isochrone
+        const farmsIn15 = FARMS.filter(f=>isPointInPolygon([f.lng,f.lat],gj.features.find(x=>x.properties.contour===15))).length;
+        const farmsIn30 = FARMS.filter(f=>isPointInPolygon([f.lng,f.lat],gj.features.find(x=>x.properties.contour===30))).length;
+        const farmsIn45 = FARMS.filter(f=>isPointInPolygon([f.lng,f.lat],gj.features.find(x=>x.properties.contour===45))).length;
+        document.getElementById('iso-stats').innerHTML =
+            `<span style="color:var(--green);">${farmsIn15}</span> fincas a 15 min &bull; `+
+            `<span style="color:var(--yellow);">${farmsIn30}</span> a 30 min &bull; `+
+            `<span style="color:var(--red);">${farmsIn45}</span> a 45 min`;
+        console.log(`Isochrones loaded: ${farmsIn15}/${farmsIn30}/${farmsIn45} farms in 15/30/45 min`);
+    }).catch(e=>console.warn('Isochrones not loaded:',e));
 
     // ---- ROUTES ----
     // Chaos routes with per-farm production for width scaling
@@ -817,6 +922,7 @@ function toggleLy(name){
         'roads':['osm-roads'],
         'farms':['farms','farms-glow'],
         'routes':curSc==='chaos'?['chaos-routes','chaos-routes-glow']:['hub-routes','hub-port','hub-port-glow','hub-port-flow'],
+        'isochrone':['iso-45-fill','iso-45-line','iso-30-fill','iso-30-line','iso-15-fill','iso-15-line','iso-labels'],
         'flood':['flood-fill','flood-line'],
         'rivers':['rivers','rivers-glow','rivers-label'],
         'wms-upra':['wms-upra'],
@@ -905,6 +1011,74 @@ function updateSim(){
     else if(cf<2.5){cb.style.background='var(--yellow)';cl.textContent='Media';cl.className='sl-v y';sy.className='sem-l warn';st.textContent='CONGESTION MODERADA';st.style.color='var(--yellow)';}
     else{cb.style.background='var(--red)';cl.textContent='CRITICA';cl.className='sl-v r';sr.className='sem-l stop';st.textContent='COLAPSO VIAL';st.style.color='var(--red)';}
     stm.textContent=`~${et} min Hub-Puerto`;
+
+    // ============================================================
+    // LOGISTICS COST MODEL — reactive to sliders
+    // ============================================================
+    // Cost parameters (COP per unit, based on Uraba trucking benchmarks)
+    const DIESEL_KM = 3200;       // COP/km diesel cost per truck
+    const DRIVER_HR = 28000;      // COP/hour driver cost
+    const TOLL_TRIP = 35000;      // COP per trip toll estimate (direct route)
+    const TOLL_HUB = 18000;       // COP per trip toll (hub consolidation = fewer toll passages)
+    const WEAR_KM = 1800;         // COP/km vehicle wear+maintenance
+    const HUB_CONSOL = 42;        // COP/caja hub consolidation/handling cost
+    const BOXES_TRUCK = 960;      // Cajas per tractomula
+
+    // Average distances and times from OD matrix
+    const avgDistDirect = OD.reduce((s,o)=>s+o.dd,0)/OD.length;  // km
+    const avgTimeDirect = OD.reduce((s,o)=>s+o.dt,0)/OD.length;  // min
+    const avgDistHub = OD.reduce((s,o)=>s+o.hd,0)/OD.length;     // km (farm->hub + hub->port)
+    const avgTimeHub = OD.reduce((s,o)=>s+o.ht,0)/OD.length;     // min
+
+    // Cost per CAJA
+    const fuelDirect = Math.round((DIESEL_KM * avgDistDirect * 2) / BOXES_TRUCK); // round trip
+    const fuelHub = Math.round((DIESEL_KM * avgDistHub * 2) / BOXES_TRUCK);       // consolidation: fewer truck-km
+    const drvDirect = Math.round((DRIVER_HR * (avgTimeDirect * cf * 2 / 60)) / BOXES_TRUCK);
+    const drvHub = Math.round((DRIVER_HR * (avgTimeHub * Math.min(cf,1.3) * 2 / 60)) / BOXES_TRUCK);
+    const tollDirect = Math.round(TOLL_TRIP / BOXES_TRUCK * (g20t > 0 ? 1 : 0));
+    const tollHub = Math.round(TOLL_HUB / BOXES_TRUCK * (hubt > 0 ? 1 : 0));
+    const wearDirect = Math.round((WEAR_KM * avgDistDirect * 2) / BOXES_TRUCK);
+    const wearHub = Math.round((WEAR_KM * avgDistHub * 2) / BOXES_TRUCK);
+
+    const totalDirect = fuelDirect + drvDirect + tollDirect + wearDirect;
+    const totalHub = fuelHub + drvHub + tollHub + wearHub + HUB_CONSOL;
+    const savePct = Math.round(((totalDirect - totalHub) / totalDirect) * 100);
+    const annualBoxes = p * 1000 * 52;  // cajas/year
+    const annualSave = Math.round((totalDirect - totalHub) * annualBoxes / 1000000);
+
+    // Update cost card
+    document.getElementById('cost-direct').textContent = `$${totalDirect}`;
+    document.getElementById('cost-hub').textContent = `$${totalHub}`;
+    document.getElementById('cost-save').textContent = `${savePct > 0 ? '-' : '+'}${Math.abs(savePct)}%`;
+    document.getElementById('cost-save').className = 'kpi-v ' + (savePct > 0 ? 'g' : 'r');
+    document.getElementById('cost-annual').textContent = `$${annualSave}M`;
+    document.getElementById('cost-annual').className = 'kpi-v ' + (annualSave > 0 ? 'g' : 'r');
+
+    // Update cost breakdown
+    const fmt = v => `$${v}`;
+    const pctFmt = (d,h) => {const p=Math.round(((d-h)/Math.max(d,1))*100); return p>0?`-${p}%`:`+${Math.abs(p)}%`;};
+    document.getElementById('cd-fuel-d').textContent = fmt(fuelDirect);
+    document.getElementById('cd-fuel-h').textContent = fmt(fuelHub);
+    document.getElementById('cd-fuel-s').textContent = pctFmt(fuelDirect,fuelHub);
+    document.getElementById('cd-drv-d').textContent = fmt(drvDirect);
+    document.getElementById('cd-drv-h').textContent = fmt(drvHub);
+    document.getElementById('cd-drv-s').textContent = pctFmt(drvDirect,drvHub);
+    document.getElementById('cd-toll-d').textContent = fmt(tollDirect);
+    document.getElementById('cd-toll-h').textContent = fmt(tollHub);
+    document.getElementById('cd-toll-s').textContent = pctFmt(tollDirect,tollHub);
+    document.getElementById('cd-wear-d').textContent = fmt(wearDirect);
+    document.getElementById('cd-wear-h').textContent = fmt(wearHub);
+    document.getElementById('cd-wear-s').textContent = pctFmt(wearDirect,wearHub);
+    document.getElementById('cd-cons-d').textContent = '--';
+    document.getElementById('cd-cons-h').textContent = fmt(HUB_CONSOL);
+    document.getElementById('cd-cons-s').textContent = `+$${HUB_CONSOL}`;
+    document.getElementById('cd-tot-d').textContent = fmt(totalDirect);
+    document.getElementById('cd-tot-h').textContent = fmt(totalHub);
+    document.getElementById('cd-tot-s').textContent = pctFmt(totalDirect,totalHub);
+
+    // Update executive summary cost
+    const execCost = document.getElementById('exec-cost-save');
+    if(execCost) execCost.innerHTML = `<span style="color:var(--green);">-${savePct}% ($${annualSave}M/ano)</span>`;
 
     // ============================================================
     // MAP REACTIVE VISUALS — update map based on simulation state
