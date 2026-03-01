@@ -731,25 +731,37 @@
             <label class="layer-toggle">
                 <input type="checkbox" id="layer-flood" onchange="toggleLayer('flood')">
                 <span class="layer-switch"></span>
-                <span class="layer-text">Zona inundacion POMCA</span>
+                <span class="layer-text">Zona inundacion (proxy)</span>
             </label>
             <label class="layer-toggle">
                 <input type="checkbox" id="layer-rivers" checked onchange="toggleLayer('rivers')">
                 <span class="layer-switch"></span>
                 <span class="layer-text active">Hidrografia</span>
             </label>
+            <div class="section-divider"></div>
+            <div style="font-size:9px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-bottom:4px;">CAPAS WMS OFICIALES</div>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-wms_banana" onchange="toggleLayer('wms_banana')">
+                <span class="layer-switch"></span>
+                <span class="layer-text">UPRA Aptitud Banano (WMS)</span>
+            </label>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-wms_flood" onchange="toggleLayer('wms_flood')">
+                <span class="layer-switch"></span>
+                <span class="layer-text">IDEAM Amenaza Inundacion (WMS)</span>
+            </label>
         </div>
 
         <!-- Data Sources -->
         <div class="data-sources">
             <strong>Fuentes de datos:</strong><br>
-            Red vial: OpenStreetMap / OSMnx<br>
-            Zona bananera: Proxy basado en UPRA/SIPRA zonificacion<br>
+            Red vial: OpenStreetMap / Overpass API<br>
+            Zona bananera: UPRA/SIPRA WMS (geoservicios.upra.gov.co)<br>
             Hidrologia: IGAC / OSM waterways<br>
-            Inundacion: Proxy POMCA Rio Leon (Corpouraba)<br>
-            Trafico: INVIAS TPDA Ruta 62 (estimado)<br>
+            Inundacion: IDEAM WMS Amenaza Ambiental + Proxy POMCA<br>
+            Trafico: INVIAS TPDA Ruta 62<br>
             Produccion: Augura 2023, parametros Grupo 20<br>
-            Ruteo: OSRM / estimaciones geodesicas<br>
+            Ruteo: OSRM (router.project-osrm.org)<br>
             <br>
             <strong>Observatorio de Datos y Analisis SAS</strong> &bull; Sprint 0 &bull; 2025
         </div>
@@ -787,6 +799,16 @@
             <div class="legend-item">
                 <div class="legend-color" style="background: rgba(68,136,255,0.2); border: 1px solid rgba(68,136,255,0.4);"></div>
                 Zona inundacion
+            </div>
+            <div style="border-top:1px solid var(--border);margin:6px 0;"></div>
+            <div class="legend-title" style="margin-bottom:4px;">WMS OFICIALES</div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: rgba(180,120,0,0.4); border: 1px solid rgba(180,120,0,0.6);"></div>
+                UPRA Aptitud Banano
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: rgba(0,100,255,0.3); border: 1px solid rgba(0,100,255,0.5);"></div>
+                IDEAM Amenaza Inundacion
             </div>
         </div>
     </div>
@@ -1138,44 +1160,112 @@ const ROADS = {
 };
 
 // ===========================
-// CALCULATIONS
+// OSRM REAL ROUTE DATA (fetched from router.project-osrm.org)
 // ===========================
 
-function haversine(lat1, lon1, lat2, lon2) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
+const OSRM_ROUTES = {
+    hubToPuerto: { dist: 25.38, time: 34.8,
+        coords: [[7.867637,-76.665365],[7.867191,-76.65854],[7.868556,-76.652128],[7.903174,-76.64037],[7.913967,-76.624772],[7.913364,-76.62415],[7.914028,-76.623684],[7.928845,-76.621019],[7.938495,-76.622796],[7.930444,-76.62485],[7.938252,-76.67202],[7.93271,-76.713427],[7.933212,-76.71583],[7.931448,-76.717956],[7.93332,-76.72237],[7.930898,-76.728431],[7.923281,-76.734233]]
+    },
+    F01: { toHub: {dist:11.53,time:14.1}, direct: {dist:33.71,time:41.0},
+        hubCoords: [[7.792164,-76.648589],[7.80055,-76.651911],[7.821102,-76.649313],[7.846605,-76.642488],[7.851567,-76.643896],[7.866698,-76.652153],[7.867585,-76.665313],[7.867637,-76.665365]],
+        directCoords: [[7.792164,-76.648589],[7.823728,-76.648609],[7.851333,-76.642019],[7.893182,-76.651499],[7.914951,-76.628892],[7.924372,-76.6214],[7.938594,-76.62277],[7.930811,-76.627195],[7.933979,-76.709673],[7.931035,-76.72829],[7.923281,-76.734233]]
+    },
+    F02: { toHub: {dist:16.47,time:15.1}, direct: {dist:38.65,time:41.9},
+        hubCoords: [[7.778301,-76.658089],[7.786497,-76.653904],[7.792041,-76.663255],[7.830966,-76.652953],[7.851526,-76.641756],[7.858883,-76.648643],[7.867428,-76.665045],[7.867637,-76.665365]],
+        directCoords: [[7.778301,-76.658089],[7.786744,-76.654204],[7.830966,-76.652953],[7.851905,-76.644461],[7.904599,-76.639177],[7.927156,-76.621148],[7.935141,-76.700181],[7.933281,-76.722132],[7.923281,-76.734233]]
+    },
+    F03: { toHub: {dist:16.01,time:16.4}, direct: {dist:38.19,time:43.3},
+        hubCoords: [[7.765413,-76.652014],[7.786105,-76.653924],[7.803849,-76.662233],[7.83078,-76.65329],[7.851219,-76.641277],[7.868556,-76.652128],[7.867428,-76.665045],[7.867637,-76.665365]],
+        directCoords: [[7.765413,-76.652014],[7.786724,-76.65414],[7.830287,-76.653851],[7.851526,-76.641756],[7.894159,-76.651],[7.913923,-76.624672],[7.935658,-76.62204],[7.933979,-76.709673],[7.93334,-76.722782],[7.923281,-76.734233]]
+    },
+    F04: { toHub: {dist:11.36,time:16.1}, direct: {dist:33.54,time:43.0},
+        hubCoords: [[7.802548,-76.636945],[7.802333,-76.651045],[7.821102,-76.649313],[7.84527,-76.642842],[7.851333,-76.642019],[7.868507,-76.653],[7.867585,-76.665313],[7.867637,-76.665365]],
+        directCoords: [[7.802548,-76.636945],[7.806712,-76.651168],[7.846605,-76.642488],[7.896511,-76.646916],[7.91386,-76.624584],[7.92834,-76.621019],[7.932429,-76.714257],[7.933281,-76.722132],[7.923281,-76.734233]]
+    },
+    F05: { toHub: {dist:16.96,time:18.7}, direct: {dist:39.14,time:45.6},
+        hubCoords: [[7.789959,-76.679321],[7.791223,-76.662505],[7.808873,-76.659422],[7.83031,-76.647113],[7.851219,-76.641277],[7.865773,-76.652073],[7.867478,-76.663228],[7.867637,-76.665365]],
+        directCoords: [[7.789959,-76.679321],[7.786608,-76.654849],[7.831375,-76.651784],[7.851155,-76.642145],[7.896194,-76.647721],[7.913865,-76.623607],[7.936979,-76.622213],[7.934013,-76.70954],[7.925452,-76.731799],[7.923281,-76.734233]]
+    },
+    F06: { toHub: {dist:4.99,time:6.9}, direct: {dist:27.17,time:33.8},
+        hubCoords: [[7.845431,-76.639843],[7.851388,-76.641344],[7.858883,-76.648643],[7.868556,-76.652128],[7.867308,-76.656286],[7.867176,-76.66159],[7.867637,-76.665365]],
+        directCoords: [[7.845431,-76.639843],[7.852368,-76.645013],[7.895533,-76.649323],[7.914883,-76.629391],[7.927373,-76.621125],[7.93867,-76.622701],[7.938252,-76.67202],[7.932548,-76.713905],[7.933366,-76.724131],[7.923281,-76.734233]]
+    },
+    F07: { toHub: {dist:3.07,time:5.5}, direct: {dist:25.25,time:32.4},
+        hubCoords: [[7.856814,-76.65035],[7.858883,-76.648643],[7.868556,-76.652128],[7.867308,-76.656286],[7.867212,-76.659248],[7.867478,-76.663228],[7.867637,-76.665365]],
+        directCoords: [[7.856814,-76.65035],[7.892103,-76.651756],[7.91386,-76.624584],[7.914028,-76.623684],[7.92834,-76.621019],[7.930383,-76.624149],[7.936514,-76.661422],[7.934013,-76.70954],[7.933294,-76.724511],[7.923281,-76.734233]]
+    },
+    F08: { toHub: {dist:6.35,time:8.9}, direct: {dist:23.3,time:33.6},
+        hubCoords: [[7.863039,-76.630586],[7.858141,-76.639359],[7.851473,-76.641852],[7.851905,-76.644461],[7.865773,-76.652073],[7.867063,-76.656995],[7.867478,-76.663228],[7.867637,-76.665365]],
+        directCoords: [[7.863039,-76.630586],[7.881656,-76.632809],[7.898121,-76.62827],[7.91322,-76.623997],[7.935658,-76.62204],[7.930873,-76.627568],[7.935114,-76.700425],[7.932602,-76.716411],[7.933294,-76.724511],[7.923281,-76.734233]]
+    },
+    F09: { toHub: {dist:4.74,time:7.3}, direct: {dist:21.98,time:30.7},
+        hubCoords: [[7.891527,-76.657772],[7.890922,-76.651825],[7.868556,-76.652128],[7.867308,-76.656286],[7.867212,-76.659248],[7.867478,-76.663228],[7.867637,-76.665365]],
+        directCoords: [[7.891527,-76.657772],[7.896724,-76.646521],[7.914951,-76.628892],[7.924372,-76.6214],[7.936979,-76.622213],[7.930811,-76.627195],[7.935429,-76.697584],[7.93332,-76.72237],[7.923281,-76.734233]]
+    },
+    F10: { toHub: {dist:19.44,time:28.0}, direct: {dist:13.18,time:27.6},
+        hubCoords: [[7.900451,-76.666299],[7.918788,-76.665153],[7.932793,-76.639138],[7.930444,-76.62485],[7.922637,-76.621657],[7.914951,-76.628892],[7.892103,-76.651756],[7.868137,-76.654505],[7.867478,-76.663228],[7.867637,-76.665365]],
+        directCoords: [[7.900451,-76.666299],[7.91845,-76.665225],[7.936514,-76.661422],[7.935807,-76.694073],[7.932429,-76.714257],[7.932469,-76.716588],[7.933281,-76.722132],[7.925657,-76.731396],[7.923281,-76.734233]]
+    },
+    F11: { toHub: {dist:6.33,time:7.8}, direct: {dist:19.68,time:28.6},
+        hubCoords: [[7.905158,-76.642151],[7.903174,-76.64037],[7.894159,-76.651],[7.868556,-76.652128],[7.867308,-76.656286],[7.867329,-76.660632],[7.867404,-76.66399],[7.867637,-76.665365]],
+        directCoords: [[7.905158,-76.642151],[7.91386,-76.624584],[7.913865,-76.623607],[7.927156,-76.621148],[7.938543,-76.62237],[7.930811,-76.627195],[7.935807,-76.694073],[7.932548,-76.713905],[7.932585,-76.720301],[7.923281,-76.734233]]
+    },
+    F12: { toHub: {dist:16.08,time:19.6}, direct: {dist:9.82,time:19.2},
+        hubCoords: [[7.929652,-76.659304],[7.936514,-76.661422],[7.930383,-76.624149],[7.922637,-76.621657],[7.914154,-76.624208],[7.89752,-76.64548],[7.868556,-76.652128],[7.867346,-76.66277],[7.867637,-76.665365]],
+        directCoords: [[7.929652,-76.659304],[7.935999,-76.661548],[7.938245,-76.672621],[7.934218,-76.708478],[7.932401,-76.714398],[7.932557,-76.716471],[7.93334,-76.722782],[7.931475,-76.72783],[7.923281,-76.734233]]
+    },
+    F13: { toHub: {dist:2.33,time:7.4}, direct: {dist:27.64,time:41.8},
+        hubCoords: [[7.869775,-76.677444],[7.864918,-76.67122],[7.864603,-76.66836],[7.865877,-76.666402],[7.867465,-76.665213],[7.867637,-76.665365]],
+        directCoords: [[7.869775,-76.677444],[7.865877,-76.666402],[7.867611,-76.659959],[7.906112,-76.637918],[7.913599,-76.623633],[7.927833,-76.621069],[7.938216,-76.622749],[7.934218,-76.708478],[7.93334,-76.722782],[7.923281,-76.734233]]
+    },
+    F14: { toHub: {dist:1.27,time:5.0}, direct: {dist:26.58,time:39.5},
+        hubCoords: [[7.857752,-76.669758],[7.860773,-76.667959],[7.863745,-76.666779],[7.865546,-76.666536],[7.866747,-76.666079],[7.867465,-76.665213],[7.867637,-76.665365]],
+        directCoords: [[7.857752,-76.669758],[7.867163,-76.665542],[7.867063,-76.656995],[7.895533,-76.649323],[7.914951,-76.628892],[7.914275,-76.623716],[7.932851,-76.621626],[7.936514,-76.661422],[7.933089,-76.715993],[7.932957,-76.72533],[7.923281,-76.734233]]
+    },
+    F15: { toHub: {dist:23.98,time:39.4}, direct: {dist:17.72,time:38.9},
+        hubCoords: [[7.882613,-76.688401],[7.892481,-76.687167],[7.892107,-76.67235],[7.911321,-76.664719],[7.935632,-76.656115],[7.930375,-76.624345],[7.914899,-76.628174],[7.892103,-76.651756],[7.867176,-76.66159],[7.867637,-76.665365]],
+        directCoords: [[7.882613,-76.688401],[7.892204,-76.673766],[7.900586,-76.663689],[7.91863,-76.665187],[7.938245,-76.672621],[7.933755,-76.710337],[7.932795,-76.716213],[7.932639,-76.720488],[7.928205,-76.73072],[7.923281,-76.734233]]
+    },
+    F16: { toHub: {dist:3.36,time:10.6}, direct: {dist:28.66,time:45.0},
+        hubCoords: [[7.862342,-76.687823],[7.863474,-76.683078],[7.864635,-76.679628],[7.867152,-76.679066],[7.864918,-76.67122],[7.864578,-76.666666],[7.867465,-76.665213],[7.867637,-76.665365]],
+        directCoords: [[7.862342,-76.687823],[7.867152,-76.679066],[7.864578,-76.666666],[7.867346,-76.66277],[7.906112,-76.637918],[7.913951,-76.623637],[7.932793,-76.621617],[7.9382,-76.671433],[7.932401,-76.714398],[7.933281,-76.722132],[7.923281,-76.734233]]
+    },
+    F17: { toHub: {dist:8.42,time:11.1}, direct: {dist:30.6,time:37.9},
+        hubCoords: [[7.834712,-76.66259],[7.83078,-76.65329],[7.830723,-76.646699],[7.847899,-76.642145],[7.851333,-76.642019],[7.865773,-76.652073],[7.867186,-76.661053],[7.867637,-76.665365]],
+        directCoords: [[7.834712,-76.66259],[7.831626,-76.646459],[7.851505,-76.641485],[7.864944,-76.651869],[7.913653,-76.624438],[7.927833,-76.621069],[7.930873,-76.627568],[7.934013,-76.70954],[7.933178,-76.724816],[7.923281,-76.734233]]
+    },
+    F18: { toHub: {dist:17.27,time:18.4}, direct: {dist:39.45,time:45.2},
+        hubCoords: [[7.804437,-76.685327],[7.795566,-76.67063],[7.791121,-76.662113],[7.792041,-76.663255],[7.830438,-76.653695],[7.849741,-76.641657],[7.864944,-76.651869],[7.867531,-76.663614],[7.867637,-76.665365]],
+        directCoords: [[7.804437,-76.685327],[7.787519,-76.654312],[7.829171,-76.654571],[7.851505,-76.641485],[7.89121,-76.651815],[7.914899,-76.628174],[7.931858,-76.62147],[7.934118,-76.70912],[7.924945,-76.732485],[7.923281,-76.734233]]
+    },
+    F19: { toHub: {dist:22.45,time:30.3}, direct: {dist:44.63,time:57.2},
+        hubCoords: [[7.835807,-76.694891],[7.820289,-76.683535],[7.806815,-76.689609],[7.794242,-76.668495],[7.805695,-76.661404],[7.830438,-76.653695],[7.847899,-76.642145],[7.867308,-76.656286],[7.867637,-76.665365]],
+        directCoords: [[7.835807,-76.694891],[7.811852,-76.688076],[7.791223,-76.662505],[7.829171,-76.654571],[7.851905,-76.644461],[7.914212,-76.630953],[7.938313,-76.622348],[7.932648,-76.715045],[7.923281,-76.734233]]
+    },
+    F20: { toHub: {dist:7.17,time:9.2}, direct: {dist:22.02,time:32.3},
+        hubCoords: [[7.875943,-76.639614],[7.858141,-76.639359],[7.851905,-76.644461],[7.868556,-76.652128],[7.867063,-76.656995],[7.867176,-76.66159],[7.867637,-76.665365]],
+        directCoords: [[7.875943,-76.639614],[7.884215,-76.632167],[7.903352,-76.626801],[7.913775,-76.623596],[7.938706,-76.622604],[7.937667,-76.668531],[7.933755,-76.710337],[7.932222,-76.727043],[7.923281,-76.734233]]
+    }
+};
 
-// Road correction factor (straight-line to road distance)
-const ROAD_FACTOR = 1.35;
-// Speed estimates (km/h)
-const SPEED_TRUCK_MAIN = 45;    // Tractomula via principal
-const SPEED_TRUCK_SEC = 30;     // Camion sencillo vias secundarias
-const SPEED_HUB_PORT = 50;      // Hub to port (dedicated route, less traffic)
+// ===========================
+// CALCULATIONS (using real OSRM data)
+// ===========================
 
-// Calculate OD matrix
 function calcODMatrix() {
-    const hubToPort = haversine(NODES.hub.lat, NODES.hub.lng, NODES.puerto.lat, NODES.puerto.lng) * ROAD_FACTOR;
-    const hubToPortTime = (hubToPort / SPEED_HUB_PORT) * 60; // minutes
+    const hubToPortDist = OSRM_ROUTES.hubToPuerto.dist;
+    const hubToPortTime = OSRM_ROUTES.hubToPuerto.time;
 
     return FARMS.map(farm => {
-        // Direct: Farm -> Puerto (tractomula on main road)
-        const directDist = haversine(farm.lat, farm.lng, NODES.puerto.lat, NODES.puerto.lng) * ROAD_FACTOR;
-        const directTime = (directDist / SPEED_TRUCK_MAIN) * 60;
-
-        // Hub: Farm -> Hub (camion sencillo) + Hub -> Puerto (tractomula)
-        const farmToHub = haversine(farm.lat, farm.lng, NODES.hub.lat, NODES.hub.lng) * ROAD_FACTOR;
-        const farmToHubTime = (farmToHub / SPEED_TRUCK_SEC) * 60;
-        const totalHubDist = farmToHub + hubToPort;
+        const osrm = OSRM_ROUTES[farm.id];
+        const directDist = osrm.direct.dist;
+        const directTime = osrm.direct.time;
+        const farmToHubDist = osrm.toHub.dist;
+        const farmToHubTime = osrm.toHub.time;
+        const totalHubDist = farmToHubDist + hubToPortDist;
         const totalHubTime = farmToHubTime + hubToPortTime;
-
-        // Note: Hub time may be longer for some farms, but the KEY benefit is
-        // removing tractomulas from the main road (only small trucks on secondary roads)
-        const truckTripsDirectPerWeek = Math.ceil(farm.prod / 960); // 960 cajas per tractomula
-        const truckTripsHubPerWeek = 0; // No tractomulas from this farm on main road!
+        const truckTripsDirectPerWeek = Math.ceil(farm.prod / 960);
 
         return {
             ...farm,
@@ -1183,10 +1273,10 @@ function calcODMatrix() {
             directTime: directTime.toFixed(0),
             hubDist: totalHubDist.toFixed(1),
             hubTime: totalHubTime.toFixed(0),
-            farmToHub: farmToHub.toFixed(1),
+            farmToHub: farmToHubDist.toFixed(1),
             farmToHubTime: farmToHubTime.toFixed(0),
             savingTrucks: truckTripsDirectPerWeek,
-            hubToPortDist: hubToPort.toFixed(1),
+            hubToPortDist: hubToPortDist.toFixed(1),
             hubToPortTime: hubToPortTime.toFixed(0)
         };
     });
@@ -1224,8 +1314,34 @@ const layers = {
     farms: L.layerGroup(),
     routes: L.layerGroup(),
     flood: L.layerGroup(),
-    rivers: L.layerGroup()
+    rivers: L.layerGroup(),
+    wms_banana: null,
+    wms_flood: null
 };
+
+// ---- WMS LAYERS FROM REAL PUBLIC SOURCES ----
+
+// UPRA Banana Aptitude Zonification (real WMS)
+layers.wms_banana = L.tileLayer.wms(
+    'https://geoservicios.upra.gov.co/arcgis/services/aptitud_uso_suelo/aptitud_banano/MapServer/WMSServer', {
+    layers: '0',
+    format: 'image/png',
+    transparent: true,
+    opacity: 0.4,
+    attribution: 'UPRA - Zonificacion Aptitud Banano 2019',
+    crs: L.CRS.EPSG4326
+});
+
+// IDEAM Flood Hazard - 100 year return period (real WMS)
+layers.wms_flood = L.tileLayer.wms(
+    'https://visualizador.ideam.gov.co/gisserver/services/Amenaza_Ambiental/MapServer/WMSServer', {
+    layers: '20',  // Flood hazard 100-year return
+    format: 'image/png',
+    transparent: true,
+    opacity: 0.45,
+    attribution: 'IDEAM - Amenaza por Inundacion',
+    crs: L.CRS.EPSG4326
+});
 
 // ---- BANANA ZONES ----
 BANANA_ZONES.forEach(zone => {
@@ -1390,37 +1506,33 @@ function buildRoutes() {
     hubRoutes = [];
 
     FARMS.forEach(farm => {
-        // Chaos route: direct to port
-        const chaosLine = L.polyline([
-            [farm.lat, farm.lng],
-            [NODES.puerto.lat, NODES.puerto.lng]
-        ], {
+        const osrm = OSRM_ROUTES[farm.id];
+
+        // Chaos route: direct to port (real OSRM geometry)
+        const chaosLine = L.polyline(osrm.directCoords, {
             color: '#ff4444',
-            weight: 1.5,
-            opacity: 0.6,
-            dashArray: '4, 6',
+            weight: 2,
+            opacity: 0.55,
+            dashArray: '6, 8',
             className: 'animated-route'
         });
         chaosRoutes.push(chaosLine);
 
-        // Hub route: farm to hub
-        const hubLine = L.polyline([
-            [farm.lat, farm.lng],
-            [NODES.hub.lat, NODES.hub.lng]
-        ], {
+        // Hub route: farm to hub (real OSRM geometry)
+        const hubLine = L.polyline(osrm.hubCoords, {
             color: '#00ff88',
-            weight: 1.5,
+            weight: 1.8,
             opacity: 0.5,
             dashArray: '4, 6'
         });
         hubRoutes.push(hubLine);
     });
 
-    // Hub to Puerto main route
-    hubMainRoute = L.polyline(ROADS.hubToPuerto.coords, {
+    // Hub to Puerto main route (real OSRM geometry)
+    hubMainRoute = L.polyline(OSRM_ROUTES.hubToPuerto.coords, {
         color: '#00ff88',
         weight: 5,
-        opacity: 0.8,
+        opacity: 0.85,
         lineCap: 'round'
     });
 }
@@ -1615,15 +1727,19 @@ function toggleLayer(layerName) {
     const label = checkbox.closest('.layer-toggle').querySelector('.layer-text');
 
     if (checkbox.checked) {
-        map.addLayer(layers[layerName]);
+        if (layers[layerName]) {
+            map.addLayer(layers[layerName]);
+        }
         label.classList.add('active');
     } else {
-        map.removeLayer(layers[layerName]);
+        if (layers[layerName]) {
+            map.removeLayer(layers[layerName]);
+        }
         label.classList.remove('active');
     }
 
     // Special: check hub flood status when toggling flood layer
-    if (layerName === 'flood') {
+    if (layerName === 'flood' || layerName === 'wms_flood') {
         checkHubFloodRisk();
     }
 }
