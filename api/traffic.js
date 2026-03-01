@@ -17,7 +17,10 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing origins or destinations' });
     }
 
-    const GM_KEY = process.env.GMAPS_KEY || '***REDACTED***';
+    const GM_KEY = process.env.GMAPS_KEY;
+    if (!GM_KEY) {
+        return res.status(500).json({ error: 'GMAPS_KEY not configured' });
+    }
 
     const url = new URL('https://maps.googleapis.com/maps/api/distancematrix/json');
     url.searchParams.set('origins', origins);

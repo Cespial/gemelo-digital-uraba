@@ -727,17 +727,10 @@ function updateSim(){
 let gmTrafficData = null;
 
 // Use serverless proxy to avoid CORS; falls back to direct if local
+// All Google Maps calls go through /api/traffic serverless proxy (key stored in Vercel env)
 function gmApiUrl(origins, destinations) {
-    const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'https://maps.googleapis.com/maps/api/distancematrix/json'
-        : '/api/traffic';
     const params = new URLSearchParams({ origins, destinations });
-    if (base.includes('googleapis')) {
-        params.set('departure_time', 'now');
-        params.set('traffic_model', 'best_guess');
-        params.set('key', '***REDACTED***');
-    }
-    return `${base}?${params}`;
+    return `/api/traffic?${params}`;
 }
 
 async function fetchGMapsTraffic() {
