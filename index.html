@@ -232,7 +232,7 @@
         <label class="ly"><input type="checkbox" id="ly-farms" checked onchange="toggleLy('farms')"><span class="ly-sw"></span><span class="ly-t">Fincas simuladas (n=20)</span></label>
         <label class="ly"><input type="checkbox" id="ly-routes" checked onchange="toggleLy('routes')"><span class="ly-sw"></span><span class="ly-t">Rutas OSRM</span></label>
         <label class="ly"><input type="checkbox" id="ly-flood" onchange="toggleLy('flood')"><span class="ly-sw"></span><span class="ly-t">Zona inundacion (proxy POMCA)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-rivers" checked onchange="toggleLy('rivers')"><span class="ly-sw"></span><span class="ly-t">Hidrografia</span></label>
+        <label class="ly"><input type="checkbox" id="ly-rivers" checked onchange="toggleLy('rivers')"><span class="ly-sw"></span><span class="ly-t">Hidrografia OSM (759 seg.)</span></label>
         <div class="div"></div>
         <div style="font-size:8px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:2px;">WMS OFICIALES (requiere zoom)</div>
         <label class="ly"><input type="checkbox" id="ly-wms-upra" onchange="toggleLy('wms-upra')"><span class="ly-sw"></span><span class="ly-t">UPRA WMS Aptitud (overlay)</span></label>
@@ -245,7 +245,8 @@
         Veredas: UPRA geoservicios (611 veredas)<br>
         Aptitud banano: SIPRA/UPRA shapefile Dic 2019<br>
         Red vial: OpenStreetMap Overpass API (299 seg.)<br>
-        Ruteo: OSRM router.project-osrm.org (41 rutas)<br>
+        Hidrografia: OSM Overpass (759 seg: rios, quebradas, canales)<br>
+        Ruteo: OSRM router.project-osrm.org (41 rutas, geometria completa)<br>
         Inundacion: IDEAM WMS + proxy POMCA Rio Leon<br>
         Trafico real: Google Maps Distance Matrix API<br>
         Produccion: Augura 2023 / parametros G20<br>
@@ -269,8 +270,8 @@
         <div class="mi-i"><div class="mi-c" style="background:#88cc00;"></div>Media</div>
         <div class="mi-i"><div class="mi-c" style="background:#ccaa00;"></div>Baja</div>
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-        <div class="mi-i"><div class="mi-ln" style="background:var(--red);"></div>Ruta directa</div>
-        <div class="mi-i"><div class="mi-ln" style="background:var(--green);"></div>Ruta Hub&amp;Spoke</div>
+        <div class="mi-i"><div class="mi-ln" style="background:var(--red);"></div>Ruta directa (ancho=vol)</div>
+        <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Hub&amp;Spoke</div>
         <div class="mi-i"><div class="mi-c" style="background:rgba(56,152,255,0.25);border:1px solid rgba(56,152,255,0.5);"></div>Zona inundacion</div>
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
         <div class="mi-i"><div class="mi-c" style="background:transparent;border:1.5px solid #e088ff;"></div>Limite municipal</div>
@@ -452,8 +453,8 @@ const map = new mapboxgl.Map({
     style:'mapbox://styles/mapbox/dark-v11',
     center:[-76.68,7.87],
     zoom:10.5,
-    pitch:45,
-    bearing:-15,
+    pitch:0,
+    bearing:0,
     attributionControl:false
 });
 
@@ -637,23 +638,45 @@ map.on('load',()=>{
     map.addLayer({id:'flood-line',type:'line',source:'flood',paint:{'line-color':'rgba(56,152,255,0.5)','line-width':1.5},layout:{visibility:'none'}});
 
     // ---- ROUTES ----
-    const chaosFeats=FARMS.map(f=>routeGJ(R[f.id].p.c));
+    // Chaos routes with per-farm production for width scaling
+    const chaosFeats=FARMS.map(f=>{
+        const feat=routeGJ(R[f.id].p.c);
+        feat.properties={id:f.id,prod:f.prod,stk:Math.ceil(f.prod/960),cl:f.cl};
+        return feat;
+    });
     map.addSource('chaos-routes',{type:'geojson',data:{type:'FeatureCollection',features:chaosFeats}});
-    map.addLayer({id:'chaos-routes',type:'line',source:'chaos-routes',paint:{'line-color':'#ff3b4e','line-width':2,'line-opacity':0.5,'line-dasharray':[2,3]}});
+    // Chaos glow
+    map.addLayer({id:'chaos-routes-glow',type:'line',source:'chaos-routes',paint:{
+        'line-color':'#ff3b4e','line-width':['interpolate',['linear'],['get','prod'],4500,6,7800,14],
+        'line-opacity':0.08,'line-blur':4
+    },layout:{'line-cap':'round','line-join':'round'}});
+    // Chaos main
+    map.addLayer({id:'chaos-routes',type:'line',source:'chaos-routes',paint:{
+        'line-color':'#ff3b4e',
+        'line-width':['interpolate',['linear'],['get','prod'],4500,1.5,7800,3.5],
+        'line-opacity':0.6
+    },layout:{'line-cap':'round','line-join':'round'}});
 
-    const hubFeats=FARMS.map(f=>routeGJ(R[f.id].h.c));
+    // Hub routes with per-farm production
+    const hubFeats=FARMS.map(f=>{
+        const feat=routeGJ(R[f.id].h.c);
+        feat.properties={id:f.id,prod:f.prod,stk:Math.ceil(f.prod/960),cl:f.cl};
+        return feat;
+    });
     map.addSource('hub-routes',{type:'geojson',data:{type:'FeatureCollection',features:hubFeats}});
-    map.addLayer({id:'hub-routes',type:'line',source:'hub-routes',paint:{'line-color':'#00e878','line-width':1.8,'line-opacity':0.45,'line-dasharray':[2,2]},layout:{visibility:'none'}});
+    map.addLayer({id:'hub-routes',type:'line',source:'hub-routes',paint:{
+        'line-color':'#00e878',
+        'line-width':['interpolate',['linear'],['get','prod'],4500,1.2,7800,2.8],
+        'line-opacity':0.5
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
+    // Hub-port trunk
     map.addSource('hub-port',{type:'geojson',data:routeGJ(R.hp.c)});
-    // Hub-port glow
-    map.addLayer({id:'hub-port-glow',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':12,'line-opacity':0.15,'line-blur':6},layout:{visibility:'none','line-cap':'round'}});
-    // Hub-port main
-    map.addLayer({id:'hub-port',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':5,'line-opacity':0.8},layout:{visibility:'none','line-cap':'round'}});
-    // Hub-port animated flow (ant march)
+    map.addLayer({id:'hub-port-glow',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':16,'line-opacity':0.12,'line-blur':6},layout:{visibility:'none','line-cap':'round'}});
+    map.addLayer({id:'hub-port',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':5,'line-opacity':0.85},layout:{visibility:'none','line-cap':'round'}});
+    // Animated flow
     map.addLayer({id:'hub-port-flow',type:'line',source:'hub-port',paint:{'line-color':'#ffffff','line-width':2,'line-opacity':0.6,'line-dasharray':[0,4,3]},layout:{visibility:'none','line-cap':'round'}});
 
-    // Animate the hub-port flow
     let dashStep=0;
     function animateFlow(){
         dashStep=(dashStep+1)%100;
@@ -665,6 +688,16 @@ map.on('load',()=>{
         requestAnimationFrame(animateFlow);
     }
     animateFlow();
+
+    // ---- CONGESTION OVERLAY on OSM roads ----
+    // Duplicate osm-roads source for congestion heat effect
+    if(map.getSource('osm-roads')){
+        map.addLayer({id:'osm-roads-congestion',type:'line',source:'osm-roads',paint:{
+            'line-color':'#ff3b4e',
+            'line-width':['match',['get','highway'],'trunk',4,'primary',3,'secondary',2,1.5],
+            'line-opacity':0
+        },layout:{'line-cap':'round','line-join':'round'}});
+    }
 
     setLoad(75);
 
@@ -759,6 +792,7 @@ function setScenario(sc){
 
     if(map.isStyleLoaded()){
         map.setLayoutProperty('chaos-routes','visibility',sc==='chaos'?'visible':'none');
+        if(map.getLayer('chaos-routes-glow'))map.setLayoutProperty('chaos-routes-glow','visibility',sc==='chaos'?'visible':'none');
         map.setLayoutProperty('hub-routes','visibility',sc==='hub'?'visible':'none');
         map.setLayoutProperty('hub-port','visibility',sc==='hub'?'visible':'none');
         if(map.getLayer('hub-port-glow'))map.setLayoutProperty('hub-port-glow','visibility',sc==='hub'?'visible':'none');
@@ -782,7 +816,7 @@ function toggleLy(name){
         'sipra':['sipra-fill','sipra-line'],
         'roads':['osm-roads'],
         'farms':['farms','farms-glow'],
-        'routes':curSc==='chaos'?['chaos-routes']:['hub-routes','hub-port','hub-port-glow','hub-port-flow'],
+        'routes':curSc==='chaos'?['chaos-routes','chaos-routes-glow']:['hub-routes','hub-port','hub-port-glow','hub-port-flow'],
         'flood':['flood-fill','flood-line'],
         'rivers':['rivers','rivers-glow','rivers-label'],
         'wms-upra':['wms-upra'],
@@ -871,6 +905,68 @@ function updateSim(){
     else if(cf<2.5){cb.style.background='var(--yellow)';cl.textContent='Media';cl.className='sl-v y';sy.className='sem-l warn';st.textContent='CONGESTION MODERADA';st.style.color='var(--yellow)';}
     else{cb.style.background='var(--red)';cl.textContent='CRITICA';cl.className='sl-v r';sr.className='sem-l stop';st.textContent='COLAPSO VIAL';st.style.color='var(--red)';}
     stm.textContent=`~${et} min Hub-Puerto`;
+
+    // ============================================================
+    // MAP REACTIVE VISUALS — update map based on simulation state
+    // ============================================================
+    if(!map.isStyleLoaded()) return;
+
+    // Congestion factor normalized 0-1 (1=collapse)
+    const cfNorm = Math.min(1, (cf - 1) / 4);
+
+    // --- Route color shifts with congestion ---
+    if(curSc==='chaos'){
+        // Chaos routes: green->yellow->red based on congestion
+        const rColor = cf<1.5 ? '#ff6644' : cf<2.5 ? '#ff3b2e' : '#ff1122';
+        const rOpacity = 0.4 + cfNorm * 0.5;
+        const wMult = 1 + cfNorm * 1.5;
+        if(map.getLayer('chaos-routes')){
+            map.setPaintProperty('chaos-routes','line-color',rColor);
+            map.setPaintProperty('chaos-routes','line-opacity',rOpacity);
+            map.setPaintProperty('chaos-routes','line-width',['interpolate',['linear'],['get','prod'],4500,1.5*wMult,7800,3.5*wMult]);
+        }
+        if(map.getLayer('chaos-routes-glow')){
+            map.setPaintProperty('chaos-routes-glow','line-color',rColor);
+            map.setPaintProperty('chaos-routes-glow','line-opacity',0.05 + cfNorm * 0.15);
+            map.setPaintProperty('chaos-routes-glow','line-width',['interpolate',['linear'],['get','prod'],4500,6+cfNorm*8,7800,14+cfNorm*12]);
+        }
+    } else {
+        // Hub routes stay green but trunk width scales with volume
+        const trunkW = 4 + (hubt/30)*3;
+        if(map.getLayer('hub-port')) map.setPaintProperty('hub-port','line-width',trunkW);
+        if(map.getLayer('hub-port-glow')) map.setPaintProperty('hub-port-glow','line-width',trunkW*3);
+    }
+
+    // --- OSM road congestion overlay ---
+    if(map.getLayer('osm-roads-congestion')){
+        // Roads glow red when congestion is high
+        const roadOpacity = cfNorm * 0.4;
+        const roadColor = cf<1.5 ? 'rgba(255,160,48,0.3)' : cf<2.5 ? 'rgba(255,120,30,0.5)' : 'rgba(255,40,40,0.7)';
+        map.setPaintProperty('osm-roads-congestion','line-opacity',roadOpacity);
+        map.setPaintProperty('osm-roads-congestion','line-color',roadColor);
+    }
+
+    // --- Farm marker size pulses with production slider ---
+    const prodScale = p / 110; // relative to default 110K
+    if(map.getLayer('farms')){
+        map.setPaintProperty('farms','circle-radius',['interpolate',['linear'],['get','prod'],4500,5*prodScale,7800,9*prodScale]);
+    }
+    if(map.getLayer('farms-glow')){
+        map.setPaintProperty('farms-glow','circle-radius',['interpolate',['linear'],['get','prod'],4500,12*prodScale,7800,18*prodScale]);
+        // Glow color shifts with congestion: orange -> red
+        const glowColor = cf<1.5 ? 'rgba(255,122,48,0.15)' : cf<2.5 ? 'rgba(255,100,30,0.2)' : 'rgba(255,50,30,0.3)';
+        map.setPaintProperty('farms-glow','circle-color',glowColor);
+    }
+
+    // --- Hub-port trunk color changes with congestion in hub mode ---
+    if(curSc==='hub'){
+        const hpColor = cf<1.5 ? '#00e878' : cf<2.5 ? '#f0a030' : '#ff3b4e';
+        if(map.getLayer('hub-port')) map.setPaintProperty('hub-port','line-color',hpColor);
+        if(map.getLayer('hub-port-glow')) map.setPaintProperty('hub-port-glow','line-color',hpColor);
+        if(map.getLayer('hub-port-flow')){
+            map.setPaintProperty('hub-port-flow','line-opacity', cf<1.5 ? 0.6 : cf<2.5 ? 0.8 : 1.0);
+        }
+    }
 }
 
 // ============================================================
