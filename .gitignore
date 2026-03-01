@@ -4,3 +4,13 @@ node_modules/
 *.pyc
 __pycache__/
 .DS_Store
+config.js
+
+# Large source data
+data/sipra/*.zip
+data/sipra/extracted/
+data/sipra_uraba.geojson
+data/sipra_exclusion.geojson
+data/osm_roads.js
+data/osm_roads_compact.js
+data/osm_data.js
