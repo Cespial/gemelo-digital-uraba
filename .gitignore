@@ -16,3 +16,7 @@ data/osm_roads_compact.js
 data/osm_data.js
 data/uraba_municipios.geojson
 data/uraba_veredas.geojson
+data/osm_waterways.geojson
+data/osrm_routes_full.json
+data/routes_js.txt
+data/routes_compact.json
