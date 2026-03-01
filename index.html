@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemelo Digital Logistico | Uraba Banana Belt</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #222222;
+            --border: #2a2a2a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --accent-green: #00ff88;
+            --accent-green-dim: #00cc6a;
+            --accent-green-bg: rgba(0,255,136,0.08);
+            --accent-red: #ff4444;
+            --accent-red-dim: #cc3333;
+            --accent-red-bg: rgba(255,68,68,0.08);
+            --accent-yellow: #ffaa00;
+            --accent-yellow-bg: rgba(255,170,0,0.08);
+            --accent-blue: #4488ff;
+            --accent-blue-bg: rgba(68,136,255,0.08);
+            --accent-orange: #ff8844;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ---- HEADER ---- */
+        .header {
+            height: 52px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            position: relative;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 28px; height: 28px;
+            background: var(--accent-green);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700; color: #000;
+        }
+        .header-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+        .header-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .header-right {
+            display: flex; align-items: center; gap: 16px;
+        }
+        .status-dot {
+            width: 8px; height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .header-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--accent-green);
+            background: var(--accent-green-bg);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,255,136,0.2);
+        }
+
+        /* ---- MAIN LAYOUT ---- */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 52px);
+        }
+
+        /* ---- LEFT PANEL ---- */
+        .left-panel {
+            width: 360px;
+            min-width: 360px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .left-panel::-webkit-scrollbar { width: 4px; }
+        .left-panel::-webkit-scrollbar-track { background: transparent; }
+        .left-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        /* ---- MAP AREA ---- */
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #0d1117;
+        }
+
+        /* ---- RIGHT PANEL ---- */
+        .right-panel {
+            width: 340px;
+            min-width: 340px;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .right-panel::-webkit-scrollbar { width: 4px; }
+        .right-panel::-webkit-scrollbar-track { background: transparent; }
+        .right-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        /* ---- CARDS ---- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+        .card-icon {
+            font-size: 14px;
+        }
+
+        /* ---- SCENARIO TOGGLES ---- */
+        .scenario-toggles {
+            display: flex;
+            gap: 8px;
+        }
+        .scenario-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .scenario-btn:hover {
+            background: var(--bg-card-hover);
+        }
+        .scenario-btn.active-chaos {
+            background: var(--accent-red-bg);
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+        .scenario-btn.active-hub {
+            background: var(--accent-green-bg);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* ---- KPI GRID ---- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .kpi-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+        .kpi-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent-green);
+            line-height: 1.2;
+        }
+        .kpi-value.red { color: var(--accent-red); }
+        .kpi-value.yellow { color: var(--accent-yellow); }
+        .kpi-value.blue { color: var(--accent-blue); }
+        .kpi-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .kpi-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ---- SLIDERS ---- */
+        .slider-group {
+            margin-bottom: 12px;
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .slider-label-text {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .slider-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-green);
+            background: var(--accent-green-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .slider-value.warn { color: var(--accent-yellow); background: var(--accent-yellow-bg); }
+        .slider-value.danger { color: var(--accent-red); background: var(--accent-red-bg); }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px; height: 16px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--bg-primary);
+        }
+
+        /* ---- CONGESTION METER ---- */
+        .congestion-meter {
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .congestion-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease, background 0.5s ease;
+        }
+
+        /* ---- OD TABLE ---- */
+        .od-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+        }
+        .od-table th {
+            text-align: left;
+            padding: 6px 4px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .od-table td {
+            padding: 5px 4px;
+            border-bottom: 1px solid rgba(42,42,42,0.5);
+            color: var(--text-primary);
+        }
+        .od-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+        .saving-positive {
+            color: var(--accent-green) !important;
+            font-weight: 600;
+        }
+        .saving-negative {
+            color: var(--accent-red) !important;
+            font-weight: 600;
+        }
+
+        /* ---- LAYER TOGGLES ---- */
+        .layer-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            cursor: pointer;
+        }
+        .layer-toggle input[type="checkbox"] {
+            display: none;
+        }
+        .layer-switch {
+            width: 32px; height: 16px;
+            background: var(--border);
+            border-radius: 8px;
+            position: relative;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        .layer-switch::after {
+            content: '';
+            position: absolute;
+            width: 12px; height: 12px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            top: 2px; left: 2px;
+            transition: all 0.2s;
+        }
+        .layer-toggle input:checked + .layer-switch {
+            background: var(--accent-green);
+        }
+        .layer-toggle input:checked + .layer-switch::after {
+            left: 18px;
+            background: #fff;
+        }
+        .layer-text {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .layer-text.active {
+            color: var(--text-primary);
+        }
+
+        /* ---- SEMAPHORE ---- */
+        .semaphore {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+        .semaphore-light {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+        .semaphore-light.green-on { background: var(--accent-green); border-color: var(--accent-green); box-shadow: 0 0 12px var(--accent-green); }
+        .semaphore-light.yellow-on { background: var(--accent-yellow); border-color: var(--accent-yellow); box-shadow: 0 0 12px var(--accent-yellow); }
+        .semaphore-light.red-on { background: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 12px var(--accent-red); }
+        .semaphore-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ---- SOURCE BADGE ---- */
+        .source-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.03);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* ---- MAP OVERLAYS ---- */
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            z-index: 800;
+            min-width: 180px;
+        }
+        .legend-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 3px 0;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .legend-color {
+            width: 12px; height: 12px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .legend-line {
+            width: 16px; height: 3px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ---- COMPARISON BAR ---- */
+        .comparison-bar {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        .bar-segment {
+            height: 6px;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        .bar-label-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4px;
+        }
+        .bar-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-muted);
+        }
+
+        /* ---- CUSTOM LEAFLET ---- */
+        .leaflet-control-zoom a {
+            background: var(--bg-card) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--border) !important;
+        }
+        .leaflet-control-zoom a:hover {
+            background: var(--bg-card-hover) !important;
+        }
+        .custom-marker-hub {
+            background: var(--accent-green);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 16px var(--accent-green);
+        }
+        .custom-marker-port {
+            background: var(--accent-blue);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 16px var(--accent-blue);
+        }
+        .custom-marker-farm {
+            background: var(--accent-orange);
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+        }
+
+        /* Popup styles */
+        .leaflet-popup-content-wrapper {
+            background: var(--bg-card) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+        }
+        .leaflet-popup-tip {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+        }
+        .leaflet-popup-content {
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 11px !important;
+            color: var(--text-primary) !important;
+        }
+        .popup-title {
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: var(--accent-green);
+        }
+        .popup-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+            font-size: 10px;
+        }
+        .popup-label { color: var(--text-secondary); }
+        .popup-val { color: var(--text-primary); font-weight: 600; }
+
+        /* ---- SECTION DIVIDER ---- */
+        .section-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 0;
+        }
+
+        /* ---- DATA SOURCES FOOTER ---- */
+        .data-sources {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.6;
+            padding: 8px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .data-sources strong {
+            color: var(--text-secondary);
+        }
+
+        /* ---- ANIMATED ROUTE LINES ---- */
+        .animated-route {
+            stroke-dasharray: 8, 12;
+            animation: dash 1.5s linear infinite;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: -20; }
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1200px) {
+            .right-panel { display: none; }
+        }
+        @media (max-width: 900px) {
+            .left-panel { width: 280px; min-width: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-left">
+        <div class="logo-icon">G20</div>
+        <div>
+            <div class="header-title">GEMELO DIGITAL LOGISTICO</div>
+            <div class="header-subtitle">Uraba Banana Belt &bull; Sprint 0 MVP</div>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="header-badge">DATOS PUBLICOS</div>
+        <div class="status-dot"></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-secondary);">LIVE SIMULATION</span>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-container">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <!-- Scenario Toggle -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Escenario Logistico</span>
+            </div>
+            <div class="scenario-toggles">
+                <button class="scenario-btn active-chaos" id="btn-chaos" onclick="setScenario('chaos')">
+                    CAOS DIRECTO
+                </button>
+                <button class="scenario-btn" id="btn-hub" onclick="setScenario('hub')">
+                    HUB & SPOKE
+                </button>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Indicadores Clave</span>
+                <span class="card-icon" id="scenario-icon">&#x26A0;</span>
+            </div>
+            <div class="kpi-grid">
+                <div class="kpi-box">
+                    <div class="kpi-value red" id="kpi-trucks">154</div>
+                    <div class="kpi-label">Tractomulas/dia en via</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value yellow" id="kpi-time">47</div>
+                    <div class="kpi-label">Min promedio al puerto</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value blue" id="kpi-distance">38.2</div>
+                    <div class="kpi-label">Km promedio recorrido</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value" id="kpi-savings">--</div>
+                    <div class="kpi-label">Ahorro vs. directo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stress Simulator -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Simulador de Estres Vial</span>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span class="slider-label-text">Produccion Grupo 20</span>
+                    <span class="slider-value" id="prod-val">110K cajas/sem</span>
+                </div>
+                <input type="range" id="slider-prod" min="75" max="135" value="110" oninput="updateSimulation()">
+                <div class="bar-label-row">
+                    <span class="bar-label">Valle 75K</span>
+                    <span class="bar-label">Pico 135K</span>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span class="slider-label-text">Carga regional en via</span>
+                    <span class="slider-value" id="load-val">20%</span>
+                </div>
+                <input type="range" id="slider-load" min="20" max="100" value="20" oninput="updateSimulation()">
+                <div class="bar-label-row">
+                    <span class="bar-label">Actual 20%</span>
+                    <span class="bar-label">Puerto pleno 100%</span>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span class="slider-label-text">Competidores en via</span>
+                    <span class="slider-value" id="comp-val">Solo G20</span>
+                </div>
+                <input type="range" id="slider-comp" min="0" max="100" value="5" oninput="updateSimulation()">
+                <div class="bar-label-row">
+                    <span class="bar-label">Solo G20 (5%)</span>
+                    <span class="bar-label">+Uniban +otros (100%)</span>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Congestion output -->
+            <div style="margin-top: 8px;">
+                <div class="slider-label">
+                    <span class="slider-label-text">Congestion estimada</span>
+                    <span class="slider-value" id="congestion-level">Baja</span>
+                </div>
+                <div class="congestion-meter">
+                    <div class="congestion-fill" id="congestion-bar" style="width: 15%; background: var(--accent-green);"></div>
+                </div>
+            </div>
+
+            <div class="semaphore" id="semaphore" style="margin-top: 10px;">
+                <div class="semaphore-light green-on" id="sem-green"></div>
+                <div class="semaphore-light" id="sem-yellow"></div>
+                <div class="semaphore-light" id="sem-red"></div>
+                <div>
+                    <div class="semaphore-text" id="sem-text" style="color: var(--accent-green);">FLUJO NORMAL</div>
+                    <div style="font-size:10px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;" id="sem-time">~28 min Hub-Puerto</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer Controls -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Capas del Mapa</span>
+            </div>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-banana" checked onchange="toggleLayer('banana')">
+                <span class="layer-switch"></span>
+                <span class="layer-text active">Zona bananera (proxy UPRA)</span>
+            </label>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-roads" checked onchange="toggleLayer('roads')">
+                <span class="layer-switch"></span>
+                <span class="layer-text active">Red vial principal (OSM)</span>
+            </label>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-farms" checked onchange="toggleLayer('farms')">
+                <span class="layer-switch"></span>
+                <span class="layer-text active">Fincas simuladas (n=20)</span>
+            </label>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-routes" checked onchange="toggleLayer('routes')">
+                <span class="layer-switch"></span>
+                <span class="layer-text active">Rutas logisticas</span>
+            </label>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-flood" onchange="toggleLayer('flood')">
+                <span class="layer-switch"></span>
+                <span class="layer-text">Zona inundacion POMCA</span>
+            </label>
+            <label class="layer-toggle">
+                <input type="checkbox" id="layer-rivers" checked onchange="toggleLayer('rivers')">
+                <span class="layer-switch"></span>
+                <span class="layer-text active">Hidrografia</span>
+            </label>
+        </div>
+
+        <!-- Data Sources -->
+        <div class="data-sources">
+            <strong>Fuentes de datos:</strong><br>
+            Red vial: OpenStreetMap / OSMnx<br>
+            Zona bananera: Proxy basado en UPRA/SIPRA zonificacion<br>
+            Hidrologia: IGAC / OSM waterways<br>
+            Inundacion: Proxy POMCA Rio Leon (Corpouraba)<br>
+            Trafico: INVIAS TPDA Ruta 62 (estimado)<br>
+            Produccion: Augura 2023, parametros Grupo 20<br>
+            Ruteo: OSRM / estimaciones geodesicas<br>
+            <br>
+            <strong>Observatorio de Datos y Analisis SAS</strong> &bull; Sprint 0 &bull; 2025
+        </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-container">
+        <div id="map"></div>
+        <div class="map-legend" id="map-legend">
+            <div class="legend-title">Leyenda</div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--accent-green); box-shadow: 0 0 6px var(--accent-green);"></div>
+                Hub Casa Verde (propuesto)
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--accent-blue); box-shadow: 0 0 6px var(--accent-blue);"></div>
+                Puerto Antioquia
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--accent-orange);"></div>
+                Fincas simuladas
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: rgba(0,200,100,0.3); border: 1px solid rgba(0,200,100,0.5);"></div>
+                Zona bananera
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: var(--accent-red);"></div>
+                Ruta directa (caos)
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: var(--accent-green);"></div>
+                Ruta Hub & Spoke
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: rgba(68,136,255,0.2); border: 1px solid rgba(68,136,255,0.4);"></div>
+                Zona inundacion
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <!-- Hub Info -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Hub Casa Verde</span>
+                <span class="source-badge">PROPUESTO</span>
+            </div>
+            <div class="kpi-grid">
+                <div class="kpi-box">
+                    <div class="kpi-value" style="font-size:16px;">7.8680</div>
+                    <div class="kpi-label">Latitud</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value" style="font-size:16px;">-76.6650</div>
+                    <div class="kpi-label">Longitud</div>
+                </div>
+                <div class="kpi-box kpi-full">
+                    <div class="kpi-value" style="font-size:14px;" id="hub-flood-status">VERIFICANDO...</div>
+                    <div class="kpi-label">Estado riesgo inundacion</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OD Matrix -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Matriz Origen-Destino</span>
+                <span class="source-badge">TOP 10 FINCAS</span>
+            </div>
+            <div style="overflow-x:auto; max-height: 280px; overflow-y: auto;">
+                <table class="od-table" id="od-table">
+                    <thead>
+                        <tr>
+                            <th>Finca</th>
+                            <th>Directo</th>
+                            <th>Via Hub</th>
+                            <th>Ahorro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="od-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Capacity -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Capacidad del Hub</span>
+            </div>
+            <div class="kpi-grid">
+                <div class="kpi-box">
+                    <div class="kpi-value" style="font-size:16px;" id="cap-pallets">450</div>
+                    <div class="kpi-label">Pallets / dia</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value" style="font-size:16px;" id="cap-boxes">16.5K</div>
+                    <div class="kpi-label">Cajas / dia</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value" style="font-size:16px;" id="cap-tons">330</div>
+                    <div class="kpi-label">Ton / dia</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-value" style="font-size:16px;" id="cap-trucks">17</div>
+                    <div class="kpi-label">Tractomulas / dia</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Savings Comparison -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Impacto en Via Principal</span>
+            </div>
+            <div style="margin-bottom:8px;">
+                <div class="slider-label">
+                    <span class="slider-label-text">Tractomulas en via (G20)</span>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-segment" id="bar-chaos" style="width: 100%; background: var(--accent-red); height: 8px; border-radius: 4px;"></div>
+                </div>
+                <div class="bar-label-row">
+                    <span class="bar-label" style="color:var(--accent-red);" id="bar-chaos-label">Directo: 154/dia</span>
+                    <span class="bar-label" style="color:var(--accent-green);" id="bar-hub-label">Hub: 17/dia</span>
+                </div>
+                <div class="comparison-bar" style="margin-top:2px;">
+                    <div class="bar-segment" id="bar-hub" style="width: 11%; background: var(--accent-green); height: 8px; border-radius: 4px;"></div>
+                </div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-secondary);text-align:center;margin-top:8px;">
+                Reduccion: <span style="color:var(--accent-green);font-weight:700;" id="reduction-pct">89%</span> menos tractomulas en via principal
+            </div>
+        </div>
+
+        <!-- Production breakdown -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Parametros Grupo 20</span>
+                <span class="source-badge">AUGURA 2023</span>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-secondary);line-height:1.8;">
+                Fincas activas: <span style="color:var(--text-primary);">19</span><br>
+                Produccion anual: <span style="color:var(--text-primary);">~5.7M cajas</span><br>
+                Participacion regional: <span style="color:var(--text-primary);">~5%</span><br>
+                Peso por caja: <span style="color:var(--text-primary);">~20 kg</span><br>
+                Cajas por pallet: <span style="color:var(--text-primary);">~48</span><br>
+                Pallets por tractomula: <span style="color:var(--text-primary);">~20</span><br>
+                Cajas por tractomula: <span style="color:var(--text-primary);">~960</span><br>
+                Produccion regional total: <span style="color:var(--text-primary);">~114M cajas/ano</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ===========================
+// DATA: Geographic coordinates and farm simulation
+// ===========================
+
+const NODES = {
+    hub: { lat: 7.8680, lng: -76.6650, name: "Hub Casa Verde", desc: "Centro de Consolidacion Logistica propuesto" },
+    puerto: { lat: 7.9230, lng: -76.7341, name: "Puerto Antioquia", desc: "Puerto en Bahia Colombia, Nueva Colonia" },
+    apartado: { lat: 7.8829, lng: -76.6258, name: "Apartado Centro", desc: "Referencia urbana principal" },
+    aeropuerto: { lat: 7.8139, lng: -76.7161, name: "Aeropuerto Zungo", desc: "Carepa" },
+    embarcadero: { lat: 7.9100, lng: -76.7000, name: "Embarcadero Rio Leon", desc: "Modelo actual de exportacion" },
+    carepa: { lat: 7.7567, lng: -76.6558, name: "Carepa", desc: "Municipio" },
+    chigorodo: { lat: 7.6647, lng: -76.6818, name: "Chigorodo", desc: "Municipio" },
+    turbo: { lat: 8.0926, lng: -76.7260, name: "Turbo", desc: "Municipio" }
+};
+
+// Simulated farms based on described geography
+// Cluster distribution respecting the meeting description
+const FARMS = [
+    // Cluster SUR - "antes de Apartado" (La Sierra, Villa Fresia area)
+    { id: "F01", name: "La Sierra", lat: 7.7920, lng: -76.6480, prod: 7200, cluster: "sur" },
+    { id: "F02", name: "Villa Fresia", lat: 7.7780, lng: -76.6620, prod: 5100, cluster: "sur" },
+    { id: "F03", name: "El Retiro", lat: 7.7650, lng: -76.6530, prod: 4800, cluster: "sur" },
+    { id: "F04", name: "Santa Ana", lat: 7.8050, lng: -76.6380, prod: 6500, cluster: "sur" },
+    { id: "F05", name: "La Esperanza", lat: 7.7890, lng: -76.6750, prod: 5900, cluster: "sur" },
+
+    // Cluster CENTRAL - cerca de Apartado
+    { id: "F06", name: "El Paraiso", lat: 7.8400, lng: -76.6350, prod: 6100, cluster: "central" },
+    { id: "F07", name: "La Fortuna", lat: 7.8550, lng: -76.6500, prod: 5500, cluster: "central" },
+    { id: "F08", name: "San Jose", lat: 7.8620, lng: -76.6280, prod: 4900, cluster: "central" },
+
+    // Cluster NORTE - "despues de Apartado" (Chinita, Santa Marta, La Llave)
+    { id: "F09", name: "Chinita", lat: 7.8950, lng: -76.6580, prod: 7800, cluster: "norte" },
+    { id: "F10", name: "Santa Marta", lat: 7.9050, lng: -76.6720, prod: 6700, cluster: "norte" },
+    { id: "F11", name: "La Llave", lat: 7.9150, lng: -76.6450, prod: 5400, cluster: "norte" },
+    { id: "F12", name: "El Progreso", lat: 7.9280, lng: -76.6600, prod: 4600, cluster: "norte" },
+
+    // Cluster HUB - "Dunas, Oasis, Guadalupe" cercanas al Hub
+    { id: "F13", name: "Las Dunas", lat: 7.8720, lng: -76.6780, prod: 6300, cluster: "hub" },
+    { id: "F14", name: "Oasis", lat: 7.8580, lng: -76.6700, prod: 5800, cluster: "hub" },
+    { id: "F15", name: "Guadalupe", lat: 7.8800, lng: -76.6850, prod: 6000, cluster: "hub" },
+    { id: "F16", name: "El Eden", lat: 7.8650, lng: -76.6900, prod: 5200, cluster: "hub" },
+
+    // Fincas adicionales dispersas
+    { id: "F17", name: "Monteverde", lat: 7.8300, lng: -76.6650, prod: 4500, cluster: "central" },
+    { id: "F18", name: "Bella Vista", lat: 7.8100, lng: -76.6800, prod: 5600, cluster: "sur" },
+    { id: "F19", name: "Los Almendros", lat: 7.8450, lng: -76.6950, prod: 5100, cluster: "central" },
+    { id: "F20", name: "Rio Claro", lat: 7.8750, lng: -76.6400, prod: 4800, cluster: "hub" }
+];
+
+// Total production check
+const totalProd = FARMS.reduce((s, f) => s + f.prod, 0);
+// ~112,800 cajas/sem - close to 110K target
+
+// ===========================
+// BANANA ZONE POLYGONS (proxy based on known cultivation areas)
+// ===========================
+
+const BANANA_ZONES = [
+    // Main banana belt - alluvial plains between Serrania de Abibe and Gulf
+    {
+        name: "Zona Bananera Turbo Sur",
+        coords: [
+            [7.98, -76.74], [7.96, -76.70], [7.93, -76.68],
+            [7.90, -76.65], [7.88, -76.64], [7.85, -76.63],
+            [7.82, -76.63], [7.80, -76.64], [7.78, -76.65],
+            [7.76, -76.66], [7.74, -76.67], [7.72, -76.68],
+            [7.70, -76.69], [7.70, -76.72], [7.72, -76.73],
+            [7.74, -76.73], [7.76, -76.72], [7.78, -76.71],
+            [7.80, -76.70], [7.82, -76.70], [7.84, -76.69],
+            [7.86, -76.69], [7.88, -76.70], [7.90, -76.70],
+            [7.92, -76.71], [7.94, -76.72], [7.96, -76.73],
+            [7.98, -76.74]
+        ]
+    },
+    // Eastern corridor along road
+    {
+        name: "Zona Bananera Apartado-Carepa",
+        coords: [
+            [7.90, -76.65], [7.88, -76.62], [7.86, -76.61],
+            [7.84, -76.60], [7.82, -76.60], [7.80, -76.61],
+            [7.78, -76.62], [7.76, -76.63], [7.74, -76.64],
+            [7.72, -76.65], [7.72, -76.68], [7.74, -76.67],
+            [7.76, -76.66], [7.78, -76.65], [7.80, -76.64],
+            [7.82, -76.63], [7.85, -76.63], [7.88, -76.64],
+            [7.90, -76.65]
+        ]
+    },
+    // Northern extension towards Turbo
+    {
+        name: "Zona Bananera Norte",
+        coords: [
+            [7.98, -76.74], [8.00, -76.73], [8.02, -76.72],
+            [8.04, -76.71], [8.05, -76.70], [8.05, -76.68],
+            [8.03, -76.67], [8.01, -76.67], [7.99, -76.68],
+            [7.97, -76.69], [7.95, -76.70], [7.96, -76.73],
+            [7.98, -76.74]
+        ]
+    }
+];
+
+// ===========================
+// FLOOD ZONES (proxy based on Rio Leon POMCA)
+// ===========================
+
+const FLOOD_ZONES = [
+    // Rio Leon floodplain - main corridor
+    {
+        name: "Llanura de inundacion Rio Leon",
+        risk: "alta",
+        coords: [
+            [7.92, -76.73], [7.93, -76.72], [7.95, -76.71],
+            [7.97, -76.70], [7.99, -76.69], [8.01, -76.69],
+            [8.03, -76.70], [8.05, -76.72], [8.06, -76.74],
+            [8.06, -76.76], [8.04, -76.77], [8.02, -76.76],
+            [8.00, -76.75], [7.98, -76.75], [7.96, -76.75],
+            [7.94, -76.74], [7.92, -76.73]
+        ]
+    },
+    // Secondary flood zone
+    {
+        name: "Zona susceptible inundacion Sur",
+        risk: "media",
+        coords: [
+            [7.82, -76.71], [7.84, -76.70], [7.86, -76.70],
+            [7.88, -76.71], [7.90, -76.72], [7.92, -76.73],
+            [7.92, -76.75], [7.90, -76.75], [7.88, -76.74],
+            [7.86, -76.73], [7.84, -76.72], [7.82, -76.71]
+        ]
+    },
+    // Coastal flood zone near port
+    {
+        name: "Zona costera Bahia Colombia",
+        risk: "alta",
+        coords: [
+            [7.90, -76.74], [7.91, -76.73], [7.92, -76.73],
+            [7.93, -76.74], [7.94, -76.76], [7.93, -76.78],
+            [7.92, -76.79], [7.91, -76.78], [7.90, -76.76],
+            [7.90, -76.74]
+        ]
+    }
+];
+
+// ===========================
+// RIVERS (simplified)
+// ===========================
+
+const RIVERS = [
+    {
+        name: "Rio Leon",
+        coords: [
+            [7.70, -76.70], [7.73, -76.71], [7.76, -76.71],
+            [7.79, -76.70], [7.82, -76.71], [7.85, -76.72],
+            [7.88, -76.72], [7.91, -76.73], [7.94, -76.74],
+            [7.97, -76.74], [8.00, -76.73], [8.03, -76.74],
+            [8.06, -76.75]
+        ]
+    },
+    {
+        name: "Rio Apartado",
+        coords: [
+            [7.85, -76.58], [7.86, -76.60], [7.87, -76.62],
+            [7.88, -76.65], [7.88, -76.68], [7.89, -76.70]
+        ]
+    },
+    {
+        name: "Rio Carepa",
+        coords: [
+            [7.73, -76.60], [7.74, -76.62], [7.75, -76.64],
+            [7.76, -76.66], [7.76, -76.69]
+        ]
+    },
+    {
+        name: "Rio Chigorodo",
+        coords: [
+            [7.64, -76.64], [7.65, -76.66], [7.66, -76.68],
+            [7.67, -76.69], [7.68, -76.71]
+        ]
+    }
+];
+
+// ===========================
+// MAIN ROAD NETWORK (simplified from OSM)
+// ===========================
+
+const ROADS = {
+    principal: {
+        name: "Troncal del Uraba (Ruta 62)",
+        coords: [
+            [7.6647, -76.6818], // Chigorodo
+            [7.69, -76.68], [7.72, -76.67], [7.7567, -76.6558], // Carepa
+            [7.78, -76.65], [7.80, -76.64], [7.82, -76.63],
+            [7.85, -76.63], [7.8680, -76.6650], // Hub approx junction
+            [7.8829, -76.6258], // Apartado
+            [7.90, -76.63], [7.92, -76.65],
+            [7.94, -76.67], [7.96, -76.69],
+            [7.98, -76.71], [8.00, -76.72],
+            [8.02, -76.73], [8.05, -76.72],
+            [8.0926, -76.7260] // Turbo
+        ]
+    },
+    viaPuerto: {
+        name: "Via a Puerto Antioquia",
+        coords: [
+            [7.96, -76.69], [7.95, -76.71],
+            [7.94, -76.73], [7.9230, -76.7341] // Puerto
+        ]
+    },
+    viaZungo: {
+        name: "Via a Zungo",
+        coords: [
+            [7.8680, -76.6650], // Hub junction
+            [7.85, -76.68], [7.84, -76.70],
+            [7.83, -76.71], [7.8139, -76.7161] // Aeropuerto
+        ]
+    },
+    hubToPuerto: {
+        name: "Hub - Puerto (ruta optima)",
+        coords: [
+            [7.8680, -76.6650], // Hub
+            [7.88, -76.67], [7.90, -76.68],
+            [7.92, -76.69], [7.93, -76.70],
+            [7.94, -76.71], [7.9230, -76.7341] // Puerto
+        ]
+    }
+};
+
+// ===========================
+// CALCULATIONS
+// ===========================
+
+function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// Road correction factor (straight-line to road distance)
+const ROAD_FACTOR = 1.35;
+// Speed estimates (km/h)
+const SPEED_TRUCK_MAIN = 45;    // Tractomula via principal
+const SPEED_TRUCK_SEC = 30;     // Camion sencillo vias secundarias
+const SPEED_HUB_PORT = 50;      // Hub to port (dedicated route, less traffic)
+
+// Calculate OD matrix
+function calcODMatrix() {
+    const hubToPort = haversine(NODES.hub.lat, NODES.hub.lng, NODES.puerto.lat, NODES.puerto.lng) * ROAD_FACTOR;
+    const hubToPortTime = (hubToPort / SPEED_HUB_PORT) * 60; // minutes
+
+    return FARMS.map(farm => {
+        // Direct: Farm -> Puerto (tractomula on main road)
+        const directDist = haversine(farm.lat, farm.lng, NODES.puerto.lat, NODES.puerto.lng) * ROAD_FACTOR;
+        const directTime = (directDist / SPEED_TRUCK_MAIN) * 60;
+
+        // Hub: Farm -> Hub (camion sencillo) + Hub -> Puerto (tractomula)
+        const farmToHub = haversine(farm.lat, farm.lng, NODES.hub.lat, NODES.hub.lng) * ROAD_FACTOR;
+        const farmToHubTime = (farmToHub / SPEED_TRUCK_SEC) * 60;
+        const totalHubDist = farmToHub + hubToPort;
+        const totalHubTime = farmToHubTime + hubToPortTime;
+
+        // Note: Hub time may be longer for some farms, but the KEY benefit is
+        // removing tractomulas from the main road (only small trucks on secondary roads)
+        const truckTripsDirectPerWeek = Math.ceil(farm.prod / 960); // 960 cajas per tractomula
+        const truckTripsHubPerWeek = 0; // No tractomulas from this farm on main road!
+
+        return {
+            ...farm,
+            directDist: directDist.toFixed(1),
+            directTime: directTime.toFixed(0),
+            hubDist: totalHubDist.toFixed(1),
+            hubTime: totalHubTime.toFixed(0),
+            farmToHub: farmToHub.toFixed(1),
+            farmToHubTime: farmToHubTime.toFixed(0),
+            savingTrucks: truckTripsDirectPerWeek,
+            hubToPortDist: hubToPort.toFixed(1),
+            hubToPortTime: hubToPortTime.toFixed(0)
+        };
+    });
+}
+
+const OD_MATRIX = calcODMatrix();
+
+// ===========================
+// MAP INITIALIZATION
+// ===========================
+
+const map = L.map('map', {
+    center: [7.87, -76.68],
+    zoom: 11,
+    zoomControl: true,
+    attributionControl: false
+});
+
+// Dark tile layer
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 18,
+    attribution: 'CartoDB Dark Matter'
+}).addTo(map);
+
+// Add attribution in a custom position
+L.control.attribution({position: 'bottomright'}).addTo(map);
+
+// ===========================
+// LAYER GROUPS
+// ===========================
+
+const layers = {
+    banana: L.layerGroup(),
+    roads: L.layerGroup(),
+    farms: L.layerGroup(),
+    routes: L.layerGroup(),
+    flood: L.layerGroup(),
+    rivers: L.layerGroup()
+};
+
+// ---- BANANA ZONES ----
+BANANA_ZONES.forEach(zone => {
+    L.polygon(zone.coords, {
+        color: 'rgba(0, 200, 100, 0.5)',
+        fillColor: 'rgba(0, 200, 100, 0.12)',
+        fillOpacity: 0.12,
+        weight: 1.5,
+        dashArray: '4, 4'
+    }).bindPopup(`<div class="popup-title">${zone.name}</div><div class="popup-row"><span class="popup-label">Tipo:</span><span class="popup-val">Zona apta banano exportacion</span></div><div class="popup-row"><span class="popup-label">Fuente:</span><span class="popup-val">Proxy UPRA/SIPRA</span></div>`).addTo(layers.banana);
+});
+
+// ---- ROADS ----
+// Main road
+L.polyline(ROADS.principal.coords, {
+    color: '#ffffff',
+    weight: 3,
+    opacity: 0.6,
+    lineCap: 'round'
+}).bindPopup(`<div class="popup-title">${ROADS.principal.name}</div><div class="popup-row"><span class="popup-label">Tipo:</span><span class="popup-val">Via Nacional</span></div><div class="popup-row"><span class="popup-label">TPDA estimado:</span><span class="popup-val">~8,000 veh/dia</span></div>`).addTo(layers.roads);
+
+// Via Puerto
+L.polyline(ROADS.viaPuerto.coords, {
+    color: '#aaaaaa',
+    weight: 2,
+    opacity: 0.5,
+    dashArray: '6, 4'
+}).bindPopup(`<div class="popup-title">${ROADS.viaPuerto.name}</div>`).addTo(layers.roads);
+
+// Via Zungo
+L.polyline(ROADS.viaZungo.coords, {
+    color: '#aaaaaa',
+    weight: 2,
+    opacity: 0.4,
+    dashArray: '6, 4'
+}).bindPopup(`<div class="popup-title">${ROADS.viaZungo.name}</div>`).addTo(layers.roads);
+
+// ---- RIVERS ----
+RIVERS.forEach(river => {
+    L.polyline(river.coords, {
+        color: '#2244aa',
+        weight: 2,
+        opacity: 0.5,
+        lineCap: 'round'
+    }).bindPopup(`<div class="popup-title">${river.name}</div>`).addTo(layers.rivers);
+});
+
+// ---- FLOOD ZONES ----
+FLOOD_ZONES.forEach(zone => {
+    const color = zone.risk === 'alta' ? 'rgba(68, 136, 255, 0.35)' : 'rgba(68, 136, 255, 0.18)';
+    const border = zone.risk === 'alta' ? 'rgba(68, 136, 255, 0.7)' : 'rgba(68, 136, 255, 0.4)';
+    L.polygon(zone.coords, {
+        color: border,
+        fillColor: color,
+        fillOpacity: 0.3,
+        weight: 1.5,
+        dashArray: zone.risk === 'alta' ? '' : '4, 4'
+    }).bindPopup(`<div class="popup-title">${zone.name}</div><div class="popup-row"><span class="popup-label">Riesgo:</span><span class="popup-val" style="color:${zone.risk === 'alta' ? '#ff4444' : '#ffaa00'}">${zone.risk.toUpperCase()}</span></div><div class="popup-row"><span class="popup-label">Fuente:</span><span class="popup-val">Proxy POMCA Rio Leon</span></div>`).addTo(layers.flood);
+});
+
+// ---- FARM MARKERS ----
+FARMS.forEach(farm => {
+    const marker = L.circleMarker([farm.lat, farm.lng], {
+        radius: Math.max(5, Math.sqrt(farm.prod / 500) * 3),
+        fillColor: '#ff8844',
+        color: 'rgba(255, 255, 255, 0.6)',
+        weight: 2,
+        fillOpacity: 0.8
+    });
+
+    const od = OD_MATRIX.find(o => o.id === farm.id);
+    marker.bindPopup(`
+        <div class="popup-title">${farm.name} (${farm.id})</div>
+        <div class="popup-row"><span class="popup-label">Cluster:</span><span class="popup-val">${farm.cluster}</span></div>
+        <div class="popup-row"><span class="popup-label">Produccion:</span><span class="popup-val">${farm.prod.toLocaleString()} cajas/sem</span></div>
+        <hr style="border-color:rgba(255,255,255,0.1);margin:4px 0;">
+        <div class="popup-row"><span class="popup-label">Directo al puerto:</span><span class="popup-val">${od.directDist} km / ${od.directTime} min</span></div>
+        <div class="popup-row"><span class="popup-label">Al Hub:</span><span class="popup-val">${od.farmToHub} km / ${od.farmToHubTime} min</span></div>
+        <div class="popup-row"><span class="popup-label">Hub al Puerto:</span><span class="popup-val">${od.hubToPortDist} km / ${od.hubToPortTime} min</span></div>
+        <div class="popup-row"><span class="popup-label">Tractomulas eliminadas:</span><span class="popup-val" style="color:#00ff88;">${od.savingTrucks}/sem</span></div>
+    `);
+    marker.addTo(layers.farms);
+});
+
+// ---- KEY NODE MARKERS ----
+// Hub
+const hubIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:20px;height:20px;background:#00ff88;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #00ff88, 0 0 40px rgba(0,255,136,0.3);"></div>',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+});
+L.marker([NODES.hub.lat, NODES.hub.lng], {icon: hubIcon})
+    .bindPopup(`<div class="popup-title" style="color:#00ff88;">HUB CASA VERDE</div><div class="popup-row"><span class="popup-label">Tipo:</span><span class="popup-val">Centro de Consolidacion</span></div><div class="popup-row"><span class="popup-label">Estado:</span><span class="popup-val">PROPUESTO</span></div><div class="popup-row"><span class="popup-label">Terreno:</span><span class="popup-val">Finca de bufalos (ocioso)</span></div><div class="popup-row"><span class="popup-label">Ubicacion:</span><span class="popup-val">Interseccion via Zungo</span></div>`)
+    .addTo(map);
+
+// Puerto
+const puertoIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:20px;height:20px;background:#4488ff;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #4488ff, 0 0 40px rgba(68,136,255,0.3);"></div>',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+});
+L.marker([NODES.puerto.lat, NODES.puerto.lng], {icon: puertoIcon})
+    .bindPopup(`<div class="popup-title" style="color:#4488ff;">PUERTO ANTIOQUIA</div><div class="popup-row"><span class="popup-label">Ubicacion:</span><span class="popup-val">Bahia Colombia, Nueva Colonia</span></div><div class="popup-row"><span class="popup-label">Estado:</span><span class="popup-val">En desarrollo</span></div><div class="popup-row"><span class="popup-label">Capacidad:</span><span class="popup-val">~2M ton/ano banano</span></div>`)
+    .addTo(map);
+
+// Apartado
+const cityIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:10px;height:10px;background:#888;border:2px solid #ccc;border-radius:50%;"></div>',
+    iconSize: [10, 10],
+    iconAnchor: [5, 5]
+});
+[NODES.apartado, NODES.carepa, NODES.chigorodo, NODES.aeropuerto, NODES.embarcadero].forEach(node => {
+    L.marker([node.lat, node.lng], {icon: cityIcon})
+        .bindPopup(`<div class="popup-title">${node.name}</div><div class="popup-row"><span class="popup-label">${node.desc}</span></div>`)
+        .addTo(map);
+
+    // Add label
+    L.marker([node.lat, node.lng], {
+        icon: L.divIcon({
+            className: '',
+            html: `<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#999;white-space:nowrap;transform:translate(8px,-8px);text-shadow:0 0 4px #000,0 0 8px #000;">${node.name}</div>`,
+            iconSize: [0, 0]
+        })
+    }).addTo(map);
+});
+
+// Hub and Puerto labels
+L.marker([NODES.hub.lat, NODES.hub.lng], {
+    icon: L.divIcon({
+        className: '',
+        html: `<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00ff88;font-weight:700;white-space:nowrap;transform:translate(14px,-8px);text-shadow:0 0 4px #000,0 0 8px #000;">HUB CASA VERDE</div>`,
+        iconSize: [0, 0]
+    })
+}).addTo(map);
+
+L.marker([NODES.puerto.lat, NODES.puerto.lng], {
+    icon: L.divIcon({
+        className: '',
+        html: `<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4488ff;font-weight:700;white-space:nowrap;transform:translate(14px,-8px);text-shadow:0 0 4px #000,0 0 8px #000;">PUERTO ANTIOQUIA</div>`,
+        iconSize: [0, 0]
+    })
+}).addTo(map);
+
+// ===========================
+// ROUTE VISUALIZATION
+// ===========================
+
+let chaosRoutes = [];
+let hubRoutes = [];
+let hubMainRoute = null;
+
+function buildRoutes() {
+    // Clear existing
+    chaosRoutes.forEach(r => layers.routes.removeLayer(r));
+    hubRoutes.forEach(r => layers.routes.removeLayer(r));
+    if (hubMainRoute) layers.routes.removeLayer(hubMainRoute);
+
+    chaosRoutes = [];
+    hubRoutes = [];
+
+    FARMS.forEach(farm => {
+        // Chaos route: direct to port
+        const chaosLine = L.polyline([
+            [farm.lat, farm.lng],
+            [NODES.puerto.lat, NODES.puerto.lng]
+        ], {
+            color: '#ff4444',
+            weight: 1.5,
+            opacity: 0.6,
+            dashArray: '4, 6',
+            className: 'animated-route'
+        });
+        chaosRoutes.push(chaosLine);
+
+        // Hub route: farm to hub
+        const hubLine = L.polyline([
+            [farm.lat, farm.lng],
+            [NODES.hub.lat, NODES.hub.lng]
+        ], {
+            color: '#00ff88',
+            weight: 1.5,
+            opacity: 0.5,
+            dashArray: '4, 6'
+        });
+        hubRoutes.push(hubLine);
+    });
+
+    // Hub to Puerto main route
+    hubMainRoute = L.polyline(ROADS.hubToPuerto.coords, {
+        color: '#00ff88',
+        weight: 5,
+        opacity: 0.8,
+        lineCap: 'round'
+    });
+}
+
+buildRoutes();
+
+// Add layers to map
+layers.banana.addTo(map);
+layers.roads.addTo(map);
+layers.farms.addTo(map);
+layers.routes.addTo(map);
+layers.rivers.addTo(map);
+// Flood NOT added by default
+
+// ===========================
+// SCENARIO MANAGEMENT
+// ===========================
+
+let currentScenario = 'chaos';
+
+function setScenario(scenario) {
+    currentScenario = scenario;
+
+    // Update buttons
+    document.getElementById('btn-chaos').className = scenario === 'chaos' ? 'scenario-btn active-chaos' : 'scenario-btn';
+    document.getElementById('btn-hub').className = scenario === 'hub' ? 'scenario-btn active-hub' : 'scenario-btn';
+
+    // Update routes on map
+    layers.routes.clearLayers();
+
+    if (scenario === 'chaos') {
+        chaosRoutes.forEach(r => r.addTo(layers.routes));
+        document.getElementById('scenario-icon').innerHTML = '&#x26A0;';
+    } else {
+        hubRoutes.forEach(r => r.addTo(layers.routes));
+        hubMainRoute.addTo(layers.routes);
+        document.getElementById('scenario-icon').innerHTML = '&#x2714;';
+    }
+
+    updateSimulation();
+}
+
+// ===========================
+// SIMULATION ENGINE
+// ===========================
+
+function updateSimulation() {
+    const prodLevel = parseInt(document.getElementById('slider-prod').value); // K cajas/sem
+    const loadPct = parseInt(document.getElementById('slider-load').value);   // % regional
+    const compPct = parseInt(document.getElementById('slider-comp').value);   // % competidores
+
+    // Update slider displays
+    const prodLabel = document.getElementById('prod-val');
+    prodLabel.textContent = `${prodLevel}K cajas/sem`;
+    prodLabel.className = prodLevel > 120 ? 'slider-value danger' : prodLevel > 100 ? 'slider-value warn' : 'slider-value';
+
+    const loadLabel = document.getElementById('load-val');
+    loadLabel.textContent = `${loadPct}%`;
+    loadLabel.className = loadPct > 70 ? 'slider-value danger' : loadPct > 40 ? 'slider-value warn' : 'slider-value';
+
+    const compLabel = document.getElementById('comp-val');
+    if (compPct <= 5) compLabel.textContent = 'Solo G20';
+    else if (compPct <= 20) compLabel.textContent = `G20 + algunos`;
+    else if (compPct <= 60) compLabel.textContent = `+Uniban (${compPct}%)`;
+    else compLabel.textContent = `Todos (${compPct}%)`;
+    compLabel.className = compPct > 60 ? 'slider-value danger' : compPct > 30 ? 'slider-value warn' : 'slider-value';
+
+    // Production calculations
+    const cajasPerWeek = prodLevel * 1000;
+    const cajasPerDay = cajasPerWeek / 6; // 6 working days
+    const palletsPerDay = Math.ceil(cajasPerDay / 48);
+    const tonsPerDay = (cajasPerDay * 20) / 1000;
+
+    // Truck calculations
+    const cajasPerTractomula = 960;
+    const g20TrucksPerDay = Math.ceil(cajasPerDay / cajasPerTractomula);
+
+    // Regional load calculation
+    const totalRegionalBoxes = 114000000; // cajas/year total regional
+    const regionalBoxesPerDay = totalRegionalBoxes / 52 / 6;
+    const regionalTrucksPerDay = Math.ceil((regionalBoxesPerDay * loadPct / 100 * compPct / 100) / cajasPerTractomula);
+    const totalTrucksOnRoad = (currentScenario === 'chaos') ?
+        g20TrucksPerDay + regionalTrucksPerDay :
+        Math.ceil(g20TrucksPerDay / 10) + regionalTrucksPerDay; // Hub consolidates
+
+    // Hub scenario: only ~17 tractomulas per day from Hub
+    const hubTrucksPerDay = Math.ceil(cajasPerDay / cajasPerTractomula);
+    // But with Hub, G20 contribution to main road is much less (consolidated)
+    const hubConsolidatedTrucks = Math.ceil(hubTrucksPerDay * 1.1); // slight overhead for scheduling
+
+    // Congestion calculation
+    const baseTravelTime = 28; // minutes, Hub to Puerto without congestion
+    const baseCapacity = 8000; // estimated TPDA
+    const truckEquivalent = 2.5; // PCE factor for trucks
+    const additionalPCE = totalTrucksOnRoad * truckEquivalent;
+    const loadRatio = (baseCapacity * 0.6 + additionalPCE) / baseCapacity;
+    const congestionFactor = Math.pow(loadRatio, 3); // BPR-like function
+    const estimatedTime = Math.min(160, Math.round(baseTravelTime * congestionFactor));
+
+    // Average farm-to-port metrics
+    const avgDirectDist = OD_MATRIX.reduce((s, o) => s + parseFloat(o.directDist), 0) / OD_MATRIX.length;
+    const avgDirectTime = OD_MATRIX.reduce((s, o) => s + parseFloat(o.directTime), 0) / OD_MATRIX.length;
+    const avgHubTime = OD_MATRIX.reduce((s, o) => s + parseFloat(o.hubTime), 0) / OD_MATRIX.length;
+
+    // Update KPIs
+    if (currentScenario === 'chaos') {
+        document.getElementById('kpi-trucks').textContent = g20TrucksPerDay + regionalTrucksPerDay;
+        document.getElementById('kpi-trucks').className = 'kpi-value red';
+        document.getElementById('kpi-time').textContent = Math.round(avgDirectTime * congestionFactor);
+        document.getElementById('kpi-time').className = congestionFactor > 2 ? 'kpi-value red' : 'kpi-value yellow';
+        document.getElementById('kpi-distance').textContent = avgDirectDist.toFixed(1);
+        document.getElementById('kpi-savings').textContent = '--';
+        document.getElementById('kpi-savings').className = 'kpi-value';
+    } else {
+        document.getElementById('kpi-trucks').textContent = hubConsolidatedTrucks + regionalTrucksPerDay;
+        document.getElementById('kpi-trucks').className = 'kpi-value';
+        document.getElementById('kpi-time').textContent = Math.round(avgHubTime * Math.min(congestionFactor, 1.3));
+        document.getElementById('kpi-time').className = 'kpi-value';
+        const trucksEliminated = g20TrucksPerDay - hubConsolidatedTrucks;
+        const pctReduction = Math.round((trucksEliminated / g20TrucksPerDay) * 100);
+        document.getElementById('kpi-savings').textContent = `-${pctReduction}%`;
+        document.getElementById('kpi-savings').className = 'kpi-value';
+        document.getElementById('kpi-savings').style.color = '#00ff88';
+
+        const avgHubDist = OD_MATRIX.reduce((s, o) => s + parseFloat(o.hubDist), 0) / OD_MATRIX.length;
+        document.getElementById('kpi-distance').textContent = avgHubDist.toFixed(1);
+    }
+
+    // Update capacity panel
+    document.getElementById('cap-pallets').textContent = palletsPerDay;
+    document.getElementById('cap-boxes').textContent = (cajasPerDay / 1000).toFixed(1) + 'K';
+    document.getElementById('cap-tons').textContent = Math.round(tonsPerDay);
+    document.getElementById('cap-trucks').textContent = hubConsolidatedTrucks;
+
+    // Update impact bars
+    const maxTrucks = 200;
+    document.getElementById('bar-chaos').style.width = Math.min(100, (g20TrucksPerDay / maxTrucks) * 100) + '%';
+    document.getElementById('bar-hub').style.width = Math.min(100, (hubConsolidatedTrucks / maxTrucks) * 100) + '%';
+    document.getElementById('bar-chaos-label').textContent = `Directo: ${g20TrucksPerDay}/dia`;
+    document.getElementById('bar-hub-label').textContent = `Hub: ${hubConsolidatedTrucks}/dia`;
+    const reductionPct = Math.round(((g20TrucksPerDay - hubConsolidatedTrucks) / g20TrucksPerDay) * 100);
+    document.getElementById('reduction-pct').textContent = `${reductionPct}%`;
+
+    // Update congestion indicator
+    const congPct = Math.min(100, ((congestionFactor - 1) / 4) * 100);
+    const congBar = document.getElementById('congestion-bar');
+    congBar.style.width = Math.max(5, congPct) + '%';
+
+    const congLevel = document.getElementById('congestion-level');
+    const semGreen = document.getElementById('sem-green');
+    const semYellow = document.getElementById('sem-yellow');
+    const semRed = document.getElementById('sem-red');
+    const semText = document.getElementById('sem-text');
+    const semTime = document.getElementById('sem-time');
+
+    semGreen.className = 'semaphore-light';
+    semYellow.className = 'semaphore-light';
+    semRed.className = 'semaphore-light';
+
+    if (congestionFactor < 1.5) {
+        congBar.style.background = 'var(--accent-green)';
+        congLevel.textContent = 'Baja';
+        congLevel.className = 'slider-value';
+        semGreen.className = 'semaphore-light green-on';
+        semText.textContent = 'FLUJO NORMAL';
+        semText.style.color = 'var(--accent-green)';
+    } else if (congestionFactor < 2.5) {
+        congBar.style.background = 'var(--accent-yellow)';
+        congLevel.textContent = 'Media';
+        congLevel.className = 'slider-value warn';
+        semYellow.className = 'semaphore-light yellow-on';
+        semText.textContent = 'CONGESTION MODERADA';
+        semText.style.color = 'var(--accent-yellow)';
+    } else {
+        congBar.style.background = 'var(--accent-red)';
+        congLevel.textContent = 'CRITICA';
+        congLevel.className = 'slider-value danger';
+        semRed.className = 'semaphore-light red-on';
+        semText.textContent = 'COLAPSO VIAL';
+        semText.style.color = 'var(--accent-red)';
+    }
+
+    semTime.textContent = `~${estimatedTime} min Hub-Puerto`;
+}
+
+// ===========================
+// LAYER TOGGLE
+// ===========================
+
+function toggleLayer(layerName) {
+    const checkbox = document.getElementById('layer-' + layerName);
+    const label = checkbox.closest('.layer-toggle').querySelector('.layer-text');
+
+    if (checkbox.checked) {
+        map.addLayer(layers[layerName]);
+        label.classList.add('active');
+    } else {
+        map.removeLayer(layers[layerName]);
+        label.classList.remove('active');
+    }
+
+    // Special: check hub flood status when toggling flood layer
+    if (layerName === 'flood') {
+        checkHubFloodRisk();
+    }
+}
+
+// ===========================
+// FLOOD RISK CHECK FOR HUB
+// ===========================
+
+function checkHubFloodRisk() {
+    // Simple point-in-polygon check for Hub location against flood zones
+    const hubPoint = [NODES.hub.lat, NODES.hub.lng];
+    let inFloodZone = false;
+
+    FLOOD_ZONES.forEach(zone => {
+        if (pointInPolygon(hubPoint, zone.coords)) {
+            inFloodZone = true;
+        }
+    });
+
+    const statusEl = document.getElementById('hub-flood-status');
+    if (inFloodZone) {
+        statusEl.textContent = 'EN ZONA DE RIESGO';
+        statusEl.style.color = 'var(--accent-red)';
+    } else {
+        statusEl.textContent = 'FUERA DE ZONA RIESGO';
+        statusEl.style.color = 'var(--accent-green)';
+    }
+}
+
+function pointInPolygon(point, polygon) {
+    let inside = false;
+    const [y, x] = point;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const [yi, xi] = polygon[i];
+        const [yj, xj] = polygon[j];
+        if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) {
+            inside = !inside;
+        }
+    }
+    return inside;
+}
+
+// ===========================
+// POPULATE OD TABLE
+// ===========================
+
+function populateODTable() {
+    const tbody = document.getElementById('od-tbody');
+    tbody.innerHTML = '';
+
+    OD_MATRIX.sort((a, b) => b.prod - a.prod).forEach(row => {
+        const timeDiff = parseInt(row.directTime) - parseInt(row.hubTime);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${row.name}</td>
+            <td>${row.directTime}m / ${row.directDist}km</td>
+            <td>${row.hubTime}m / ${row.hubDist}km</td>
+            <td class="${row.savingTrucks > 0 ? 'saving-positive' : ''}">${row.savingTrucks > 0 ? '-' + row.savingTrucks + ' TM/sem' : '--'}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// ===========================
+// ANIMATED FLOW LINES
+// ===========================
+
+function animateRoutes() {
+    const routeElements = document.querySelectorAll('.animated-route');
+    // CSS animation handles this
+}
+
+// ===========================
+// INITIALIZE
+// ===========================
+
+setScenario('chaos');
+populateODTable();
+checkHubFloodRisk();
+updateSimulation();
+
+// Add Turbo label
+L.marker([NODES.turbo.lat, NODES.turbo.lng], {icon: cityIcon}).bindPopup(`<div class="popup-title">Turbo</div>`).addTo(map);
+L.marker([NODES.turbo.lat, NODES.turbo.lng], {
+    icon: L.divIcon({
+        className: '',
+        html: `<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#999;white-space:nowrap;transform:translate(8px,-8px);text-shadow:0 0 4px #000,0 0 8px #000;">Turbo</div>`,
+        iconSize: [0, 0]
+    })
+}).addTo(map);
+
+</script>
+</body>
+</html>
