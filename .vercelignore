@@ -5,4 +5,6 @@ data/sipra_exclusion.geojson
 data/osm_roads.js
 data/osm_roads_compact.js
 data/osm_data.js
+data/uraba_municipios.geojson
+data/uraba_veredas.geojson
 scripts/

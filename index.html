@@ -124,7 +124,7 @@
         .src b{color:var(--text2);}
 
         /* MAP OVERLAY */
-        .map-info{position:absolute;top:12px;left:12px;background:rgba(6,8,10,0.88);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:8px;padding:10px 12px;z-index:10;max-width:200px;}
+        .map-info{position:absolute;top:12px;left:12px;background:rgba(6,8,10,0.88);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:8px;padding:10px 12px;z-index:10;max-width:220px;}
         .map-info .mi-t{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
         .mi-i{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:10px;color:var(--text2);}
         .mi-c{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
@@ -134,12 +134,16 @@
         .mapboxgl-ctrl-group{background:var(--bg3) !important;border:1px solid var(--border) !important;}
         .mapboxgl-ctrl-group button{color:var(--text) !important;}
         .mapboxgl-ctrl-group button+button{border-top:1px solid var(--border) !important;}
-        .mapboxgl-popup-content{background:var(--bg3) !important;color:var(--text) !important;border:1px solid var(--border) !important;border-radius:8px !important;padding:10px !important;box-shadow:0 8px 32px rgba(0,0,0,0.6) !important;font-family:'JetBrains Mono',monospace !important;font-size:11px !important;}
+        .mapboxgl-popup-content{background:var(--bg3) !important;color:var(--text) !important;border:1px solid var(--border) !important;border-radius:8px !important;padding:10px !important;box-shadow:0 8px 32px rgba(0,0,0,0.6) !important;font-family:'JetBrains Mono',monospace !important;font-size:11px !important;max-width:280px !important;}
         .mapboxgl-popup-tip{border-top-color:var(--bg3) !important;}
         .mapboxgl-popup-close-button{color:var(--text2) !important;font-size:16px !important;}
         .p-t{font-weight:700;font-size:12px;margin-bottom:5px;}
         .p-r{display:flex;justify-content:space-between;padding:2px 0;font-size:10px;}
         .p-k{color:var(--text2);} .p-v{font-weight:600;}
+
+        /* LOADING */
+        .load-bar{position:absolute;top:0;left:0;width:100%;height:2px;z-index:20;}
+        .load-fill{height:100%;background:var(--green);width:0;transition:width 0.5s;border-radius:0 2px 2px 0;}
 
         @media(max-width:1200px){.rp{display:none;}}
         @media(max-width:900px){.lp{width:270px;min-width:270px;}}
@@ -153,7 +157,7 @@
         <div><div class="hdr-t">GEMELO DIGITAL LOGISTICO</div><div class="hdr-st">Uraba Banana Belt &bull; Sprint 0</div></div>
     </div>
     <div class="hdr-r">
-        <span class="badge badge-g">SIPRA/UPRA REAL DATA</span>
+        <span class="badge badge-g">DANE/UPRA GEO</span>
         <span class="badge badge-b">OSRM ROUTING</span>
         <span class="badge" id="gm-badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);display:none;">GMAPS TRAFFIC</span>
         <div class="dot"></div>
@@ -221,6 +225,8 @@
     <!-- Layers -->
     <div class="c">
         <div class="c-h"><span class="c-t">Capas del Mapa</span></div>
+        <label class="ly"><input type="checkbox" id="ly-municipios" checked onchange="toggleLy('municipios')"><span class="ly-sw"></span><span class="ly-t">Limites municipales (DANE)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-veredas" onchange="toggleLy('veredas')"><span class="ly-sw"></span><span class="ly-t">Veredas (UPRA, n=611)</span></label>
         <label class="ly"><input type="checkbox" id="ly-sipra" checked onchange="toggleLy('sipra')"><span class="ly-sw"></span><span class="ly-t">SIPRA Aptitud Banano (real)</span></label>
         <label class="ly"><input type="checkbox" id="ly-roads" checked onchange="toggleLy('roads')"><span class="ly-sw"></span><span class="ly-t">Red vial OSM (299 seg.)</span></label>
         <label class="ly"><input type="checkbox" id="ly-farms" checked onchange="toggleLy('farms')"><span class="ly-sw"></span><span class="ly-t">Fincas simuladas (n=20)</span></label>
@@ -235,20 +241,22 @@
 
     <div class="src">
         <b>Fuentes verificadas:</b><br>
+        Limites municipales: DANE MGN 2024 (9 mpios)<br>
+        Veredas: UPRA geoservicios (611 veredas)<br>
         Aptitud banano: SIPRA/UPRA shapefile Dic 2019<br>
         Red vial: OpenStreetMap Overpass API (299 seg.)<br>
         Ruteo: OSRM router.project-osrm.org (41 rutas)<br>
         Inundacion: IDEAM WMS + proxy POMCA Rio Leon<br>
         Trafico real: Google Maps Distance Matrix API<br>
-        Trafico historico: INVIAS TPDA Ruta 62<br>
         Produccion: Augura 2023 / parametros G20<br>
-        Mapa base: Mapbox Dark<br><br>
+        Mapa base: Mapbox Dark v11<br><br>
         <b>Observatorio de Datos y Analisis SAS</b> &bull; Sprint 0
     </div>
 </div>
 
 <!-- MAP -->
 <div class="map-wrap">
+    <div class="load-bar"><div class="load-fill" id="load-fill"></div></div>
     <div id="map"></div>
     <div class="map-info">
         <div class="mi-t">Leyenda</div>
@@ -262,8 +270,11 @@
         <div class="mi-i"><div class="mi-c" style="background:#ccaa00;"></div>Baja</div>
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
         <div class="mi-i"><div class="mi-ln" style="background:var(--red);"></div>Ruta directa</div>
-        <div class="mi-i"><div class="mi-ln" style="background:var(--green);"></div>Ruta Hub&Spoke</div>
+        <div class="mi-i"><div class="mi-ln" style="background:var(--green);"></div>Ruta Hub&amp;Spoke</div>
         <div class="mi-i"><div class="mi-c" style="background:rgba(56,152,255,0.25);border:1px solid rgba(56,152,255,0.5);"></div>Zona inundacion</div>
+        <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+        <div class="mi-i"><div class="mi-c" style="background:transparent;border:1.5px solid #e088ff;"></div>Limite municipal</div>
+        <div class="mi-i"><div class="mi-c" style="background:rgba(180,140,255,0.08);border:1px solid rgba(180,140,255,0.3);"></div>Vereda</div>
     </div>
 </div>
 
@@ -283,6 +294,20 @@
         <div style="overflow-x:auto;max-height:260px;overflow-y:auto;">
             <table class="od-t" id="od-table"><thead><tr><th>Finca</th><th>Directo</th><th>Via Hub</th><th>Ahorro</th></tr></thead><tbody id="od-body"></tbody></table>
         </div>
+    </div>
+
+    <!-- Traffic Card -->
+    <div class="c" id="traffic-card" style="display:none;">
+        <div class="c-h"><span class="c-t">Trafico en Vivo</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);font-size:8px;">GOOGLE MAPS</span></div>
+        <div id="traffic-status" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:8px;">Cargando datos de trafico...</div>
+        <div class="kpi-g">
+            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-hub-time">--</div><div class="kpi-l">Hub-Puerto trafico</div></div>
+            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-hub-base">--</div><div class="kpi-l">Hub-Puerto base</div></div>
+            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-avg-farm">--</div><div class="kpi-l">Prom Finca-Hub</div></div>
+            <div class="kpi"><div class="kpi-v" style="font-size:15px;" id="gm-ratio">--</div><div class="kpi-l">Factor congestion</div></div>
+        </div>
+        <div id="gm-detail" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.7;margin-top:8px;max-height:120px;overflow-y:auto;"></div>
+        <button onclick="fetchGMapsTraffic()" style="width:100%;margin-top:8px;padding:6px;background:var(--bg4);border:1px solid var(--border);border-radius:4px;color:var(--yellow);font-family:'JetBrains Mono',monospace;font-size:9px;cursor:pointer;">ACTUALIZAR TRAFICO EN VIVO</button>
     </div>
 
     <div class="c">
@@ -312,19 +337,6 @@
         </div>
     </div>
 
-    <div class="c" id="traffic-card" style="display:none;">
-        <div class="c-h"><span class="c-t">Trafico en Vivo</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);font-size:8px;">GOOGLE MAPS</span></div>
-        <div id="traffic-status" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:8px;">Cargando datos de trafico...</div>
-        <div class="kpi-g">
-            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-hub-time">--</div><div class="kpi-l">Hub→Puerto trafico</div></div>
-            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-hub-base">--</div><div class="kpi-l">Hub→Puerto sin trafico</div></div>
-            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-avg-farm">--</div><div class="kpi-l">Prom Finca→Hub trafico</div></div>
-            <div class="kpi"><div class="kpi-v" style="font-size:15px;" id="gm-ratio">--</div><div class="kpi-l">Factor congestion real</div></div>
-        </div>
-        <div id="gm-detail" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.7;margin-top:8px;max-height:120px;overflow-y:auto;"></div>
-        <button onclick="fetchGMapsTraffic()" style="width:100%;margin-top:8px;padding:6px;background:var(--bg4);border:1px solid var(--border);border-radius:4px;color:var(--yellow);font-family:'JetBrains Mono',monospace;font-size:9px;cursor:pointer;">ACTUALIZAR TRAFICO EN VIVO</button>
-    </div>
-
     <div class="c" style="border-color:rgba(0,232,120,0.15);background:rgba(0,232,120,0.02);">
         <div class="c-h"><span class="c-t" style="color:var(--green);">Resumen Ejecutivo</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);line-height:1.8;">
@@ -332,6 +344,8 @@
             <span style="color:var(--green);">Fincas &lt;15min Hub:</span> 14 de 20<br>
             <span style="color:var(--green);">Eliminacion tractomulas:</span> ~89% en via<br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
+            <span style="color:var(--green);">Municipios:</span> 9 con limites DANE<br>
+            <span style="color:var(--green);">Veredas:</span> 611 con limites UPRA<br>
             <span style="color:var(--green);">Hub inundacion:</span> FUERA DE ZONA
         </div>
     </div>
@@ -350,17 +364,24 @@
 </div>
 </div>
 
-<script src="config.js" onerror="console.log('config.js not found, using URL token or default')"></script>
+<script src="config.js" onerror="console.log('config.js not found, using fallback token')"></script>
 <script>
 // ============================================================
 // MAPBOX TOKEN
 // ============================================================
-// Token loaded from config.js, URL param, or built-in
 const _t = [112,107,46,101,121,74,49,73,106,111,105,89,50,86,122,99,71,108,104,98,67,73,115,73,109,69,105,79,105,74,106,98,87,48,52,77,50,57,116,101,110,107,119,101,109,74,51,77,110,66,120,77,122,78,117,90,87,104,114,97,87,108,115,73,110,48,46,108,86,104,79,52,76,103,108,76,85,90,106,104,52,112,55,49,67,105,112,106,103];
 mapboxgl.accessToken = (typeof MAPBOX_TOKEN !== 'undefined' && MAPBOX_TOKEN) ||
     new URLSearchParams(window.location.search).get('token') ||
     localStorage.getItem('mapbox_token') ||
     _t.map(c=>String.fromCharCode(c)).join('');
+
+// ============================================================
+// LOADING PROGRESS
+// ============================================================
+let loadProgress = 0;
+const loadBar = document.getElementById('load-fill');
+function setLoad(pct) { loadProgress = pct; loadBar.style.width = pct + '%'; if (pct >= 100) setTimeout(() => { loadBar.style.opacity = '0'; }, 800); }
+setLoad(5);
 
 // ============================================================
 // DATA
@@ -459,17 +480,93 @@ const map = new mapboxgl.Map({
     center:[-76.68,7.87],
     zoom:10.5,
     pitch:0,
-    bearing:0
+    bearing:0,
+    attributionControl:false
 });
 
-map.addControl(new mapboxgl.NavigationControl({showCompass:false}),'top-right');
+map.addControl(new mapboxgl.NavigationControl({showCompass:true}),'top-right');
+map.addControl(new mapboxgl.ScaleControl({maxWidth:120}),'bottom-right');
+map.addControl(new mapboxgl.AttributionControl({compact:true}),'bottom-right');
+
+setLoad(15);
 
 // Convert route coords to GeoJSON LineString
 function routeGJ(coords){
     return {type:'Feature',geometry:{type:'LineString',coordinates:coords.map(c=>[c[1],c[0]])}};
 }
 
+// Aptitude color helper
+function aptColor(apt) {
+    if (apt === 'Aptitud alta') return '#00cc44';
+    if (apt === 'Aptitud media') return '#88cc00';
+    if (apt === 'Aptitud baja') return '#ccaa00';
+    return '#666666';
+}
+
+// Municipality color palette
+const MUNI_COLORS = {
+    'APARTADÓ':'#e088ff','CAREPA':'#ff88b0','CHIGORODÓ':'#88d0ff',
+    'TURBO':'#ffb088','NECOCLÍ':'#88ffcc','MUTATÁ':'#ffdd88',
+    'SAN PEDRO DE URABÁ':'#ff8888','ARBOLETES':'#88ff88','SAN JUAN DE URABÁ':'#aabbff'
+};
+
 map.on('load',()=>{
+    setLoad(25);
+
+    // ---- MUNICIPAL BOUNDARIES (DANE MGN 2024) ----
+    fetch('data/uraba_municipios_web.geojson').then(r=>r.json()).then(gj=>{
+        map.addSource('municipios',{type:'geojson',data:gj});
+        map.addLayer({id:'municipios-fill',type:'fill',source:'municipios',paint:{
+            'fill-color':'rgba(180,140,255,0.03)',
+            'fill-opacity':0.6
+        }});
+        map.addLayer({id:'municipios-line',type:'line',source:'municipios',paint:{
+            'line-color':'#e088ff',
+            'line-width':2,
+            'line-opacity':0.7
+        }});
+        map.addLayer({id:'municipios-label',type:'symbol',source:'municipios',layout:{
+            'text-field':['get','municipio'],
+            'text-size':11,
+            'text-font':['DIN Pro Medium','Arial Unicode MS Regular'],
+            'text-transform':'uppercase',
+            'text-letter-spacing':0.08
+        },paint:{
+            'text-color':'#e088ff',
+            'text-halo-color':'rgba(6,8,10,0.9)',
+            'text-halo-width':2,
+            'text-opacity':0.7
+        }});
+        map.on('click','municipios-fill',e=>{
+            const p=e.features[0].properties;
+            new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(`<div class="p-t" style="color:#e088ff;">${p.municipio}</div><div class="p-r"><span class="p-k">Departamento:</span><span class="p-v">${p.departamen||'Antioquia'}</span></div><div class="p-r"><span class="p-k">Codigo DANE:</span><span class="p-v">${p.cod_dane_mpio}</span></div><div class="p-r"><span class="p-k">Fuente:</span><span class="p-v">DANE MGN 2024</span></div>`).addTo(map);
+        });
+        console.log(`Municipios loaded: ${gj.features.length}`);
+        setLoad(35);
+    }).catch(e=>console.warn('Municipios not loaded:',e));
+
+    // ---- VEREDAL BOUNDARIES (UPRA) ----
+    fetch('data/uraba_veredas_web.geojson').then(r=>r.json()).then(gj=>{
+        map.addSource('veredas',{type:'geojson',data:gj});
+        map.addLayer({id:'veredas-fill',type:'fill',source:'veredas',paint:{
+            'fill-color':'rgba(180,140,255,0.04)',
+            'fill-opacity':0.5
+        },layout:{visibility:'none'}});
+        map.addLayer({id:'veredas-line',type:'line',source:'veredas',paint:{
+            'line-color':'rgba(180,140,255,0.3)',
+            'line-width':0.8,
+            'line-opacity':0.6
+        },layout:{visibility:'none'}});
+        map.on('click','veredas-fill',e=>{
+            const p=e.features[0].properties;
+            new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(`<div class="p-t" style="color:#b48cff;">${p.nombre_ver}</div><div class="p-r"><span class="p-k">Municipio:</span><span class="p-v">${p.nomb_mpio}</span></div><div class="p-r"><span class="p-k">Area:</span><span class="p-v">${Number(p.area_ha).toLocaleString()} ha</span></div><div class="p-r"><span class="p-k">Fuente:</span><span class="p-v">UPRA Geoservicios</span></div>`).addTo(map);
+        });
+        map.on('mouseenter','veredas-fill',()=>map.getCanvas().style.cursor='pointer');
+        map.on('mouseleave','veredas-fill',()=>map.getCanvas().style.cursor='');
+        console.log(`Veredas loaded: ${gj.features.length}`);
+        setLoad(45);
+    }).catch(e=>console.warn('Veredas not loaded:',e));
+
     // ---- SIPRA REAL DATA ----
     fetch('data/sipra_uraba_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('sipra',{type:'geojson',data:gj});
@@ -481,14 +578,15 @@ map.on('load',()=>{
             'line-color':['match',['get','aptitud'],'Aptitud alta','#00cc44','Aptitud media','#88cc00','Aptitud baja','#ccaa00','#666666'],
             'line-opacity':0.4,'line-width':1
         }});
-        // Click popup
         map.on('click','sipra-fill',e=>{
             const p=e.features[0].properties;
-            new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(`<div class="p-t" style="color:${p.color}">${p.aptitud}</div><div class="p-r"><span class="p-k">Municipio:</span><span class="p-v">${p.municipio}</span></div><div class="p-r"><span class="p-k">Area:</span><span class="p-v">${Number(p.area_ha).toLocaleString()} ha</span></div><div class="p-r"><span class="p-k">Fuente:</span><span class="p-v">SIPRA/UPRA 2019</span></div>`).addTo(map);
+            const color = aptColor(p.aptitud);
+            new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(`<div class="p-t" style="color:${color}">${p.aptitud}</div><div class="p-r"><span class="p-k">Municipio:</span><span class="p-v">${p.municipio}</span></div><div class="p-r"><span class="p-k">Area:</span><span class="p-v">${Number(p.area_ha).toLocaleString()} ha</span></div><div class="p-r"><span class="p-k">Fuente:</span><span class="p-v">SIPRA/UPRA 2019</span></div>`).addTo(map);
         });
         map.on('mouseenter','sipra-fill',()=>map.getCanvas().style.cursor='pointer');
         map.on('mouseleave','sipra-fill',()=>map.getCanvas().style.cursor='');
         console.log(`SIPRA loaded: ${gj.features.length} polygons`);
+        setLoad(55);
     }).catch(e=>console.warn('SIPRA not loaded:',e));
 
     // ---- OSM ROADS ----
@@ -500,6 +598,7 @@ map.on('load',()=>{
             'line-opacity':['match',['get','highway'],'trunk',0.5,'primary',0.4,'secondary',0.25,0.15]
         },layout:{'line-cap':'round','line-join':'round'}});
         console.log(`OSM roads loaded: ${gj.features.length} segments`);
+        setLoad(65);
     }).catch(e=>console.warn('OSM roads not loaded:',e));
 
     // ---- RIVERS ----
@@ -514,19 +613,18 @@ map.on('load',()=>{
     map.addLayer({id:'flood-line',type:'line',source:'flood',paint:{'line-color':'rgba(56,152,255,0.5)','line-width':1.5},layout:{visibility:'none'}});
 
     // ---- ROUTES ----
-    // Chaos routes (direct to port)
     const chaosFeats=FARMS.map(f=>routeGJ(R[f.id].p.c));
     map.addSource('chaos-routes',{type:'geojson',data:{type:'FeatureCollection',features:chaosFeats}});
     map.addLayer({id:'chaos-routes',type:'line',source:'chaos-routes',paint:{'line-color':'#ff3b4e','line-width':2,'line-opacity':0.5,'line-dasharray':[2,3]}});
 
-    // Hub routes (farm to hub)
     const hubFeats=FARMS.map(f=>routeGJ(R[f.id].h.c));
     map.addSource('hub-routes',{type:'geojson',data:{type:'FeatureCollection',features:hubFeats}});
     map.addLayer({id:'hub-routes',type:'line',source:'hub-routes',paint:{'line-color':'#00e878','line-width':1.8,'line-opacity':0.45,'line-dasharray':[2,2]},layout:{visibility:'none'}});
 
-    // Hub to port main
     map.addSource('hub-port',{type:'geojson',data:routeGJ(R.hp.c)});
     map.addLayer({id:'hub-port',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':5,'line-opacity':0.8},layout:{visibility:'none','line-cap':'round'}});
+
+    setLoad(75);
 
     // ---- FARM MARKERS ----
     const farmGJ={type:'FeatureCollection',features:FARMS.map(f=>{
@@ -534,6 +632,10 @@ map.on('load',()=>{
         return {type:'Feature',properties:{id:f.id,name:f.name,prod:f.prod,cl:f.cl,dd:od.dd,dt:od.dt,fhd:od.fhd,fht:od.fht,hpd:od.hpd,hpt:od.hpt,stk:od.stk},geometry:{type:'Point',coordinates:[f.lng,f.lat]}};
     })};
     map.addSource('farms',{type:'geojson',data:farmGJ});
+    map.addLayer({id:'farms-glow',type:'circle',source:'farms',paint:{
+        'circle-radius':['interpolate',['linear'],['get','prod'],4500,12,7800,18],
+        'circle-color':'rgba(255,122,48,0.15)','circle-blur':1
+    }});
     map.addLayer({id:'farms',type:'circle',source:'farms',paint:{
         'circle-radius':['interpolate',['linear'],['get','prod'],4500,5,7800,9],
         'circle-color':'#ff7a30','circle-stroke-color':'rgba(255,255,255,0.6)','circle-stroke-width':2,'circle-opacity':0.85
@@ -562,14 +664,14 @@ map.on('load',()=>{
     map.addSource('wms-ideam',{type:'raster',tiles:['https://visualizador.ideam.gov.co/gisserver/services/Amenaza_Ambiental/MapServer/WMSServer?service=WMS&request=GetMap&layers=20&styles=&format=image/png&transparent=true&version=1.3.0&crs=EPSG:4326&width=256&height=256&bbox={bbox-epsg-4326}'],tileSize:256});
     map.addLayer({id:'wms-ideam',type:'raster',source:'wms-ideam',paint:{'raster-opacity':0.5},layout:{visibility:'none'}});
 
+    setLoad(85);
+
     // ---- KEY MARKERS ----
-    // Hub
     const hubEl=document.createElement('div');
     hubEl.style.cssText='width:22px;height:22px;background:#00e878;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #00e878,0 0 40px rgba(0,232,120,0.3);cursor:pointer;';
     new mapboxgl.Marker({element:hubEl}).setLngLat([NODES.hub.lng,NODES.hub.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#00e878;">HUB CASA VERDE</div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">PROPUESTO</span></div><div class="p-r"><span class="p-k">Terreno:</span><span class="p-v">Finca bufalos</span></div><div class="p-r"><span class="p-k">Al Puerto:</span><span class="p-v">25.4 km / 34.8 min</span></div>')).addTo(map);
 
-    // Puerto
     const ptEl=document.createElement('div');
     ptEl.style.cssText='width:22px;height:22px;background:#3898ff;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #3898ff,0 0 40px rgba(56,152,255,0.3);cursor:pointer;';
     new mapboxgl.Marker({element:ptEl}).setLngLat([NODES.puerto.lng,NODES.puerto.lat])
@@ -580,7 +682,6 @@ map.on('load',()=>{
         const el=document.createElement('div');
         el.style.cssText='width:8px;height:8px;background:#666;border:1.5px solid #999;border-radius:50%;';
         new mapboxgl.Marker({element:el}).setLngLat([n.lng,n.lat]).addTo(map);
-        // Label
         const lb=document.createElement('div');
         lb.style.cssText='font-family:"JetBrains Mono",monospace;font-size:10px;color:#888;white-space:nowrap;text-shadow:0 0 6px #000,0 0 12px #000;pointer-events:none;';
         lb.textContent=n.name;
@@ -595,6 +696,8 @@ map.on('load',()=>{
         lb.textContent=k==='hub'?'HUB CASA VERDE':'PUERTO ANTIOQUIA';
         new mapboxgl.Marker({element:lb,anchor:'left',offset:[16,0]}).setLngLat([n.lng,n.lat]).addTo(map);
     });
+
+    setLoad(100);
 
     // Initial state
     setScenario('chaos');
@@ -617,6 +720,9 @@ function setScenario(sc){
         map.setLayoutProperty('hub-routes','visibility',sc==='hub'?'visible':'none');
         map.setLayoutProperty('hub-port','visibility',sc==='hub'?'visible':'none');
     }
+    // Sync routes checkbox
+    const routesBox = document.getElementById('ly-routes');
+    if (routesBox) routesBox.checked = true;
     updateSim();
 }
 
@@ -627,9 +733,11 @@ function toggleLy(name){
     const on=document.getElementById('ly-'+name).checked;
     const vis=on?'visible':'none';
     const layers={
+        'municipios':['municipios-fill','municipios-line','municipios-label'],
+        'veredas':['veredas-fill','veredas-line'],
         'sipra':['sipra-fill','sipra-line'],
         'roads':['osm-roads'],
-        'farms':['farms'],
+        'farms':['farms','farms-glow'],
         'routes':curSc==='chaos'?['chaos-routes']:['hub-routes','hub-port'],
         'flood':['flood-fill','flood-line'],
         'rivers':['rivers'],
@@ -726,8 +834,6 @@ function updateSim(){
 // ============================================================
 let gmTrafficData = null;
 
-// Use serverless proxy to avoid CORS; falls back to direct if local
-// All Google Maps calls go through /api/traffic serverless proxy (key stored in Vercel env)
 function gmApiUrl(origins, destinations) {
     const params = new URLSearchParams({ origins, destinations });
     return `/api/traffic?${params}`;
@@ -745,7 +851,6 @@ async function fetchGMapsTraffic() {
         const hub = `${NODES.hub.lat},${NODES.hub.lng}`;
         const puerto = `${NODES.puerto.lat},${NODES.puerto.lng}`;
 
-        // Hub to Puerto
         const hpRes = await fetch(gmApiUrl(hub, puerto)).then(r => r.json());
 
         let hpTraffic = null, hpBase = null;
@@ -755,14 +860,12 @@ async function fetchGMapsTraffic() {
             hpTraffic = el.duration_in_traffic ? Math.round(el.duration_in_traffic.value / 60) : hpBase;
         }
 
-        // Farms to Hub - batch in groups of 10
         const farmResults = [];
         const batchSize = 10;
         for (let i = 0; i < FARMS.length; i += batchSize) {
             const batch = FARMS.slice(i, i + batchSize);
             const origins = batch.map(f => `${f.lat},${f.lng}`).join('|');
             const res = await fetch(gmApiUrl(origins, hub)).then(r => r.json());
-
             if (res.status === 'OK') {
                 res.rows.forEach((row, idx) => {
                     const el = row.elements[0];
@@ -770,23 +873,17 @@ async function fetchGMapsTraffic() {
                         const base = Math.round(el.duration.value / 60);
                         const traffic = el.duration_in_traffic ? Math.round(el.duration_in_traffic.value / 60) : base;
                         const dist = (el.distance.value / 1000).toFixed(1);
-                        farmResults.push({
-                            farm: batch[idx],
-                            base, traffic, dist,
-                            ratio: traffic / Math.max(base, 1)
-                        });
+                        farmResults.push({ farm: batch[idx], base, traffic, dist, ratio: traffic / Math.max(base, 1) });
                     }
                 });
             }
         }
 
-        // Farms to Puerto direct (for chaos scenario)
         const farmDirectResults = [];
         for (let i = 0; i < FARMS.length; i += batchSize) {
             const batch = FARMS.slice(i, i + batchSize);
             const origins = batch.map(f => `${f.lat},${f.lng}`).join('|');
             const res = await fetch(gmApiUrl(origins, puerto)).then(r => r.json());
-
             if (res.status === 'OK') {
                 res.rows.forEach((row, idx) => {
                     const el = row.elements[0];
@@ -794,20 +891,14 @@ async function fetchGMapsTraffic() {
                         const base = Math.round(el.duration.value / 60);
                         const traffic = el.duration_in_traffic ? Math.round(el.duration_in_traffic.value / 60) : base;
                         const dist = (el.distance.value / 1000).toFixed(1);
-                        farmDirectResults.push({
-                            farm: batch[idx],
-                            base, traffic, dist,
-                            ratio: traffic / Math.max(base, 1)
-                        });
+                        farmDirectResults.push({ farm: batch[idx], base, traffic, dist, ratio: traffic / Math.max(base, 1) });
                     }
                 });
             }
         }
 
-        // Store results
         gmTrafficData = { hpBase, hpTraffic, farms: farmResults, farmsDirect: farmDirectResults, ts: new Date() };
 
-        // Update UI
         document.getElementById('gm-hub-time').textContent = hpTraffic ? `${hpTraffic} min` : 'N/A';
         document.getElementById('gm-hub-base').textContent = hpBase ? `${hpBase} min` : 'N/A';
 
@@ -819,22 +910,18 @@ async function fetchGMapsTraffic() {
         ratioEl.textContent = `x${avgRatio.toFixed(2)}`;
         ratioEl.className = 'kpi-v ' + (avgRatio > 1.5 ? 'r' : avgRatio > 1.2 ? 'y' : 'g');
 
-        // Color traffic KPIs
         const hpRatio = hpTraffic && hpBase ? hpTraffic / hpBase : 1;
         document.getElementById('gm-hub-time').className = 'kpi-v ' + (hpRatio > 1.5 ? 'r' : hpRatio > 1.15 ? 'y' : 'g');
 
-        // Detail per farm
         const detail = document.getElementById('gm-detail');
-        let html = '<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">Finca→Hub (trafico real):</div>';
+        let html = '<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">Finca-Hub (trafico real):</div>';
         farmResults.sort((a, b) => b.traffic - a.traffic).forEach(f => {
             const color = f.ratio > 1.5 ? 'var(--red)' : f.ratio > 1.2 ? 'var(--yellow)' : 'var(--green)';
             html += `<div>${f.farm.name}: <span style="color:${color};">${f.traffic}min</span> (base:${f.base}min, x${f.ratio.toFixed(1)}) ${f.dist}km</div>`;
         });
         detail.innerHTML = html;
 
-        // Update OD matrix with traffic data
         populateOD();
-
         status.textContent = `Actualizado: ${new Date().toLocaleTimeString()} (${farmResults.length} rutas)`;
         status.style.color = 'var(--green)';
 
@@ -842,26 +929,22 @@ async function fetchGMapsTraffic() {
         status.textContent = `Error: ${err.message}`;
         status.style.color = 'var(--red)';
         console.error('GMaps traffic error:', err);
-
-        // Try CORS proxy fallback
-        if (err.message.includes('CORS') || err.message.includes('Failed to fetch')) {
-            status.textContent = 'API requiere servidor proxy (CORS). Usando datos OSRM.';
-        }
     }
 }
 
-// Auto-fetch on load (with slight delay for map)
-setTimeout(() => {
-    fetchGMapsTraffic();
-}, 3000);
+setTimeout(() => { fetchGMapsTraffic(); }, 3000);
 
+// ============================================================
+// OD MATRIX
+// ============================================================
 function populateOD(){
     const tb=document.getElementById('od-body');
     tb.innerHTML='';
     if (gmTrafficData) {
-        document.getElementById('od-badge').textContent = 'GMAPS LIVE';
-        document.getElementById('od-badge').className = 'badge';
-        document.getElementById('od-badge').style.cssText = 'color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);';
+        const badge = document.getElementById('od-badge');
+        badge.textContent = 'GMAPS LIVE';
+        badge.className = 'badge';
+        badge.style.cssText = 'color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);';
     }
     OD.sort((a,b)=>b.prod-a.prod).forEach(r=>{
         const tr=document.createElement('tr');
