@@ -1,8 +1,7 @@
-// Vercel Serverless Function - Google Maps Distance Matrix proxy
-// Avoids CORS issues when calling from browser
+// Vercel Serverless Function - Google Routes API proxy
+// Uses Routes API v2 (computeRouteMatrix) replacing legacy Distance Matrix
 
 export default async function handler(req, res) {
-    // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -11,7 +10,7 @@ export default async function handler(req, res) {
         return res.status(200).end();
     }
 
-    const { origins, destinations, mode } = req.query;
+    const { origins, destinations } = req.query;
 
     if (!origins || !destinations) {
         return res.status(400).json({ error: 'Missing origins or destinations' });
@@ -22,18 +21,75 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'GMAPS_KEY not configured' });
     }
 
-    const url = new URL('https://maps.googleapis.com/maps/api/distancematrix/json');
-    url.searchParams.set('origins', origins);
-    url.searchParams.set('destinations', destinations);
-    url.searchParams.set('departure_time', 'now');
-    url.searchParams.set('traffic_model', 'best_guess');
-    url.searchParams.set('mode', mode || 'driving');
-    url.searchParams.set('key', GM_KEY);
+    // Parse "lat,lng|lat,lng" format into waypoint arrays
+    const parsePoints = (str) => str.split('|').map(p => {
+        const [lat, lng] = p.split(',').map(Number);
+        return { waypoint: { location: { latLng: { latitude: lat, longitude: lng } } } };
+    });
+
+    const body = {
+        origins: parsePoints(origins),
+        destinations: parsePoints(destinations),
+        travelMode: 'DRIVE',
+        routingPreference: 'TRAFFIC_AWARE'
+    };
 
     try {
-        const response = await fetch(url.toString());
-        const data = await response.json();
-        return res.status(200).json(data);
+        const response = await fetch('https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Goog-Api-Key': GM_KEY,
+                'X-Goog-FieldMask': 'originIndex,destinationIndex,duration,distanceMeters,condition'
+            },
+            body: JSON.stringify(body)
+        });
+
+        const routesData = await response.json();
+
+        // Handle API errors
+        if (routesData.error) {
+            return res.status(response.status).json(routesData);
+        }
+
+        // Convert Routes API response to legacy Distance Matrix format
+        // so the frontend doesn't need changes
+        const origCount = origins.split('|').length;
+        const destCount = destinations.split('|').length;
+
+        const rows = [];
+        for (let i = 0; i < origCount; i++) {
+            const elements = [];
+            for (let j = 0; j < destCount; j++) {
+                elements.push({ status: 'ZERO_RESULTS' });
+            }
+            rows.push({ elements });
+        }
+
+        // routesData is an array of route matrix entries
+        const entries = Array.isArray(routesData) ? routesData : [];
+        for (const entry of entries) {
+            const oi = entry.originIndex || 0;
+            const di = entry.destinationIndex || 0;
+            if (oi < origCount && di < destCount) {
+                const durationSec = parseInt(entry.duration) || 0;
+                const distMeters = entry.distanceMeters || 0;
+                rows[oi].elements[di] = {
+                    status: 'OK',
+                    duration: { value: durationSec, text: `${Math.round(durationSec / 60)} mins` },
+                    duration_in_traffic: { value: durationSec, text: `${Math.round(durationSec / 60)} mins` },
+                    distance: { value: distMeters, text: `${(distMeters / 1000).toFixed(1)} km` }
+                };
+            }
+        }
+
+        return res.status(200).json({
+            status: 'OK',
+            origin_addresses: origins.split('|'),
+            destination_addresses: destinations.split('|'),
+            rows
+        });
+
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }
