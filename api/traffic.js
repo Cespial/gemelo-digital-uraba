@@ -45,7 +45,18 @@ export default async function handler(req, res) {
             body: JSON.stringify(body)
         });
 
-        const routesData = await response.json();
+        const rawText = await response.text();
+        let routesData;
+        try {
+            routesData = JSON.parse(rawText);
+        } catch (e) {
+            return res.status(500).json({ error: 'Invalid JSON from Routes API', raw: rawText.slice(0, 500) });
+        }
+
+        // Debug mode: return raw response
+        if (req.query.debug === '1') {
+            return res.status(200).json({ raw: routesData, body });
+        }
 
         // Handle API errors
         if (routesData.error) {
