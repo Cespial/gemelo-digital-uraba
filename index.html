@@ -151,50 +151,65 @@
         .mob-tab{padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;text-transform:uppercase;letter-spacing:0.8px;}
         .mob-tab.active{color:var(--green);border-bottom-color:var(--green);}
 
+        /* TABLET */
         @media(max-width:1200px){.rp{display:none;}}
-        @media(max-width:900px){.lp{width:270px;min-width:270px;}}
+        @media(max-width:900px){.lp{width:260px;min-width:260px;}}
 
         /* MOBILE LAYOUT */
         @media(max-width:768px){
-            body{overflow:auto;height:auto;}
-            .hdr{height:44px;padding:0 10px;}
+            body{overflow-y:auto;overflow-x:hidden;height:auto;}
+            .hdr{height:44px;padding:0 10px;gap:6px;}
             .hdr-t{font-size:11px;letter-spacing:0.4px;}
             .hdr-st{font-size:8px;}
             .hdr-r .badge{display:none;}
+            .hdr-r{gap:6px;}
             .logo{width:28px;height:28px;font-size:10px;}
 
             .mob-tabs{display:flex;}
-            .main{flex-direction:column;height:auto;min-height:calc(100vh - 44px);}
+            .main{flex-direction:column;height:auto;min-height:calc(100vh - 44px - 38px);}
 
-            .lp,.rp{width:100% !important;min-width:100% !important;border:none;max-height:none;overflow-y:visible;}
+            .lp,.rp{width:100% !important;min-width:0 !important;max-width:100% !important;border:none;max-height:none;overflow-y:visible;padding:10px;}
             .rp{display:none;}
             .lp{display:none;}
 
-            .map-wrap{width:100%;height:55vh;min-height:280px;order:-1;}
+            .map-wrap{width:100%;height:60vh;min-height:300px;order:-1;}
 
-            .map-info{top:8px;left:8px;padding:6px 8px;max-width:160px;font-size:9px;}
-            .map-info .mi-t{font-size:8px;margin-bottom:3px;}
-            .mi-i{font-size:8px;padding:1px 0;gap:4px;}
-            .mi-c{width:8px;height:8px;}
+            .map-info{top:8px;left:8px;padding:6px 8px;max-width:150px;font-size:9px;}
+            .map-info .mi-t{font-size:7px;margin-bottom:2px;letter-spacing:0.8px;}
+            .mi-i{font-size:8px;padding:1px 0;gap:3px;}
+            .mi-c{width:7px;height:7px;}
             .mi-ln{width:10px;height:2px;}
 
             .c{padding:10px;}
+            .c-h{margin-bottom:8px;}
             .c-t{font-size:9px;}
             .kpi-v{font-size:18px;}
             .kpi-l{font-size:8px;}
-            .sc-btn{padding:8px;font-size:10px;}
+            .kpi{padding:8px 6px;}
+            .sc-btn{padding:10px 6px;font-size:10px;}
+            .od-t{font-size:8px;}
+
+            input[type=range]{height:6px;margin:8px 0;}
+            input[type=range]::-webkit-slider-thumb{width:22px;height:22px;border:3px solid var(--bg);}
+            input[type=range]::-moz-range-thumb{width:22px;height:22px;border:3px solid var(--bg);}
 
             .mapboxgl-ctrl-top-right{top:4px;right:4px;}
             .mapboxgl-ctrl-bottom-right{bottom:4px;right:4px;}
-            .mapboxgl-popup-content{max-width:220px !important;font-size:10px !important;padding:8px !important;}
+            .mapboxgl-popup-content{max-width:240px !important;font-size:10px !important;padding:8px !important;}
+
+            .src{font-size:7px;line-height:1.5;}
         }
 
         @media(max-width:380px){
-            .hdr-t{font-size:10px;}
+            .hdr{padding:0 6px;}
+            .hdr-t{font-size:9px;}
+            .hdr-st{display:none;}
             .kpi-g{gap:4px;}
-            .kpi{padding:6px;}
-            .kpi-v{font-size:16px;}
-            .map-wrap{height:50vh;}
+            .kpi{padding:6px 4px;}
+            .kpi-v{font-size:15px;}
+            .kpi-l{font-size:7px;}
+            .map-wrap{height:55vh;min-height:260px;}
+            .mob-tab{padding:8px 12px;font-size:9px;}
         }
     </style>
 </head>
@@ -515,11 +530,17 @@ window.addEventListener('resize', function(){
         rp.style.display = '';
         mp.style.display = '';
     } else {
-        // Ensure current mobile tab state is applied
         const activeTab = document.querySelector('.mob-tab.active');
         if(activeTab) mobTab(activeTab.dataset.panel);
     }
 });
+
+// Initialize mobile state on page load
+if(window.innerWidth <= 768){
+    document.getElementById('panel-lp').style.display = 'none';
+    document.getElementById('panel-rp').style.display = 'none';
+    document.getElementById('panel-map').style.display = 'block';
+}
 
 // ============================================================
 // DATA
