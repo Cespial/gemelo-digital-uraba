@@ -83,8 +83,9 @@
         .sl-t{font-size:10px;color:var(--text2);font-family:'JetBrains Mono',monospace;}
         .sl-v{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:2px 6px;border-radius:3px;}
         .sl-v.g{color:var(--green);background:var(--green-bg);} .sl-v.y{color:var(--yellow);background:var(--yellow-bg);} .sl-v.r{color:var(--red);background:var(--red-bg);}
-        input[type=range]{-webkit-appearance:none;width:100%;height:3px;background:var(--border);border-radius:2px;outline:none;margin:4px 0;}
+        input[type=range]{-webkit-appearance:none;width:100%;height:3px;background:var(--border);border-radius:2px;outline:none;margin:4px 0;touch-action:manipulation;}
         input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--green);border-radius:50%;cursor:pointer;border:2px solid var(--bg);}
+        input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--green);border-radius:50%;cursor:pointer;border:2px solid var(--bg);}
         .sl-r{display:flex;justify-content:space-between;font-size:8px;color:var(--text3);font-family:'JetBrains Mono',monospace;}
 
         /* CONGESTION */
@@ -145,8 +146,56 @@
         .load-bar{position:absolute;top:0;left:0;width:100%;height:2px;z-index:20;}
         .load-fill{height:100%;background:var(--green);width:0;transition:width 0.5s;border-radius:0 2px 2px 0;}
 
+        /* MOBILE PANEL TOGGLE */
+        .mob-tabs{display:none;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+        .mob-tab{padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;text-transform:uppercase;letter-spacing:0.8px;}
+        .mob-tab.active{color:var(--green);border-bottom-color:var(--green);}
+
         @media(max-width:1200px){.rp{display:none;}}
         @media(max-width:900px){.lp{width:270px;min-width:270px;}}
+
+        /* MOBILE LAYOUT */
+        @media(max-width:768px){
+            body{overflow:auto;height:auto;}
+            .hdr{height:44px;padding:0 10px;}
+            .hdr-t{font-size:11px;letter-spacing:0.4px;}
+            .hdr-st{font-size:8px;}
+            .hdr-r .badge{display:none;}
+            .logo{width:28px;height:28px;font-size:10px;}
+
+            .mob-tabs{display:flex;}
+            .main{flex-direction:column;height:auto;min-height:calc(100vh - 44px);}
+
+            .lp,.rp{width:100% !important;min-width:100% !important;border:none;max-height:none;overflow-y:visible;}
+            .rp{display:none;}
+            .lp{display:none;}
+
+            .map-wrap{width:100%;height:55vh;min-height:280px;order:-1;}
+
+            .map-info{top:8px;left:8px;padding:6px 8px;max-width:160px;font-size:9px;}
+            .map-info .mi-t{font-size:8px;margin-bottom:3px;}
+            .mi-i{font-size:8px;padding:1px 0;gap:4px;}
+            .mi-c{width:8px;height:8px;}
+            .mi-ln{width:10px;height:2px;}
+
+            .c{padding:10px;}
+            .c-t{font-size:9px;}
+            .kpi-v{font-size:18px;}
+            .kpi-l{font-size:8px;}
+            .sc-btn{padding:8px;font-size:10px;}
+
+            .mapboxgl-ctrl-top-right{top:4px;right:4px;}
+            .mapboxgl-ctrl-bottom-right{bottom:4px;right:4px;}
+            .mapboxgl-popup-content{max-width:220px !important;font-size:10px !important;padding:8px !important;}
+        }
+
+        @media(max-width:380px){
+            .hdr-t{font-size:10px;}
+            .kpi-g{gap:4px;}
+            .kpi{padding:6px;}
+            .kpi-v{font-size:16px;}
+            .map-wrap{height:50vh;}
+        }
     </style>
 </head>
 <body>
@@ -165,8 +214,14 @@
     </div>
 </div>
 
+<div class="mob-tabs" id="mob-tabs">
+    <button class="mob-tab active" data-panel="map" onclick="mobTab('map')">Mapa</button>
+    <button class="mob-tab" data-panel="controls" onclick="mobTab('controls')">Controles</button>
+    <button class="mob-tab" data-panel="data" onclick="mobTab('data')">Datos</button>
+</div>
+
 <div class="main">
-<div class="panel lp">
+<div class="panel lp" id="panel-lp">
 
     <!-- Scenario -->
     <div class="c">
@@ -258,7 +313,7 @@
 </div>
 
 <!-- MAP -->
-<div class="map-wrap">
+<div class="map-wrap" id="panel-map">
     <div class="load-bar"><div class="load-fill" id="load-fill"></div></div>
     <div id="map"></div>
     <div class="map-info">
@@ -287,7 +342,7 @@
 </div>
 
 <!-- RIGHT PANEL -->
-<div class="panel rp">
+<div class="panel rp" id="panel-rp">
     <div class="c">
         <div class="c-h"><span class="c-t">Hub Casa Verde</span><span class="badge badge-g">PROPUESTO</span></div>
         <div class="kpi-g">
@@ -417,6 +472,54 @@ let loadProgress = 0;
 const loadBar = document.getElementById('load-fill');
 function setLoad(pct) { loadProgress = pct; loadBar.style.width = pct + '%'; if (pct >= 100) setTimeout(() => { loadBar.style.opacity = '0'; }, 800); }
 setLoad(5);
+
+// ============================================================
+// MOBILE TAB NAVIGATION
+// ============================================================
+function mobTab(panel){
+    const lp = document.getElementById('panel-lp');
+    const rp = document.getElementById('panel-rp');
+    const mp = document.getElementById('panel-map');
+    const isMobile = window.innerWidth <= 768;
+    if(!isMobile) return;
+
+    // Reset all
+    lp.style.display = 'none';
+    rp.style.display = 'none';
+    mp.style.display = 'none';
+
+    if(panel === 'map'){
+        mp.style.display = 'block';
+    } else if(panel === 'controls'){
+        lp.style.display = 'flex';
+    } else if(panel === 'data'){
+        rp.style.display = 'flex';
+    }
+
+    // Update tab active state
+    document.querySelectorAll('.mob-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.panel === panel);
+    });
+
+    // Resize map if switching to map
+    if(panel === 'map') setTimeout(()=>map.resize(), 50);
+}
+
+// On resize, reset panel visibility for desktop
+window.addEventListener('resize', function(){
+    const lp = document.getElementById('panel-lp');
+    const rp = document.getElementById('panel-rp');
+    const mp = document.getElementById('panel-map');
+    if(window.innerWidth > 768){
+        lp.style.display = '';
+        rp.style.display = '';
+        mp.style.display = '';
+    } else {
+        // Ensure current mobile tab state is applied
+        const activeTab = document.querySelector('.mob-tab.active');
+        if(activeTab) mobTab(activeTab.dataset.panel);
+    }
+});
 
 // ============================================================
 // DATA
