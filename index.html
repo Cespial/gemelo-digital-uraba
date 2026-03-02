@@ -1291,8 +1291,17 @@ async function fetchGMapsTraffic() {
 
         const hpRes = await fetch(gmApiUrl(hub, puerto)).then(r => r.json());
 
+        // Check for API-level errors
+        if (hpRes.error) {
+            throw new Error(hpRes.error);
+        }
+        if (hpRes.status === 'REQUEST_DENIED') {
+            const msg = hpRes.error_message || 'API not enabled';
+            throw new Error(`Google API: ${msg.length > 80 ? msg.slice(0, 80) + '...' : msg}`);
+        }
+
         let hpTraffic = null, hpBase = null;
-        if (hpRes.status === 'OK' && hpRes.rows[0].elements[0].status === 'OK') {
+        if (hpRes.status === 'OK' && hpRes.rows && hpRes.rows[0] && hpRes.rows[0].elements[0].status === 'OK') {
             const el = hpRes.rows[0].elements[0];
             hpBase = Math.round(el.duration.value / 60);
             hpTraffic = el.duration_in_traffic ? Math.round(el.duration_in_traffic.value / 60) : hpBase;
