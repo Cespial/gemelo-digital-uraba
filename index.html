@@ -223,7 +223,7 @@
     <div class="hdr-r">
         <span class="badge badge-g">DANE/UPRA GEO</span>
         <span class="badge badge-b">OSRM ROUTING</span>
-        <span class="badge" id="gm-badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);display:none;">GMAPS TRAFFIC</span>
+        <span class="badge badge-b" id="gm-badge">BPR MODEL</span>
         <div class="dot"></div>
         <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);">LIVE</span>
     </div>
@@ -375,17 +375,17 @@
     </div>
 
     <!-- Traffic Card -->
-    <div class="c" id="traffic-card" style="display:none;">
-        <div class="c-h"><span class="c-t">Trafico en Vivo</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);font-size:8px;">GOOGLE MAPS</span></div>
-        <div id="traffic-status" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:8px;">Cargando datos de trafico...</div>
+    <div class="c" id="traffic-card">
+        <div class="c-h"><span class="c-t">Tiempos de Ruta</span><span class="badge badge-b" style="font-size:8px;" id="traffic-badge">OSRM + BPR</span></div>
+        <div id="traffic-status" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;">Modelo de congestion BPR aplicado a rutas OSRM reales</div>
         <div class="kpi-g">
-            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-hub-time">--</div><div class="kpi-l">Hub-Puerto trafico</div></div>
-            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-hub-base">--</div><div class="kpi-l">Hub-Puerto base</div></div>
-            <div class="kpi"><div class="kpi-v y" style="font-size:15px;" id="gm-avg-farm">--</div><div class="kpi-l">Prom Finca-Hub</div></div>
-            <div class="kpi"><div class="kpi-v" style="font-size:15px;" id="gm-ratio">--</div><div class="kpi-l">Factor congestion</div></div>
+            <div class="kpi"><div class="kpi-v b" style="font-size:15px;" id="gm-hub-time">35 min</div><div class="kpi-l">Hub-Puerto (congestion)</div></div>
+            <div class="kpi"><div class="kpi-v" style="font-size:15px;color:var(--text2);" id="gm-hub-base">35 min</div><div class="kpi-l">Hub-Puerto (base OSRM)</div></div>
+            <div class="kpi"><div class="kpi-v b" style="font-size:15px;" id="gm-avg-farm">-- min</div><div class="kpi-l">Prom Finca-Hub</div></div>
+            <div class="kpi"><div class="kpi-v" style="font-size:15px;" id="gm-ratio">x1.00</div><div class="kpi-l">Factor congestion</div></div>
         </div>
-        <div id="gm-detail" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.7;margin-top:8px;max-height:120px;overflow-y:auto;"></div>
-        <button onclick="fetchGMapsTraffic()" style="width:100%;margin-top:8px;padding:6px;background:var(--bg4);border:1px solid var(--border);border-radius:4px;color:var(--yellow);font-family:'JetBrains Mono',monospace;font-size:9px;cursor:pointer;">ACTUALIZAR TRAFICO EN VIVO</button>
+        <div id="gm-detail" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.7;margin-top:8px;max-height:150px;overflow-y:auto;"></div>
+        <button onclick="fetchGMapsTraffic()" style="width:100%;margin-top:8px;padding:6px;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text3);font-family:'JetBrains Mono',monospace;font-size:8px;cursor:pointer;" title="Requiere Google Maps API habilitada">CONSULTAR GOOGLE MAPS (opcional)</button>
     </div>
 
     <!-- Logistics Costs -->
@@ -1265,6 +1265,55 @@ function updateSim(){
             map.setPaintProperty('hub-port-flow','line-opacity', cf<1.5 ? 0.6 : cf<2.5 ? 0.8 : 1.0);
         }
     }
+
+    // ============================================================
+    // TRAFFIC CARD — OSRM + BPR congestion model
+    // ============================================================
+    if(!gmTrafficData) {
+        // Hub-Puerto base from OSRM
+        const hpBase = R.hp.t;  // minutes from OSRM
+        const hpCong = Math.round(hpBase * (curSc === 'chaos' ? cf : Math.min(cf, 1.3)));
+
+        document.getElementById('gm-hub-base').textContent = `${Math.round(hpBase)} min`;
+        document.getElementById('gm-hub-time').textContent = `${hpCong} min`;
+        const hpRatio = hpCong / hpBase;
+        document.getElementById('gm-hub-time').className = 'kpi-v ' + (hpRatio > 1.5 ? 'r' : hpRatio > 1.15 ? 'y' : 'b');
+
+        // Average farm-hub from OSRM
+        const avgFH = OD.reduce((s,o)=>s+o.ht,0)/OD.length;
+        const avgFHcong = Math.round(avgFH * (curSc === 'chaos' ? cf : Math.min(cf, 1.3)));
+        document.getElementById('gm-avg-farm').textContent = `${avgFHcong} min`;
+        document.getElementById('gm-avg-farm').className = 'kpi-v ' + (cf > 2 ? 'r' : cf > 1.3 ? 'y' : 'b');
+
+        // Congestion factor
+        const ratioEl = document.getElementById('gm-ratio');
+        ratioEl.textContent = `x${cf.toFixed(2)}`;
+        ratioEl.className = 'kpi-v ' + (cf > 2 ? 'r' : cf > 1.3 ? 'y' : 'g');
+
+        // Per-farm detail from OSRM routes
+        const detail = document.getElementById('gm-detail');
+        const cfApply = curSc === 'chaos' ? cf : Math.min(cf, 1.3);
+        const farmDetail = OD.map(o => ({
+            name: o.name,
+            baseH: o.ht,
+            congH: Math.round(o.ht * cfApply),
+            distH: o.hd,
+            baseD: o.dt,
+            congD: Math.round(o.dt * cf),
+            distD: o.dd
+        })).sort((a,b) => b.congH - a.congH);
+
+        let html = `<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">${curSc==='chaos'?'Finca-Puerto (directo)':'Finca-Hub'} con congestion:</div>`;
+        farmDetail.forEach(f => {
+            const t = curSc === 'chaos' ? f.congD : f.congH;
+            const base = curSc === 'chaos' ? f.baseD : f.baseH;
+            const dist = curSc === 'chaos' ? f.distD : f.distH;
+            const ratio = t / Math.max(base, 1);
+            const color = ratio > 1.5 ? 'var(--red)' : ratio > 1.2 ? 'var(--yellow)' : 'var(--green)';
+            html += `<div>${f.name}: <span style="color:${color};">${t}min</span> (base:${base}min, x${ratio.toFixed(1)}) ${dist.toFixed(1)}km</div>`;
+        });
+        detail.innerHTML = html;
+    }
 }
 
 // ============================================================
@@ -1280,8 +1329,8 @@ function gmApiUrl(origins, destinations) {
 async function fetchGMapsTraffic() {
     const card = document.getElementById('traffic-card');
     const status = document.getElementById('traffic-status');
-    card.style.display = 'block';
-    document.getElementById('gm-badge').style.display = '';
+    const badge = document.getElementById('gm-badge');
+    const tBadge = document.getElementById('traffic-badge');
     status.textContent = 'Consultando Google Maps...';
     status.style.color = 'var(--yellow)';
 
@@ -1369,8 +1418,14 @@ async function fetchGMapsTraffic() {
         detail.innerHTML = html;
 
         populateOD();
-        status.textContent = `Actualizado: ${new Date().toLocaleTimeString()} (${farmResults.length} rutas)`;
+        status.textContent = `Google Maps: ${new Date().toLocaleTimeString()} (${farmResults.length} rutas)`;
         status.style.color = 'var(--green)';
+        badge.textContent = 'GMAPS LIVE';
+        badge.className = 'badge';
+        badge.style.cssText = 'color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);';
+        tBadge.textContent = 'GMAPS LIVE';
+        tBadge.className = 'badge';
+        tBadge.style.cssText = 'color:var(--yellow);border-color:rgba(240,160,48,0.25);background:var(--yellow-bg);font-size:8px;';
 
     } catch (err) {
         status.textContent = `Error: ${err.message}`;
@@ -1379,7 +1434,8 @@ async function fetchGMapsTraffic() {
     }
 }
 
-setTimeout(() => { fetchGMapsTraffic(); }, 3000);
+// Google Maps traffic is optional — only called on button click
+// setTimeout(() => { fetchGMapsTraffic(); }, 3000);
 
 // ============================================================
 // OD MATRIX
