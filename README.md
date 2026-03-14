@@ -2,6 +2,11 @@
 
 Dashboard interactivo que modela la transicion logistica del **Grupo 20** (19 fincas bananeras, ~5% produccion regional) de un esquema de exportacion directa descentralizada a un modelo **Hub & Spoke** via Hub Casa Verde → Puerto Antioquia.
 
+[![Next.js](https://img.shields.io/badge/Next.js-16-000?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Deck.gl](https://img.shields.io/badge/Deck.gl-9-00A9E0)](https://deck.gl)
+[![PostGIS](https://img.shields.io/badge/PostGIS-336791?logo=postgresql&logoColor=white)](https://postgis.net)
+
 **Live:** [gemelo-digital-uraba.vercel.app](https://gemelo-digital-uraba.vercel.app)
 
 ---
