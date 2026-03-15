@@ -239,95 +239,90 @@ Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora.
 \end{frame}
 
 % ============================================================
-% SLIDE 5: IMPACTO FINANCIERO
+% SLIDE 5: PRUEBA ÁCIDA — CIFRAS AUDITADAS
 % ============================================================
 \begin{frame}
-\frametitle{Lo que pagamos hoy y lo que viene}
-\tagline{verde}{Impacto Financiero}
-
-\vspace{2pt}
-{\small Subcontratamos el transporte. Hoy pagamos una tarifa plana por caja.
-El riesgo es el cambio al modelo por viaje, donde la consolidación se vuelve crítica.}
-
-\vspace{6pt}
-\begin{center}
-\footnotesize
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l r r}
-    \toprule
-    \textbf{Escenario} & \textbf{Modelo} & \textbf{COP/caja} & \textbf{Costo anual} \\
-    \midrule
-    Hoy, sin hub      & \$/caja (tarifa plana)  & \textcolor{amarillo}{\$350}     & \$2,000M \\
-    \addlinespace
-    Mañana, sin hub    & \$/viaje + stand-by     & \textcolor{rojo}{\textbf{\$1,500}} & \textcolor{rojo}{\textbf{\$8,600M}} \\
-    Mañana, con hub    & \$/viaje + stand-by     & \textcolor{verde}{\textbf{\$706}}  & \textcolor{verde}{\textbf{\$4,040M}} \\
-    \midrule
-    \multicolumn{2}{l}{\textbf{Ahorro anual con hub}} & \textcolor{verde}{\textbf{--\$794}} & \textcolor{verde}{\textbf{\$4,560M}} \\
-    \bottomrule
-\end{tabular}
-\end{center}
-
-\vspace{4pt}
-\begin{center}
-\begin{tikzpicture}
-    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.1cm] (k1) {};
-    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k1.center) {\$4,560M};
-    \node[font=\tiny, text=gris, below=0pt of k1.center] {ahorro anual (\$/viaje)};
-
-    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.1cm, right=8pt of k1] (k2) {};
-    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k2.center) {--89\%};
-    \node[font=\tiny, text=gris, below=0pt of k2.center] {reducción tractomulas};
-
-    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.1cm, right=8pt of k2] (k3) {};
-    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k3.center) {$\sim$5 meses};
-    \node[font=\tiny, text=gris, below=0pt of k3.center] {payback (\$/viaje)};
-\end{tikzpicture}
-\end{center}
-
-\vspace{2pt}
-{\tiny\color{gris} Producción: 110K cajas/sem · 5.72M cajas/año · CAPEX hub: \$2,050M · Sin hub $\sim$30 viajes/día parciales, con hub $\sim$20 viajes/día llenos}
-\end{frame}
-
-% ============================================================
-% SLIDE 6: MODELO $/VIAJE EN DETALLE
-% ============================================================
-\begin{frame}
-\frametitle{¿Por qué el hub se vuelve inevitable?}
-\tagline{rojo}{Escenario \$/Viaje en Detalle}
+\frametitle{Prueba ácida: las cifras auditadas}
+\tagline{verde}{Impacto Financiero · Cálculo finca por finca}
 
 \vspace{1pt}
-{\footnotesize Cuando el transportador cobre por viaje, cada mula a medio llenar nos costará
-lo mismo que una llena. \textbf{La consolidación deja de ser opcional.}}
+{\scriptsize 19 fincas despachando individualmente $=$ \textbf{27 viajes/día, 66\% llenado}.
+Consolidadas $=$ \textbf{18 viajes llenos}. Producción: 102K cajas/sem $=$ 5.3M/año.}
 
 \vspace{3pt}
 \begin{center}
 \scriptsize
 \renewcommand{\arraystretch}{1.1}
+\begin{tabular}{l l r r}
+    \toprule
+    \textbf{Escenario} & \textbf{Modelo} & \textbf{COP/caja} & \textbf{Anual} \\
+    \midrule
+    Hoy, sin hub        & \$/caja (tarifa plana)  & \textcolor{amarillo}{\$350}     & \$1,857M \\
+    Mañana, sin hub     & \$/viaje + stand-by     & \textcolor{rojo}{\textbf{\$1,389}} & \textcolor{rojo}{\textbf{\$7,371M}} \\
+    Mañana, con hub     & \$/viaje + stand-by     & \textcolor{verde}{\textbf{\$706}}  & \textcolor{verde}{\textbf{\$3,747M}} \\
+    \midrule
+    \multicolumn{2}{l}{\textbf{Ahorro bruto anual}} & \textcolor{verde}{\textbf{--\$683}} & \textcolor{verde}{\textbf{\$3,624M}} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
 \begin{tabular}{l r r}
     \toprule
-    \textbf{Concepto} & \textcolor{rojo}{\textbf{Sin Hub}} & \textcolor{verde}{\textbf{Con Hub}} \\
+    \textbf{Desglose \$/viaje} & \textcolor{rojo}{\textbf{Sin Hub (27 viajes)}} & \textcolor{verde}{\textbf{Con Hub (18 viajes)}} \\
     \midrule
-    Flete por viaje                 & \$600,000            & \$600,000 \\
-    Cajas promedio por viaje        & $\sim$576 (60\%)     & 960 (100\%) \\
-    \textbf{Flete por caja}         & \textcolor{rojo}{\$1,042}  & \textcolor{verde}{\$625} \\
-    \addlinespace
-    Espera en embarcadero           & 5.5h                 & 0.75h \\
-    Stand-by (\$50K/h) por caja     & \textcolor{rojo}{\$477}    & \textcolor{verde}{\$39} \\
-    Consolidación hub               & ---                  & \$42 \\
+    Flete \$600K $\div$ cajas/viaje    & \$600K/630 $=$ \textcolor{rojo}{\$952}   & \$600K/960 $=$ \textcolor{verde}{\$625} \\
+    Stand-by \$50K/h $\times$ horas    & 5.5h $\rightarrow$ \textcolor{rojo}{\$437}  & 0.75h $\rightarrow$ \textcolor{verde}{\$39} \\
+    Consolidación hub                  & ---                                          & \$42 \\
     \midrule
-    \textbf{Costo total por caja}   & \textcolor{rojo}{\textbf{\$1,519}} & \textcolor{verde}{\textbf{\$706}} \\
-    \textbf{Costo anual (5.72M cajas)} & \textcolor{rojo}{\textbf{\$8,689M}} & \textcolor{verde}{\textbf{\$4,038M}} \\
-    \midrule
-    \textbf{Ahorro anual con hub}   & & \textcolor{verde}{\textbf{\$4,651M}} \\
+    \textbf{Total}                     & \textcolor{rojo}{\textbf{\$1,389}}           & \textcolor{verde}{\textbf{\$706}} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{1pt}
-\colorbox{rojoclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{rojo}{\textbf{Sin hub:}} fincas llenan 40--60\% de mula, pagan viaje completo.
-\textcolor{verde}{\textbf{Con hub:}} mula al 100\%, stand-by de 5.5h a 45 min.
-\textbf{El ahorro paga el CAPEX en $\sim$5 meses.}\strut}}
+{\tiny\color{gris} 8 fincas necesitan 2 viajes (parciales), 11 fincas 1 viaje (38--81\% llenado). Stand-by 5.5h: visita de campo.}
+\end{frame}
+
+% ============================================================
+% SLIDE 6: SENSIBILIDAD — PAYBACK vs CAPEX
+% ============================================================
+\begin{frame}
+\frametitle{Payback según nivel de inversión}
+\tagline{azul}{Sensibilidad al CAPEX}
+
+\vspace{1pt}
+{\footnotesize No conocemos el CAPEX definitivo. Esta tabla muestra el payback neto
+(descontando OPEX del hub) para distintos niveles de inversión y escenarios de espera.}
+
+\vspace{4pt}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{r r r r r}
+    \toprule
+    & & \multicolumn{3}{c}{\textbf{Payback (meses)}} \\
+    \cmidrule(lr){3-5}
+    \textbf{CAPEX} & \textbf{OPEX/año} & \textbf{Stand-by 2h} & \textbf{Stand-by 3.5h} & \textbf{Stand-by 5.5h} \\
+    \midrule
+    \$1,000M  & \$586M  & \textcolor{verde}{7.7}  & \textcolor{verde}{5.5}  & \textcolor{verde}{3.9} \\
+    \$1,500M  & \$621M  & \textcolor{verde}{11.4} & \textcolor{verde}{8.3}  & \textcolor{verde}{6.0} \\
+    \$2,050M  & \$660M  & \textcolor{azul}{15.7}  & \textcolor{verde}{11.6} & \textcolor{verde}{8.3} \\
+    \$3,000M  & \$726M  & \textcolor{azul}{23.0}  & \textcolor{azul}{17.5}  & \textcolor{verde}{12.4} \\
+    \$4,000M  & \$796M  & \textcolor{amarillo}{30.6} & \textcolor{azul}{24.2}  & \textcolor{azul}{17.0} \\
+    \$5,000M  & \$866M  & \textcolor{amarillo}{38.3} & \textcolor{amarillo}{31.3}  & \textcolor{azul}{21.8} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Lectura:}} Incluso en el escenario más conservador (CAPEX \$5,000M + stand-by solo 2h),
+el payback es 38 meses ($\sim$3 años). En el caso base (\$2,050M, 5.5h), es \textbf{8 meses}.
+OPEX incluye: 8 operarios, servicios, mantenimiento (5\% CAPEX), seguros (2\%), administración.\strut}}
 \end{frame}
 
 % ============================================================
@@ -420,13 +415,13 @@ y ofrecer consolidación a terceros productores.\strut}}
 
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b0] (b1) {};
-        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$4,560M/año};
-        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro si cambia a \$/viaje};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$3,624M/año};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro bruto si cambia a \$/viaje};
 
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b1] (b3) {};
-        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b3.center) {$\sim$5 meses};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {Payback bajo modelo \$/viaje};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b3.center) {8--22 meses};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {Rango payback (según CAPEX, con OPEX)};
     \end{tikzpicture}
 
     \vspace{6pt}
@@ -440,45 +435,66 @@ y ofrecer consolidación a terceros productores.\strut}}
 % SLIDE 9: ESCALABILIDAD
 % ============================================================
 \begin{frame}
-\frametitle{No solo para Grupo 20}
+\frametitle{Servicio a terceros: ingreso adicional}
 \tagline{azul}{Escalabilidad}
 
-\vspace{2pt}
-{\small Hoy el Centro sirve a nuestras 19 fincas. Mañana puede ser el centro de gravedad
-logístico para cualquier productor que necesite llegar a Puerto Antioquia.}
-
-\vspace{6pt}
-\begin{center}
-\begin{tikzpicture}
-    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.2cm] (k1) {};
-    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k1.center) {19};
-    \node[font=\tiny, text=gris, below=0pt of k1.center] {Fincas G20 (Fase 1)};
-
-    \node[rounded corners=4pt, fill=azulclaro, draw=azul!40, minimum width=3cm, minimum height=1.2cm, right=8pt of k1] (k2) {};
-    \node[font=\large\bfseries, text=azul] at ([yshift=2pt]k2.center) {402};
-    \node[font=\tiny, text=gris, below=0pt of k2.center] {Fincas bananeras en zona};
-
-    \node[rounded corners=4pt, fill=azulclaro, draw=azul!40, minimum width=3cm, minimum height=1.2cm, right=8pt of k2] (k3) {};
-    \node[font=\large\bfseries, text=azul] at ([yshift=2pt]k3.center) {7M ton};
-    \node[font=\tiny, text=gris, below=0pt of k3.center] {Capacidad Pto. Antioquia};
-\end{tikzpicture}
-\end{center}
+\vspace{1pt}
+{\footnotesize G20 produce 5.3M cajas/año $=$ apenas el \textbf{4.7\%} de la región (114M cajas/año, Uniban).
+Si el Centro ofrece consolidación a otros productores a \$42/caja, genera ingreso adicional:}
 
 \vspace{4pt}
-\begin{block}{Oportunidad}
-\footnotesize
-Servicios de consolidación a terceros generan ingresos adicionales y aceleran el payback.
-Uniban tiene 250 fincas en la región.
-\textbf{El Centro puede ser la puerta de entrada al puerto para toda Urabá.}
-\end{block}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+    \begin{center}
+    \scriptsize
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{r r r}
+        \toprule
+        \textbf{\% región} & \textbf{Cajas adic.} & \textbf{Ingreso} \\
+        \midrule
+        5\%   & 5.4M    & \$228M/año \\
+        10\%  & 10.9M   & \$457M/año \\
+        15\%  & 16.3M   & \$685M/año \\
+        25\%  & 27.2M   & \textcolor{verde}{\textbf{\$1,141M/año}} \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
 
-\vspace{2pt}
-\begin{exampleblock}{Contexto de mercado}
-\footnotesize
-Costa Rica lleva 2.5 años de crisis climática. Colombia es hoy el proveedor
-más confiable del mercado europeo (70\% de exportación).
-Precio estable: \$7.25~USD/caja (18.86~kg). \textbf{La oportunidad es ahora.}
-\end{exampleblock}
+    \vspace{4pt}
+    {\scriptsize\color{gris} Tarifa de consolidación: \$42 COP/caja.
+    Uniban tiene 250+ fincas, 402 fincas bananeras en la zona.
+    Puerto Antioquia: 7M ton de capacidad.}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+    {\scriptsize\color{gris}\textbf{EFECTO EN PAYBACK (CAPEX \$3,000M)}}
+    \vspace{4pt}
+
+    \scriptsize
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{l r}
+        \toprule
+        \textbf{Escenario} & \textbf{Payback} \\
+        \midrule
+        Solo G20              & 12.4 meses \\
+        + 5\% región          & 11.3 meses \\
+        + 10\% región         & 10.4 meses \\
+        + 25\% región         & \textcolor{verde}{\textbf{8.9 meses}} \\
+        \bottomrule
+    \end{tabular}
+
+    \vspace{6pt}
+    \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+    \textcolor{verde}{\textbf{Oportunidad:}} El Centro puede ser
+    \textbf{la puerta de entrada al puerto para toda Urabá.}\strut}}
+\end{column}
+\end{columns}
+
+\vspace{4pt}
+\colorbox{azulclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{azul}{\textbf{Contexto:}} Costa Rica 2.5 años en crisis climática.
+Colombia es el proveedor más confiable de Europa (70\% de exportación).
+Precio estable: \$7.25~USD/caja. \textbf{La oportunidad es ahora.}\strut}}
 \end{frame}
 
 % ============================================================
