@@ -997,7 +997,7 @@
         <div class="ba-col">
             <div class="ba-icon" style="color:var(--red);">&#x1F69B;</div>
             <div class="ba-num" style="color:var(--red);">19</div>
-            <div class="ba-label">CAMIONES DISPERSOS<br>cada finca despacha directo<br>a 2 embarcaderos</div>
+            <div class="ba-label">CAMIONES DISPERSOS<br>cada finca despacha directo<br>a Zungo y Puerto Antioquia</div>
         </div>
         <div class="ba-arrow">&#x279C;</div>
         <div class="ba-col">
@@ -1045,7 +1045,7 @@
     <div class="res-section-t">CONTEXTO DEL PROYECTO</div>
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
-        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia 2 embarcaderos (Zungo y Colonia), generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $350 a $800.</p>
+        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $350 a $800.</p>
         <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas solo salen del centro llenas hacia Puerto Antioquia. Resultado: <strong>89% menos tractomulas en via, $502M de ahorro anual</strong>, y eliminacion del riesgo de cobro por viaje.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
     </div>
@@ -1341,12 +1341,12 @@ function haversine(lat1,lng1,lat2,lng2){
     return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
 
-// SC1_DEST: for each farm, nearest embarcadero (Zungo or Colonia)
+// SC1_DEST: for each farm, nearest between Zungo and Puerto Antioquia (situacion actual)
 const SC1_DEST = {};
 FARMS.forEach(f=>{
     const dZungo = haversine(f.lat,f.lng,NODES.zungo.lat,NODES.zungo.lng);
-    const dColonia = haversine(f.lat,f.lng,NODES.colonia.lat,NODES.colonia.lng);
-    SC1_DEST[f.id] = dZungo < dColonia ? 'zungo' : 'colonia';
+    const dPuerto = haversine(f.lat,f.lng,NODES.puerto.lat,NODES.puerto.lng);
+    SC1_DEST[f.id] = dZungo < dPuerto ? 'zungo' : 'puerto';
 });
 
 // ============================================================
@@ -1664,9 +1664,9 @@ map.on('load',()=>{
     }
     animateFlow();
 
-    // ---- SC1 ROUTES: 19 straight lines finca→nearest embarcadero (Zungo or Colonia) ----
+    // ---- SC1 ROUTES: 19 straight lines finca→nearest of Zungo or Puerto Antioquia ----
     const sc1Feats = FARMS.map(f=>{
-        const dest = SC1_DEST[f.id] === 'zungo' ? NODES.zungo : NODES.colonia;
+        const dest = SC1_DEST[f.id] === 'zungo' ? NODES.zungo : NODES.puerto;
         return {type:'Feature',properties:{id:f.id,prod:f.prod,dest:SC1_DEST[f.id]},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[dest.lng,dest.lat]]}};
     });
     map.addSource('sc1-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc1Feats}});
@@ -1822,12 +1822,6 @@ map.on('load',()=>{
     window._markerZungo = new mapboxgl.Marker({element:zgEl}).setLngLat([NODES.zungo.lng,NODES.zungo.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#ff7a30;">EMBARCADERO ZUNGO CANAL</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Carepa, Antioquia</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.8523, -76.7444</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">4 (Los Almendros, Matogroso 1/2, Punto Fijo)</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Despacho fincas del occidente</span></div>')).addTo(map);
 
-    // Embarcadero Colonia (red) — SC1 only
-    const colEl=document.createElement('div');
-    colEl.style.cssText='width:18px;height:18px;background:#ff3b4e;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #ff3b4e,0 0 30px rgba(255,59,78,0.3);cursor:pointer;';
-    window._markerColonia = new mapboxgl.Marker({element:colEl}).setLngLat([NODES.colonia.lng,NODES.colonia.lat])
-        .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#ff3b4e;">EMBARCADERO COLONIA (UNIBAN)</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Colonia, via al puerto</span></div><div class="p-r"><span class="p-k">Operador:</span><span class="p-v">Uniban</span></div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">Operando (situacion actual)</span></div>')).addTo(map);
-
     // Embarcadero Nueva Colonia (yellow) — SC2 only
     const ncEl=document.createElement('div');
     ncEl.style.cssText='width:18px;height:18px;background:#f0a030;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #f0a030,0 0 30px rgba(240,160,48,0.3);cursor:pointer;display:none;';
@@ -1862,7 +1856,6 @@ map.on('load',()=>{
     window._labelHub = makeNodeLabel('hub','CENTRO CONSOLIDACION','#00e878','none');
     window._labelMiniHub = makeNodeLabel('mini_hub','MINI-HUB PUERTO','#18d8d0','none');
     window._labelZungo = makeNodeLabel('zungo','EMB. ZUNGO','#ff7a30','');
-    window._labelColonia = makeNodeLabel('colonia','EMB. COLONIA','#ff3b4e','');
     window._labelNuevaColonia = makeNodeLabel('nueva_colonia','EMB. NUEVA COLONIA','#f0a030','none');
     // Puerto always visible
     makeNodeLabel('puerto','PUERTO ANTIOQUIA','#3898ff','');
@@ -1912,14 +1905,13 @@ function setScenario(sc){
             if(map.getLayer('hub-port-flow')) map.setLayoutProperty('hub-port-flow','visibility','visible');
         }
     }
-    // Toggle markers
-    if(window._markerColonia) _markerColonia.getElement().style.display = sc==='sc1'?'':'none';
+    // Toggle markers per scenario
     if(window._markerNuevaColonia) _markerNuevaColonia.getElement().style.display = sc==='sc2'?'':'none';
     if(window._markerHub) _markerHub.getElement().style.display = sc==='sc3'?'':'none';
     if(window._markerMiniHub) _markerMiniHub.getElement().style.display = sc==='sc3'?'':'none';
     if(window._markerZungo) _markerZungo.getElement().style.display = (sc==='sc1'||sc==='sc3')?'':'none';
+    // Puerto marker always visible, but Zungo only in SC1 and SC3
     // Labels
-    if(window._labelColonia) _labelColonia.getElement().style.display = sc==='sc1'?'':'none';
     if(window._labelNuevaColonia) _labelNuevaColonia.getElement().style.display = sc==='sc2'?'':'none';
     if(window._labelHub) _labelHub.getElement().style.display = sc==='sc3'?'':'none';
     if(window._labelMiniHub) _labelMiniHub.getElement().style.display = sc==='sc3'?'':'none';
@@ -2819,16 +2811,18 @@ function updateLegend(){
     const info = document.querySelector('.map-info');
     if(!info) return;
     if(curSc==='sc1'){
+        const nZungo = FARMS.filter(f=>SC1_DEST[f.id]==='zungo').length;
+        const nPuerto = FARMS.filter(f=>SC1_DEST[f.id]==='puerto').length;
         info.innerHTML = `
-            <div class="mi-t">Leyenda - Situacion Actual</div>
-            <div class="mi-i"><div class="mi-c" style="background:#ff3b4e;box-shadow:0 0 4px #ff3b4e;"></div>Emb. Colonia (Uniban)</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Emb. Zungo</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
+            <div class="mi-t">Leyenda - Situacion Actual (Caos)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Emb. Zungo (${nZungo} fincas)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia (${nPuerto} fincas)</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-            <div class="mi-t" style="margin-top:4px;">RUTAS</div>
-            <div class="mi-i"><div class="mi-ln" style="background:#ff3b4e;height:3px;"></div>Finca → Embarcadero (19 rutas)</div>
+            <div class="mi-t" style="margin-top:4px;">19 RUTAS DIRECTAS</div>
+            <div class="mi-i"><div class="mi-ln" style="background:#ff3b4e;height:3px;"></div>Finca → destino mas cercano</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
+            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>
+            <div style="font-size:8px;color:var(--text3);margin-top:4px;line-height:1.5;">Cada finca despacha directo.<br>+150 viajes/dia de tractomulas.</div>`;
     } else if(curSc==='sc2'){
         info.innerHTML = `
             <div class="mi-t">Leyenda - Consolidacion Parcial</div>
