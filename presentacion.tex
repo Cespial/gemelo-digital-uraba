@@ -1,0 +1,719 @@
+% ============================================================
+% CENTRO DE CONSOLIDACIÓN LOGÍSTICA — GRUPO 20
+% Presentación Junta Directiva · Marzo 2026
+% ============================================================
+\documentclass[aspectratio=169, 11pt]{beamer}
+
+% ---- PAQUETES ----
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{fontawesome5}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{calc}
+\usepackage{hyperref}
+
+\usetikzlibrary{calc, positioning, arrows.meta, backgrounds, fit, shapes.geometric}
+\pgfplotsset{compat=1.18}
+
+% ---- COLORES ----
+\definecolor{bgdark}{HTML}{06080A}
+\definecolor{bgcard}{HTML}{0C0F12}
+\definecolor{bglight}{HTML}{141820}
+\definecolor{border}{HTML}{1E2738}
+\definecolor{textmain}{HTML}{D8DCE6}
+\definecolor{textsec}{HTML}{7A8494}
+\definecolor{textdim}{HTML}{4A5568}
+\definecolor{verde}{HTML}{00E878}
+\definecolor{verde2}{HTML}{00B85C}
+\definecolor{rojo}{HTML}{FF3B4E}
+\definecolor{amarillo}{HTML}{F0A030}
+\definecolor{azul}{HTML}{3898FF}
+\definecolor{cyan}{HTML}{18D8D0}
+\definecolor{naranja}{HTML}{FF7A30}
+
+% ---- TEMA BEAMER ----
+\usetheme{default}
+\usecolortheme{default}
+\setbeamercolor{background canvas}{bg=bgdark}
+\setbeamercolor{normal text}{fg=textmain}
+\setbeamercolor{frametitle}{fg=textmain}
+\setbeamercolor{title}{fg=textmain}
+\setbeamercolor{subtitle}{fg=textsec}
+\setbeamercolor{author}{fg=textsec}
+\setbeamercolor{date}{fg=textdim}
+\setbeamercolor{item}{fg=verde}
+\setbeamercolor{itemize item}{fg=verde}
+\setbeamercolor{itemize subitem}{fg=azul}
+\setbeamercolor{enumerate item}{fg=verde}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{itemize item}{\tiny\raisebox{1.5pt}{\textcolor{verde}{\rule{5pt}{5pt}}}}
+\setbeamertemplate{itemize subitem}{\tiny\raisebox{1.5pt}{\textcolor{azul}{\rule{4pt}{4pt}}}}
+
+% ---- FUENTES ----
+\usepackage[defaultfam,tabular,lining]{montserrat}
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+
+% ---- COMANDOS UTILES ----
+\newcommand{\kpi}[3]{%
+    \begin{tikzpicture}
+        \node[rounded corners=6pt, fill=bglight, draw=border, line width=0.4pt,
+              minimum width=3.2cm, minimum height=1.8cm, inner sep=6pt] (box) {};
+        \node[above=0pt of box.center, font=\fontsize{22}{24}\selectfont\bfseries, text=#1] {#2};
+        \node[below=2pt of box.center, font=\tiny\scshape, text=textdim] {#3};
+    \end{tikzpicture}%
+}
+
+\newcommand{\kpismall}[3]{%
+    \begin{tikzpicture}
+        \node[rounded corners=5pt, fill=bglight, draw=border, line width=0.4pt,
+              minimum width=2.6cm, minimum height=1.4cm, inner sep=4pt] (box) {};
+        \node[above=0pt of box.center, font=\fontsize{16}{18}\selectfont\bfseries, text=#1] {#2};
+        \node[below=1pt of box.center, font=\fontsize{5}{6}\selectfont\scshape, text=textdim] {#3};
+    \end{tikzpicture}%
+}
+
+\newcommand{\seccion}[1]{%
+    {\fontsize{7}{8}\selectfont\textcolor{verde}{\textbf{#1}}}%
+}
+
+\newcommand{\tagline}[2]{%
+    {\fontsize{7}{8}\selectfont\textcolor{#1}{\textbf{\MakeUppercase{#2}}}}%
+}
+
+% ---- METADATA ----
+\title{Centro de Consolidación Logística}
+\subtitle{Estudio de Viabilidad --- Modelo 3 Nodos}
+\author{Grupo 20 · Junta Directiva}
+\date{Marzo 2026}
+
+\begin{document}
+
+% ============================================================
+% SLIDE 1: PORTADA
+% ============================================================
+\begin{frame}[plain]
+\vfill
+\begin{center}
+
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=verde, minimum width=1cm, minimum height=1cm,
+          font=\small\bfseries, text=bgdark] {G20};
+\end{tikzpicture}
+
+\vspace{12pt}
+\tagline{verde}{Estudio de Viabilidad}
+
+\vspace{8pt}
+{\fontsize{30}{34}\selectfont\textbf{Centro de Consolidación}\par}
+\vspace{2pt}
+{\fontsize{30}{34}\selectfont\textbf{Logística}\par}
+
+\vspace{6pt}
+\begin{tikzpicture}
+    \fill[verde] (0,0) rectangle (2cm, 1.5pt);
+\end{tikzpicture}
+
+\vspace{10pt}
+{\normalsize\textcolor{textsec}{Modelo 3 Nodos para las 19 fincas de Grupo 20}}\\[4pt]
+{\small\textcolor{textdim}{Urabá, Antioquia · Presentación Junta Directiva · Marzo 2026}}
+
+\vspace{24pt}
+\begin{tikzpicture}
+    \node[rounded corners=4pt, draw=border, fill=bgcard, inner sep=6pt,
+          font=\fontsize{6}{7}\selectfont\color{textdim}] {
+        GEMELO DIGITAL INTERACTIVO · \textcolor{verde}{gemelo-digital-uraba.vercel.app}
+    };
+\end{tikzpicture}
+
+\end{center}
+\vfill
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=south, font=\fontsize{5}{6}\selectfont\color{textdim}]
+        at (current page.south) {\vspace{4pt}Observatorio de Datos y Análisis SAS · Datos: OSRM, DANE, UPRA, Geocercas GPS, Uniban};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+% SLIDE 2: EL PROBLEMA
+% ============================================================
+\begin{frame}
+\tagline{rojo}{El Problema}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{El caos logístico de Urabá}\par}
+
+\vspace{10pt}
+\textcolor{textsec}{%
+Hoy, cada una de nuestras \textbf{\textcolor{textmain}{19 fincas}} despacha de forma independiente
+hacia el puerto. Eso significa tractomulas a medio llenar, en una vía de un solo carril,
+esperando horas en el embarcadero. \textbf{\textcolor{textmain}{Nadie consolida. Nadie optimiza.}}}
+
+\vspace{16pt}
+\begin{center}
+\kpi{rojo}{154}{Viajes/día en la vía}
+\hspace{8pt}
+\kpi{rojo}{5--6h}{Espera en puerto por mula}
+\hspace{8pt}
+\kpi{rojo}{19}{Fincas despachando solas}
+\end{center}
+
+\vspace{12pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=bglight, draw=border, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=10pt, font=\small] {
+        \textcolor{rojo}{\faExclamationTriangle}~~%
+        \textcolor{textsec}{Cada camión hace su recorrido individual.
+        Si la finca produjo pocas cajas, la mula sale medio vacía de todas formas.
+        Anderson coordina todo por celular. Fruta recogida a las 2--3~AM.
+        Puerto devuelve camiones a las 11~PM.}
+    };
+\end{tikzpicture}
+
+\vspace{4pt}
+{\fontsize{5}{6}\selectfont\textcolor{textdim}{Fuente: Geocercas GPS 7 vehículos (Mar 9--12, 2026) · OSRM routing real · Modelo BPR congestión}}
+\end{frame}
+
+% ============================================================
+% SLIDE 3: LA AMENAZA TARIFARIA
+% ============================================================
+\begin{frame}
+\tagline{amarillo}{La Amenaza}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{El modelo tarifario va a cambiar}\par}
+
+\vspace{14pt}
+\begin{center}
+\begin{tikzpicture}
+    % CAJA IZQUIERDA
+    \node[rounded corners=8pt, fill=bgcard, draw=amarillo!40, line width=0.6pt,
+          minimum width=5.5cm, minimum height=3.4cm, inner sep=10pt] (left) {};
+    \node[above=2pt of left.north, anchor=south, font=\fontsize{6}{7}\selectfont\scshape\color{amarillo}]
+        {Hoy: \$/Caja};
+    \node[font=\fontsize{28}{32}\selectfont\bfseries\color{amarillo}] at ([yshift=4pt]left.center)
+        {\$300--400};
+    \node[below=6pt of left.center, text width=4.8cm, align=center,
+          font=\footnotesize\color{textsec}] {
+        Pagamos por caja transportada.\\
+        Si el camión va medio vacío,\\
+        \textbf{\textcolor{textmain}{es problema del transportador.}}
+    };
+
+    % FLECHA
+    \node[right=12pt of left, font=\fontsize{24}{26}\selectfont\bfseries\color{rojo}] (arrow) {$\longrightarrow$};
+
+    % CAJA DERECHA
+    \node[rounded corners=8pt, fill=bgcard, draw=rojo!40, line width=0.6pt,
+          minimum width=5.5cm, minimum height=3.4cm, inner sep=10pt,
+          right=12pt of arrow] (right) {};
+    \node[above=2pt of right.north, anchor=south, font=\fontsize{6}{7}\selectfont\scshape\color{rojo}]
+        {Mañana: \$/Viaje + Stand-by};
+    \node[font=\fontsize{28}{32}\selectfont\bfseries\color{rojo}] at ([yshift=4pt]right.center)
+        {\$625+};
+    \node[below=6pt of right.center, text width=4.8cm, align=center,
+          font=\footnotesize\color{textsec}] {
+        Flete: \$600K/viaje + stand-by \$50K/h.\\
+        \textbf{\textcolor{rojo}{El costo se duplica}}\\
+        y es \textbf{\textcolor{textmain}{nuestro problema.}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\vspace{10pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=amarillo!8, draw=amarillo!25, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=10pt, font=\small] {
+        \textcolor{amarillo}{\faBolt}~~%
+        \textcolor{amarillo}{\textbf{Los transportadores llevan 2 años exigiendo este cambio.}}
+        \textcolor{textsec}{El SICE-TAC del Ministerio de Transporte ya lo tiene regulado.
+        G20 no ha cedido aún, pero es cuestión de tiempo. Cuando cambie,
+        cada viaje a medio llenar nos costará el doble.}
+    };
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+% SLIDE 4: LA SOLUCIÓN — MODELO 3 NODOS
+% ============================================================
+\begin{frame}
+\tagline{verde}{La Solución}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{Consolidar antes de despachar}\par}
+
+\vspace{8pt}
+\textcolor{textsec}{%
+Un Centro de Consolidación en \textbf{\textcolor{textmain}{Chinita}}, a la salida de Apartadó,
+donde la fruta de 12 fincas llega, se paletiza, se conteneriza, y sale en
+\textbf{\textcolor{verde}{mulas llenas}} hacia Puerto Antioquia.}
+
+\vspace{14pt}
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.2cm and 2.2cm,
+    every node/.style={font=\footnotesize},
+    nodo/.style={circle, minimum size=1.1cm, draw=#1, fill=#1!10, line width=1pt,
+                 font=\normalsize},
+    linea/.style={line width=2pt, ->, >=stealth}
+]
+    \node[nodo=naranja] (fincas) {\faSeedling};
+    \node[nodo=verde, right=of fincas] (centro) {\faBoxes};
+    \node[nodo=cyan, right=of centro] (mini) {\faTruck};
+    \node[nodo=naranja, below=0.8cm of mini] (zungo) {\faShip};
+    \node[nodo=azul, right=of mini] (puerto) {\faAnchor};
+
+    \draw[linea, naranja] (fincas) -- (centro);
+    \draw[linea, verde] (centro) -- (mini);
+    \draw[linea, naranja] (zungo) -- (puerto);
+    \draw[linea, cyan] (mini) -- (puerto);
+
+    \node[below=4pt of fincas, text=naranja, font=\scriptsize\bfseries] {19 Fincas};
+    \node[below=18pt of fincas, text=textdim, font=\fontsize{5}{6}\selectfont] {2,000 ha};
+
+    \node[below=4pt of centro, text=verde, font=\scriptsize\bfseries] {Centro};
+    \node[below=18pt of centro, text=textdim, font=\fontsize{5}{6}\selectfont] {12 fincas · 985 ha};
+
+    \node[below=4pt of mini, text=cyan, font=\scriptsize\bfseries] {Mini-Hub};
+    \node[below=18pt of mini, text=textdim, font=\fontsize{5}{6}\selectfont] {3 fincas · Guadalupe};
+
+    \node[left=4pt of zungo, text=naranja, font=\scriptsize\bfseries, anchor=east] {Zungo};
+    \node[below=4pt of zungo, text=textdim, font=\fontsize{5}{6}\selectfont] {4 fincas · Occidente};
+
+    \node[below=4pt of puerto, text=azul, font=\scriptsize\bfseries] {Puerto};
+    \node[below=18pt of puerto, text=textdim, font=\fontsize{5}{6}\selectfont] {Pto. Antioquia};
+\end{tikzpicture}
+\end{center}
+
+\vspace{10pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=verde!8, draw=verde!20, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=10pt, font=\small] {
+        \textcolor{verde}{\faCheckCircle}~~%
+        \textbf{\textcolor{verde}{Resultado:}} \textcolor{textsec}{De 154 a}
+        \textbf{\textcolor{verde}{17 mulas/día.}}
+        \textcolor{textsec}{Solo salen llenas (960 cajas), contenerizadas,
+        con espera menor a 1 hora.}
+        \textbf{\textcolor{verde}{--89\% tráfico en la vía.}}
+    };
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+% SLIDE 5: IMPACTO FINANCIERO
+% ============================================================
+\begin{frame}
+\tagline{verde}{Impacto Financiero}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{Los números hablan}\par}
+
+\vspace{14pt}
+\begin{center}
+\kpi{verde}{\$502M}{Ahorro anual (modelo \$/caja)}
+\hspace{8pt}
+\kpi{verde}{--89\%}{Reducción tractomulas}
+\hspace{8pt}
+\kpi{azul}{$\sim$46\,m}{Payback estimado}
+\end{center}
+
+\vspace{12pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\color{textsec}}l >{\color{rojo}\bfseries}r >{\color{verde}\bfseries}r >{\color{verde}}r}
+    \toprule
+    \textcolor{textdim}{\textsc{Componente}} &
+    \textcolor{rojo}{\textsc{Directo}} &
+    \textcolor{verde}{\textsc{Hub}} &
+    \textcolor{verde}{\textsc{Delta}} \\
+    \midrule
+    Combustible           & \$148  & \$108  & --27\% \\
+    Conductor (tiempo)    & \$82   & \$58   & --29\% \\
+    Peajes                & \$35   & \$18   & --49\% \\
+    Desgaste vehículo     & \$68   & \$52   & --24\% \\
+    Consolidación Hub     & ---    & \$42   & +\$42  \\
+    \midrule
+    \textcolor{textmain}{\textbf{Total COP/caja}} &
+    \textcolor{rojo}{\textbf{\$386}} &
+    \textcolor{verde}{\textbf{\$298}} &
+    \textcolor{verde}{\textbf{--23\%}} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{10pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=rojo!8, draw=rojo!20, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=8pt, font=\small, align=center] {
+        \textcolor{rojo}{\textbf{Si cambia a \$/viaje:}}~~%
+        \textcolor{textsec}{El ahorro salta a}
+        \textbf{\textcolor{verde}{\$2,400M+/año}}
+        \textcolor{textsec}{--- el hub pasa de conveniente a}
+        \textbf{\textcolor{rojo}{inevitable.}}
+    };
+\end{tikzpicture}
+
+\vspace{2pt}
+{\fontsize{5}{6}\selectfont\textcolor{textdim}{Modelo paramétrico: OSRM distancias reales + BPR congestión + CONFIG flota G20 · Interactivo en gemelo-digital-uraba.vercel.app}}
+\end{frame}
+
+% ============================================================
+% SLIDE 6: MODELO $/VIAJE EN DETALLE
+% ============================================================
+\begin{frame}
+\tagline{rojo}{Escenario \$/Viaje}
+
+\vspace{4pt}
+{\fontsize{24}{28}\selectfont\textbf{¿Qué pasa cuando cambie el cobro?}\par}
+
+\vspace{10pt}
+\textcolor{textsec}{%
+Hoy los transportadores absorben las ineficiencias porque les pagamos por caja.
+Cuando el modelo cambie a cobro por viaje, \textbf{\textcolor{textmain}{cada mula a medio llenar nos costará lo mismo que una llena.}}
+}
+
+\vspace{12pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{>{\color{textsec}}l >{\color{rojo}\bfseries}r >{\color{verde}\bfseries}r}
+    \toprule
+    \textcolor{textdim}{\textsc{Concepto}} &
+    \textcolor{rojo}{\textsc{Sin Hub}} &
+    \textcolor{verde}{\textsc{Con Hub}} \\
+    \midrule
+    Flete por viaje              & \$600,000      & \$600,000 \\
+    Cajas por viaje              & $\sim$480 (parcial) & 960 (llena) \\
+    Flete por caja               & \$1,250        & \$625 \\
+    \addlinespace
+    Stand-by (horas)             & 5.5h           & 0.75h \\
+    Stand-by por caja            & \$573          & \$39 \\
+    \addlinespace
+    Consolidación Hub            & ---            & \$42 \\
+    \midrule
+    \textcolor{textmain}{\textbf{Costo total/caja}} &
+    \textcolor{rojo}{\textbf{\$1,823}} &
+    \textcolor{verde}{\textbf{\$706}} \\
+    \midrule
+    \textcolor{textmain}{\textbf{Ahorro anual}} &
+    &
+    \textcolor{verde}{\textbf{\$6,400M+}} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{10pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=rojo!8, draw=rojo!20, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=8pt, font=\small] {
+        \textcolor{rojo}{\faExclamationCircle}~~%
+        \textcolor{textsec}{Con mulas a medio llenar ($\sim$480 cajas vs.\ 960), el flete \textbf{por caja}
+        se duplica. Con 5.5h de stand-by a \$50K/hora, el costo se triplica.
+        \textbf{\textcolor{textmain}{El Centro elimina ambos problemas:}} mulas llenas y espera $<$1 hora.}
+    };
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+% SLIDE 7: BENEFICIOS OPERATIVOS
+% ============================================================
+\begin{frame}
+\tagline{cyan}{Más Allá del Ahorro}
+
+\vspace{4pt}
+{\fontsize{24}{28}\selectfont\textbf{Beneficios que no se miden solo en pesos}\par}
+
+\vspace{12pt}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+    {\fontsize{7}{8}\selectfont\textcolor{rojo}{\textbf{HOY (SIN CENTRO)}}}
+    \vspace{6pt}
+
+    \begin{itemize}
+        \setlength\itemsep{4pt}
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Recolección de fruta a las 2--3~AM
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Camiones devueltos del puerto a las 11~PM
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Riesgo de contaminación en esperas largas
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Coordinación manual de 19 fincas
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Fruta sin cadena de frío ni trazabilidad
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Parque automotor de 37 años promedio
+        \item[\textcolor{rojo}{\tiny\rule{5pt}{5pt}}] Carga parcial = desperdicio en cada viaje
+    \end{itemize}
+\end{column}
+
+\begin{column}{0.47\textwidth}
+    {\fontsize{7}{8}\selectfont\textcolor{verde}{\textbf{CON CENTRO DE CONSOLIDACIÓN}}}
+    \vspace{6pt}
+
+    \begin{itemize}
+        \setlength\itemsep{4pt}
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Turnos establecidos, despacho planificado
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Fruta contenerizada desde el Centro
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Calidad protegida: menor manipulación
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Trazabilidad digital pallet $\rightarrow$ puerto
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Cumplimiento specs de exportación
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Mulas llenas = cero desperdicio logístico
+        \item[\textcolor{verde}{\tiny\rule{5pt}{5pt}}] Escalable a otros productores de la zona
+    \end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{14pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=bglight, draw=border, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=10pt, font=\small\itshape\color{textsec}] {
+        ``Nosotros sabemos que en tiempo, en operación, en calidad, en cumplimiento,
+        en todo eso es chuleado. No sabemos si financieramente es beneficioso.
+        \textbf{\textcolor{textmain}{Esa es la viabilidad que le tenemos que encontrar.}}''
+    };
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+% SLIDE 8: INVERSIÓN (CAPEX)
+% ============================================================
+\begin{frame}
+\tagline{azul}{Inversión}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{CAPEX estimado}\par}
+
+\vspace{10pt}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+    {\fontsize{7}{8}\selectfont\textcolor{textdim}{\textbf{COMPONENTES DE INVERSIÓN}}}
+    \vspace{8pt}
+
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{>{\color{textsec}}l >{\color{textmain}\bfseries}r}
+        \toprule
+        Terreno (5 ha × \$150M/ha)    & \$750M \\
+        Construcción plataforma        & \$800M \\
+        Equipos                        & \$300M \\
+        Capital de trabajo             & \$200M \\
+        \midrule
+        \textcolor{verde}{\textbf{TOTAL CAPEX}} & \textcolor{verde}{\textbf{\$2,050M}} \\
+        \bottomrule
+    \end{tabular}
+
+    \vspace{12pt}
+    {\footnotesize\textcolor{textsec}{%
+    \textbf{\textcolor{textmain}{Ubicación:}} Finca Chinita, salida de Apartadó,
+    cerca de la variante. Rampa de entrada, plataforma cubierta (pérgola),
+    rampa de salida. Flujo unidireccional: camiones por un lado, mulas por el otro.}}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+    {\fontsize{7}{8}\selectfont\textcolor{textdim}{\textbf{RETORNO ESPERADO}}}
+    \vspace{8pt}
+
+    \begin{tikzpicture}
+        % Box 1
+        \node[rounded corners=5pt, fill=bglight, draw=verde!30, line width=0.4pt,
+              minimum width=5.5cm, minimum height=1.3cm, inner sep=6pt] (b1) {};
+        \node[font=\fontsize{16}{18}\selectfont\bfseries\color{verde}] at ([yshift=2pt]b1.center) {\$502M/año};
+        \node[below=0pt of b1.center, font=\fontsize{5}{6}\selectfont\scshape\color{textdim}]
+            {Ahorro modelo \$/caja};
+
+        % Box 2
+        \node[rounded corners=5pt, fill=bglight, draw=rojo!30, line width=0.4pt,
+              minimum width=5.5cm, minimum height=1.3cm, inner sep=6pt,
+              below=8pt of b1] (b2) {};
+        \node[font=\fontsize{16}{18}\selectfont\bfseries\color{rojo}] at ([yshift=2pt]b2.center) {\$2,400M+/año};
+        \node[below=0pt of b2.center, font=\fontsize{5}{6}\selectfont\scshape\color{textdim}]
+            {Ahorro modelo \$/viaje};
+
+        % Box 3
+        \node[rounded corners=5pt, fill=bglight, draw=azul!30, line width=0.4pt,
+              minimum width=5.5cm, minimum height=1.3cm, inner sep=6pt,
+              below=8pt of b2] (b3) {};
+        \node[font=\fontsize{16}{18}\selectfont\bfseries\color{azul}] at ([yshift=2pt]b3.center) {$\sim$46 meses};
+        \node[below=0pt of b3.center, font=\fontsize{5}{6}\selectfont\scshape\color{textdim}]
+            {Payback (\$/caja) · $<$12 meses (\$/viaje)};
+    \end{tikzpicture}
+
+    \vspace{10pt}
+    {\fontsize{6}{7}\selectfont\textcolor{textdim}{Parámetros ajustables en el gemelo digital financiero.
+    Sensibilidad a producción, CAPEX, tasa de descuento (12\%).
+    Horizonte de evaluación: 10 años.}}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+% SLIDE 9: ESCALABILIDAD
+% ============================================================
+\begin{frame}
+\tagline{cyan}{Escalabilidad}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{No solo para Grupo 20}\par}
+
+\vspace{8pt}
+\textcolor{textsec}{%
+Hoy el Centro sirve a nuestras 19 fincas. Mañana puede ser el centro de gravedad logístico
+para cualquier productor que necesite llegar a Puerto Antioquia.}
+
+\vspace{16pt}
+\begin{center}
+\kpi{verde}{19}{Fincas G20 (Fase 1)}
+\hspace{8pt}
+\kpi{cyan}{402}{Fincas bananeras en zona}
+\hspace{8pt}
+\kpi{azul}{7M ton}{Capacidad Puerto Antioquia}
+\end{center}
+
+\vspace{14pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=verde!8, draw=verde!20, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=10pt, font=\small] {
+        \textcolor{verde}{\faRocket}~~%
+        \textbf{\textcolor{verde}{Oportunidad:}}
+        \textcolor{textsec}{Servicios de consolidación a terceros generan ingresos adicionales
+        y aceleran el payback. Uniban tiene 250 fincas en la región.
+        El Centro puede ser \textbf{\textcolor{textmain}{la puerta de entrada al puerto para toda Urabá.}}}
+    };
+\end{tikzpicture}
+
+\vspace{8pt}
+\begin{tikzpicture}
+    \node[rounded corners=6pt, fill=bglight, draw=border, line width=0.4pt,
+          text width=\textwidth-24pt, inner sep=10pt, font=\small] {
+        \textcolor{azul}{\faChartLine}~~%
+        \textcolor{textsec}{%
+        \textbf{\textcolor{textmain}{Contexto de mercado favorable:}}
+        Costa Rica lleva 2.5 años de crisis climática con problemas de fumigación y hojas.
+        Colombia es hoy el proveedor más confiable del mercado europeo (70\% de nuestra exportación).
+        Precio del banano estable: \$7.25~USD/caja (18.86~kg). La oportunidad es ahora.}
+    };
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+% SLIDE 10: GEMELO DIGITAL
+% ============================================================
+\begin{frame}
+\tagline{verde}{La Herramienta}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{Gemelo Digital Interactivo}\par}
+
+\vspace{8pt}
+\textcolor{textsec}{%
+Todo lo que presentamos hoy está vivo en una herramienta que pueden explorar,
+ajustar parámetros, y ver los resultados en tiempo real.}
+
+\vspace{14pt}
+\begin{center}
+\begin{tikzpicture}
+    \node[rounded corners=10pt, fill=bgcard, draw=border, line width=0.6pt,
+          minimum width=13cm, minimum height=5cm, inner sep=0pt] (screen) {};
+    \node[font=\fontsize{7}{8}\selectfont\color{textdim}] at (screen.center) {
+        \begin{tabular}{c}
+            \\[12pt]
+            \textcolor{verde}{\fontsize{14}{16}\selectfont\faGlobeAmericas}\\[8pt]
+            \textcolor{textmain}{\fontsize{12}{14}\selectfont\textbf{gemelo-digital-uraba.vercel.app}}\\[6pt]
+            \textcolor{textsec}{Mapa interactivo · Simulador de estrés vial · Dashboard financiero}\\[4pt]
+            \textcolor{textsec}{Toggle \$/caja vs \$/viaje · Sensibilidad · Escenarios SC1/SC3}\\[12pt]
+            \textcolor{verde}{\rule{3cm}{1.5pt}}\\[6pt]
+            \textcolor{textdim}{\fontsize{6}{7}\selectfont 19 fincas reales · 39 rutas OSRM · 402 polígonos · Geocercas GPS}\\[2pt]
+            \textcolor{textdim}{\fontsize{6}{7}\selectfont DANE · UPRA · SIPRA · IDEAM · OSM · Mapbox · Uniban 2012--2025}
+        \end{tabular}
+    };
+\end{tikzpicture}
+\end{center}
+
+\vspace{10pt}
+\begin{center}
+    \begin{tikzpicture}
+        \node[rounded corners=6pt, fill=verde, inner sep=8pt,
+              font=\small\bfseries, text=bgdark] {
+            ABRIR GEMELO DIGITAL~~\faExternalLinkAlt
+        };
+        \node[below=4pt, font=\fontsize{6}{7}\selectfont\color{textdim}] {
+            https://gemelo-digital-uraba.vercel.app
+        };
+    \end{tikzpicture}
+\end{center}
+\end{frame}
+
+% ============================================================
+% SLIDE 11: SIGUIENTES PASOS
+% ============================================================
+\begin{frame}
+\tagline{verde}{Siguientes Pasos}
+
+\vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{La pregunta para la Junta}\par}
+
+\vspace{14pt}
+\begin{tikzpicture}
+    \fill[verde] (0, -1.0) rectangle (0.12, 1.3);
+    \node[text width=11.5cm, inner sep=0pt, anchor=west] at (0.4, 0.15) {
+        \begin{minipage}{11.3cm}
+        {\large\itshape\textcolor{textsec}{%
+        ``Estamos convencidos de que operativamente es beneficioso.
+        Ya tenemos los números que muestran que financieramente también lo es.}}
+
+        \vspace{4pt}
+        {\large\itshape\textbf{\textcolor{verde}{La pregunta no es si hacerlo, sino cuándo.}}''}
+
+        \vspace{4pt}
+        {\fontsize{7}{8}\selectfont\textcolor{textdim}{--- Viabilidad Centro de Consolidación, Marzo 2026}}
+        \end{minipage}
+    };
+\end{tikzpicture}
+
+\vspace{20pt}
+\begin{center}
+\begin{tikzpicture}[node distance=0.6cm]
+    \node[rounded corners=6pt, fill=bglight, draw=verde!25, line width=0.4pt,
+          minimum width=4.2cm, minimum height=1.6cm, inner sep=8pt] (s1) {};
+    \node[font=\scriptsize\bfseries\color{verde}] at ([yshift=4pt]s1.center)
+        {1. VALIDAR CAPEX};
+    \node[font=\fontsize{6}{7}\selectfont\color{textdim}, below=0pt of s1.center]
+        {Implantación + cotización};
+
+    \node[rounded corners=6pt, fill=bglight, draw=azul!25, line width=0.4pt,
+          minimum width=4.2cm, minimum height=1.6cm, inner sep=8pt,
+          right=12pt of s1] (s2) {};
+    \node[font=\scriptsize\bfseries\color{azul}] at ([yshift=4pt]s2.center)
+        {2. COSTEO OPERATIVO};
+    \node[font=\fontsize{6}{7}\selectfont\color{textdim}, below=0pt of s2.center]
+        {Anderson: costos × finca};
+
+    \node[rounded corners=6pt, fill=bglight, draw=amarillo!25, line width=0.4pt,
+          minimum width=4.2cm, minimum height=1.6cm, inner sep=8pt,
+          right=12pt of s2] (s3) {};
+    \node[font=\scriptsize\bfseries\color{amarillo}] at ([yshift=4pt]s3.center)
+        {3. NEGOCIAR TARIFA};
+    \node[font=\fontsize{6}{7}\selectfont\color{textdim}, below=0pt of s3.center]
+        {Anticipar modelo \$/viaje};
+\end{tikzpicture}
+\end{center}
+
+\vspace{14pt}
+\begin{center}
+    \begin{tikzpicture}
+        \node[rounded corners=6pt, fill=verde, inner sep=10pt,
+              font=\normalsize\bfseries, text=bgdark] {
+            VER GEMELO DIGITAL EN VIVO~~\faExternalLinkAlt
+        };
+    \end{tikzpicture}
+\end{center}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=south, font=\fontsize{5}{6}\selectfont\color{textdim}]
+        at (current page.south) {\vspace{4pt}Observatorio de Datos y Análisis SAS · Marzo 2026};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
