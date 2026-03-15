@@ -1677,7 +1677,7 @@ map.on('load',()=>{
 
     // ---- SC3 STRAIGHT LINES: farm→assigned hub (visual convergence) ----
     const sc3StraightFeats = FARMS.map(f=>{
-        const hubNode = f.hub==='centro'?NODES.hub:f.hub==='mini_hub'?NODES.mini_hub:NODES.zungo;
+        const hubNode = f.hub==='centro'?NODES.hub:f.hub==='mini_hub'?NODES.puerto:NODES.zungo;
         return {type:'Feature',properties:{id:f.id,prod:f.prod,hub:f.hub},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[hubNode.lng,hubNode.lat]]}};
     });
     map.addSource('sc3-straight',{type:'geojson',data:{type:'FeatureCollection',features:sc3StraightFeats}});
