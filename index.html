@@ -69,7 +69,6 @@
         .sc-btn.a-chaos{background:var(--red-bg);border-color:var(--red);color:var(--red);}
         .sc-btn.a-hub{background:var(--green-bg);border-color:var(--green);color:var(--green);}
         .sc-btn.a-sc1{background:var(--red-bg);border-color:var(--red);color:var(--red);}
-        .sc-btn.a-sc2{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
         .sc-btn.a-sc3{background:var(--green-bg);border-color:var(--green);color:var(--green);}
 
         /* KPI */
@@ -416,7 +415,6 @@
         <div class="c-h"><span class="c-t">Escenario Logistico</span></div>
         <div class="sc-btns">
             <button class="sc-btn a-sc1" id="btn-sc1" onclick="setScenario('sc1')">SITUACION ACTUAL</button>
-            <button class="sc-btn" id="btn-sc2" onclick="setScenario('sc2')">CONSOLIDACION PARCIAL</button>
             <button class="sc-btn" id="btn-sc3" onclick="setScenario('sc3')">CENTRO OPERANDO</button>
         </div>
     </div>
@@ -471,14 +469,14 @@
         <div class="c-h"><span class="c-t">Capas del Mapa</span></div>
         <label class="ly"><input type="checkbox" id="ly-municipios" checked onchange="toggleLy('municipios')"><span class="ly-sw"></span><span class="ly-t">Limites municipales (DANE)</span></label>
         <label class="ly"><input type="checkbox" id="ly-veredas" onchange="toggleLy('veredas')"><span class="ly-sw"></span><span class="ly-t">Veredas (UPRA, n=611)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-sipra" checked onchange="toggleLy('sipra')"><span class="ly-sw"></span><span class="ly-t">SIPRA Aptitud Banano (real)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-roads" checked onchange="toggleLy('roads')"><span class="ly-sw"></span><span class="ly-t">Red vial OSM (299 seg.)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-sipra" onchange="toggleLy('sipra')"><span class="ly-sw"></span><span class="ly-t">SIPRA Aptitud Banano (real)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-roads" onchange="toggleLy('roads')"><span class="ly-sw"></span><span class="ly-t">Red vial OSM (299 seg.)</span></label>
         <label class="ly"><input type="checkbox" id="ly-farm-poly" checked onchange="toggleLy('farm-poly')"><span class="ly-sw"></span><span class="ly-t">Poligonos fincas (real, n=402)</span></label>
         <label class="ly"><input type="checkbox" id="ly-farms" checked onchange="toggleLy('farms')"><span class="ly-sw"></span><span class="ly-t">Fincas G20 puntos (n=19)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-routes" checked onchange="toggleLy('routes')"><span class="ly-sw"></span><span class="ly-t">Rutas OSRM</span></label>
-        <label class="ly"><input type="checkbox" id="ly-isochrone" checked onchange="toggleLy('isochrone')"><span class="ly-sw"></span><span class="ly-t">Isocronas Centro (15/30/45 min)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-routes" checked onchange="toggleLy('routes')"><span class="ly-sw"></span><span class="ly-t">Rutas escenario</span></label>
+        <label class="ly"><input type="checkbox" id="ly-isochrone" onchange="toggleLy('isochrone')"><span class="ly-sw"></span><span class="ly-t">Isocronas Centro (15/30/45 min)</span></label>
         <label class="ly"><input type="checkbox" id="ly-flood" onchange="toggleLy('flood')"><span class="ly-sw"></span><span class="ly-t">Zona inundacion (proxy POMCA)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-rivers" checked onchange="toggleLy('rivers')"><span class="ly-sw"></span><span class="ly-t">Hidrografia OSM (759 seg.)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-rivers" onchange="toggleLy('rivers')"><span class="ly-sw"></span><span class="ly-t">Hidrografia OSM (759 seg.)</span></label>
         <div class="div"></div>
         <div style="font-size:8px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:2px;">WMS OFICIALES (requiere zoom)</div>
         <label class="ly"><input type="checkbox" id="ly-wms-upra" onchange="toggleLy('wms-upra')"><span class="ly-sw"></span><span class="ly-t">UPRA WMS Aptitud (overlay)</span></label>
@@ -1246,8 +1244,6 @@ const NODES = {
     mini_hub: {lat:7.939188,lng:-76.678878,name:"Mini-Hub Puerto (Guadalupe)"},
     zungo: {lat:7.852252,lng:-76.744378,name:"Embarcadero Zungo Canal"},
     puerto: {lat:7.9230,lng:-76.7341,name:"Puerto Antioquia"},
-    colonia: {lat:7.955,lng:-76.685,name:"Embarcadero Colonia (Uniban)"},
-    nueva_colonia: {lat:7.960,lng:-76.680,name:"Puerto Uraba"},
     apartado: {lat:7.8829,lng:-76.6258,name:"Apartado"},
     carepa: {lat:7.7567,lng:-76.6558,name:"Carepa"},
     chigorodo: {lat:7.6647,lng:-76.6818,name:"Chigorodo"},
@@ -1483,11 +1479,11 @@ map.on('load',()=>{
     // ---- SIPRA REAL DATA ----
     fetch('data/sipra_uraba_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('sipra',{type:'geojson',data:gj});
-        map.addLayer({id:'sipra-fill',type:'fill',source:'sipra',paint:{
+        map.addLayer({id:'sipra-fill',type:'fill',source:'sipra',layout:{visibility:'none'},paint:{
             'fill-color':['match',['get','aptitud'],'Aptitud alta','#00cc44','Aptitud media','#88cc00','Aptitud baja','#ccaa00','#666666'],
             'fill-opacity':0.18
         }});
-        map.addLayer({id:'sipra-line',type:'line',source:'sipra',paint:{
+        map.addLayer({id:'sipra-line',type:'line',source:'sipra',layout:{visibility:'none'},paint:{
             'line-color':['match',['get','aptitud'],'Aptitud alta','#00cc44','Aptitud media','#88cc00','Aptitud baja','#ccaa00','#666666'],
             'line-opacity':0.4,'line-width':1
         }});
@@ -1509,7 +1505,7 @@ map.on('load',()=>{
             'line-color':['match',['get','highway'],'trunk','#cccccc','primary','#bbbbbb','secondary','#888888','#555555'],
             'line-width':['match',['get','highway'],'trunk',2.5,'primary',2,'secondary',1.5,1],
             'line-opacity':['match',['get','highway'],'trunk',0.5,'primary',0.4,'secondary',0.25,0.15]
-        },layout:{'line-cap':'round','line-join':'round'}});
+        },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
         console.log(`OSM roads loaded: ${gj.features.length} segments`);
         setLoad(65);
     }).catch(e=>console.warn('OSM roads not loaded:',e));
@@ -1523,15 +1519,16 @@ map.on('load',()=>{
             'line-width':['match',['get','waterway'],'river',8,'canal',5,3],
             'line-opacity':0.15,
             'line-blur':4
-        },layout:{'line-cap':'round','line-join':'round'}});
+        },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
         // Main body
         map.addLayer({id:'rivers',type:'line',source:'rivers',paint:{
             'line-color':['match',['get','waterway'],'river','#2266cc','canal','#1a5588','#224488'],
             'line-width':['match',['get','waterway'],'river',2.5,'canal',1.8,1],
             'line-opacity':['match',['get','waterway'],'river',0.6,'canal',0.4,0.3]
-        },layout:{'line-cap':'round','line-join':'round'}});
+        },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
         // River name labels
         map.addLayer({id:'rivers-label',type:'symbol',source:'rivers',filter:['all',['has','name'],['==',['get','waterway'],'river']],layout:{
+            visibility:'none',
             'symbol-placement':'line',
             'text-field':['get','name'],
             'text-size':10,
@@ -1560,24 +1557,24 @@ map.on('load',()=>{
     .then(r=>r.json()).then(gj=>{
         map.addSource('isochrones',{type:'geojson',data:gj});
         // 45 min (outermost, red)
-        map.addLayer({id:'iso-45-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],45],paint:{
+        map.addLayer({id:'iso-45-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],45],layout:{visibility:'none'},paint:{
             'fill-color':'rgba(255,59,78,0.06)','fill-opacity':0.8
         }});
-        map.addLayer({id:'iso-45-line',type:'line',source:'isochrones',filter:['==',['get','contour'],45],paint:{
+        map.addLayer({id:'iso-45-line',type:'line',source:'isochrones',filter:['==',['get','contour'],45],layout:{visibility:'none'},paint:{
             'line-color':'rgba(255,59,78,0.4)','line-width':1.5,'line-dasharray':[4,3]
         }});
         // 30 min (middle, yellow)
-        map.addLayer({id:'iso-30-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],30],paint:{
+        map.addLayer({id:'iso-30-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],30],layout:{visibility:'none'},paint:{
             'fill-color':'rgba(240,160,48,0.07)','fill-opacity':0.8
         }});
-        map.addLayer({id:'iso-30-line',type:'line',source:'isochrones',filter:['==',['get','contour'],30],paint:{
+        map.addLayer({id:'iso-30-line',type:'line',source:'isochrones',filter:['==',['get','contour'],30],layout:{visibility:'none'},paint:{
             'line-color':'rgba(240,160,48,0.5)','line-width':1.5,'line-dasharray':[4,3]
         }});
         // 15 min (innermost, green)
-        map.addLayer({id:'iso-15-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],15],paint:{
+        map.addLayer({id:'iso-15-fill',type:'fill',source:'isochrones',filter:['==',['get','contour'],15],layout:{visibility:'none'},paint:{
             'fill-color':'rgba(0,232,120,0.08)','fill-opacity':0.8
         }});
-        map.addLayer({id:'iso-15-line',type:'line',source:'isochrones',filter:['==',['get','contour'],15],paint:{
+        map.addLayer({id:'iso-15-line',type:'line',source:'isochrones',filter:['==',['get','contour'],15],layout:{visibility:'none'},paint:{
             'line-color':'rgba(0,232,120,0.5)','line-width':1.5,'line-dasharray':[4,3]
         }});
         // Labels on isochrone borders
@@ -1590,6 +1587,7 @@ map.on('load',()=>{
         });
         map.addSource('iso-labels',{type:'geojson',data:{type:'FeatureCollection',features:labelFeats}});
         map.addLayer({id:'iso-labels',type:'symbol',source:'iso-labels',layout:{
+            visibility:'none',
             'text-field':['get','label'],
             'text-size':10,
             'text-font':['DIN Pro Medium','Arial Unicode MS Regular'],
@@ -1677,16 +1675,19 @@ map.on('load',()=>{
         'line-color':'#ff3b4e','line-width':['interpolate',['linear'],['get','prod'],2000,1.5,11000,4],'line-opacity':0.6
     },layout:{'line-cap':'round','line-join':'round'}});
 
-    // ---- SC2 ROUTES: 19 straight lines finca→Puerto Uraba ----
-    const sc2Feats = FARMS.map(f=>{
-        return {type:'Feature',properties:{id:f.id,prod:f.prod},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[NODES.nueva_colonia.lng,NODES.nueva_colonia.lat]]}};
+    // ---- SC3 STRAIGHT LINES: farm→assigned hub (visual convergence) ----
+    const sc3StraightFeats = FARMS.map(f=>{
+        const hubNode = f.hub==='centro'?NODES.hub:f.hub==='mini_hub'?NODES.mini_hub:NODES.zungo;
+        return {type:'Feature',properties:{id:f.id,prod:f.prod,hub:f.hub},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[hubNode.lng,hubNode.lat]]}};
     });
-    map.addSource('sc2-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc2Feats}});
-    map.addLayer({id:'sc2-routes-glow',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#f0a030','line-width':8,'line-opacity':0.1,'line-blur':4
+    map.addSource('sc3-straight',{type:'geojson',data:{type:'FeatureCollection',features:sc3StraightFeats}});
+    map.addLayer({id:'sc3-straight-glow',type:'line',source:'sc3-straight',paint:{
+        'line-color':['match',['get','hub'],'centro','#00e878','mini_hub','#18d8d0','zungo','#ff7a30','#00e878'],
+        'line-width':8,'line-opacity':0.1,'line-blur':4
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
-    map.addLayer({id:'sc2-routes',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#f0a030','line-width':['interpolate',['linear'],['get','prod'],2000,1.5,11000,4],'line-opacity':0.6
+    map.addLayer({id:'sc3-straight',type:'line',source:'sc3-straight',paint:{
+        'line-color':['match',['get','hub'],'centro','#00e878','mini_hub','#18d8d0','zungo','#ff7a30','#00e878'],
+        'line-width':['interpolate',['linear'],['get','prod'],2000,1.5,11000,4],'line-opacity':0.7
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // ---- CONGESTION OVERLAY on OSM roads ----
@@ -1822,12 +1823,6 @@ map.on('load',()=>{
     window._markerZungo = new mapboxgl.Marker({element:zgEl}).setLngLat([NODES.zungo.lng,NODES.zungo.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#ff7a30;">EMBARCADERO ZUNGO CANAL</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Carepa, Antioquia</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.8523, -76.7444</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">4 (Los Almendros, Matogroso 1/2, Punto Fijo)</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Despacho fincas del occidente</span></div>')).addTo(map);
 
-    // Puerto Uraba (yellow) — SC2 only
-    const ncEl=document.createElement('div');
-    ncEl.style.cssText='width:18px;height:18px;background:#f0a030;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #f0a030,0 0 30px rgba(240,160,48,0.3);cursor:pointer;display:none;';
-    window._markerNuevaColonia = new mapboxgl.Marker({element:ncEl}).setLngLat([NODES.nueva_colonia.lng,NODES.nueva_colonia.lat])
-        .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#f0a030;">PUERTO URABA</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Nueva Colonia</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Consolidacion parcial de 19 fincas</span></div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">Escenario intermedio</span></div>')).addTo(map);
-
     // Puerto Antioquia (blue)
     const ptEl=document.createElement('div');
     ptEl.style.cssText='width:22px;height:22px;background:#3898ff;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #3898ff,0 0 40px rgba(56,152,255,0.3);cursor:pointer;';
@@ -1856,7 +1851,6 @@ map.on('load',()=>{
     window._labelHub = makeNodeLabel('hub','CENTRO CONSOLIDACION','#00e878','none');
     window._labelMiniHub = makeNodeLabel('mini_hub','MINI-HUB PUERTO','#18d8d0','none');
     window._labelZungo = makeNodeLabel('zungo','EMB. ZUNGO','#ff7a30','');
-    window._labelNuevaColonia = makeNodeLabel('nueva_colonia','PUERTO URABA','#f0a030','none');
     // Puerto always visible
     makeNodeLabel('puerto','PUERTO ANTIOQUIA','#3898ff','');
 
@@ -1882,46 +1876,36 @@ let curSc='sc1';
 function setScenario(sc){
     curSc=sc;
     document.getElementById('btn-sc1').className=sc==='sc1'?'sc-btn a-sc1':'sc-btn';
-    document.getElementById('btn-sc2').className=sc==='sc2'?'sc-btn a-sc2':'sc-btn';
     document.getElementById('btn-sc3').className=sc==='sc3'?'sc-btn a-sc3':'sc-btn';
-    document.getElementById('sc-icon').innerHTML=sc==='sc3'?'&#x2714;':'&#x26A0;';
+    document.getElementById('sc-icon').innerHTML=sc==='sc1'?'&#x26A0;':'&#x2714;';
 
     if(map.isStyleLoaded()){
         // Hide all route layers first
-        ['chaos-routes','chaos-routes-glow','sc1-routes','sc1-routes-glow','sc2-routes','sc2-routes-glow','hub-routes','hub-port','hub-port-glow','hub-port-flow'].forEach(l=>{
+        ['chaos-routes','chaos-routes-glow','sc1-routes','sc1-routes-glow','sc3-straight','sc3-straight-glow','hub-routes','hub-port','hub-port-glow','hub-port-flow'].forEach(l=>{
             if(map.getLayer(l)) map.setLayoutProperty(l,'visibility','none');
         });
-        // Show appropriate layers
         if(sc==='sc1'){
             if(map.getLayer('sc1-routes')) map.setLayoutProperty('sc1-routes','visibility','visible');
             if(map.getLayer('sc1-routes-glow')) map.setLayoutProperty('sc1-routes-glow','visibility','visible');
-        } else if(sc==='sc2'){
-            if(map.getLayer('sc2-routes')) map.setLayoutProperty('sc2-routes','visibility','visible');
-            if(map.getLayer('sc2-routes-glow')) map.setLayoutProperty('sc2-routes-glow','visibility','visible');
-        } else if(sc==='sc3'){
-            if(map.getLayer('hub-routes')) map.setLayoutProperty('hub-routes','visibility','visible');
+        } else {
+            if(map.getLayer('sc3-straight')) map.setLayoutProperty('sc3-straight','visibility','visible');
+            if(map.getLayer('sc3-straight-glow')) map.setLayoutProperty('sc3-straight-glow','visibility','visible');
             if(map.getLayer('hub-port')) map.setLayoutProperty('hub-port','visibility','visible');
             if(map.getLayer('hub-port-glow')) map.setLayoutProperty('hub-port-glow','visibility','visible');
             if(map.getLayer('hub-port-flow')) map.setLayoutProperty('hub-port-flow','visibility','visible');
         }
     }
-    // Toggle markers per scenario
-    if(window._markerNuevaColonia) _markerNuevaColonia.getElement().style.display = sc==='sc2'?'':'none';
+    // Toggle markers
     if(window._markerHub) _markerHub.getElement().style.display = sc==='sc3'?'':'none';
     if(window._markerMiniHub) _markerMiniHub.getElement().style.display = sc==='sc3'?'':'none';
-    if(window._markerZungo) _markerZungo.getElement().style.display = (sc==='sc1'||sc==='sc3')?'':'none';
-    // Puerto marker always visible, but Zungo only in SC1 and SC3
+    if(window._markerZungo) _markerZungo.getElement().style.display = '';
     // Labels
-    if(window._labelNuevaColonia) _labelNuevaColonia.getElement().style.display = sc==='sc2'?'':'none';
     if(window._labelHub) _labelHub.getElement().style.display = sc==='sc3'?'':'none';
     if(window._labelMiniHub) _labelMiniHub.getElement().style.display = sc==='sc3'?'':'none';
-    if(window._labelZungo) _labelZungo.getElement().style.display = (sc==='sc1'||sc==='sc3')?'':'none';
+    if(window._labelZungo) _labelZungo.getElement().style.display = '';
 
-    // Sync routes checkbox
     const routesBox = document.getElementById('ly-routes');
     if (routesBox) routesBox.checked = true;
-
-    // Update legend
     updateLegend();
     updateSim();
 }
@@ -1939,7 +1923,7 @@ function toggleLy(name){
         'roads':['osm-roads'],
         'farm-poly':['farm-poly-fill','farm-poly-line','farm-poly-label','farm-poly-all-fill','farm-poly-all-line'],
         'farms':['farms','farms-glow'],
-        'routes':curSc==='sc1'?['sc1-routes','sc1-routes-glow']:curSc==='sc2'?['sc2-routes','sc2-routes-glow']:['hub-routes','hub-port','hub-port-glow','hub-port-flow'],
+        'routes':curSc==='sc1'?['sc1-routes','sc1-routes-glow']:['sc3-straight','sc3-straight-glow','hub-port','hub-port-glow','hub-port-flow'],
         'isochrone':['iso-45-fill','iso-45-line','iso-30-fill','iso-30-line','iso-15-fill','iso-15-line','iso-labels'],
         'flood':['flood-fill','flood-line'],
         'rivers':['rivers','rivers-glow','rivers-label'],
@@ -1990,7 +1974,7 @@ function updateSim(){
     const hubMulas=Math.ceil(cpd/MULA_CAP);
     const hubt=Math.ceil(hubMulas*1.1);
 
-    const tot=(curSc==='sc1'||curSc==='sc2')?g20t+rt:hubt+rt;
+    const tot=curSc==='sc1'?g20t+rt:hubt+rt;
     const {bt, bc, pce} = CONFIG.bpr;
     const lr=(bc*0.6+tot*pce)/bc;
     const cf=Math.max(1,Math.pow(lr,3));
@@ -2000,7 +1984,7 @@ function updateSim(){
     const at=OD.reduce((s,o)=>s+o.dt,0)/OD.length;
     const aht=OD.reduce((s,o)=>s+o.ht,0)/OD.length;
 
-    if(curSc==='sc1'||curSc==='sc2'){
+    if(curSc==='sc1'){
         document.getElementById('kpi-trucks').textContent=totalViajes+rt;
         document.getElementById('kpi-trucks').className='kpi-v r';
         document.getElementById('kpi-time').textContent=Math.round(at*cf);
@@ -2027,7 +2011,7 @@ function updateSim(){
     // Fleet card reactive
     const flM=document.getElementById('fl-mulas'),flS=document.getElementById('fl-senc'),flV=document.getElementById('fl-viajes'),flE=document.getElementById('fl-espera');
     if(flM){
-        if(curSc==='sc1'||curSc==='sc2'){
+        if(curSc==='sc1'){
             flM.textContent=N_MULAS; flS.textContent=N_SENC;
             flV.textContent=`${totalViajes}`;
             flE.textContent='5-6h'; flE.style.color='var(--red)';
@@ -2151,17 +2135,6 @@ function updateSim(){
             map.setPaintProperty('sc1-routes-glow','line-color',rColor);
             map.setPaintProperty('sc1-routes-glow','line-opacity',0.05 + cfNorm * 0.15);
         }
-    } else if(curSc==='sc2'){
-        const yColor = cf<1.5 ? '#f0a030' : cf<2.5 ? '#ff8800' : '#ff5500';
-        const yOpacity = 0.4 + cfNorm * 0.4;
-        if(map.getLayer('sc2-routes')){
-            map.setPaintProperty('sc2-routes','line-color',yColor);
-            map.setPaintProperty('sc2-routes','line-opacity',yOpacity);
-        }
-        if(map.getLayer('sc2-routes-glow')){
-            map.setPaintProperty('sc2-routes-glow','line-color',yColor);
-            map.setPaintProperty('sc2-routes-glow','line-opacity',0.05 + cfNorm * 0.15);
-        }
     } else {
         // Hub routes stay green but trunk width scales with volume
         const trunkW = 4 + (hubt/30)*3;
@@ -2206,7 +2179,7 @@ function updateSim(){
     if(!gmTrafficData) {
         // Hub-Puerto base from OSRM
         const hpBase = R.hp.t;  // minutes from OSRM
-        const hpCong = Math.round(hpBase * ((curSc === 'sc1' || curSc === 'sc2') ? cf : Math.min(cf, 1.3)));
+        const hpCong = Math.round(hpBase * (curSc === 'sc1' ? cf : Math.min(cf, 1.3)));
 
         document.getElementById('gm-hub-base').textContent = `${Math.round(hpBase)} min`;
         document.getElementById('gm-hub-time').textContent = `${hpCong} min`;
@@ -2215,7 +2188,7 @@ function updateSim(){
 
         // Average farm-hub from OSRM
         const avgFH = OD.reduce((s,o)=>s+o.ht,0)/OD.length;
-        const avgFHcong = Math.round(avgFH * ((curSc === 'sc1' || curSc === 'sc2') ? cf : Math.min(cf, 1.3)));
+        const avgFHcong = Math.round(avgFH * (curSc === 'sc1' ? cf : Math.min(cf, 1.3)));
         document.getElementById('gm-avg-farm').textContent = `${avgFHcong} min`;
         document.getElementById('gm-avg-farm').className = 'kpi-v ' + (cf > 2 ? 'r' : cf > 1.3 ? 'y' : 'b');
 
@@ -2226,7 +2199,7 @@ function updateSim(){
 
         // Per-farm detail from OSRM routes
         const detail = document.getElementById('gm-detail');
-        const cfApply = (curSc === 'sc1' || curSc === 'sc2') ? cf : Math.min(cf, 1.3);
+        const cfApply = curSc === 'sc1' ? cf : Math.min(cf, 1.3);
         const farmDetail = OD.map(o => ({
             name: o.name,
             baseH: o.ht,
@@ -2237,11 +2210,11 @@ function updateSim(){
             distD: o.dd
         })).sort((a,b) => b.congH - a.congH);
 
-        let html = `<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">${(curSc==='sc1'||curSc==='sc2')?'Finca-Puerto (directo)':'Finca-Hub'} con congestion:</div>`;
+        let html = `<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">${curSc==='sc1'?'Finca-Puerto (directo)':'Finca-Hub'} con congestion:</div>`;
         farmDetail.forEach(f => {
-            const t = (curSc === 'sc1' || curSc === 'sc2') ? f.congD : f.congH;
-            const base = (curSc === 'sc1' || curSc === 'sc2') ? f.baseD : f.baseH;
-            const dist = (curSc === 'sc1' || curSc === 'sc2') ? f.distD : f.distH;
+            const t = curSc === 'sc1' ? f.congD : f.congH;
+            const base = curSc === 'sc1' ? f.baseD : f.baseH;
+            const dist = curSc === 'sc1' ? f.distD : f.distH;
             const ratio = t / Math.max(base, 1);
             const color = ratio > 1.5 ? 'var(--red)' : ratio > 1.2 ? 'var(--yellow)' : 'var(--green)';
             html += `<div>${f.name}: <span style="color:${color};">${t}min</span> (base:${base}min, x${ratio.toFixed(1)}) ${dist.toFixed(1)}km</div>`;
@@ -2823,30 +2796,22 @@ function updateLegend(){
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
             <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>
             <div style="font-size:8px;color:var(--text3);margin-top:4px;line-height:1.5;">Cada finca despacha directo.<br>+150 viajes/dia de tractomulas.</div>`;
-    } else if(curSc==='sc2'){
-        info.innerHTML = `
-            <div class="mi-t">Leyenda - Consolidacion Parcial</div>
-            <div class="mi-i"><div class="mi-c" style="background:#f0a030;box-shadow:0 0 4px #f0a030;"></div>Puerto Uraba (Nueva Colonia)</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
-            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-            <div class="mi-t" style="margin-top:4px;">RUTAS</div>
-            <div class="mi-i"><div class="mi-ln" style="background:#f0a030;height:3px;"></div>Finca → Puerto Uraba (19 rutas)</div>
-            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
     } else {
         info.innerHTML = `
-            <div class="mi-t">Leyenda - Centro Operando (3 Nodos)</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--green);box-shadow:0 0 4px var(--green);"></div>Centro Consolidacion (12)</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--cyan);box-shadow:0 0 4px var(--cyan);"></div>Mini-Hub Puerto (3)</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Embarcadero Zungo (4)</div>
+            <div class="mi-t">Leyenda - Centro Operando</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--green);box-shadow:0 0 4px var(--green);"></div>Centro Consolidacion (12 fincas)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--cyan);box-shadow:0 0 4px var(--cyan);"></div>Mini-Hub Consolidacion (3 fincas)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Emb. Zungo (4 fincas)</div>
             <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-            <div class="mi-t" style="margin-top:4px;">RUTAS POR NODO</div>
-            <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Centro (12 fincas)</div>
-            <div class="mi-i"><div class="mi-ln" style="background:var(--cyan);height:3px;"></div>Ruta Mini-Hub (3 fincas)</div>
-            <div class="mi-i"><div class="mi-ln" style="background:var(--orange);height:3px;"></div>Ruta Zungo (4 fincas)</div>
+            <div class="mi-t" style="margin-top:4px;">FLUJOS CONSOLIDADOS</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>12 fincas → Centro</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--cyan);height:3px;"></div>3 fincas → Mini-Hub</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--orange);height:3px;"></div>4 fincas → Zungo</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:2px;"></div>Troncal Centro → Puerto (OSRM)</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
+            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>
+            <div style="font-size:8px;color:var(--text3);margin-top:4px;line-height:1.5;">Mulas solo salen del centro<br>consolidadas y contenerizadas.</div>`;
     }
 }
 
