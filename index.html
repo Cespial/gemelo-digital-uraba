@@ -68,6 +68,9 @@
         .sc-btn:hover{background:var(--bg4);}
         .sc-btn.a-chaos{background:var(--red-bg);border-color:var(--red);color:var(--red);}
         .sc-btn.a-hub{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+        .sc-btn.a-sc1{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+        .sc-btn.a-sc2{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
+        .sc-btn.a-sc3{background:var(--green-bg);border-color:var(--green);color:var(--green);}
 
         /* KPI */
         .kpi-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
@@ -323,6 +326,57 @@
             .cf-bars{height:120px;}
             .view-toggle{display:none;}
         }
+
+        /* RESUMEN DASHBOARD */
+        #resumen-dashboard{display:none;height:calc(100vh - 48px);overflow-y:auto;background:var(--bg);padding:20px;}
+        #resumen-dashboard::-webkit-scrollbar{width:5px;}
+        #resumen-dashboard::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+        .resumen-inner{max-width:1000px;margin:0 auto;}
+        .hero-save{font-family:'JetBrains Mono',monospace;font-size:56px;font-weight:800;color:var(--green);text-align:center;line-height:1.1;margin:16px 0 4px;}
+        .hero-sub{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text2);text-align:center;margin-bottom:24px;}
+        .before-after{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;}
+        .ba-col{text-align:center;}
+        .ba-col .ba-icon{font-size:48px;margin-bottom:8px;}
+        .ba-col .ba-num{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:800;}
+        .ba-col .ba-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-top:4px;}
+        .ba-arrow{font-size:36px;color:var(--green);font-weight:800;}
+        .res-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+        .res-metric{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+        .res-metric-v{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:800;line-height:1.2;}
+        .res-metric-l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-top:4px;text-transform:uppercase;letter-spacing:0.8px;}
+        .res-risk{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+        .res-risk-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+        .res-risk-v{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800;}
+        .res-risk-l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-top:4px;}
+        .narrative{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;font-family:'Inter',sans-serif;font-size:13px;color:var(--text2);line-height:1.8;}
+        .narrative p{margin-bottom:12px;}
+        .narrative strong{color:var(--text);}
+        .res-fin{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+        .res-fin-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+        .res-fin-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;}
+        .res-fin-l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-top:4px;text-transform:uppercase;}
+        .res-section-t{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text2);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+        @media(max-width:768px){
+            #resumen-dashboard{height:auto;min-height:calc(100vh - 44px - 38px);padding:10px;}
+            .hero-save{font-size:36px;}
+            .hero-sub{font-size:12px;}
+            .before-after{grid-template-columns:1fr;gap:8px;padding:12px;}
+            .ba-arrow{transform:rotate(90deg);}
+            .ba-col .ba-num{font-size:24px;}
+            .ba-col .ba-icon{font-size:36px;}
+            .res-metrics{grid-template-columns:repeat(2,1fr);gap:8px;}
+            .res-metric-v{font-size:20px;}
+            .res-risk{grid-template-columns:1fr 1fr;gap:8px;}
+            .res-fin{grid-template-columns:1fr;gap:8px;}
+            .narrative{font-size:12px;padding:14px;}
+        }
+        @media(max-width:380px){
+            .hero-save{font-size:28px;}
+            .res-metrics{grid-template-columns:1fr 1fr;}
+            .res-metric{padding:10px;}
+            .res-metric-v{font-size:18px;}
+        }
     </style>
 </head>
 <body>
@@ -335,6 +389,7 @@
     <div class="hdr-r">
         <div class="view-toggle">
             <button class="view-btn active" data-view="map" onclick="switchView('map')">MAPA</button>
+            <button class="view-btn" data-view="resumen" onclick="switchView('resumen')">RESUMEN</button>
             <button class="view-btn" data-view="finance" onclick="switchView('finance')">FINANCIERO</button>
         </div>
         <span class="badge badge-g">DANE/UPRA GEO</span>
@@ -349,6 +404,7 @@
     <button class="mob-tab active" data-panel="map" onclick="mobTab('map')">Mapa</button>
     <button class="mob-tab" data-panel="controls" onclick="mobTab('controls')">Controles</button>
     <button class="mob-tab" data-panel="data" onclick="mobTab('data')">Datos</button>
+    <button class="mob-tab" data-panel="resumen" onclick="mobTab('resumen')">Resumen</button>
     <button class="mob-tab" data-panel="finance" onclick="mobTab('finance')">Financiero</button>
 </div>
 
@@ -359,8 +415,9 @@
     <div class="c">
         <div class="c-h"><span class="c-t">Escenario Logistico</span></div>
         <div class="sc-btns">
-            <button class="sc-btn a-chaos" id="btn-chaos" onclick="setScenario('chaos')">CAOS DIRECTO</button>
-            <button class="sc-btn" id="btn-hub" onclick="setScenario('hub')">3 NODOS</button>
+            <button class="sc-btn a-sc1" id="btn-sc1" onclick="setScenario('sc1')">SITUACION ACTUAL</button>
+            <button class="sc-btn" id="btn-sc2" onclick="setScenario('sc2')">CONSOLIDACION PARCIAL</button>
+            <button class="sc-btn" id="btn-sc3" onclick="setScenario('sc3')">CENTRO OPERANDO</button>
         </div>
     </div>
 
@@ -442,6 +499,7 @@
         Isocronas: Mapbox Isochrone API (driving, 15/30/45 min)<br>
         Trafico real: Google Maps Distance Matrix API<br>
         Produccion: Augura 2023 / parametros G20<br>
+        Productividad historica: Uniban 2012-2025 (19 fincas G20)<br>
         Mapa base: Mapbox Dark v11<br><br>
         Geocercas: Telemetria GPS 7 vehiculos (Mar 2026)<br>
         Beneficios: Anderson Mestra (Ops. Logisticas)<br>
@@ -924,6 +982,117 @@
 </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- RESUMEN DASHBOARD (full-screen, for board presentation)      -->
+<!-- ============================================================ -->
+<div id="resumen-dashboard">
+<div class="resumen-inner">
+
+    <div class="hero-save" id="res-hero-save">$502M</div>
+    <div class="hero-sub">AHORRO ANUAL ESTIMADO CON CENTRO DE CONSOLIDACION</div>
+
+    <!-- BEFORE / AFTER -->
+    <div class="res-section-t">ANTES vs DESPUES</div>
+    <div class="before-after">
+        <div class="ba-col">
+            <div class="ba-icon" style="color:var(--red);">&#x1F69B;</div>
+            <div class="ba-num" style="color:var(--red);">19</div>
+            <div class="ba-label">CAMIONES DISPERSOS<br>cada finca despacha directo<br>a 2 embarcaderos</div>
+        </div>
+        <div class="ba-arrow">&#x279C;</div>
+        <div class="ba-col">
+            <div class="ba-icon" style="color:var(--green);">&#x1F4E6;</div>
+            <div class="ba-num" style="color:var(--green);">2</div>
+            <div class="ba-label">FLUJOS CONSOLIDADOS<br>Centro + Zungo al puerto<br>mulas contenerizadas</div>
+        </div>
+    </div>
+
+    <!-- 4 KEY METRICS -->
+    <div class="res-section-t">METRICAS CLAVE</div>
+    <div class="res-metrics">
+        <div class="res-metric">
+            <div class="res-metric-v g" id="res-trucks-pct">-89%</div>
+            <div class="res-metric-l">Tractomulas en via</div>
+        </div>
+        <div class="res-metric">
+            <div class="res-metric-v g" id="res-save-box">-$88</div>
+            <div class="res-metric-l">Ahorro por caja</div>
+        </div>
+        <div class="res-metric">
+            <div class="res-metric-v y">$800</div>
+            <div class="res-metric-l">Riesgo nuevo modelo $/caja</div>
+        </div>
+        <div class="res-metric">
+            <div class="res-metric-v b">985 ha</div>
+            <div class="res-metric-l">Cobertura Centro</div>
+        </div>
+    </div>
+
+    <!-- TRANSPORT RISK -->
+    <div class="res-section-t">RIESGO TRANSPORTE: ANTES vs DESPUES</div>
+    <div class="res-risk">
+        <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="res-risk-v" style="color:var(--red);">$300-400</div>
+            <div class="res-risk-l">COP/caja MODELO ACTUAL<br>Cobro por caja al transportador</div>
+        </div>
+        <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="res-risk-v" style="color:var(--red);">$800</div>
+            <div class="res-risk-l">COP/caja NUEVO MODELO<br>Cobro por viaje + stand-by (x2)</div>
+        </div>
+    </div>
+
+    <!-- NARRATIVE -->
+    <div class="res-section-t">CONTEXTO DEL PROYECTO</div>
+    <div class="narrative">
+        <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
+        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia 2 embarcaderos (Zungo y Colonia), generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $350 a $800.</p>
+        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas solo salen del centro llenas hacia Puerto Antioquia. Resultado: <strong>89% menos tractomulas en via, $502M de ahorro anual</strong>, y eliminacion del riesgo de cobro por viaje.</p>
+        <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
+    </div>
+
+    <!-- PRODUCTIVITY HISTORY -->
+    <div class="res-section-t">PRODUCTIVIDAD HISTORICA G20 (UNIBAN 2012-2025)</div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;">
+            <div class="res-metric" style="margin:0;"><div class="res-metric-v g" style="font-size:22px;">5.1M</div><div class="res-metric-l">Cajas 2025</div></div>
+            <div class="res-metric" style="margin:0;"><div class="res-metric-v b" style="font-size:22px;">2,174</div><div class="res-metric-l">Hectareas</div></div>
+            <div class="res-metric" style="margin:0;"><div class="res-metric-v g" style="font-size:22px;">47.9</div><div class="res-metric-l">Cajas/ha (prom)</div></div>
+            <div class="res-metric" style="margin:0;"><div class="res-metric-v b" style="font-size:22px;">13.4%</div><div class="res-metric-l">% de Uniban</div></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;">Produccion anual G20 vs Uniban (cajas/ano)</div>
+        <div id="res-prod-chart" style="display:flex;align-items:flex-end;gap:3px;height:100px;border-bottom:1px solid var(--border);padding-bottom:4px;"></div>
+        <div id="res-prod-labels" style="display:flex;gap:3px;margin-top:2px;"></div>
+        <div style="display:flex;gap:16px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;">
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:2px;margin-right:4px;vertical-align:middle;"></span>G20</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--border2);border-radius:2px;margin-right:4px;vertical-align:middle;"></span>Resto Uniban</span>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--text3);margin-top:8px;">Fuente: Productividad Historica Uniban 2012-2025 (ajustado fincas)</div>
+    </div>
+
+    <!-- FINANCIAL SUMMARY -->
+    <div class="res-section-t">RESUMEN FINANCIERO</div>
+    <div class="res-fin">
+        <div class="res-fin-box">
+            <div class="res-fin-v g" id="res-vpn">--</div>
+            <div class="res-fin-l">VPN (10 anos)</div>
+        </div>
+        <div class="res-fin-box">
+            <div class="res-fin-v g" id="res-tir">--</div>
+            <div class="res-fin-l">TIR</div>
+        </div>
+        <div class="res-fin-box">
+            <div class="res-fin-v b" id="res-payback">--</div>
+            <div class="res-fin-l">Payback</div>
+        </div>
+    </div>
+
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);text-align:center;padding:16px 0;">
+        Observatorio de Datos y Analisis SAS &bull; Gemelo Digital Logistico Uraba &bull; Marzo 2026
+    </div>
+
+</div>
+</div>
+
 <script src="config.js" onerror="console.log('config.js not found, using fallback token')"></script>
 <script>
 // ============================================================
@@ -961,16 +1130,21 @@ function throttledUpdateSim() {
 function switchView(view) {
   const main = document.querySelector('.main');
   const dash = document.getElementById('fin-dashboard');
+  const resDash = document.getElementById('resumen-dashboard');
   document.querySelectorAll('.view-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.view === view);
   });
+  main.style.display = 'none';
+  dash.style.display = 'none';
+  resDash.style.display = 'none';
   if (view === 'finance') {
-    main.style.display = 'none';
     dash.style.display = 'block';
     updateFinancialDashboard();
+  } else if (view === 'resumen') {
+    resDash.style.display = 'block';
+    updateResumenDashboard();
   } else {
     main.style.display = 'flex';
-    dash.style.display = 'none';
     setTimeout(() => map.resize(), 50);
   }
 }
@@ -1000,6 +1174,7 @@ function mobTab(panel){
     const rp = document.getElementById('panel-rp');
     const mp = document.getElementById('panel-map');
     const dash = document.getElementById('fin-dashboard');
+    const resDash = document.getElementById('resumen-dashboard');
     const main = document.querySelector('.main');
     const isMobile = window.innerWidth <= 768;
     if(!isMobile) return;
@@ -1009,6 +1184,7 @@ function mobTab(panel){
     rp.style.display = 'none';
     mp.style.display = 'none';
     dash.style.display = 'none';
+    resDash.style.display = 'none';
     main.style.display = 'flex';
 
     if(panel === 'map'){
@@ -1017,6 +1193,10 @@ function mobTab(panel){
         lp.style.display = 'flex';
     } else if(panel === 'data'){
         rp.style.display = 'flex';
+    } else if(panel === 'resumen'){
+        main.style.display = 'none';
+        resDash.style.display = 'block';
+        updateResumenDashboard();
     } else if(panel === 'finance'){
         main.style.display = 'none';
         dash.style.display = 'block';
@@ -1038,9 +1218,10 @@ window.addEventListener('resize', function(){
     const rp = document.getElementById('panel-rp');
     const mp = document.getElementById('panel-map');
     const dash = document.getElementById('fin-dashboard');
+    const resDash = document.getElementById('resumen-dashboard');
     if(window.innerWidth > 768){
-        // Check if finance dashboard is active
-        if(dash.style.display === 'block') return;
+        // Check if finance or resumen dashboard is active
+        if(dash.style.display === 'block' || resDash.style.display === 'block') return;
         lp.style.display = '';
         rp.style.display = '';
         mp.style.display = '';
@@ -1065,6 +1246,8 @@ const NODES = {
     mini_hub: {lat:7.939188,lng:-76.678878,name:"Mini-Hub Puerto (Guadalupe)"},
     zungo: {lat:7.852252,lng:-76.744378,name:"Embarcadero Zungo Canal"},
     puerto: {lat:7.9230,lng:-76.7341,name:"Puerto Antioquia"},
+    colonia: {lat:7.955,lng:-76.685,name:"Embarcadero Colonia (Uniban)"},
+    nueva_colonia: {lat:7.960,lng:-76.680,name:"Embarcadero Nueva Colonia"},
     apartado: {lat:7.8829,lng:-76.6258,name:"Apartado"},
     carepa: {lat:7.7567,lng:-76.6558,name:"Carepa"},
     chigorodo: {lat:7.6647,lng:-76.6818,name:"Chigorodo"},
@@ -1140,6 +1323,31 @@ function calcOD(){
     });
 }
 const OD=calcOD();
+
+// ============================================================
+// HISTORICAL PRODUCTIVITY — Uniban 2012-2025
+// ============================================================
+// G20_YEARLY[year] = [g20_cajas, g20_ha, g20_n_farms, uniban_cajas, uniban_ha, uniban_n_farms]
+const G20_YEARLY = {"2012":[3642663,2053.1,17,33198302,17242.1,184],"2013":[3981610,2076.8,17,33262804,16921.9,175],"2014":[3700897,2071.1,17,29623448,16877.0,171],"2015":[4448370,2068.1,17,35728071,16864.9,172],"2016":[4443137,2068.9,17,32609247,17246.0,176],"2017":[3986921,2078.6,17,33211021,17031.0,172],"2018":[3882679,2205.6,18,33225440,18100.5,182],"2019":[3905386,2170.7,18,31953137,18356.8,182],"2020":[4196979,2220.5,18,36523639,17674.3,176],"2021":[3839090,2222.4,19,35312963,17538.9,173],"2022":[3386963,2125.0,19,31778924,17040.8,169],"2023":[4095055,2093.7,19,28729051,15832.8,154],"2024":[4034613,2221.1,19,30777550,15713.0,150],"2025":[5105253,2174.4,19,38120669,15382.6,146]};
+
+// G20_HIST[farmId][year] = [cajas, ha, prod_per_ha]
+const G20_HIST = {"F01":{"2012":[342551,234.9,28.0],"2013":[390649,222.3,33.8],"2014":[291886,222.3,25.2],"2015":[472561,219.6,40.6],"2016":[426254,217.9,37.6],"2017":[422818,218.0,37.3],"2018":[390567,218.0,34.5],"2019":[359259,218.0,31.7],"2020":[398227,218.3,34.4],"2021":[366568,218.3,32.3],"2022":[318714,216.3,28.3],"2023":[404873,216.5,36.0],"2024":[370957,218.3,32.7],"2025":[529045,219.5,46.3]},"F02":{"2021":[68547,33.9,38.9],"2022":[111270,56.9,37.6],"2023":[119610,56.9,40.4],"2024":[114811,56.9,38.8],"2025":[145438,56.9,49.1]},"F03":{"2012":[103357,48.4,41.1],"2013":[108611,49.1,42.5],"2014":[109065,49.1,42.7],"2015":[131760,49.1,50.6],"2016":[131485,49.1,51.5],"2017":[129100,49.1,50.6],"2018":[113296,49.1,44.4],"2019":[104933,49.1,41.1],"2020":[113768,49.1,43.7],"2021":[100024,49.1,39.2],"2022":[101242,49.1,39.6],"2023":[113708,49.1,44.5],"2024":[118669,49.1,46.5],"2025":[141493,49.1,55.4]},"F04":{"2012":[151633,80.7,36.1],"2013":[147100,85.8,33.0],"2014":[97354,85.6,22.3],"2015":[177199,85.6,39.1],"2016":[144569,85.6,32.5],"2017":[152808,85.6,34.3],"2018":[128220,85.3,28.9],"2019":[136393,83.6,31.4],"2020":[140492,87.5,30.3],"2021":[130045,87.6,28.5],"2022":[134222,79.9,32.3],"2023":[153192,75.6,39.0],"2024":[180163,86.5,40.0],"2025":[223215,86.5,49.6]},"F05":{"2012":[292268,232.4,24.2],"2013":[389093,232.8,32.1],"2014":[388630,232.8,32.1],"2015":[438552,232.8,35.5],"2016":[437944,232.8,36.2],"2017":[383916,232.8,31.7],"2018":[317319,229.7,26.6],"2019":[332544,212.8,30.0],"2020":[362363,232.8,29.4],"2021":[279686,232.9,23.1],"2022":[159729,194.8,15.8],"2023":[307529,200.1,29.5],"2024":[331845,232.7,27.4],"2025":[271927,184.8,28.3]},"F06":{"2012":[343694,133.8,51.4],"2013":[438277,146.2,57.7],"2014":[426641,142.4,57.6],"2015":[484927,142.4,64.2],"2016":[438859,142.4,59.2],"2017":[375829,142.4,50.7],"2018":[357616,142.4,48.3],"2019":[325749,142.4,44.0],"2020":[331164,142.3,43.9],"2021":[295928,142.4,40.0],"2022":[297120,142.4,40.1],"2023":[341421,142.4,46.1],"2024":[312598,142.4,42.2],"2025":[376020,142.4,50.8]},"F07":{"2012":[77989,50.0,30.0],"2013":[55623,48.3,30.3],"2014":[81706,47.9,35.6],"2015":[85150,47.9,33.6],"2016":[105541,47.9,42.4],"2017":[79146,47.9,31.8],"2018":[74369,45.8,31.2],"2019":[74101,45.1,31.6],"2020":[82817,45.2,34.6],"2021":[77296,45.1,33.0],"2022":[60089,40.2,28.8],"2023":[85335,35.4,46.4],"2024":[86611,45.1,37.0],"2025":[125390,45.1,53.5]},"F08":{"2012":[343471,151.3,43.7],"2013":[352130,153.4,44.1],"2014":[339944,153.4,42.6],"2015":[348908,153.4,42.9],"2016":[340904,153.4,42.7],"2017":[297940,153.4,37.3],"2018":[256760,153.4,32.2],"2019":[267690,153.4,33.5],"2020":[275485,153.4,33.9],"2021":[260754,153.4,32.7],"2022":[228891,145.7,30.2],"2023":[233401,137.5,32.6],"2024":[253761,155.4,31.4],"2025":[332661,155.4,41.2]},"F09":{"2012":[392842,212.8,35.5],"2013":[418166,215.9,37.3],"2014":[381489,215.9,34.0],"2015":[378989,215.9,33.1],"2016":[434124,215.9,38.7],"2017":[325487,215.9,29.0],"2018":[313654,214.3,28.1],"2019":[336374,215.9,30.0],"2020":[359005,215.8,31.4],"2021":[357438,215.9,31.8],"2022":[342898,211.6,31.2],"2023":[314398,208.7,29.0],"2024":[289114,213.4,26.1],"2025":[407803,213.4,36.8]},"F10":{"2012":[237996,125.1,36.6],"2013":[249665,126.6,37.9],"2014":[256014,126.6,38.9],"2015":[326081,126.6,48.6],"2016":[351974,126.6,53.5],"2017":[325529,126.6,49.4],"2018":[275193,126.6,41.8],"2019":[263774,126.6,40.1],"2020":[273704,125.5,41.1],"2021":[185246,92.7,38.4],"2022":[153235,69.7,42.3],"2023":[163458,69.7,45.1],"2024":[157672,69.7,43.5],"2025":[187533,69.7,51.7]},"F11":{"2012":[308649,171.1,34.7],"2013":[369275,173.7,40.9],"2014":[346159,173.7,38.3],"2015":[330228,173.7,35.9],"2016":[374682,173.7,41.5],"2017":[322227,173.7,35.7],"2018":[283766,172.9,31.6],"2019":[301790,173.7,33.4],"2020":[297775,173.7,32.4],"2021":[321542,173.7,35.6],"2022":[263667,169.3,30.0],"2023":[291121,168.8,33.2],"2024":[310527,173.7,34.4],"2025":[372405,173.7,41.2]},"F12":{"2012":[199371,105.0,36.5],"2013":[193067,103.9,35.7],"2014":[200872,103.9,37.2],"2015":[208789,103.9,37.9],"2016":[207744,103.9,38.5],"2017":[182029,103.9,33.7],"2018":[151562,102.6,28.4],"2019":[159951,91.3,33.7],"2020":[200892,103.9,36.5],"2021":[184370,103.9,34.1],"2022":[155804,100.9,29.7],"2023":[196575,98.1,38.5],"2024":[185540,103.9,34.3],"2025":[262572,103.9,48.6]},"F13":{"2012":[122655,95.9,24.6],"2013":[127079,76.5,31.9],"2014":[136111,76.5,34.2],"2015":[155220,76.5,38.3],"2016":[142953,79.8,34.5],"2017":[162357,88.6,35.3],"2018":[131718,86.3,29.4],"2019":[135889,73.8,35.4],"2020":[172863,88.7,36.8],"2021":[154795,88.6,33.6],"2022":[103857,83.6,23.9],"2023":[168445,78.9,41.0],"2024":[178444,89.4,38.4],"2025":[222615,89.4,47.9]},"F14":{"2012":[140188,65.3,41.3],"2013":[137614,65.3,40.5],"2014":[140232,65.3,41.3],"2015":[163057,65.3,47.1],"2016":[159490,65.3,46.9],"2017":[142914,65.3,42.1],"2018":[131860,65.3,38.8],"2019":[121806,65.3,35.8],"2020":[120909,65.3,34.9],"2021":[115783,65.3,34.1],"2022":[104058,65.3,30.6],"2023":[136499,65.3,40.2],"2024":[128833,65.3,37.9],"2025":[170151,65.3,50.1]},"F15":{"2012":[237717,132.9,34.4],"2013":[220920,162.7,26.1],"2014":[179052,161.4,21.3],"2015":[284224,161.2,33.3],"2016":[289872,160.3,34.8],"2017":[266151,161.2,31.8],"2018":[252264,161.3,30.1],"2019":[247620,161.7,29.5],"2020":[287436,161.1,33.7],"2021":[252964,161.7,30.1],"2022":[251514,156.5,30.9],"2023":[327034,155.6,40.4],"2024":[300779,161.4,35.8],"2025":[397562,161.4,47.4]},"F16":{"2012":[107298,53.3,38.7],"2013":[112583,52.8,41.0],"2014":[82959,52.8,30.2],"2015":[152525,52.8,54.5],"2016":[141526,52.8,51.5],"2017":[119656,52.8,43.5],"2018":[121047,52.8,44.1],"2019":[113427,52.8,41.3],"2020":[131679,52.8,47.0],"2021":[112771,52.8,41.0],"2022":[100084,52.8,36.4],"2023":[139274,52.8,50.7],"2024":[125735,52.8,45.8],"2025":[154245,52.8,56.1]},"F17":{"2012":[145868,99.8,28.1],"2013":[171134,98.9,33.3],"2014":[146047,98.9,28.4],"2015":[202889,98.9,38.7],"2016":[221659,98.9,43.1],"2017":[189031,98.9,36.7],"2018":[189612,98.9,36.9],"2019":[167031,98.9,32.5],"2020":[191749,98.9,36.6],"2021":[161788,98.9,31.5],"2022":[134384,96.9,26.7],"2023":[173947,96.0,34.9],"2024":[152955,98.9,29.7],"2025":[246398,98.9,47.9]},"F18":{"2018":[303817,138.4,42.2],"2019":[359501,143.8,48.1],"2020":[364425,143.6,47.9],"2021":[322776,143.8,43.2],"2022":[295196,143.8,39.5],"2023":[366397,143.8,49.0],"2024":[323134,143.8,43.2],"2025":[376609,143.8,50.4]},"F19":{"2012":[95116,60.5,30.2],"2013":[100624,62.4,31.0],"2014":[96736,62.4,29.8],"2015":[107311,62.4,32.5],"2016":[93557,62.4,28.8],"2017":[109983,62.4,33.9],"2018":[90039,62.4,27.8],"2019":[97554,62.4,30.1],"2020":[92226,62.3,27.9],"2021":[90769,62.4,28.0],"2022":[70989,49.2,27.7],"2023":[58838,42.2,26.8],"2024":[112465,62.4,34.7],"2025":[162171,62.4,50.0]}};
+
+// Haversine distance (km)
+function haversine(lat1,lng1,lat2,lng2){
+    const R=6371,toR=Math.PI/180;
+    const dLat=(lat2-lat1)*toR,dLng=(lng2-lng1)*toR;
+    const a=Math.sin(dLat/2)**2+Math.cos(lat1*toR)*Math.cos(lat2*toR)*Math.sin(dLng/2)**2;
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+// SC1_DEST: for each farm, nearest embarcadero (Zungo or Colonia)
+const SC1_DEST = {};
+FARMS.forEach(f=>{
+    const dZungo = haversine(f.lat,f.lng,NODES.zungo.lat,NODES.zungo.lng);
+    const dColonia = haversine(f.lat,f.lng,NODES.colonia.lat,NODES.colonia.lng);
+    SC1_DEST[f.id] = dZungo < dColonia ? 'zungo' : 'colonia';
+});
 
 // ============================================================
 // MAP
@@ -1456,6 +1664,31 @@ map.on('load',()=>{
     }
     animateFlow();
 
+    // ---- SC1 ROUTES: 19 straight lines finca→nearest embarcadero (Zungo or Colonia) ----
+    const sc1Feats = FARMS.map(f=>{
+        const dest = SC1_DEST[f.id] === 'zungo' ? NODES.zungo : NODES.colonia;
+        return {type:'Feature',properties:{id:f.id,prod:f.prod,dest:SC1_DEST[f.id]},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[dest.lng,dest.lat]]}};
+    });
+    map.addSource('sc1-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc1Feats}});
+    map.addLayer({id:'sc1-routes-glow',type:'line',source:'sc1-routes',paint:{
+        'line-color':'#ff3b4e','line-width':8,'line-opacity':0.1,'line-blur':4
+    },layout:{'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'sc1-routes',type:'line',source:'sc1-routes',paint:{
+        'line-color':'#ff3b4e','line-width':['interpolate',['linear'],['get','prod'],2000,1.5,11000,4],'line-opacity':0.6
+    },layout:{'line-cap':'round','line-join':'round'}});
+
+    // ---- SC2 ROUTES: 19 straight lines finca→Nueva Colonia ----
+    const sc2Feats = FARMS.map(f=>{
+        return {type:'Feature',properties:{id:f.id,prod:f.prod},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[NODES.nueva_colonia.lng,NODES.nueva_colonia.lat]]}};
+    });
+    map.addSource('sc2-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc2Feats}});
+    map.addLayer({id:'sc2-routes-glow',type:'line',source:'sc2-routes',paint:{
+        'line-color':'#f0a030','line-width':8,'line-opacity':0.1,'line-blur':4
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'sc2-routes',type:'line',source:'sc2-routes',paint:{
+        'line-color':'#f0a030','line-width':['interpolate',['linear'],['get','prod'],2000,1.5,11000,4],'line-opacity':0.6
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
+
     // ---- CONGESTION OVERLAY on OSM roads ----
     // Duplicate osm-roads source for congestion heat effect
     if(map.getSource('osm-roads')){
@@ -1570,24 +1803,36 @@ map.on('load',()=>{
 
     setLoad(85);
 
-    // ---- KEY MARKERS: 3-NODE MODEL ----
-    // Centro de Consolidacion (green)
+    // ---- KEY MARKERS: 3-NODE MODEL + EMBARCADEROS ----
+    // Centro de Consolidacion (green) — SC3 only
     const hubEl=document.createElement('div');
-    hubEl.style.cssText='width:24px;height:24px;background:#00e878;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #00e878,0 0 40px rgba(0,232,120,0.3);cursor:pointer;';
-    new mapboxgl.Marker({element:hubEl}).setLngLat([NODES.hub.lng,NODES.hub.lat])
+    hubEl.style.cssText='width:24px;height:24px;background:#00e878;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #00e878,0 0 40px rgba(0,232,120,0.3);cursor:pointer;display:none;';
+    window._markerHub = new mapboxgl.Marker({element:hubEl}).setLngLat([NODES.hub.lng,NODES.hub.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML(`<div class="p-t" style="color:#00e878;">CENTRO CONSOLIDACION CENTRAL</div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">PROPUESTO</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.9017, -76.6277</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">12 fincas (985 ha)</span></div><div class="p-r"><span class="p-k">Cobertura:</span><span class="p-v">49% del Grupo 20</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Hub principal, consolidacion + contenerizacion</span></div>`)).addTo(map);
 
-    // Mini-Hub Puerto (cyan)
+    // Mini-Hub Puerto (cyan) — SC3 only
     const mhEl=document.createElement('div');
-    mhEl.style.cssText='width:18px;height:18px;background:#18d8d0;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #18d8d0,0 0 30px rgba(24,216,208,0.3);cursor:pointer;';
-    new mapboxgl.Marker({element:mhEl}).setLngLat([NODES.mini_hub.lng,NODES.mini_hub.lat])
+    mhEl.style.cssText='width:18px;height:18px;background:#18d8d0;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #18d8d0,0 0 30px rgba(24,216,208,0.3);cursor:pointer;display:none;';
+    window._markerMiniHub = new mapboxgl.Marker({element:mhEl}).setLngLat([NODES.mini_hub.lng,NODES.mini_hub.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#18d8d0;">MINI-HUB PUERTO</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Via al Puerto (zona Guadalupe)</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">3 (Guadalupe, Oasis, Dunas)</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Devoluciones + envio directo</span></div>')).addTo(map);
 
-    // Embarcadero Zungo (orange)
+    // Embarcadero Zungo (orange) — SC1 + SC3
     const zgEl=document.createElement('div');
     zgEl.style.cssText='width:18px;height:18px;background:#ff7a30;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #ff7a30,0 0 30px rgba(255,122,48,0.3);cursor:pointer;';
-    new mapboxgl.Marker({element:zgEl}).setLngLat([NODES.zungo.lng,NODES.zungo.lat])
+    window._markerZungo = new mapboxgl.Marker({element:zgEl}).setLngLat([NODES.zungo.lng,NODES.zungo.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#ff7a30;">EMBARCADERO ZUNGO CANAL</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Carepa, Antioquia</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.8523, -76.7444</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">4 (Los Almendros, Matogroso 1/2, Punto Fijo)</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Despacho fincas del occidente</span></div>')).addTo(map);
+
+    // Embarcadero Colonia (red) — SC1 only
+    const colEl=document.createElement('div');
+    colEl.style.cssText='width:18px;height:18px;background:#ff3b4e;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #ff3b4e,0 0 30px rgba(255,59,78,0.3);cursor:pointer;';
+    window._markerColonia = new mapboxgl.Marker({element:colEl}).setLngLat([NODES.colonia.lng,NODES.colonia.lat])
+        .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#ff3b4e;">EMBARCADERO COLONIA (UNIBAN)</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Colonia, via al puerto</span></div><div class="p-r"><span class="p-k">Operador:</span><span class="p-v">Uniban</span></div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">Operando (situacion actual)</span></div>')).addTo(map);
+
+    // Embarcadero Nueva Colonia (yellow) — SC2 only
+    const ncEl=document.createElement('div');
+    ncEl.style.cssText='width:18px;height:18px;background:#f0a030;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #f0a030,0 0 30px rgba(240,160,48,0.3);cursor:pointer;display:none;';
+    window._markerNuevaColonia = new mapboxgl.Marker({element:ncEl}).setLngLat([NODES.nueva_colonia.lng,NODES.nueva_colonia.lat])
+        .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#f0a030;">EMBARCADERO NUEVA COLONIA</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Nueva Colonia</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Consolidacion parcial de 19 fincas</span></div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">Escenario intermedio</span></div>')).addTo(map);
 
     // Puerto Antioquia (blue)
     const ptEl=document.createElement('div');
@@ -1606,20 +1851,21 @@ map.on('load',()=>{
         new mapboxgl.Marker({element:lb,anchor:'left',offset:[8,0]}).setLngLat([n.lng,n.lat]).addTo(map);
     });
 
-    // Node + Puerto labels
-    const nodeLabels = [
-        {k:'hub',text:'CENTRO CONSOLIDACION',color:'#00e878'},
-        {k:'mini_hub',text:'MINI-HUB PUERTO',color:'#18d8d0'},
-        {k:'zungo',text:'EMB. ZUNGO',color:'#ff7a30'},
-        {k:'puerto',text:'PUERTO ANTIOQUIA',color:'#3898ff'}
-    ];
-    nodeLabels.forEach(({k,text,color})=>{
+    // Node + Puerto labels (stored for show/hide per scenario)
+    function makeNodeLabel(k,text,color,display){
         const n=NODES[k];
         const lb=document.createElement('div');
-        lb.style.cssText=`font-family:"JetBrains Mono",monospace;font-size:10px;color:${color};font-weight:700;white-space:nowrap;text-shadow:0 0 6px #000,0 0 12px #000;pointer-events:none;`;
+        lb.style.cssText=`font-family:"JetBrains Mono",monospace;font-size:10px;color:${color};font-weight:700;white-space:nowrap;text-shadow:0 0 6px #000,0 0 12px #000;pointer-events:none;display:${display||''};`;
         lb.textContent=text;
-        new mapboxgl.Marker({element:lb,anchor:'left',offset:[16,0]}).setLngLat([n.lng,n.lat]).addTo(map);
-    });
+        return new mapboxgl.Marker({element:lb,anchor:'left',offset:[16,0]}).setLngLat([n.lng,n.lat]).addTo(map);
+    }
+    window._labelHub = makeNodeLabel('hub','CENTRO CONSOLIDACION','#00e878','none');
+    window._labelMiniHub = makeNodeLabel('mini_hub','MINI-HUB PUERTO','#18d8d0','none');
+    window._labelZungo = makeNodeLabel('zungo','EMB. ZUNGO','#ff7a30','');
+    window._labelColonia = makeNodeLabel('colonia','EMB. COLONIA','#ff3b4e','');
+    window._labelNuevaColonia = makeNodeLabel('nueva_colonia','EMB. NUEVA COLONIA','#f0a030','none');
+    // Puerto always visible
+    makeNodeLabel('puerto','PUERTO ANTIOQUIA','#3898ff','');
 
     // Populate 3-node stats
     document.getElementById('centro-prod').textContent = HUB_STATS.centro.prod.toLocaleString();
@@ -1630,32 +1876,61 @@ map.on('load',()=>{
     setLoad(100);
 
     // Initial state
-    setScenario('chaos');
+    setScenario('sc1');
     populateOD();
     updateSim();
+    updateFinancialDashboard();
 });
 
 // ============================================================
 // SCENARIO
 // ============================================================
-let curSc='chaos';
+let curSc='sc1';
 function setScenario(sc){
     curSc=sc;
-    document.getElementById('btn-chaos').className=sc==='chaos'?'sc-btn a-chaos':'sc-btn';
-    document.getElementById('btn-hub').className=sc==='hub'?'sc-btn a-hub':'sc-btn';
-    document.getElementById('sc-icon').innerHTML=sc==='chaos'?'&#x26A0;':'&#x2714;';
+    document.getElementById('btn-sc1').className=sc==='sc1'?'sc-btn a-sc1':'sc-btn';
+    document.getElementById('btn-sc2').className=sc==='sc2'?'sc-btn a-sc2':'sc-btn';
+    document.getElementById('btn-sc3').className=sc==='sc3'?'sc-btn a-sc3':'sc-btn';
+    document.getElementById('sc-icon').innerHTML=sc==='sc3'?'&#x2714;':'&#x26A0;';
 
     if(map.isStyleLoaded()){
-        map.setLayoutProperty('chaos-routes','visibility',sc==='chaos'?'visible':'none');
-        if(map.getLayer('chaos-routes-glow'))map.setLayoutProperty('chaos-routes-glow','visibility',sc==='chaos'?'visible':'none');
-        map.setLayoutProperty('hub-routes','visibility',sc==='hub'?'visible':'none');
-        map.setLayoutProperty('hub-port','visibility',sc==='hub'?'visible':'none');
-        if(map.getLayer('hub-port-glow'))map.setLayoutProperty('hub-port-glow','visibility',sc==='hub'?'visible':'none');
-        if(map.getLayer('hub-port-flow'))map.setLayoutProperty('hub-port-flow','visibility',sc==='hub'?'visible':'none');
+        // Hide all route layers first
+        ['chaos-routes','chaos-routes-glow','sc1-routes','sc1-routes-glow','sc2-routes','sc2-routes-glow','hub-routes','hub-port','hub-port-glow','hub-port-flow'].forEach(l=>{
+            if(map.getLayer(l)) map.setLayoutProperty(l,'visibility','none');
+        });
+        // Show appropriate layers
+        if(sc==='sc1'){
+            if(map.getLayer('sc1-routes')) map.setLayoutProperty('sc1-routes','visibility','visible');
+            if(map.getLayer('sc1-routes-glow')) map.setLayoutProperty('sc1-routes-glow','visibility','visible');
+        } else if(sc==='sc2'){
+            if(map.getLayer('sc2-routes')) map.setLayoutProperty('sc2-routes','visibility','visible');
+            if(map.getLayer('sc2-routes-glow')) map.setLayoutProperty('sc2-routes-glow','visibility','visible');
+        } else if(sc==='sc3'){
+            if(map.getLayer('hub-routes')) map.setLayoutProperty('hub-routes','visibility','visible');
+            if(map.getLayer('hub-port')) map.setLayoutProperty('hub-port','visibility','visible');
+            if(map.getLayer('hub-port-glow')) map.setLayoutProperty('hub-port-glow','visibility','visible');
+            if(map.getLayer('hub-port-flow')) map.setLayoutProperty('hub-port-flow','visibility','visible');
+        }
     }
+    // Toggle markers
+    if(window._markerColonia) _markerColonia.getElement().style.display = sc==='sc1'?'':'none';
+    if(window._markerNuevaColonia) _markerNuevaColonia.getElement().style.display = sc==='sc2'?'':'none';
+    if(window._markerHub) _markerHub.getElement().style.display = sc==='sc3'?'':'none';
+    if(window._markerMiniHub) _markerMiniHub.getElement().style.display = sc==='sc3'?'':'none';
+    if(window._markerZungo) _markerZungo.getElement().style.display = (sc==='sc1'||sc==='sc3')?'':'none';
+    // Labels
+    if(window._labelColonia) _labelColonia.getElement().style.display = sc==='sc1'?'':'none';
+    if(window._labelNuevaColonia) _labelNuevaColonia.getElement().style.display = sc==='sc2'?'':'none';
+    if(window._labelHub) _labelHub.getElement().style.display = sc==='sc3'?'':'none';
+    if(window._labelMiniHub) _labelMiniHub.getElement().style.display = sc==='sc3'?'':'none';
+    if(window._labelZungo) _labelZungo.getElement().style.display = (sc==='sc1'||sc==='sc3')?'':'none';
+
     // Sync routes checkbox
     const routesBox = document.getElementById('ly-routes');
     if (routesBox) routesBox.checked = true;
+
+    // Update legend
+    updateLegend();
     updateSim();
 }
 
@@ -1672,7 +1947,7 @@ function toggleLy(name){
         'roads':['osm-roads'],
         'farm-poly':['farm-poly-fill','farm-poly-line','farm-poly-label','farm-poly-all-fill','farm-poly-all-line'],
         'farms':['farms','farms-glow'],
-        'routes':curSc==='chaos'?['chaos-routes','chaos-routes-glow']:['hub-routes','hub-port','hub-port-glow','hub-port-flow'],
+        'routes':curSc==='sc1'?['sc1-routes','sc1-routes-glow']:curSc==='sc2'?['sc2-routes','sc2-routes-glow']:['hub-routes','hub-port','hub-port-glow','hub-port-flow'],
         'isochrone':['iso-45-fill','iso-45-line','iso-30-fill','iso-30-line','iso-15-fill','iso-15-line','iso-labels'],
         'flood':['flood-fill','flood-line'],
         'rivers':['rivers','rivers-glow','rivers-label'],
@@ -1689,7 +1964,7 @@ function toggleLy(name){
 // ============================================================
 const simResults = {
     prodK: 110, annualBoxes: 0, savePerBox: 0, costDirect: 0, costHub: 0,
-    annualSave: 0, savePct: 0, congestionFactor: 1, totalViajes: 0, hubMulas: 0, scenario: 'chaos'
+    annualSave: 0, savePct: 0, congestionFactor: 1, totalViajes: 0, hubMulas: 0, scenario: 'sc1'
 };
 
 // ============================================================
@@ -1723,7 +1998,7 @@ function updateSim(){
     const hubMulas=Math.ceil(cpd/MULA_CAP);
     const hubt=Math.ceil(hubMulas*1.1);
 
-    const tot=curSc==='chaos'?g20t+rt:hubt+rt;
+    const tot=(curSc==='sc1'||curSc==='sc2')?g20t+rt:hubt+rt;
     const {bt, bc, pce} = CONFIG.bpr;
     const lr=(bc*0.6+tot*pce)/bc;
     const cf=Math.max(1,Math.pow(lr,3));
@@ -1733,7 +2008,7 @@ function updateSim(){
     const at=OD.reduce((s,o)=>s+o.dt,0)/OD.length;
     const aht=OD.reduce((s,o)=>s+o.ht,0)/OD.length;
 
-    if(curSc==='chaos'){
+    if(curSc==='sc1'||curSc==='sc2'){
         document.getElementById('kpi-trucks').textContent=totalViajes+rt;
         document.getElementById('kpi-trucks').className='kpi-v r';
         document.getElementById('kpi-time').textContent=Math.round(at*cf);
@@ -1760,7 +2035,7 @@ function updateSim(){
     // Fleet card reactive
     const flM=document.getElementById('fl-mulas'),flS=document.getElementById('fl-senc'),flV=document.getElementById('fl-viajes'),flE=document.getElementById('fl-espera');
     if(flM){
-        if(curSc==='chaos'){
+        if(curSc==='sc1'||curSc==='sc2'){
             flM.textContent=N_MULAS; flS.textContent=N_SENC;
             flV.textContent=`${totalViajes}`;
             flE.textContent='5-6h'; flE.style.color='var(--red)';
@@ -1871,20 +2146,29 @@ function updateSim(){
     const cfNorm = Math.min(1, (cf - 1) / 4);
 
     // --- Route color shifts with congestion ---
-    if(curSc==='chaos'){
-        // Chaos routes: green->yellow->red based on congestion
+    if(curSc==='sc1'){
         const rColor = cf<1.5 ? '#ff6644' : cf<2.5 ? '#ff3b2e' : '#ff1122';
         const rOpacity = 0.4 + cfNorm * 0.5;
         const wMult = 1 + cfNorm * 1.5;
-        if(map.getLayer('chaos-routes')){
-            map.setPaintProperty('chaos-routes','line-color',rColor);
-            map.setPaintProperty('chaos-routes','line-opacity',rOpacity);
-            map.setPaintProperty('chaos-routes','line-width',['interpolate',['linear'],['get','prod'],4500,1.5*wMult,7800,3.5*wMult]);
+        if(map.getLayer('sc1-routes')){
+            map.setPaintProperty('sc1-routes','line-color',rColor);
+            map.setPaintProperty('sc1-routes','line-opacity',rOpacity);
+            map.setPaintProperty('sc1-routes','line-width',['interpolate',['linear'],['get','prod'],2000,1.5*wMult,11000,4*wMult]);
         }
-        if(map.getLayer('chaos-routes-glow')){
-            map.setPaintProperty('chaos-routes-glow','line-color',rColor);
-            map.setPaintProperty('chaos-routes-glow','line-opacity',0.05 + cfNorm * 0.15);
-            map.setPaintProperty('chaos-routes-glow','line-width',['interpolate',['linear'],['get','prod'],4500,6+cfNorm*8,7800,14+cfNorm*12]);
+        if(map.getLayer('sc1-routes-glow')){
+            map.setPaintProperty('sc1-routes-glow','line-color',rColor);
+            map.setPaintProperty('sc1-routes-glow','line-opacity',0.05 + cfNorm * 0.15);
+        }
+    } else if(curSc==='sc2'){
+        const yColor = cf<1.5 ? '#f0a030' : cf<2.5 ? '#ff8800' : '#ff5500';
+        const yOpacity = 0.4 + cfNorm * 0.4;
+        if(map.getLayer('sc2-routes')){
+            map.setPaintProperty('sc2-routes','line-color',yColor);
+            map.setPaintProperty('sc2-routes','line-opacity',yOpacity);
+        }
+        if(map.getLayer('sc2-routes-glow')){
+            map.setPaintProperty('sc2-routes-glow','line-color',yColor);
+            map.setPaintProperty('sc2-routes-glow','line-opacity',0.05 + cfNorm * 0.15);
         }
     } else {
         // Hub routes stay green but trunk width scales with volume
@@ -1915,7 +2199,7 @@ function updateSim(){
     }
 
     // --- Hub-port trunk color changes with congestion in hub mode ---
-    if(curSc==='hub'){
+    if(curSc==='sc3'){
         const hpColor = cf<1.5 ? '#00e878' : cf<2.5 ? '#f0a030' : '#ff3b4e';
         if(map.getLayer('hub-port')) map.setPaintProperty('hub-port','line-color',hpColor);
         if(map.getLayer('hub-port-glow')) map.setPaintProperty('hub-port-glow','line-color',hpColor);
@@ -1930,7 +2214,7 @@ function updateSim(){
     if(!gmTrafficData) {
         // Hub-Puerto base from OSRM
         const hpBase = R.hp.t;  // minutes from OSRM
-        const hpCong = Math.round(hpBase * (curSc === 'chaos' ? cf : Math.min(cf, 1.3)));
+        const hpCong = Math.round(hpBase * ((curSc === 'sc1' || curSc === 'sc2') ? cf : Math.min(cf, 1.3)));
 
         document.getElementById('gm-hub-base').textContent = `${Math.round(hpBase)} min`;
         document.getElementById('gm-hub-time').textContent = `${hpCong} min`;
@@ -1939,7 +2223,7 @@ function updateSim(){
 
         // Average farm-hub from OSRM
         const avgFH = OD.reduce((s,o)=>s+o.ht,0)/OD.length;
-        const avgFHcong = Math.round(avgFH * (curSc === 'chaos' ? cf : Math.min(cf, 1.3)));
+        const avgFHcong = Math.round(avgFH * ((curSc === 'sc1' || curSc === 'sc2') ? cf : Math.min(cf, 1.3)));
         document.getElementById('gm-avg-farm').textContent = `${avgFHcong} min`;
         document.getElementById('gm-avg-farm').className = 'kpi-v ' + (cf > 2 ? 'r' : cf > 1.3 ? 'y' : 'b');
 
@@ -1950,7 +2234,7 @@ function updateSim(){
 
         // Per-farm detail from OSRM routes
         const detail = document.getElementById('gm-detail');
-        const cfApply = curSc === 'chaos' ? cf : Math.min(cf, 1.3);
+        const cfApply = (curSc === 'sc1' || curSc === 'sc2') ? cf : Math.min(cf, 1.3);
         const farmDetail = OD.map(o => ({
             name: o.name,
             baseH: o.ht,
@@ -1961,11 +2245,11 @@ function updateSim(){
             distD: o.dd
         })).sort((a,b) => b.congH - a.congH);
 
-        let html = `<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">${curSc==='chaos'?'Finca-Puerto (directo)':'Finca-Hub'} con congestion:</div>`;
+        let html = `<div style="margin-bottom:4px;color:var(--text2);font-weight:600;">${(curSc==='sc1'||curSc==='sc2')?'Finca-Puerto (directo)':'Finca-Hub'} con congestion:</div>`;
         farmDetail.forEach(f => {
-            const t = curSc === 'chaos' ? f.congD : f.congH;
-            const base = curSc === 'chaos' ? f.baseD : f.baseH;
-            const dist = curSc === 'chaos' ? f.distD : f.distH;
+            const t = (curSc === 'sc1' || curSc === 'sc2') ? f.congD : f.congH;
+            const base = (curSc === 'sc1' || curSc === 'sc2') ? f.baseD : f.baseH;
+            const dist = (curSc === 'sc1' || curSc === 'sc2') ? f.distD : f.distH;
             const ratio = t / Math.max(base, 1);
             const color = ratio > 1.5 ? 'var(--red)' : ratio > 1.2 ? 'var(--yellow)' : 'var(--green)';
             html += `<div>${f.name}: <span style="color:${color};">${t}min</span> (base:${base}min, x${ratio.toFixed(1)}) ${dist.toFixed(1)}km</div>`;
@@ -1973,9 +2257,12 @@ function updateSim(){
         detail.innerHTML = html;
     }
 
-    // Update financial dashboard if visible
+    // Update dashboards if visible
     if (document.getElementById('fin-dashboard').style.display === 'block') {
         updateFinancialDashboard();
+    }
+    if (document.getElementById('resumen-dashboard').style.display === 'block') {
+        updateResumenDashboard();
     }
 }
 
@@ -2472,6 +2759,101 @@ function calcTIR(cashflows) {
     }
     const mid = (lo + hi) / 2;
     return (mid > -0.5 && mid < 5.0) ? mid : null;
+}
+
+// ============================================================
+// RESUMEN DASHBOARD
+// ============================================================
+function updateResumenDashboard(){
+    // Pull from simResults (already populated by updateSim)
+    const saveAnnual = simResults.annualSave || 502;
+    const savePerBox = simResults.savePerBox || 88;
+    const totalViajes = simResults.totalViajes || 154;
+    const hubMulas = simResults.hubMulas || 17;
+    const trucksPct = totalViajes > 0 ? Math.round(((totalViajes - hubMulas)/totalViajes)*100) : 89;
+
+    document.getElementById('res-hero-save').textContent = `$${saveAnnual}M`;
+    document.getElementById('res-trucks-pct').textContent = `-${trucksPct}%`;
+    document.getElementById('res-save-box').textContent = `-$${Math.round(savePerBox)}`;
+
+    // Productivity history chart
+    const prodChart = document.getElementById('res-prod-chart');
+    const prodLabels = document.getElementById('res-prod-labels');
+    if(prodChart && G20_YEARLY){
+        const years = Object.keys(G20_YEARLY).sort();
+        const maxUniban = Math.max(...years.map(y=>G20_YEARLY[y][3]));
+        let chartHTML = '', labelHTML = '';
+        years.forEach(y=>{
+            const g20exp = G20_YEARLY[y][0];
+            const unibanExp = G20_YEARLY[y][3];
+            const restoExp = unibanExp - g20exp;
+            const g20H = Math.round((g20exp/maxUniban)*90);
+            const restoH = Math.round((restoExp/maxUniban)*90);
+            chartHTML += `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;">` +
+                `<div style="width:100%;height:${restoH}px;background:var(--border2);border-radius:2px 2px 0 0;"></div>` +
+                `<div style="width:100%;height:${g20H}px;background:var(--green);border-radius:0 0 2px 2px;"></div>` +
+                `</div>`;
+            labelHTML += `<div style="flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--text3);">${y.slice(2)}</div>`;
+        });
+        prodChart.innerHTML = chartHTML;
+        prodLabels.innerHTML = labelHTML;
+    }
+
+    // Financial summary from fin-dashboard KPI values (already computed)
+    const vpnEl = document.getElementById('fd-vpn');
+    const tirEl = document.getElementById('fd-tir');
+    const payEl = document.getElementById('fd-payback');
+    if(vpnEl) document.getElementById('res-vpn').textContent = vpnEl.textContent;
+    if(tirEl) document.getElementById('res-tir').textContent = tirEl.textContent;
+    if(payEl) document.getElementById('res-payback').textContent = payEl.textContent;
+    // Copy color classes
+    if(vpnEl) document.getElementById('res-vpn').className = 'res-fin-v ' + (vpnEl.className.includes(' g') ? 'g' : vpnEl.className.includes(' r') ? 'r' : 'b');
+    if(tirEl) document.getElementById('res-tir').className = 'res-fin-v ' + (tirEl.className.includes(' g') ? 'g' : tirEl.className.includes(' r') ? 'r' : 'b');
+    if(payEl) document.getElementById('res-payback').className = 'res-fin-v ' + (payEl.className.includes(' g') ? 'g' : payEl.className.includes(' r') ? 'r' : 'b');
+}
+
+// ============================================================
+// DYNAMIC LEGEND
+// ============================================================
+function updateLegend(){
+    const info = document.querySelector('.map-info');
+    if(!info) return;
+    if(curSc==='sc1'){
+        info.innerHTML = `
+            <div class="mi-t">Leyenda - Situacion Actual</div>
+            <div class="mi-i"><div class="mi-c" style="background:#ff3b4e;box-shadow:0 0 4px #ff3b4e;"></div>Emb. Colonia (Uniban)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Emb. Zungo</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <div class="mi-t" style="margin-top:4px;">RUTAS</div>
+            <div class="mi-i"><div class="mi-ln" style="background:#ff3b4e;height:3px;"></div>Finca → Embarcadero (19 rutas)</div>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
+    } else if(curSc==='sc2'){
+        info.innerHTML = `
+            <div class="mi-t">Leyenda - Consolidacion Parcial</div>
+            <div class="mi-i"><div class="mi-c" style="background:#f0a030;box-shadow:0 0 4px #f0a030;"></div>Emb. Nueva Colonia</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <div class="mi-t" style="margin-top:4px;">RUTAS</div>
+            <div class="mi-i"><div class="mi-ln" style="background:#f0a030;height:3px;"></div>Finca → Nueva Colonia (19 rutas)</div>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
+    } else {
+        info.innerHTML = `
+            <div class="mi-t">Leyenda - Centro Operando (3 Nodos)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--green);box-shadow:0 0 4px var(--green);"></div>Centro Consolidacion (12)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--cyan);box-shadow:0 0 4px var(--cyan);"></div>Mini-Hub Puerto (3)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Embarcadero Zungo (4)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <div class="mi-t" style="margin-top:4px;">RUTAS POR NODO</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Centro (12 fincas)</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--cyan);height:3px;"></div>Ruta Mini-Hub (3 fincas)</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--orange);height:3px;"></div>Ruta Zungo (4 fincas)</div>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
+    }
 }
 
 // ============================================================
