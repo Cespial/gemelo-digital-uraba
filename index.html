@@ -1247,7 +1247,7 @@ const NODES = {
     zungo: {lat:7.852252,lng:-76.744378,name:"Embarcadero Zungo Canal"},
     puerto: {lat:7.9230,lng:-76.7341,name:"Puerto Antioquia"},
     colonia: {lat:7.955,lng:-76.685,name:"Embarcadero Colonia (Uniban)"},
-    nueva_colonia: {lat:7.960,lng:-76.680,name:"Embarcadero Nueva Colonia"},
+    nueva_colonia: {lat:7.960,lng:-76.680,name:"Puerto Uraba"},
     apartado: {lat:7.8829,lng:-76.6258,name:"Apartado"},
     carepa: {lat:7.7567,lng:-76.6558,name:"Carepa"},
     chigorodo: {lat:7.6647,lng:-76.6818,name:"Chigorodo"},
@@ -1677,7 +1677,7 @@ map.on('load',()=>{
         'line-color':'#ff3b4e','line-width':['interpolate',['linear'],['get','prod'],2000,1.5,11000,4],'line-opacity':0.6
     },layout:{'line-cap':'round','line-join':'round'}});
 
-    // ---- SC2 ROUTES: 19 straight lines finca→Nueva Colonia ----
+    // ---- SC2 ROUTES: 19 straight lines finca→Puerto Uraba ----
     const sc2Feats = FARMS.map(f=>{
         return {type:'Feature',properties:{id:f.id,prod:f.prod},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[NODES.nueva_colonia.lng,NODES.nueva_colonia.lat]]}};
     });
@@ -1822,11 +1822,11 @@ map.on('load',()=>{
     window._markerZungo = new mapboxgl.Marker({element:zgEl}).setLngLat([NODES.zungo.lng,NODES.zungo.lat])
         .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#ff7a30;">EMBARCADERO ZUNGO CANAL</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Carepa, Antioquia</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.8523, -76.7444</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">4 (Los Almendros, Matogroso 1/2, Punto Fijo)</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Despacho fincas del occidente</span></div>')).addTo(map);
 
-    // Embarcadero Nueva Colonia (yellow) — SC2 only
+    // Puerto Uraba (yellow) — SC2 only
     const ncEl=document.createElement('div');
     ncEl.style.cssText='width:18px;height:18px;background:#f0a030;border:3px solid #fff;border-radius:50%;box-shadow:0 0 15px #f0a030,0 0 30px rgba(240,160,48,0.3);cursor:pointer;display:none;';
     window._markerNuevaColonia = new mapboxgl.Marker({element:ncEl}).setLngLat([NODES.nueva_colonia.lng,NODES.nueva_colonia.lat])
-        .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#f0a030;">EMBARCADERO NUEVA COLONIA</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Nueva Colonia</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Consolidacion parcial de 19 fincas</span></div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">Escenario intermedio</span></div>')).addTo(map);
+        .setPopup(new mapboxgl.Popup({offset:15}).setHTML('<div class="p-t" style="color:#f0a030;">PUERTO URABA</div><div class="p-r"><span class="p-k">Ubicacion:</span><span class="p-v">Nueva Colonia</span></div><div class="p-r"><span class="p-k">Funcion:</span><span class="p-v">Consolidacion parcial de 19 fincas</span></div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">Escenario intermedio</span></div>')).addTo(map);
 
     // Puerto Antioquia (blue)
     const ptEl=document.createElement('div');
@@ -1856,7 +1856,7 @@ map.on('load',()=>{
     window._labelHub = makeNodeLabel('hub','CENTRO CONSOLIDACION','#00e878','none');
     window._labelMiniHub = makeNodeLabel('mini_hub','MINI-HUB PUERTO','#18d8d0','none');
     window._labelZungo = makeNodeLabel('zungo','EMB. ZUNGO','#ff7a30','');
-    window._labelNuevaColonia = makeNodeLabel('nueva_colonia','EMB. NUEVA COLONIA','#f0a030','none');
+    window._labelNuevaColonia = makeNodeLabel('nueva_colonia','PUERTO URABA','#f0a030','none');
     // Puerto always visible
     makeNodeLabel('puerto','PUERTO ANTIOQUIA','#3898ff','');
 
@@ -2826,11 +2826,11 @@ function updateLegend(){
     } else if(curSc==='sc2'){
         info.innerHTML = `
             <div class="mi-t">Leyenda - Consolidacion Parcial</div>
-            <div class="mi-i"><div class="mi-c" style="background:#f0a030;box-shadow:0 0 4px #f0a030;"></div>Emb. Nueva Colonia</div>
+            <div class="mi-i"><div class="mi-c" style="background:#f0a030;box-shadow:0 0 4px #f0a030;"></div>Puerto Uraba (Nueva Colonia)</div>
             <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
             <div class="mi-t" style="margin-top:4px;">RUTAS</div>
-            <div class="mi-i"><div class="mi-ln" style="background:#f0a030;height:3px;"></div>Finca → Nueva Colonia (19 rutas)</div>
+            <div class="mi-i"><div class="mi-ln" style="background:#f0a030;height:3px;"></div>Finca → Puerto Uraba (19 rutas)</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
             <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19)</div>`;
     } else {
