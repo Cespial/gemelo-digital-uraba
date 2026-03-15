@@ -376,6 +376,72 @@
             .res-metric{padding:10px;}
             .res-metric-v{font-size:18px;}
         }
+
+        /* ============================================================
+           NARRATIVA VISUAL — BANNER + KPI STRIP + CALLOUTS + ANNOTATIONS
+           ============================================================ */
+
+        /* 1. SCENARIO BANNER */
+        .sc-banner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:15;
+            padding:28px 40px;border-radius:14px;backdrop-filter:blur(16px);
+            text-align:center;pointer-events:none;
+            opacity:0;animation:scBannerIn 0.4s ease-out forwards;max-width:520px;width:90%;}
+        .sc-banner.out{animation:scBannerOut 0.5s ease-in forwards;}
+        .sc-banner.sc1-bg{background:rgba(255,59,78,0.18);border:1.5px solid rgba(255,59,78,0.45);}
+        .sc-banner.sc3-bg{background:rgba(0,232,120,0.14);border:1.5px solid rgba(0,232,120,0.4);}
+        .sc-banner-title{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;letter-spacing:1px;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,0.5);}
+        .sc-banner-desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--text2);line-height:1.5;}
+        @keyframes scBannerIn{from{opacity:0;transform:translate(-50%,-50%) scale(0.92);}to{opacity:1;transform:translate(-50%,-50%) scale(1);}}
+        @keyframes scBannerOut{from{opacity:1;transform:translate(-50%,-50%) scale(1);}to{opacity:0;transform:translate(-50%,-50%) scale(0.94);}}
+
+        /* 2. KPI STRIP */
+        .kpi-strip{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:12;
+            display:flex;gap:16px;align-items:center;
+            background:rgba(6,8,10,0.82);backdrop-filter:blur(14px);
+            border:1px solid var(--border);border-radius:10px;padding:8px 20px;
+            font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+        .kpi-strip-item{text-align:center;}
+        .kpi-strip-v{font-size:18px;font-weight:800;line-height:1.2;}
+        .kpi-strip-l{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;margin-top:1px;}
+        .kpi-strip-div{width:1px;height:28px;background:var(--border);}
+
+        /* 3 & 4. CALLOUTS (problem & solution) */
+        .map-callouts{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:11;}
+        .callout{position:absolute;padding:8px 12px;border-radius:8px;backdrop-filter:blur(10px);
+            font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.4;
+            max-width:220px;pointer-events:none;opacity:0;animation:calloutIn 0.5s ease-out forwards;}
+        .callout:nth-child(2){animation-delay:0.15s;}
+        .callout:nth-child(3){animation-delay:0.3s;}
+        .callout-problem{background:rgba(255,59,78,0.12);border:1px solid rgba(255,59,78,0.35);color:var(--text);}
+        .callout-solution{background:rgba(0,232,120,0.10);border:1px solid rgba(0,232,120,0.3);color:var(--text);}
+        .callout-icon{font-size:14px;margin-right:4px;}
+        .callout-num{font-weight:800;font-size:14px;}
+        .callout-sub{font-size:9px;color:var(--text2);margin-top:2px;}
+        .callout.pos-tr{top:14px;right:14px;}
+        .callout.pos-br{bottom:80px;right:14px;}
+        .callout.pos-bl{bottom:80px;left:240px;}
+        @keyframes calloutIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+        /* 5. MAP ANNOTATIONS */
+        .map-annotation{font-family:'JetBrains Mono',monospace;font-size:9px;line-height:1.3;
+            padding:4px 8px;border-radius:5px;backdrop-filter:blur(8px);white-space:nowrap;
+            pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.6);}
+        .map-annotation.ann-red{background:rgba(255,59,78,0.18);border:1px solid rgba(255,59,78,0.35);color:#ff8090;}
+        .map-annotation.ann-green{background:rgba(0,232,120,0.14);border:1px solid rgba(0,232,120,0.3);color:#60ffaa;}
+
+        /* RESPONSIVE for narrative components */
+        @media(max-width:768px){
+            .sc-banner{padding:16px 20px;max-width:90%;}
+            .sc-banner-title{font-size:16px;}
+            .sc-banner-desc{font-size:11px;}
+            .kpi-strip{padding:6px 12px;gap:10px;bottom:10px;}
+            .kpi-strip-v{font-size:14px;}
+            .kpi-strip-l{font-size:7px;}
+            .callout{font-size:10px;max-width:180px;padding:6px 10px;}
+            .callout.pos-bl{left:8px;}
+            .callout-num{font-size:12px;}
+            .map-annotation{font-size:8px;padding:3px 6px;}
+        }
     </style>
 </head>
 <body>
@@ -545,6 +611,23 @@
         <div class="mi-i"><div class="mi-c" style="background:transparent;border:1.5px solid #e088ff;"></div>Limite municipal</div>
         <div class="mi-i"><div class="mi-c" style="background:rgba(180,140,255,0.08);border:1px solid rgba(180,140,255,0.3);"></div>Vereda</div>
     </div>
+
+    <!-- SCENARIO BANNER (appears on scenario switch) -->
+    <div class="sc-banner" id="sc-banner" style="display:none;"></div>
+
+    <!-- KPI STRIP (persistent bottom bar) -->
+    <div class="kpi-strip" id="kpi-strip">
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-ahorro">$502M</div><div class="kpi-strip-l">Ahorro/Ano</div></div>
+        <div class="kpi-strip-div"></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-trucks">-89%</div><div class="kpi-strip-l">Tractomulas</div></div>
+        <div class="kpi-strip-div"></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">3.8a</div><div class="kpi-strip-l">Payback</div></div>
+        <div class="kpi-strip-div"></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" id="strip-status" style="color:var(--red);">SITUACION ACTUAL</div><div class="kpi-strip-l">Escenario</div></div>
+    </div>
+
+    <!-- CALLOUTS container -->
+    <div class="map-callouts" id="map-callouts"></div>
 </div>
 
 <!-- RIGHT PANEL -->
@@ -1889,6 +1972,120 @@ map.on('load',()=>{
 });
 
 // ============================================================
+// NARRATIVA VISUAL
+// ============================================================
+let _bannerTimer = null;
+let _annotationMarkers = [];
+
+function showScenarioBanner(sc) {
+    const el = document.getElementById('sc-banner');
+    clearTimeout(_bannerTimer);
+    el.style.display = 'none';
+    el.classList.remove('out','sc1-bg','sc3-bg');
+    // Force reflow
+    void el.offsetWidth;
+
+    if (sc === 'sc1') {
+        el.classList.add('sc1-bg');
+        el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
+            '<div class="sc-banner-desc">150+ tractomulas/dia en via de 1 carril. 5-6h espera. Costo x2.</div>';
+    } else {
+        el.classList.add('sc3-bg');
+        el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
+            '<div class="sc-banner-desc">Solo mulas llenas. 89% menos trafico. $502M ahorro/ano.</div>';
+    }
+    el.style.display = '';
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = '';
+
+    _bannerTimer = setTimeout(() => {
+        el.classList.add('out');
+        setTimeout(() => { el.style.display = 'none'; }, 500);
+    }, 3500);
+}
+
+function updateCallouts() {
+    const container = document.getElementById('map-callouts');
+    if (!container) return;
+    const r = simResults;
+    const totalViajes = r.totalViajes;
+    const hubMulas = r.hubMulas;
+    const redPct = totalViajes > 0 ? Math.round(((totalViajes - hubMulas) / totalViajes) * 100) : 89;
+    const costDirect = r.costDirect || 386;
+    const annualSave = r.annualSave || 502;
+    const savePerBox = r.savePerBox || 88;
+
+    if (curSc === 'sc1') {
+        container.innerHTML =
+            '<div class="callout callout-problem pos-tr"><span class="callout-icon">&#x26A0;</span> <span class="callout-num">' + (totalViajes > 0 ? totalViajes : 154) + ' viajes/dia</span><div class="callout-sub">en via de 1 carril</div></div>' +
+            '<div class="callout callout-problem pos-br"><span class="callout-icon">&#x23F3;</span> <span class="callout-num">5-6h espera</span><div class="callout-sub">en puerto por mula</div></div>' +
+            '<div class="callout callout-problem pos-bl"><span class="callout-icon">&#x1F4B8;</span> <span class="callout-num">$' + costDirect + '/caja</span><div class="callout-sub">Riesgo: $350&rarr;$800/caja</div></div>';
+    } else {
+        container.innerHTML =
+            '<div class="callout callout-solution pos-tr"><span class="callout-icon">&#x2714;</span> Solo mulas <span class="callout-num">llenas</span><div class="callout-sub">contenerizadas</div></div>' +
+            '<div class="callout callout-solution pos-br"><span class="callout-icon">&#x1F4C9;</span> <span class="callout-num">' + redPct + '% menos</span><div class="callout-sub">trafico — de ' + (totalViajes > 0 ? totalViajes : 154) + ' a ' + (hubMulas > 0 ? hubMulas : 17) + ' mulas/dia</div></div>' +
+            '<div class="callout callout-solution pos-bl"><span class="callout-icon">&#x1F4B0;</span> <span class="callout-num">$' + annualSave + 'M ahorro/ano</span><div class="callout-sub">-$' + savePerBox + '/caja logistico</div></div>';
+    }
+}
+
+function updateKPIStrip() {
+    const r = simResults;
+    const totalViajes = r.totalViajes;
+    const hubMulas = r.hubMulas;
+    const redPct = totalViajes > 0 ? Math.round(((totalViajes - hubMulas) / totalViajes) * 100) : 89;
+
+    document.getElementById('strip-ahorro').textContent = '$' + (r.annualSave || 502) + 'M';
+    document.getElementById('strip-trucks').textContent = '-' + redPct + '%';
+
+    // Payback from financial dashboard if available
+    const payEl = document.getElementById('fd-payback');
+    if (payEl && payEl.textContent && payEl.textContent !== '--') {
+        document.getElementById('strip-payback').textContent = payEl.textContent;
+    }
+
+    const statusEl = document.getElementById('strip-status');
+    if (curSc === 'sc1') {
+        statusEl.textContent = 'SITUACION ACTUAL';
+        statusEl.style.color = 'var(--red)';
+    } else {
+        statusEl.textContent = 'CENTRO OPERANDO';
+        statusEl.style.color = 'var(--green)';
+    }
+}
+
+function updateMapAnnotations() {
+    // Remove old annotations
+    _annotationMarkers.forEach(m => m.remove());
+    _annotationMarkers = [];
+    if (typeof map === 'undefined' || !map.isStyleLoaded()) return;
+
+    const r = simResults;
+    const totalViajes = r.totalViajes > 0 ? r.totalViajes : 154;
+    const hubMulas = r.hubMulas > 0 ? r.hubMulas : 17;
+
+    function addAnn(nodeKey, html, cssClass, offsetY) {
+        const n = NODES[nodeKey];
+        if (!n) return;
+        const el = document.createElement('div');
+        el.className = 'map-annotation ' + cssClass;
+        el.innerHTML = html;
+        const marker = new mapboxgl.Marker({element: el, anchor: 'top-left', offset: [16, offsetY || -8]})
+            .setLngLat([n.lng, n.lat]).addTo(map);
+        _annotationMarkers.push(marker);
+    }
+
+    if (curSc === 'sc1') {
+        addAnn('puerto', 'Espera: 5-6h / ' + totalViajes + ' viajes/dia', 'ann-red', 12);
+        addAnn('zungo', '4 fincas despacho directo', 'ann-red', 12);
+    } else {
+        addAnn('hub', '12 fincas &rarr; ' + hubMulas + ' mulas/dia', 'ann-green', 12);
+        addAnn('puerto', 'Espera: &lt;1h / Contenerizado', 'ann-green', 12);
+        addAnn('zungo', '4 fincas &rarr; Zungo', 'ann-green', 12);
+    }
+}
+
+// ============================================================
 // SCENARIO
 // ============================================================
 let curSc='sc1';
@@ -1929,6 +2126,7 @@ function setScenario(sc){
     const routesBox = document.getElementById('ly-routes');
     if (routesBox) routesBox.checked = true;
     updateLegend();
+    showScenarioBanner(sc);
     updateSim();
 }
 
@@ -2252,6 +2450,11 @@ function updateSim(){
         });
         detail.innerHTML = html;
     }
+
+    // Update narrative visual components
+    updateCallouts();
+    updateKPIStrip();
+    updateMapAnnotations();
 
     // Update dashboards if visible
     if (document.getElementById('fin-dashboard').style.display === 'block') {
