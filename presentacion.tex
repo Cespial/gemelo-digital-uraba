@@ -62,13 +62,6 @@
 % ---- COMANDOS ----
 \newcommand{\tagline}[2]{{\scriptsize\color{#1}\textbf{\MakeUppercase{#2}}}}
 
-% ---- METADATA ----
-\title{\textbf{Centro de Consolidación Logística}}
-\subtitle{Estudio de Viabilidad --- Modelo 3 Nodos · Grupo 20}
-\author{Observatorio de Datos y Análisis SAS}
-\date{Marzo 2026}
-\institute{Urabá, Antioquia}
-
 \begin{document}
 
 % ============================================================
@@ -113,21 +106,20 @@
 
 \vspace{4pt}
 Hoy, cada una de nuestras \textbf{19 fincas} despacha de forma independiente
-hacia el puerto. Tractomulas a medio llenar, en una vía de un solo carril,
-esperando horas en el embarcadero. \textbf{Nadie consolida. Nadie optimiza.}
+hacia el puerto o el embarcadero. Tractomulas a medio llenar, en una vía de un solo carril,
+esperando horas. \textbf{Nadie consolida. Nadie optimiza.}
 
 \vspace{10pt}
 \begin{center}
 \begin{tikzpicture}
-    % KPI 1
     \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!30, minimum width=3cm, minimum height=1.4cm] (k1) {};
     \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k1.center) {154};
     \node[font=\tiny, text=gris, below=0pt of k1.center] {viajes/día en la vía};
-    % KPI 2
+
     \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!30, minimum width=3cm, minimum height=1.4cm, right=10pt of k1] (k2) {};
     \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k2.center) {5--6h};
-    \node[font=\tiny, text=gris, below=0pt of k2.center] {espera en puerto};
-    % KPI 3
+    \node[font=\tiny, text=gris, below=0pt of k2.center] {espera en embarcadero};
+
     \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!30, minimum width=3cm, minimum height=1.4cm, right=10pt of k2] (k3) {};
     \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k3.center) {19};
     \node[font=\tiny, text=gris, below=0pt of k3.center] {fincas despachando solas};
@@ -139,7 +131,7 @@ esperando horas en el embarcadero. \textbf{Nadie consolida. Nadie optimiza.}
 \small
 Cada camión hace su recorrido individual. Si la finca produjo pocas cajas,
 la mula sale medio vacía. Anderson coordina 19 fincas por celular.
-Fruta recogida a las 2--3~AM. Puerto devuelve camiones a las 11~PM.
+Fruta recogida a las 2--3~AM. Embarcadero devuelve camiones a las 11~PM.
 \end{alertblock}
 
 \vspace{2pt}
@@ -153,51 +145,45 @@ Fruta recogida a las 2--3~AM. Puerto devuelve camiones a las 11~PM.
 \frametitle{El modelo tarifario va a cambiar}
 \tagline{amarillo}{La Amenaza}
 
-\vspace{6pt}
-\begin{columns}[T]
-\begin{column}{0.42\textwidth}
-    \begin{tikzpicture}
-        \node[rounded corners=5pt, fill=amarilloclaro, draw=amarillo!40,
-              minimum width=4.8cm, minimum height=3.2cm] (box) {};
-        \node[font=\scriptsize\bfseries, text=amarillo, above=2pt of box.north, anchor=south]
-            {HOY: \$/CAJA};
-        \node[font=\fontsize{24}{28}\selectfont\bfseries, text=amarillo] at ([yshift=6pt]box.center)
-            {\$300--400};
-        \node[text width=4.2cm, align=center, font=\scriptsize, text=gris, below=8pt of box.center] {
-            Pagamos por caja transportada.\\Si el camión va medio vacío,\\\textbf{es problema del transportador.}
-        };
-    \end{tikzpicture}
+\vspace{4pt}
+{\small Hoy le pagamos al transportador \textbf{por caja}. Si el camión va medio vacío, es su problema.
+Pero los transportadores llevan 2 años exigiendo cobrar \textbf{por viaje + stand-by}.}
+
+\vspace{8pt}
+\begin{columns}[c]
+\begin{column}{0.40\textwidth}
+\begin{center}
+    \colorbox{amarilloclaro}{\parbox{4cm}{\centering\vspace{6pt}
+        {\scriptsize\bfseries\color{amarillo} HOY: \$/CAJA}\\[4pt]
+        {\fontsize{22}{26}\selectfont\bfseries\color{amarillo} \$350}\\[2pt]
+        {\scriptsize\color{gris} Promedio COP/caja\\Es problema del transportador}
+    \vspace{6pt}}}
+\end{center}
 \end{column}
 
-\begin{column}{0.06\textwidth}
-    \begin{center}
-    \vspace{24pt}
+\begin{column}{0.08\textwidth}
+\begin{center}
     {\LARGE\color{rojo}\bfseries$\Rightarrow$}
-    \end{center}
+\end{center}
 \end{column}
 
-\begin{column}{0.42\textwidth}
-    \begin{tikzpicture}
-        \node[rounded corners=5pt, fill=rojoclaro, draw=rojo!40,
-              minimum width=4.8cm, minimum height=3.2cm] (box) {};
-        \node[font=\scriptsize\bfseries, text=rojo, above=2pt of box.north, anchor=south]
-            {MAÑANA: \$/VIAJE + STAND-BY};
-        \node[font=\fontsize{24}{28}\selectfont\bfseries, text=rojo] at ([yshift=6pt]box.center)
-            {\$625+};
-        \node[text width=4.2cm, align=center, font=\scriptsize, text=gris, below=8pt of box.center] {
-            Flete: \$600K/viaje + stand-by \$50K/h.\\\textbf{\textcolor{rojo}{El costo se duplica}}\\y es \textbf{nuestro problema.}
-        };
-    \end{tikzpicture}
+\begin{column}{0.40\textwidth}
+\begin{center}
+    \colorbox{rojoclaro}{\parbox{4cm}{\centering\vspace{6pt}
+        {\scriptsize\bfseries\color{rojo} MAÑANA: \$/VIAJE + STAND-BY}\\[4pt]
+        {\fontsize{22}{26}\selectfont\bfseries\color{rojo} \$1,500+}\\[2pt]
+        {\scriptsize\color{gris} COP/caja equivalente\\Es \textbf{nuestro} problema}
+    \vspace{6pt}}}
+\end{center}
 \end{column}
 \end{columns}
 
-\vspace{10pt}
+\vspace{8pt}
 \begin{alertblock}{}
 \small
-\textbf{Los transportadores llevan 2 años exigiendo este cambio.}
-El SICE-TAC del Ministerio de Transporte ya lo tiene regulado.
-G20 no ha cedido aún, pero es cuestión de tiempo.
-Cuando cambie, cada viaje a medio llenar nos costará el doble.
+\textbf{El SICE-TAC del Ministerio de Transporte ya lo tiene regulado.}
+Cuando el transportador cobre por viaje (\$600K) más stand-by (\$50K/hora $\times$ 5.5h),
+y nuestras fincas sigan mandando mulas a medio llenar, el costo por caja se dispara.
 \end{alertblock}
 \end{frame}
 
@@ -208,27 +194,27 @@ Cuando cambie, cada viaje a medio llenar nos costará el doble.
 \frametitle{Consolidar antes de despachar}
 \tagline{verde}{La Solución}
 
-\vspace{4pt}
-Un Centro de Consolidación en \textbf{Chinita}, a la salida de Apartadó,
-donde la fruta de 12 fincas llega, se paletiza, se conteneriza, y sale en
-\textbf{\textcolor{verde}{mulas llenas}} hacia Puerto Antioquia.
+\vspace{2pt}
+{\small Un Centro en \textbf{Chinita}, salida de Apartadó: la fruta de 12 fincas llega,
+se paletiza, se conteneriza, y sale en \textbf{\textcolor{verde}{mulas llenas}}
+hacia el embarcadero o Puerto Antioquia.}
 
-\vspace{10pt}
+\vspace{4pt}
 \begin{center}
 \begin{tikzpicture}[
     nodo/.style={circle, minimum size=0.9cm, draw=#1, fill=#1!12, line width=0.8pt, font=\small},
     linea/.style={line width=1.5pt, ->, >=stealth}
 ]
     \node[nodo=amarillo] (fincas) {\faSeedling};
-    \node[nodo=verde, right=1.8cm of fincas] (centro) {\faBoxes};
-    \node[nodo=azul, right=1.8cm of centro] (mini) {\faTruck};
-    \node[nodo=amarillo, below=0.7cm of mini] (zungo) {\faShip};
-    \node[nodo=azul!80!black, right=1.8cm of mini] (puerto) {\faAnchor};
+    \node[nodo=verde, right=1.6cm of fincas] (centro) {\faBoxes};
+    \node[nodo=azul, right=1.6cm of centro] (mini) {\faTruck};
+    \node[nodo=amarillo, below right=0.7cm and 0.4cm of centro] (zungo) {\faShip};
+    \node[nodo=azul!80!black, right=1.6cm of mini] (puerto) {\faAnchor};
 
     \draw[linea, amarillo] (fincas) -- (centro);
     \draw[linea, verde] (centro) -- (mini);
-    \draw[linea, amarillo] (zungo) -- (puerto);
     \draw[linea, azul] (mini) -- (puerto);
+    \draw[linea, amarillo!70!black] (zungo) -- (puerto);
 
     \node[below=3pt of fincas, font=\tiny\bfseries, text=amarillo] {19 Fincas};
     \node[below=12pt of fincas, font=\tiny, text=gris] {2,000 ha};
@@ -236,14 +222,14 @@ donde la fruta de 12 fincas llega, se paletiza, se conteneriza, y sale en
     \node[below=12pt of centro, font=\tiny, text=gris] {12 fincas · 985 ha};
     \node[below=3pt of mini, font=\tiny\bfseries, text=azul] {Mini-Hub};
     \node[below=12pt of mini, font=\tiny, text=gris] {3 fincas};
-    \node[left=3pt of zungo, font=\tiny\bfseries, text=amarillo, anchor=east] {Zungo};
-    \node[below=3pt of zungo, font=\tiny, text=gris] {4 fincas};
+    \node[below=3pt of zungo, font=\tiny\bfseries, text=amarillo!70!black] {Emb. Zungo};
+    \node[below=12pt of zungo, font=\tiny, text=gris] {4 fincas · vía fluvial};
     \node[below=3pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto};
     \node[below=12pt of puerto, font=\tiny, text=gris] {Pto. Antioquia};
 \end{tikzpicture}
 \end{center}
 
-\vspace{6pt}
+\vspace{4pt}
 \begin{block}{Resultado}
 \small
 De \textbf{154} a \textbf{\textcolor{verde}{17 mulas/día}}.
@@ -256,63 +242,62 @@ Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora.
 % SLIDE 5: IMPACTO FINANCIERO
 % ============================================================
 \begin{frame}
-\frametitle{Los números hablan}
+\frametitle{Lo que pagamos hoy y lo que viene}
 \tagline{verde}{Impacto Financiero}
 
 \vspace{2pt}
-\begin{center}
-\begin{tikzpicture}
-    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.2cm] (k1) {};
-    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k1.center) {\$502M};
-    \node[font=\tiny, text=gris, below=0pt of k1.center] {ahorro anual (\$/caja)};
+{\small Subcontratamos el transporte. Hoy pagamos una tarifa plana por caja.
+El riesgo es el cambio al modelo por viaje, donde la consolidación se vuelve crítica.}
 
-    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.2cm, right=8pt of k1] (k2) {};
-    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k2.center) {--89\%};
-    \node[font=\tiny, text=gris, below=0pt of k2.center] {reducción tractomulas};
-
-    \node[rounded corners=4pt, fill=azulclaro, draw=azul!40, minimum width=3cm, minimum height=1.2cm, right=8pt of k2] (k3) {};
-    \node[font=\large\bfseries, text=azul] at ([yshift=2pt]k3.center) {$\sim$46 m};
-    \node[font=\tiny, text=gris, below=0pt of k3.center] {payback estimado};
-\end{tikzpicture}
-\end{center}
-
-\vspace{2pt}
+\vspace{6pt}
 \begin{center}
 \footnotesize
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{l r r r}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l r r}
     \toprule
-    \textbf{Componente (COP/caja)} & \textcolor{rojo}{\textbf{Directo}} & \textcolor{verde}{\textbf{Hub}} & \textbf{Delta} \\
+    \textbf{Escenario} & \textbf{Modelo} & \textbf{COP/caja} & \textbf{Costo anual} \\
     \midrule
-    Combustible           & \textcolor{rojo}{\$148}  & \textcolor{verde}{\$108}  & --27\% \\
-    Conductor (tiempo)    & \textcolor{rojo}{\$82}   & \textcolor{verde}{\$58}   & --29\% \\
-    Peajes                & \textcolor{rojo}{\$35}   & \textcolor{verde}{\$18}   & --49\% \\
-    Desgaste vehículo     & \textcolor{rojo}{\$68}   & \textcolor{verde}{\$52}   & --24\% \\
-    Consolidación Hub     & ---                      & \textcolor{gris}{\$42}    & +\$42  \\
+    Hoy, sin hub      & \$/caja (tarifa plana)  & \textcolor{amarillo}{\$350}     & \$2,000M \\
+    \addlinespace
+    Mañana, sin hub    & \$/viaje + stand-by     & \textcolor{rojo}{\textbf{\$1,500}} & \textcolor{rojo}{\textbf{\$8,600M}} \\
+    Mañana, con hub    & \$/viaje + stand-by     & \textcolor{verde}{\textbf{\$706}}  & \textcolor{verde}{\textbf{\$4,040M}} \\
     \midrule
-    \textbf{Total}        & \textcolor{rojo}{\textbf{\$386}} & \textcolor{verde}{\textbf{\$298}} & \textcolor{verde}{\textbf{--23\%}} \\
+    \multicolumn{2}{l}{\textbf{Ahorro anual con hub}} & \textcolor{verde}{\textbf{--\$794}} & \textcolor{verde}{\textbf{\$4,560M}} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}
+    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.1cm] (k1) {};
+    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k1.center) {\$4,560M};
+    \node[font=\tiny, text=gris, below=0pt of k1.center] {ahorro anual (\$/viaje)};
+
+    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.1cm, right=8pt of k1] (k2) {};
+    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k2.center) {--89\%};
+    \node[font=\tiny, text=gris, below=0pt of k2.center] {reducción tractomulas};
+
+    \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40, minimum width=3cm, minimum height=1.1cm, right=8pt of k2] (k3) {};
+    \node[font=\large\bfseries, text=verde] at ([yshift=2pt]k3.center) {$\sim$5 meses};
+    \node[font=\tiny, text=gris, below=0pt of k3.center] {payback (\$/viaje)};
+\end{tikzpicture}
+\end{center}
+
 \vspace{2pt}
-\begin{alertblock}{}
-\footnotesize \centering
-\textbf{Si cambia a \$/viaje:} el ahorro salta a \textbf{\textcolor{verde}{\$2,400M+/año}}
---- el hub pasa de conveniente a \textbf{inevitable.}
-\end{alertblock}
+{\tiny\color{gris} Producción: 110K cajas/sem · 5.72M cajas/año · CAPEX hub: \$2,050M · Sin hub $\sim$30 viajes/día parciales, con hub $\sim$20 viajes/día llenos}
 \end{frame}
 
 % ============================================================
 % SLIDE 6: MODELO $/VIAJE EN DETALLE
 % ============================================================
 \begin{frame}
-\frametitle{¿Qué pasa cuando cambie el cobro?}
-\tagline{rojo}{Escenario \$/Viaje}
+\frametitle{¿Por qué el hub se vuelve inevitable?}
+\tagline{rojo}{Escenario \$/Viaje en Detalle}
 
 \vspace{1pt}
-{\footnotesize Hoy los transportadores absorben ineficiencias porque pagamos por caja.
-Cuando cambie, \textbf{cada mula a medio llenar nos costará lo mismo que una llena.}}
+{\footnotesize Cuando el transportador cobre por viaje, cada mula a medio llenar nos costará
+lo mismo que una llena. \textbf{La consolidación deja de ser opcional.}}
 
 \vspace{3pt}
 \begin{center}
@@ -322,28 +307,27 @@ Cuando cambie, \textbf{cada mula a medio llenar nos costará lo mismo que una ll
     \toprule
     \textbf{Concepto} & \textcolor{rojo}{\textbf{Sin Hub}} & \textcolor{verde}{\textbf{Con Hub}} \\
     \midrule
-    Flete por viaje              & \$600,000            & \$600,000 \\
-    Cajas por viaje              & $\sim$480 (parcial)  & 960 (llena) \\
-    Flete por caja               & \textcolor{rojo}{\$1,250}  & \textcolor{verde}{\$625} \\
+    Flete por viaje                 & \$600,000            & \$600,000 \\
+    Cajas promedio por viaje        & $\sim$576 (60\%)     & 960 (100\%) \\
+    \textbf{Flete por caja}         & \textcolor{rojo}{\$1,042}  & \textcolor{verde}{\$625} \\
     \addlinespace
-    Stand-by (horas)             & 5.5h                 & 0.75h \\
-    Stand-by por caja            & \textcolor{rojo}{\$573}    & \textcolor{verde}{\$39} \\
-    Consolidación Hub            & ---                  & \$42 \\
+    Espera en embarcadero           & 5.5h                 & 0.75h \\
+    Stand-by (\$50K/h) por caja     & \textcolor{rojo}{\$477}    & \textcolor{verde}{\$39} \\
+    Consolidación hub               & ---                  & \$42 \\
     \midrule
-    \textbf{Costo total/caja}    & \textcolor{rojo}{\textbf{\$1,823}} & \textcolor{verde}{\textbf{\$706}} \\
+    \textbf{Costo total por caja}   & \textcolor{rojo}{\textbf{\$1,519}} & \textcolor{verde}{\textbf{\$706}} \\
+    \textbf{Costo anual (5.72M cajas)} & \textcolor{rojo}{\textbf{\$8,689M}} & \textcolor{verde}{\textbf{\$4,038M}} \\
     \midrule
-    \textbf{Ahorro anual}        &                      & \textcolor{verde}{\textbf{\$6,400M+}} \\
+    \textbf{Ahorro anual con hub}   & & \textcolor{verde}{\textbf{\$4,651M}} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{1pt}
-\begin{alertblock}{}
-\scriptsize
-Con mulas a medio llenar ($\sim$480 cajas vs.\ 960), el flete por caja se duplica.
-Con 5.5h de stand-by a \$50K/h, el costo se triplica.
-\textbf{El Centro elimina ambos:} mulas llenas y espera $<$1h.
-\end{alertblock}
+\colorbox{rojoclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{rojo}{\textbf{Sin hub:}} fincas llenan 40--60\% de mula, pagan viaje completo.
+\textcolor{verde}{\textbf{Con hub:}} mula al 100\%, stand-by de 5.5h a 45 min.
+\textbf{El ahorro paga el CAPEX en $\sim$5 meses.}\strut}}
 \end{frame}
 
 % ============================================================
@@ -353,7 +337,7 @@ Con 5.5h de stand-by a \$50K/h, el costo se triplica.
 \frametitle{Beneficios que no se miden solo en pesos}
 \tagline{azul}{Más Allá del Ahorro}
 
-\vspace{1pt}
+\vspace{2pt}
 \begin{columns}[T]
 \begin{column}{0.47\textwidth}
     {\scriptsize\color{rojo}\textbf{HOY (SIN CENTRO)}}
@@ -362,7 +346,7 @@ Con 5.5h de stand-by a \$50K/h, el costo se triplica.
         \setlength\itemsep{0pt}
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Recolección de fruta a las 2--3~AM
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Camiones devueltos a las 11~PM
-        \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Riesgo de contaminación en esperas
+        \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Riesgo contaminación en esperas
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Coordinación manual de 19 fincas
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Sin cadena de frío ni trazabilidad
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Carga parcial = desperdicio/viaje
@@ -385,12 +369,10 @@ Con 5.5h de stand-by a \$50K/h, el costo se triplica.
 \end{columns}
 
 \vspace{4pt}
-\begin{exampleblock}{}
-\scriptsize\itshape
-``Sabemos que en tiempo, operación, calidad, cumplimiento, en todo eso es chuleado.
-No sabemos si financieramente es beneficioso.
-\textbf{Esa es la viabilidad que le tenemos que encontrar.}''
-\end{exampleblock}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Valor estratégico:}}
+Contenerizar para Puerto Antioquia, negociar tarifas desde posición de fuerza,
+y ofrecer consolidación a terceros productores.\strut}}
 \end{frame}
 
 % ============================================================
@@ -431,23 +413,23 @@ No sabemos si financieramente es beneficioso.
     \vspace{4pt}
 
     \begin{tikzpicture}
+        \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!40,
+              minimum width=5cm, minimum height=1.1cm] (b0) {};
+        \node[font=\normalsize\bfseries, text=amarillo] at ([yshift=2pt]b0.center) {\$350/caja};
+        \node[font=\tiny, text=gris, below=0pt of b0.center] {Lo que pagamos hoy (tarifa plana)};
+
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
-              minimum width=5cm, minimum height=1.1cm] (b1) {};
-        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$502M/año};
-        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro modelo \$/caja};
+              minimum width=5cm, minimum height=1.1cm, below=6pt of b0] (b1) {};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$4,560M/año};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro si cambia a \$/viaje};
 
-        \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!40,
-              minimum width=5cm, minimum height=1.1cm, below=6pt of b1] (b2) {};
-        \node[font=\normalsize\bfseries, text=rojo] at ([yshift=2pt]b2.center) {\$2,400M+/año};
-        \node[font=\tiny, text=gris, below=0pt of b2.center] {Ahorro modelo \$/viaje};
-
-        \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
-              minimum width=5cm, minimum height=1.1cm, below=6pt of b2] (b3) {};
-        \node[font=\normalsize\bfseries, text=azul] at ([yshift=2pt]b3.center) {$\sim$46 meses};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {Payback (\$/caja) · $<$12 meses (\$/viaje)};
+        \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
+              minimum width=5cm, minimum height=1.1cm, below=6pt of b1] (b3) {};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b3.center) {$\sim$5 meses};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {Payback bajo modelo \$/viaje};
     \end{tikzpicture}
 
-    \vspace{8pt}
+    \vspace{6pt}
     {\tiny\color{gris} Parámetros ajustables en el gemelo digital financiero.
     Tasa de descuento: 12\%. Horizonte: 10 años.}
 \end{column}
@@ -520,7 +502,7 @@ ajustar parámetros, y ver los resultados en tiempo real.}
             \textcolor{verde}{\Large\faGlobeAmericas}\\[4pt]
             {\large\textbf{gemelo-digital-uraba.vercel.app}}\\[4pt]
             {\footnotesize\color{gris} Mapa interactivo · Simulador de estrés vial · Dashboard financiero}\\[2pt]
-            {\footnotesize\color{gris} Toggle \$/caja vs \$/viaje · Sensibilidad · Escenarios SC1/SC3}\\[6pt]
+            {\footnotesize\color{gris} Toggle \$/caja vs \$/viaje · Sensibilidad · Escenarios}\\[6pt]
             {\tiny\color{gris} 19 fincas reales · 39 rutas OSRM · 402 polígonos · Geocercas GPS · Uniban 2012--2025}
         \end{tabular}
     };
@@ -541,17 +523,17 @@ ajustar parámetros, y ver los resultados en tiempo real.}
 \tagline{verde}{Siguientes Pasos}
 
 \vspace{8pt}
-\begin{quote}
-\itshape\small
-``Estamos convencidos de que operativamente es beneficioso.
-Ya tenemos los números que muestran que financieramente también lo es.
+\begin{block}{}
+\small
+El Centro de Consolidación nos prepara para el cambio tarifario que viene.
+Con el modelo actual (\$/caja), el beneficio es operativo.
+Con el modelo \$/viaje, el beneficio es financiero y \textbf{masivo}.
 
-\textbf{\textcolor{verde}{La pregunta no es si hacerlo, sino cuándo.}}''
+\vspace{4pt}
+\textbf{\textcolor{verde}{\large La pregunta no es si hacerlo, sino cuándo.}}
+\end{block}
 
-\upshape\tiny\color{gris}\vspace{2pt}--- Viabilidad Centro de Consolidación, Marzo 2026
-\end{quote}
-
-\vspace{10pt}
+\vspace{12pt}
 \begin{center}
 \begin{tikzpicture}
     \node[rounded corners=4pt, fill=verdeclaro, draw=verde!30,
