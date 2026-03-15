@@ -70,6 +70,8 @@
         .sc-btn.a-hub{background:var(--green-bg);border-color:var(--green);color:var(--green);}
         .sc-btn.a-sc1{background:var(--red-bg);border-color:var(--red);color:var(--red);}
         .sc-btn.a-sc3{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+        .sc-btn.a-caja{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
+        .sc-btn.a-viaje{background:rgba(255,59,78,0.12);border-color:var(--red);color:var(--red);}
 
         /* KPI */
         .kpi-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
@@ -485,6 +487,29 @@
         </div>
     </div>
 
+    <!-- Pricing Model Toggle -->
+    <div class="c" id="pricing-card" style="border-color:rgba(240,160,48,0.25);">
+        <div class="c-h"><span class="c-t">Modelo Tarifario</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.3);background:var(--yellow-bg);" id="pricing-badge">$/CAJA</span></div>
+        <div class="sc-btns">
+            <button class="sc-btn a-sc1" id="btn-pcaja" onclick="setPricingModel('caja')" style="font-size:10px;padding:8px 6px;">$/CAJA<br><span style="font-size:8px;font-weight:400;opacity:0.7;">Modelo actual</span></button>
+            <button class="sc-btn" id="btn-pviaje" onclick="setPricingModel('viaje')" style="font-size:10px;padding:8px 6px;">$/VIAJE<br><span style="font-size:8px;font-weight:400;opacity:0.7;">SICE-TAC nuevo</span></button>
+        </div>
+        <div id="pricing-impact" style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;display:none;">
+            <div style="background:var(--red-bg);padding:8px;border-radius:4px;border:1px solid rgba(255,59,78,0.2);">
+                <div style="color:var(--red);font-weight:700;margin-bottom:4px;">IMPACTO MODELO POR VIAJE</div>
+                <div style="color:var(--text2);line-height:1.7;">
+                    Flete mula: <span style="color:var(--text);" id="pi-flete">$600K</span>/viaje<br>
+                    Stand-by: <span style="color:var(--text);" id="pi-standby">$50K</span>/hora<br>
+                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$800</span>/caja<br>
+                    Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$380</span>/caja<br>
+                    <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
+                        Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">$2,400M</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- KPIs -->
     <div class="c">
         <div class="c-h"><span class="c-t">Indicadores Clave</span><span id="sc-icon" style="font-size:13px;">&#x26A0;</span></div>
@@ -687,8 +712,8 @@
 
     <!-- Logistics Costs -->
     <div class="c" id="cost-card">
-        <div class="c-h"><span class="c-t">Costos Logisticos</span><span class="badge badge-b">$/CAJA</span></div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;">Modelo parametrico basado en distancia, tiempo y flota</div>
+        <div class="c-h"><span class="c-t">Costos Logisticos</span><span class="badge badge-b" id="cost-model-badge">$/CAJA</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;" id="cost-model-desc">Modelo parametrico basado en distancia, tiempo y flota</div>
         <div class="kpi-g">
             <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$386</div><div class="kpi-l">$/caja Directo</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$298</div><div class="kpi-l">$/caja Hub</div></div>
@@ -696,14 +721,14 @@
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">$502M</div><div class="kpi-l">Ahorro anual</div></div>
         </div>
         <div style="margin-top:8px;">
-            <div class="sl-t" style="margin-bottom:4px;">Desglose por componente ($/caja)</div>
+            <div class="sl-t" style="margin-bottom:4px;" id="cost-table-title">Desglose por componente ($/caja)</div>
             <table class="od-t" style="font-size:8px;">
                 <thead><tr><th>Componente</th><th style="color:var(--red);">Directo</th><th style="color:var(--green);">Hub</th><th>Delta</th></tr></thead>
                 <tbody id="cost-detail">
-                    <tr><td>Combustible</td><td id="cd-fuel-d">$148</td><td id="cd-fuel-h">$108</td><td class="sav" id="cd-fuel-s">-27%</td></tr>
-                    <tr><td>Conductor</td><td id="cd-drv-d">$82</td><td id="cd-drv-h">$58</td><td class="sav" id="cd-drv-s">-29%</td></tr>
-                    <tr><td>Peajes</td><td id="cd-toll-d">$35</td><td id="cd-toll-h">$18</td><td class="sav" id="cd-toll-s">-49%</td></tr>
-                    <tr><td>Desgaste vehic.</td><td id="cd-wear-d">$68</td><td id="cd-wear-h">$52</td><td class="sav" id="cd-wear-s">-24%</td></tr>
+                    <tr><td id="cd-fuel-label">Combustible</td><td id="cd-fuel-d">$148</td><td id="cd-fuel-h">$108</td><td class="sav" id="cd-fuel-s">-27%</td></tr>
+                    <tr><td id="cd-drv-label">Conductor</td><td id="cd-drv-d">$82</td><td id="cd-drv-h">$58</td><td class="sav" id="cd-drv-s">-29%</td></tr>
+                    <tr><td id="cd-toll-label">Peajes</td><td id="cd-toll-d">$35</td><td id="cd-toll-h">$18</td><td class="sav" id="cd-toll-s">-49%</td></tr>
+                    <tr><td id="cd-wear-label">Desgaste vehic.</td><td id="cd-wear-d">$68</td><td id="cd-wear-h">$52</td><td class="sav" id="cd-wear-s">-24%</td></tr>
                     <tr><td>Consolidacion Hub</td><td id="cd-cons-d">--</td><td id="cd-cons-h">$42</td><td style="color:var(--yellow);" id="cd-cons-s">+$42</td></tr>
                     <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$386</td><td style="color:var(--green);" id="cd-tot-h">$298</td><td class="sav" id="cd-tot-s">-23%</td></tr>
                 </tbody>
@@ -738,33 +763,37 @@
         </div>
     </div>
 
-    <!-- Transport Cost Model Comparison -->
-    <div class="c" style="border-color:rgba(240,160,48,0.2);">
-        <div class="c-h"><span class="c-t">Modelo Transporte: Antes vs Despues</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.3);background:var(--yellow-bg);">CLAVE</span></div>
+    <!-- Transport Cost Model Comparison — DYNAMIC -->
+    <div class="c" id="transport-model-card" style="border-color:rgba(240,160,48,0.2);">
+        <div class="c-h"><span class="c-t">Riesgo Tarifario</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.3);background:var(--yellow-bg);">CLAVE</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
-                <div class="kpi" style="border-color:rgba(255,59,78,0.2);">
-                    <div class="kpi-v r" style="font-size:14px;">$300-400</div>
-                    <div class="kpi-l">COP/caja (modelo actual)</div>
-                    <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por caja al transportador</div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;margin-bottom:8px;">
+                <div class="kpi" style="border-color:rgba(240,160,48,0.2);">
+                    <div class="kpi-v y" style="font-size:14px;">$300-400</div>
+                    <div class="kpi-l">$/caja (hoy)</div>
+                    <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por caja</div>
                 </div>
+                <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;">$800</div>
-                    <div class="kpi-l">COP/caja (nuevo por trayecto)</div>
-                    <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje + stand-by (x2)</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$625</div>
+                    <div class="kpi-l">$/caja (SICE-TAC)</div>
+                    <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
             </div>
-            <div style="background:var(--bg);padding:8px;border-radius:4px;border:1px solid var(--border);">
-                <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Impacto modelo por trayecto:</div>
-                <div style="color:var(--text2);line-height:1.7;">
-                    Flete mula (20 pallets): <span style="color:var(--text);">~$600,000 COP</span><br>
-                    Equivalente por caja: <span style="color:var(--red);font-weight:600;">$800 COP (+100%)</span><br>
-                    Transportadores exigen: <span style="color:var(--text);">cobro por viaje + stand-by</span><br>
-                    <span style="color:var(--green);font-weight:600;">Centro Logistico elimina este riesgo</span> al consolidar y reducir viajes
-                </div>
+            <div style="background:var(--bg);padding:8px;border-radius:4px;border:1px solid var(--border);line-height:1.7;color:var(--text2);">
+                <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Transportadores exigen cambio de modelo:</div>
+                Flete mula (20 pallets × 48 cajas): <span style="color:var(--text);">~$600,000 COP/viaje</span><br>
+                Stand-by puerto: <span style="color:var(--text);">$50,000/hora × 5-6h = $275,000</span><br>
+                SICE-TAC (Min. Transporte): <span style="color:var(--red);font-weight:600;">tarifa regulada por peso/destino</span><br>
+                <span style="color:var(--yellow);font-weight:600;">G20 no ha cedido aun</span> — pero es cuestion de tiempo
             </div>
-            <div style="margin-top:6px;background:var(--green-bg);padding:6px 8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
-                <span style="color:var(--green);font-weight:600;">Con Centro:</span> <span style="color:var(--text2);">Reduccion ~50% parque automotor. Mulas solo salen consolidadas+contenerizadas del Centro.</span>
+            <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
+                <span style="color:var(--green);font-weight:700;">Con Centro + modelo $/viaje:</span><br>
+                <span style="color:var(--text2);">Mulas salen <b style="color:var(--green);">llenas</b> (960 cajas), espera &lt;1h. Costo baja de <span style="color:var(--red);">$625</span> a <span style="color:var(--green);" id="tm-hub-precio">$104</span>/caja.</span>
+            </div>
+            <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
+                <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
+                <button onclick="setPricingModel('viaje')" style="margin-top:4px;padding:5px 16px;background:var(--red-bg);border:1px solid var(--red);border-radius:4px;color:var(--red);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;">ACTIVAR $/VIAJE</button>
             </div>
         </div>
     </div>
@@ -1183,6 +1212,8 @@ const CONFIG = {
   fleet: { N_MULAS: 4, N_SENC: 6, MULA_CAP: 1152, SENC_CAP: 528 },
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960 },
+  // Modelo por viaje: flete por mula, stand-by por hora, horas promedio espera
+  trip: { FLETE_VIAJE: 600000, STANDBY_HR: 50000, ESPERA_DIRECT_H: 5.5, ESPERA_HUB_H: 0.75 },
   regional: { ANNUAL_CAJAS: 114e6 }
 };
 
@@ -1985,14 +2016,18 @@ function showScenarioBanner(sc) {
     // Force reflow
     void el.offsetWidth;
 
+    const isV = pricingModel === 'viaje';
     if (sc === 'sc1') {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
-            '<div class="sc-banner-desc">150+ tractomulas/dia en via de 1 carril. 5-6h espera. Costo x2.</div>';
+            '<div class="sc-banner-desc">' + (isV
+                ? '150+ tractomulas/dia. Modelo $/viaje + stand-by duplica costos.'
+                : '150+ tractomulas/dia en via de 1 carril. 5-6h espera. Costo x2.') + '</div>';
     } else {
+        const save = simResults.annualSave || 502;
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
-            '<div class="sc-banner-desc">Solo mulas llenas. 89% menos trafico. $502M ahorro/ano.</div>';
+            '<div class="sc-banner-desc">Solo mulas llenas. 89% menos trafico. $' + save + 'M ahorro/ano.</div>';
     }
     el.style.display = '';
     el.style.animation = 'none';
@@ -2016,14 +2051,18 @@ function updateCallouts() {
     const annualSave = r.annualSave || 502;
     const savePerBox = r.savePerBox || 88;
 
+    const isViaje = pricingModel === 'viaje';
+    const costLabel = isViaje ? 'Modelo $/viaje SICE-TAC' : 'Riesgo: $350&rarr;$800/caja';
+    const hubLabel = isViaje ? 'mulas llenas, sin stand-by' : 'contenerizadas';
+
     if (curSc === 'sc1') {
         container.innerHTML =
             '<div class="callout callout-problem pos-tr"><span class="callout-icon">&#x26A0;</span> <span class="callout-num">' + (totalViajes > 0 ? totalViajes : 154) + ' viajes/dia</span><div class="callout-sub">en via de 1 carril</div></div>' +
-            '<div class="callout callout-problem pos-br"><span class="callout-icon">&#x23F3;</span> <span class="callout-num">5-6h espera</span><div class="callout-sub">en puerto por mula</div></div>' +
-            '<div class="callout callout-problem pos-bl"><span class="callout-icon">&#x1F4B8;</span> <span class="callout-num">$' + costDirect + '/caja</span><div class="callout-sub">Riesgo: $350&rarr;$800/caja</div></div>';
+            '<div class="callout callout-problem pos-br"><span class="callout-icon">&#x23F3;</span> <span class="callout-num">5-6h espera</span><div class="callout-sub">' + (isViaje ? 'stand-by $275K/viaje' : 'en puerto por mula') + '</div></div>' +
+            '<div class="callout callout-problem pos-bl"><span class="callout-icon">&#x1F4B8;</span> <span class="callout-num">$' + costDirect + '/caja</span><div class="callout-sub">' + costLabel + '</div></div>';
     } else {
         container.innerHTML =
-            '<div class="callout callout-solution pos-tr"><span class="callout-icon">&#x2714;</span> Solo mulas <span class="callout-num">llenas</span><div class="callout-sub">contenerizadas</div></div>' +
+            '<div class="callout callout-solution pos-tr"><span class="callout-icon">&#x2714;</span> Solo mulas <span class="callout-num">llenas</span><div class="callout-sub">' + hubLabel + '</div></div>' +
             '<div class="callout callout-solution pos-br"><span class="callout-icon">&#x1F4C9;</span> <span class="callout-num">' + redPct + '% menos</span><div class="callout-sub">trafico — de ' + (totalViajes > 0 ? totalViajes : 154) + ' a ' + (hubMulas > 0 ? hubMulas : 17) + ' mulas/dia</div></div>' +
             '<div class="callout callout-solution pos-bl"><span class="callout-icon">&#x1F4B0;</span> <span class="callout-num">$' + annualSave + 'M ahorro/ano</span><div class="callout-sub">-$' + savePerBox + '/caja logistico</div></div>';
     }
@@ -2156,6 +2195,21 @@ function toggleLy(name){
 }
 
 // ============================================================
+// PRICING MODEL — $/caja (actual) vs $/viaje (SICE-TAC nuevo)
+// ============================================================
+let pricingModel = 'caja'; // 'caja' or 'viaje'
+
+function setPricingModel(model) {
+    pricingModel = model;
+    document.getElementById('btn-pcaja').className = model === 'caja' ? 'sc-btn a-caja' : 'sc-btn';
+    document.getElementById('btn-pviaje').className = model === 'viaje' ? 'sc-btn a-viaje' : 'sc-btn';
+    document.getElementById('pricing-badge').textContent = model === 'caja' ? '$/CAJA' : '$/VIAJE';
+    document.getElementById('pricing-badge').style.color = model === 'caja' ? 'var(--yellow)' : 'var(--red)';
+    document.getElementById('pricing-impact').style.display = model === 'viaje' ? '' : 'none';
+    updateSim();
+}
+
+// ============================================================
 // SHARED SIM RESULTS (consumed by financial dashboard)
 // ============================================================
 const simResults = {
@@ -2262,29 +2316,61 @@ function updateSim(){
     stm.textContent=`~${et} min Hub-Puerto`;
 
     // ============================================================
-    // LOGISTICS COST MODEL — reactive to sliders (uses CONFIG)
+    // LOGISTICS COST MODEL — reactive to sliders + pricing model
     // ============================================================
     const {DIESEL_KM, DRIVER_HR, TOLL_TRIP, TOLL_HUB, WEAR_KM, HUB_CONSOL, BOXES_TRUCK} = CONFIG.cost;
+    const {FLETE_VIAJE, STANDBY_HR, ESPERA_DIRECT_H, ESPERA_HUB_H} = CONFIG.trip;
 
     const avgDistDirect = OD.reduce((s,o)=>s+o.dd,0)/OD.length;
     const avgTimeDirect = OD.reduce((s,o)=>s+o.dt,0)/OD.length;
     const avgDistHub = OD.reduce((s,o)=>s+o.hd,0)/OD.length;
     const avgTimeHub = OD.reduce((s,o)=>s+o.ht,0)/OD.length;
 
-    const fuelDirect = Math.round((DIESEL_KM * avgDistDirect * 2) / BOXES_TRUCK);
-    const fuelHub = Math.round((DIESEL_KM * avgDistHub * 2) / BOXES_TRUCK);
-    const drvDirect = Math.round((DRIVER_HR * (avgTimeDirect * cf * 2 / 60)) / BOXES_TRUCK);
-    const drvHub = Math.round((DRIVER_HR * (avgTimeHub * Math.min(cf,1.3) * 2 / 60)) / BOXES_TRUCK);
-    const tollDirect = Math.round(TOLL_TRIP / BOXES_TRUCK * (g20t > 0 ? 1 : 0));
-    const tollHub = Math.round(TOLL_HUB / BOXES_TRUCK * (hubt > 0 ? 1 : 0));
-    const wearDirect = Math.round((WEAR_KM * avgDistDirect * 2) / BOXES_TRUCK);
-    const wearHub = Math.round((WEAR_KM * avgDistHub * 2) / BOXES_TRUCK);
+    let totalDirect, totalHub, fuelDirect, fuelHub, drvDirect, drvHub, tollDirect, tollHub, wearDirect, wearHub;
+    let tripDirect = 0, tripHub = 0, standbyDirect = 0, standbyHub = 0;
 
-    const totalDirect = fuelDirect + drvDirect + tollDirect + wearDirect;
-    const totalHub = fuelHub + drvHub + tollHub + wearHub + HUB_CONSOL;
-    const savePct = Math.round(((totalDirect - totalHub) / totalDirect) * 100);
+    if (pricingModel === 'caja') {
+        // === MODELO ACTUAL: parametrico por componente ===
+        fuelDirect = Math.round((DIESEL_KM * avgDistDirect * 2) / BOXES_TRUCK);
+        fuelHub = Math.round((DIESEL_KM * avgDistHub * 2) / BOXES_TRUCK);
+        drvDirect = Math.round((DRIVER_HR * (avgTimeDirect * cf * 2 / 60)) / BOXES_TRUCK);
+        drvHub = Math.round((DRIVER_HR * (avgTimeHub * Math.min(cf,1.3) * 2 / 60)) / BOXES_TRUCK);
+        tollDirect = Math.round(TOLL_TRIP / BOXES_TRUCK * (g20t > 0 ? 1 : 0));
+        tollHub = Math.round(TOLL_HUB / BOXES_TRUCK * (hubt > 0 ? 1 : 0));
+        wearDirect = Math.round((WEAR_KM * avgDistDirect * 2) / BOXES_TRUCK);
+        wearHub = Math.round((WEAR_KM * avgDistHub * 2) / BOXES_TRUCK);
+        totalDirect = fuelDirect + drvDirect + tollDirect + wearDirect;
+        totalHub = fuelHub + drvHub + tollHub + wearHub + HUB_CONSOL;
+    } else {
+        // === MODELO NUEVO: cobro por viaje + stand-by (SICE-TAC) ===
+        // Directo: cada camion hace 1 viaje con carga parcial, espera 5-6h en puerto
+        const cajasPerViajeDirect = Math.max(1, Math.round(cpd / Math.max(g20t, 1)));
+        tripDirect = Math.round(FLETE_VIAJE / cajasPerViajeDirect);
+        standbyDirect = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect);
+        fuelDirect = 0; drvDirect = 0; tollDirect = 0; wearDirect = 0;
+        totalDirect = tripDirect + standbyDirect;
+
+        // Hub: mulas llenas (960 cajas), espera <1h
+        const cajasPerViajeHub = BOXES_TRUCK; // mula llena
+        tripHub = Math.round(FLETE_VIAJE / cajasPerViajeHub);
+        standbyHub = Math.round((STANDBY_HR * ESPERA_HUB_H) / cajasPerViajeHub);
+        fuelHub = 0; drvHub = 0; tollHub = 0; wearHub = 0;
+        totalHub = tripHub + standbyHub + HUB_CONSOL;
+
+        // Update pricing impact panel
+        document.getElementById('pi-flete').textContent = '$' + (FLETE_VIAJE/1000).toFixed(0) + 'K';
+        document.getElementById('pi-standby').textContent = '$' + (STANDBY_HR/1000).toFixed(0) + 'K';
+        document.getElementById('pi-direct-caja').textContent = '$' + totalDirect;
+        document.getElementById('pi-hub-caja').textContent = '$' + totalHub;
+    }
+
+    const savePct = Math.round(((totalDirect - totalHub) / Math.max(totalDirect, 1)) * 100);
     const annualBoxes = p * 1000 * 52;  // cajas/year
     const annualSave = Math.round((totalDirect - totalHub) * annualBoxes / 1000000);
+
+    if (pricingModel === 'viaje') {
+        document.getElementById('pi-annual-save').textContent = '$' + annualSave.toLocaleString() + 'M';
+    }
 
     // Update cost card
     document.getElementById('cost-direct').textContent = `$${totalDirect}`;
@@ -2294,27 +2380,80 @@ function updateSim(){
     document.getElementById('cost-annual').textContent = `$${annualSave}M`;
     document.getElementById('cost-annual').className = 'kpi-v ' + (annualSave > 0 ? 'g' : 'r');
 
-    // Update cost breakdown
+    // Update cost breakdown table
     const fmt = v => `$${v}`;
     const pctFmt = (d,h) => {const p=Math.round(((d-h)/Math.max(d,1))*100); return p>0?`-${p}%`:`+${Math.abs(p)}%`;};
-    document.getElementById('cd-fuel-d').textContent = fmt(fuelDirect);
-    document.getElementById('cd-fuel-h').textContent = fmt(fuelHub);
-    document.getElementById('cd-fuel-s').textContent = pctFmt(fuelDirect,fuelHub);
-    document.getElementById('cd-drv-d').textContent = fmt(drvDirect);
-    document.getElementById('cd-drv-h').textContent = fmt(drvHub);
-    document.getElementById('cd-drv-s').textContent = pctFmt(drvDirect,drvHub);
-    document.getElementById('cd-toll-d').textContent = fmt(tollDirect);
-    document.getElementById('cd-toll-h').textContent = fmt(tollHub);
-    document.getElementById('cd-toll-s').textContent = pctFmt(tollDirect,tollHub);
-    document.getElementById('cd-wear-d').textContent = fmt(wearDirect);
-    document.getElementById('cd-wear-h').textContent = fmt(wearHub);
-    document.getElementById('cd-wear-s').textContent = pctFmt(wearDirect,wearHub);
-    document.getElementById('cd-cons-d').textContent = '--';
-    document.getElementById('cd-cons-h').textContent = fmt(HUB_CONSOL);
-    document.getElementById('cd-cons-s').textContent = `+$${HUB_CONSOL}`;
+
+    if (pricingModel === 'caja') {
+        document.getElementById('cd-fuel-d').textContent = fmt(fuelDirect);
+        document.getElementById('cd-fuel-h').textContent = fmt(fuelHub);
+        document.getElementById('cd-fuel-s').textContent = pctFmt(fuelDirect,fuelHub);
+        document.getElementById('cd-drv-d').textContent = fmt(drvDirect);
+        document.getElementById('cd-drv-h').textContent = fmt(drvHub);
+        document.getElementById('cd-drv-s').textContent = pctFmt(drvDirect,drvHub);
+        document.getElementById('cd-toll-d').textContent = fmt(tollDirect);
+        document.getElementById('cd-toll-h').textContent = fmt(tollHub);
+        document.getElementById('cd-toll-s').textContent = pctFmt(tollDirect,tollHub);
+        document.getElementById('cd-wear-d').textContent = fmt(wearDirect);
+        document.getElementById('cd-wear-h').textContent = fmt(wearHub);
+        document.getElementById('cd-wear-s').textContent = pctFmt(wearDirect,wearHub);
+        document.getElementById('cd-cons-d').textContent = '--';
+        document.getElementById('cd-cons-h').textContent = fmt(HUB_CONSOL);
+        document.getElementById('cd-cons-s').textContent = `+$${HUB_CONSOL}`;
+    } else {
+        document.getElementById('cd-fuel-d').textContent = fmt(tripDirect);
+        document.getElementById('cd-fuel-h').textContent = fmt(tripHub);
+        document.getElementById('cd-fuel-s').textContent = pctFmt(tripDirect,tripHub);
+        document.getElementById('cd-drv-d').textContent = fmt(standbyDirect);
+        document.getElementById('cd-drv-h').textContent = fmt(standbyHub);
+        document.getElementById('cd-drv-s').textContent = pctFmt(standbyDirect,standbyHub);
+        document.getElementById('cd-toll-d').textContent = '--';
+        document.getElementById('cd-toll-h').textContent = '--';
+        document.getElementById('cd-toll-s').textContent = '--';
+        document.getElementById('cd-wear-d').textContent = '--';
+        document.getElementById('cd-wear-h').textContent = '--';
+        document.getElementById('cd-wear-s').textContent = '--';
+        document.getElementById('cd-cons-d').textContent = '--';
+        document.getElementById('cd-cons-h').textContent = fmt(HUB_CONSOL);
+        document.getElementById('cd-cons-s').textContent = `+$${HUB_CONSOL}`;
+    }
     document.getElementById('cd-tot-d').textContent = fmt(totalDirect);
     document.getElementById('cd-tot-h').textContent = fmt(totalHub);
     document.getElementById('cd-tot-s').textContent = pctFmt(totalDirect,totalHub);
+
+    // Update cost card labels based on pricing model
+    if (pricingModel === 'caja') {
+        document.getElementById('cost-model-badge').textContent = '$/CAJA';
+        document.getElementById('cost-model-badge').style.color = '';
+        document.getElementById('cost-model-desc').textContent = 'Modelo parametrico basado en distancia, tiempo y flota';
+        document.getElementById('cost-table-title').textContent = 'Desglose por componente ($/caja)';
+        document.getElementById('cd-fuel-label').textContent = 'Combustible';
+        document.getElementById('cd-drv-label').textContent = 'Conductor';
+        document.getElementById('cd-toll-label').textContent = 'Peajes';
+        document.getElementById('cd-wear-label').textContent = 'Desgaste vehic.';
+    } else {
+        document.getElementById('cost-model-badge').textContent = '$/VIAJE';
+        document.getElementById('cost-model-badge').style.color = 'var(--red)';
+        document.getElementById('cost-model-desc').textContent = 'Modelo SICE-TAC: cobro por viaje + stand-by por hora';
+        document.getElementById('cost-table-title').textContent = 'Desglose modelo por viaje ($/caja equiv.)';
+        document.getElementById('cd-fuel-label').textContent = 'Flete/viaje';
+        document.getElementById('cd-drv-label').textContent = 'Stand-by';
+        document.getElementById('cd-toll-label').textContent = '--';
+        document.getElementById('cd-wear-label').textContent = '--';
+    }
+
+    // Update Riesgo Tarifario card with dynamic $/viaje calculation
+    {
+        const cajasPerViajeDirect_ref = Math.max(1, Math.round(cpd / Math.max(g20t, 1)));
+        const tripRef = Math.round(FLETE_VIAJE / cajasPerViajeDirect_ref);
+        const sbRef = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect_ref);
+        const directViaje = tripRef + sbRef;
+        const hubViaje = Math.round(FLETE_VIAJE / BOXES_TRUCK) + Math.round((STANDBY_HR * ESPERA_HUB_H) / BOXES_TRUCK) + HUB_CONSOL;
+        const tmNuevo = document.getElementById('tm-nuevo-precio');
+        const tmHub = document.getElementById('tm-hub-precio');
+        if (tmNuevo) tmNuevo.textContent = '$' + directViaje;
+        if (tmHub) tmHub.textContent = '$' + hubViaje;
+    }
 
     // Update executive summary cost
     const execCost = document.getElementById('exec-cost-save');
