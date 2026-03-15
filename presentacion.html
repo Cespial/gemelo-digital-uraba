@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Consolidacion Logistica | Grupo 20 — Junta Directiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06080a; --bg2: #0c0f12; --bg3: #141820;
+            --border: #1e2738; --border2: #2a3548;
+            --text: #d8dce6; --text2: #7a8494; --text3: #4a5568;
+            --green: #00e878; --green2: #00b85c;
+            --red: #ff3b4e; --yellow: #f0a030;
+            --blue: #3898ff; --cyan: #18d8d0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; height: 100vh; }
+
+        /* SLIDE ENGINE */
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 60px 80px; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+        .slide.active { opacity: 1; pointer-events: auto; }
+
+        /* NAV */
+        .nav { position: fixed; bottom: 24px; right: 32px; z-index: 100; display: flex; gap: 8px; align-items: center; }
+        .nav-btn { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg2);
+            color: var(--text2); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .nav-btn:hover { background: var(--bg3); color: var(--text); border-color: var(--green); }
+        .nav-counter { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); }
+        .progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--green); transition: width 0.4s; z-index: 100; }
+
+        /* SLIDE HEADER */
+        .slide-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 16px; }
+        .slide-title { font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+        .slide-subtitle { font-size: 18px; color: var(--text2); line-height: 1.6; max-width: 800px; }
+        .slide-body { font-size: 15px; color: var(--text2); line-height: 1.8; max-width: 900px; }
+
+        /* LAYOUT HELPERS */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; max-width: 1100px; align-items: start; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; width: 100%; max-width: 1100px; }
+        .center { text-align: center; }
+        .left-align { align-items: flex-start; }
+
+        /* KPI BOXES */
+        .kpi-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .kpi-val { font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1.1; }
+        .kpi-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text3); text-transform: uppercase;
+            letter-spacing: 1px; margin-top: 6px; }
+
+        /* TIMELINE */
+        .timeline { display: flex; align-items: center; gap: 0; width: 100%; max-width: 900px; margin: 24px 0; }
+        .tl-node { flex-shrink: 0; text-align: center; }
+        .tl-dot { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin: 0 auto 8px; }
+        .tl-name { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; }
+        .tl-desc { font-size: 9px; color: var(--text3); margin-top: 2px; max-width: 100px; }
+        .tl-line { flex: 1; height: 2px; margin: 0 -4px; margin-bottom: 30px; }
+
+        /* COMPARISON */
+        .vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; width: 100%; max-width: 1000px; }
+        .vs-col { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+        .vs-arrow { font-size: 32px; color: var(--green); font-weight: 800; }
+
+        /* QUOTE */
+        .quote { font-family: 'Inter', sans-serif; font-size: 20px; font-style: italic; color: var(--text);
+            line-height: 1.7; max-width: 750px; position: relative; padding-left: 24px;
+            border-left: 3px solid var(--green); }
+        .quote-author { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3);
+            margin-top: 12px; font-style: normal; }
+
+        /* BULLET LIST */
+        .bullets { list-style: none; font-size: 15px; color: var(--text2); line-height: 2.2; }
+        .bullets li::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 2px;
+            margin-right: 12px; vertical-align: middle; }
+        .bullets.green li::before { background: var(--green); }
+        .bullets.red li::before { background: var(--red); }
+        .bullets.yellow li::before { background: var(--yellow); }
+        .bullets.blue li::before { background: var(--blue); }
+
+        /* LOGO HEADER */
+        .deck-logo { position: fixed; top: 20px; left: 28px; z-index: 100; display: flex; align-items: center; gap: 10px; }
+        .logo-box { width: 36px; height: 36px; background: linear-gradient(135deg, var(--green), var(--green2)); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 800; color: #000; }
+        .logo-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); }
+
+        /* BIG NUMBER */
+        .big-num { font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1; }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box { background: rgba(0,232,120,0.08); border: 1px solid rgba(0,232,120,0.2); border-radius: 10px; padding: 20px 28px; }
+        .highlight-box.red { background: rgba(255,59,78,0.08); border-color: rgba(255,59,78,0.2); }
+        .highlight-box.yellow { background: rgba(240,160,48,0.08); border-color: rgba(240,160,48,0.2); }
+
+        /* CTA */
+        .cta-btn { display: inline-block; padding: 14px 32px; background: var(--green); color: #000; font-family: 'JetBrains Mono', monospace;
+            font-size: 13px; font-weight: 700; border-radius: 8px; text-decoration: none; letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,232,120,0.25); }
+
+        /* FOOTER */
+        .slide-footer { position: absolute; bottom: 24px; left: 32px; font-family: 'JetBrains Mono', monospace;
+            font-size: 8px; color: var(--text3); letter-spacing: 0.5px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .slide { padding: 40px 28px; }
+            .two-col, .three-col { grid-template-columns: 1fr; gap: 16px; }
+            .vs { grid-template-columns: 1fr; }
+            .vs-arrow { transform: rotate(90deg); text-align: center; }
+            .slide-title { font-size: 28px !important; }
+            .big-num { font-size: 48px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="deck-logo">
+    <div class="logo-box">G20</div>
+    <div class="logo-text">JUNTA DIRECTIVA &bull; MARZO 2026</div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck" id="deck">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: COVER -->
+<!-- ============================================================ -->
+<div class="slide active center" id="s0">
+    <div class="slide-tag" style="color:var(--green);">Estudio de Viabilidad</div>
+    <div class="slide-title" style="font-size:44px;">Centro de Consolidacion<br>Logistica</div>
+    <div style="width:60px;height:3px;background:var(--green);margin:16px auto 20px;border-radius:2px;"></div>
+    <div class="slide-subtitle center">
+        Modelo 3 Nodos para las 19 fincas de Grupo 20<br>
+        <span style="color:var(--text3);">Uraba, Antioquia &bull; Presentacion Junta Directiva</span>
+    </div>
+    <div style="margin-top:40px;display:flex;gap:20px;align-items:center;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);padding:6px 12px;border:1px solid var(--border);border-radius:6px;">
+            GEMELO DIGITAL INTERACTIVO &bull; <a href="https://gemelo-digital-uraba.vercel.app" target="_blank" style="color:var(--green);text-decoration:none;">gemelo-digital-uraba.vercel.app</a>
+        </div>
+    </div>
+    <div class="slide-footer">Observatorio de Datos y Analisis SAS &bull; Datos: OSRM, DANE, UPRA, Geocercas GPS, Uniban</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: THE PROBLEM -->
+<!-- ============================================================ -->
+<div class="slide left-align" id="s1">
+    <div class="slide-tag" style="color:var(--red);">El Problema</div>
+    <div class="slide-title" style="font-size:38px;">El caos logistico<br>de Uraba</div>
+    <div class="slide-body" style="margin-bottom:28px;">
+        Hoy, cada una de nuestras <b style="color:var(--text);">19 fincas</b> despacha de forma independiente hacia el puerto.
+        Eso significa tractomulas a medio llenar, en una via de un solo carril, esperando horas en el embarcadero.
+    </div>
+    <div class="three-col" style="max-width:900px;">
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:36px;color:var(--red);">154</div>
+            <div class="kpi-label">viajes/dia en la via</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:36px;color:var(--red);">5-6h</div>
+            <div class="kpi-label">espera en puerto por mula</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:36px;color:var(--red);">19</div>
+            <div class="kpi-label">fincas despachando solas</div>
+        </div>
+    </div>
+    <div style="margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);">
+        Fuente: Geocercas GPS 7 vehiculos (Mar 9-12, 2026) &bull; OSRM routing real &bull; Modelo BPR congestion
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: THE TICKING CLOCK -->
+<!-- ============================================================ -->
+<div class="slide left-align" id="s2">
+    <div class="slide-tag" style="color:var(--yellow);">La Amenaza</div>
+    <div class="slide-title" style="font-size:36px;">El modelo tarifario<br>va a cambiar</div>
+    <div class="vs" style="margin-top:8px;">
+        <div class="vs-col" style="border-color:rgba(240,160,48,0.3);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Hoy: $/Caja</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--yellow);">$300-400</div>
+            <div style="font-size:13px;color:var(--text2);margin-top:8px;line-height:1.6;">
+                Pagamos por caja transportada.<br>
+                Si el camion va medio vacio, <b style="color:var(--text);">es problema del transportador</b>.
+            </div>
+        </div>
+        <div class="vs-arrow">&#x2192;</div>
+        <div class="vs-col" style="border-color:rgba(255,59,78,0.3);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Manana: $/Viaje + Stand-by</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--red);">$625+</div>
+            <div style="font-size:13px;color:var(--text2);margin-top:8px;line-height:1.6;">
+                Flete: $600K/viaje + stand-by $50K/hora.<br>
+                <b style="color:var(--red);">El costo se duplica</b> y es <b style="color:var(--text);">nuestro problema</b>.
+            </div>
+        </div>
+    </div>
+    <div class="highlight-box yellow" style="margin-top:20px;max-width:1000px;">
+        <span style="color:var(--yellow);font-weight:700;">Los transportadores llevan 2 anos exigiendo este cambio.</span>
+        <span style="color:var(--text2);">El SICE-TAC del Ministerio de Transporte ya lo tiene regulado. G20 no ha cedido aun — pero es cuestion de tiempo.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: THE SOLUTION -->
+<!-- ============================================================ -->
+<div class="slide left-align" id="s3">
+    <div class="slide-tag" style="color:var(--green);">La Solucion</div>
+    <div class="slide-title" style="font-size:38px;">Consolidar antes<br>de despachar</div>
+    <div class="slide-body" style="margin-bottom:24px;">
+        Un Centro de Consolidacion en <b style="color:var(--text);">Chinita</b>, a la salida de Apartado, donde la fruta de 12 fincas
+        llega, se paletiza, se conteneriza, y sale en <b style="color:var(--green);">mulas llenas</b> hacia Puerto Antioquia.
+    </div>
+    <div class="timeline">
+        <div class="tl-node">
+            <div class="tl-dot" style="background:rgba(255,122,48,0.15);border:2px solid #ff7a30;">&#x1F33F;</div>
+            <div class="tl-name" style="color:#ff7a30;">19 Fincas</div>
+            <div class="tl-desc">2,000 ha<br>110K cajas/sem</div>
+        </div>
+        <div class="tl-line" style="background:linear-gradient(90deg,#ff7a30,var(--green));"></div>
+        <div class="tl-node">
+            <div class="tl-dot" style="background:rgba(0,232,120,0.15);border:2px solid var(--green);">&#x1F4E6;</div>
+            <div class="tl-name" style="color:var(--green);">Centro</div>
+            <div class="tl-desc">12 fincas<br>985 ha (49%)</div>
+        </div>
+        <div class="tl-line" style="background:var(--green);"></div>
+        <div class="tl-node">
+            <div class="tl-dot" style="background:rgba(24,216,208,0.15);border:2px solid var(--cyan);">&#x1F69A;</div>
+            <div class="tl-name" style="color:var(--cyan);">Mini-Hub</div>
+            <div class="tl-desc">3 fincas<br>Guadalupe</div>
+        </div>
+        <div class="tl-line" style="background:var(--cyan);"></div>
+        <div class="tl-node">
+            <div class="tl-dot" style="background:rgba(255,122,48,0.15);border:2px solid #ff7a30;">&#x26F5;</div>
+            <div class="tl-name" style="color:#ff7a30;">Zungo</div>
+            <div class="tl-desc">4 fincas<br>Occidente</div>
+        </div>
+        <div class="tl-line" style="background:linear-gradient(90deg,#ff7a30,var(--blue));"></div>
+        <div class="tl-node">
+            <div class="tl-dot" style="background:rgba(56,152,255,0.15);border:2px solid var(--blue);">&#x2693;</div>
+            <div class="tl-name" style="color:var(--blue);">Puerto</div>
+            <div class="tl-desc">Puerto<br>Antioquia</div>
+        </div>
+    </div>
+    <div class="highlight-box" style="max-width:900px;">
+        <b style="color:var(--green);">Resultado:</b>
+        <span style="color:var(--text2);">De 154 a <b style="color:var(--green);">17 mulas/dia</b>. Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora. </span>
+        <b style="color:var(--green);">-89% trafico en la via.</b>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: THE NUMBERS -->
+<!-- ============================================================ -->
+<div class="slide center" id="s4">
+    <div class="slide-tag" style="color:var(--green);">Impacto Financiero</div>
+    <div class="slide-title" style="font-size:36px;">Los numeros hablan</div>
+    <div class="three-col" style="margin-top:12px;">
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
+            <div class="kpi-val" style="font-size:44px;color:var(--green);">$502M</div>
+            <div class="kpi-label">Ahorro anual ($/caja)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:6px;">$88 COP menos por caja</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
+            <div class="kpi-val" style="font-size:44px;color:var(--green);">-89%</div>
+            <div class="kpi-label">Reduccion tractomulas</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:6px;">154 &rarr; 17 mulas/dia</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(56,152,255,0.3);">
+            <div class="kpi-val" style="font-size:44px;color:var(--blue);">~46 m</div>
+            <div class="kpi-label">Payback estimado</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:6px;">CAPEX $2,050M COP</div>
+        </div>
+    </div>
+    <div class="highlight-box red" style="margin-top:24px;max-width:1100px;">
+        <div style="display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <span style="color:var(--red);font-weight:700;font-family:'JetBrains Mono',monospace;">Si cambia a $/viaje:</span>
+            <span style="color:var(--text);">El ahorro salta a <b style="color:var(--green);font-size:18px;">$2,400M+/ano</b></span>
+            <span style="color:var(--text3);">&mdash; el hub pasa de conveniente a <b style="color:var(--red);">inevitable</b></span>
+        </div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:16px;">
+        Modelo parametrico: OSRM distancias reales + BPR congestion + CONFIG flota G20 &bull; Interactivo en gemelo-digital-uraba.vercel.app
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: BEYOND MONEY -->
+<!-- ============================================================ -->
+<div class="slide left-align" id="s5">
+    <div class="slide-tag" style="color:var(--cyan);">Mas Alla del Ahorro</div>
+    <div class="slide-title" style="font-size:34px;">20 beneficios que no se<br>miden solo en pesos</div>
+    <div class="two-col" style="margin-top:8px;">
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Hoy (sin centro)</div>
+            <ul class="bullets red">
+                <li>Recoleccion de fruta a las 2-3 AM</li>
+                <li>Camiones devueltos del puerto a las 11 PM</li>
+                <li>Riesgo de contaminacion en esperas largas</li>
+                <li>Anderson coordinando 19 fincas por celular</li>
+                <li>Fruta sin cadena de frio ni trazabilidad</li>
+                <li>Parque automotor de 37 anos promedio</li>
+            </ul>
+        </div>
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Con centro de consolidacion</div>
+            <ul class="bullets green">
+                <li>Turnos establecidos, despacho planificado</li>
+                <li>Fruta contenerizada desde el Centro</li>
+                <li>Calidad protegida: menor manipulacion</li>
+                <li>Trazabilidad digital de pallet a puerto</li>
+                <li>Cumplimiento de specs de exportacion</li>
+                <li>Escalable a otros productores de la zona</li>
+            </ul>
+        </div>
+    </div>
+    <div style="margin-top:20px;font-size:13px;color:var(--text3);font-style:italic;">
+        &ldquo;Nosotros sabemos que en tiempo, en operacion, en calidad, en cumplimiento, en todo eso es chuleado.
+        No sabemos si financieramente es beneficioso. Esa es la viabilidad que le tenemos que encontrar.&rdquo;
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7: CAPEX -->
+<!-- ============================================================ -->
+<div class="slide left-align" id="s6">
+    <div class="slide-tag" style="color:var(--blue);">Inversion</div>
+    <div class="slide-title" style="font-size:34px;">CAPEX estimado</div>
+    <div class="two-col" style="margin-top:8px;">
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:12px;">COMPONENTES DE INVERSION</div>
+            <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:13px;border-collapse:collapse;">
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Terreno (5 ha)</td><td style="text-align:right;color:var(--text);font-weight:600;">$750M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Construccion plataforma</td><td style="text-align:right;color:var(--text);font-weight:600;">$800M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Equipos</td><td style="text-align:right;color:var(--text);font-weight:600;">$300M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Capital de trabajo</td><td style="text-align:right;color:var(--text);font-weight:600;">$200M</td></tr>
+                <tr><td style="padding:10px 0;color:var(--green);font-weight:800;font-size:15px;">TOTAL</td><td style="text-align:right;color:var(--green);font-weight:800;font-size:18px;">$2,050M</td></tr>
+            </table>
+            <div style="margin-top:16px;font-size:12px;color:var(--text3);line-height:1.6;">
+                Ubicacion: <b style="color:var(--text);">Finca Chinita</b>, salida de Apartado, cerca de variante.
+                Rampa entrada, plataforma cubierta (pergola), rampa salida. Flujo unidireccional.
+            </div>
+        </div>
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:12px;">RETORNO ESPERADO</div>
+            <div class="kpi-box" style="border-color:rgba(0,232,120,0.25);margin-bottom:12px;">
+                <div class="kpi-val" style="font-size:28px;color:var(--green);">$502M/ano</div>
+                <div class="kpi-label">Ahorro modelo $/caja</div>
+            </div>
+            <div class="kpi-box" style="border-color:rgba(255,59,78,0.25);margin-bottom:12px;">
+                <div class="kpi-val" style="font-size:28px;color:var(--red);">$2,400M+/ano</div>
+                <div class="kpi-label">Ahorro modelo $/viaje</div>
+            </div>
+            <div class="kpi-box" style="border-color:rgba(56,152,255,0.25);">
+                <div class="kpi-val" style="font-size:28px;color:var(--blue);">~46 meses</div>
+                <div class="kpi-label">Payback ($/caja) &bull; &lt;12 meses ($/viaje)</div>
+            </div>
+            <div style="margin-top:12px;font-size:11px;color:var(--text3);">
+                Parametros ajustables en el gemelo digital financiero.
+                Sensibilidad a produccion, CAPEX, tasa de descuento.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: SCALABILITY -->
+<!-- ============================================================ -->
+<div class="slide left-align" id="s7">
+    <div class="slide-tag" style="color:var(--cyan);">Escalabilidad</div>
+    <div class="slide-title" style="font-size:34px;">No solo para Grupo 20</div>
+    <div class="slide-body" style="margin-bottom:24px;">
+        Hoy el Centro sirve a nuestras 19 fincas. Manana puede ser el centro de gravedad logistico
+        para cualquier productor que necesite llegar a Puerto Antioquia.
+    </div>
+    <div class="three-col">
+        <div class="kpi-box">
+            <div class="kpi-val" style="font-size:28px;color:var(--green);">19</div>
+            <div class="kpi-label">Fincas G20 (Fase 1)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">2,000 ha &bull; 1,740 empleos</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-val" style="font-size:28px;color:var(--cyan);">402</div>
+            <div class="kpi-label">Fincas bananeras en zona</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Potencial de servicio regional</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-val" style="font-size:28px;color:var(--blue);">7M ton</div>
+            <div class="kpi-label">Capacidad Puerto Antioquia</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Toda la carga necesita consolidarse</div>
+        </div>
+    </div>
+    <div class="highlight-box" style="margin-top:24px;max-width:1100px;">
+        <b style="color:var(--green);">Oportunidad:</b>
+        <span style="color:var(--text2);">Servicios de consolidacion a terceros generan ingresos adicionales y aceleran el payback.
+        Uniban tiene 250 fincas en la region. El Centro puede ser la puerta de entrada al puerto para toda Uraba.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: DIGITAL TWIN -->
+<!-- ============================================================ -->
+<div class="slide center" id="s8">
+    <div class="slide-tag" style="color:var(--green);">La Herramienta</div>
+    <div class="slide-title" style="font-size:36px;">Gemelo Digital Interactivo</div>
+    <div class="slide-subtitle center" style="margin-bottom:24px;">
+        Todo lo que presentamos hoy esta vivo en una herramienta que pueden explorar,<br>
+        ajustar parametros, y ver los resultados en tiempo real.
+    </div>
+    <div style="width:100%;max-width:900px;aspect-ratio:16/9;background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;position:relative;">
+        <iframe src="https://gemelo-digital-uraba.vercel.app" style="width:100%;height:100%;border:none;" loading="lazy"></iframe>
+    </div>
+    <div style="margin-top:16px;">
+        <a href="https://gemelo-digital-uraba.vercel.app" target="_blank" class="cta-btn">ABRIR GEMELO DIGITAL &#x2197;</a>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: THE ASK -->
+<!-- ============================================================ -->
+<div class="slide center" id="s9">
+    <div class="slide-tag" style="color:var(--green);">Siguientes Pasos</div>
+    <div class="slide-title" style="font-size:38px;">La pregunta para la Junta</div>
+    <div style="max-width:800px;margin:0 auto;">
+        <div class="quote">
+            Estamos convencidos de que operativamente es beneficioso.
+            Ya tenemos los numeros que muestran que financieramente tambien lo es.
+            <b style="color:var(--green);">La pregunta no es si hacerlo, sino cuando.</b>
+            <div class="quote-author">&mdash; Viabilidad Centro de Consolidacion, Marzo 2026</div>
+        </div>
+    </div>
+    <div style="margin-top:36px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <div class="kpi-box" style="padding:16px 28px;border-color:rgba(0,232,120,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);font-weight:700;">1. VALIDAR CAPEX</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Implantacion + cotizacion detallada</div>
+        </div>
+        <div class="kpi-box" style="padding:16px 28px;border-color:rgba(56,152,255,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);font-weight:700;">2. COSTEO OPERATIVO</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Anderson: costos x finca actuales</div>
+        </div>
+        <div class="kpi-box" style="padding:16px 28px;border-color:rgba(240,160,48,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);font-weight:700;">3. NEGOCIAR TARIFA</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Anticipar modelo $/viaje con datos</div>
+        </div>
+    </div>
+    <div style="margin-top:32px;">
+        <a href="https://gemelo-digital-uraba.vercel.app" target="_blank" class="cta-btn">VER GEMELO DIGITAL EN VIVO &#x2197;</a>
+    </div>
+    <div class="slide-footer">Observatorio de Datos y Analisis SAS &bull; Marzo 2026</div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAVIGATION -->
+<div class="nav">
+    <span class="nav-counter" id="counter">1 / 10</span>
+    <button class="nav-btn" onclick="prev()">&#x2190;</button>
+    <button class="nav-btn" onclick="next()">&#x2192;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+
+function go(n) {
+    if (n < 0 || n >= slides.length) return;
+    slides[cur].classList.remove('active');
+    cur = n;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('progress').style.width = ((cur + 1) / slides.length * 100) + '%';
+}
+function next() { go(cur + 1); }
+function prev() { go(cur - 1); }
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'Backspace') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+});
+
+// Touch support
+let touchX = 0;
+document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+});
+
+go(0);
+</script>
+
+</body>
+</html>
