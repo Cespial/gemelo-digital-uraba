@@ -1785,13 +1785,13 @@ map.on('load',()=>{
     map.addLayer({id:'chaos-routes-glow',type:'line',source:'chaos-routes',paint:{
         'line-color':'#ff3b4e','line-width':['interpolate',['linear'],['get','prod'],4500,6,7800,14],
         'line-opacity':0.08,'line-blur':4
-    },layout:{'line-cap':'round','line-join':'round'}});
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     // Chaos main
     map.addLayer({id:'chaos-routes',type:'line',source:'chaos-routes',paint:{
         'line-color':'#ff3b4e',
         'line-width':['interpolate',['linear'],['get','prod'],4500,1.5,7800,3.5],
         'line-opacity':0.6
-    },layout:{'line-cap':'round','line-join':'round'}});
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // Hub routes colored by hub assignment (3-node model)
     const hubFeats=FARMS.map(f=>{
