@@ -526,7 +526,7 @@
         <div class="c-h"><span class="c-t tip" data-tip="BPR: Bureau of Public Roads — modelo estandar de congestion vial. bt=28min, bc=800 vehiculos">Simulador de Estres Vial</span></div>
         <div class="sl-g">
             <div class="sl-h"><span class="sl-t">Produccion G20</span><span class="sl-v g" id="pv">110K cajas/sem</span></div>
-            <input type="range" id="sl-p" min="75" max="135" value="110" oninput="throttledUpdateSim()">
+            <input type="range" id="sl-p" min="75" max="135" value="102" oninput="throttledUpdateSim()">
             <div class="sl-r"><span>Valle 75K</span><span>Pico 135K</span></div>
         </div>
         <div class="sl-g">
@@ -775,7 +775,7 @@
                 </div>
                 <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$625</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$1,389</div>
                     <div class="kpi-l">$/caja (SICE-TAC)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
@@ -789,7 +789,7 @@
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
                 <span style="color:var(--green);font-weight:700;">Con Centro + modelo $/viaje:</span><br>
-                <span style="color:var(--text2);">Mulas salen <b style="color:var(--green);">llenas</b> (960 cajas), espera &lt;1h. Costo baja de <span style="color:var(--red);">$625</span> a <span style="color:var(--green);" id="tm-hub-precio">$104</span>/caja.</span>
+                <span style="color:var(--text2);">Mulas salen <b style="color:var(--green);">llenas</b> (960 cajas), espera &lt;1h. Costo baja de <span style="color:var(--red);">$1,389</span> a <span style="color:var(--green);" id="tm-hub-precio">$786</span>/caja (incl. leg finca&rarr;hub).</span>
             </div>
             <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
                 <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
@@ -907,17 +907,17 @@
             <div class="dc-h"><span class="dc-t">Inversion Inicial (CAPEX)</span></div>
             <div class="fin-input-g">
                 <span class="fin-label">Terreno hub (hectareas)</span><span class="fin-val" id="fv-land-ha">5</span>
-                <div class="fin-slider"><input type="range" id="fs-land-ha" min="1" max="20" value="5" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-land-ha" min="0" max="20" value="0" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Costo terreno (COP M/ha)</span><span class="fin-val" id="fv-land-cost">150</span>
                 <div class="fin-slider"><input type="range" id="fs-land-cost" min="50" max="500" step="10" value="150" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Construccion plataforma (COP M)</span><span class="fin-val" id="fv-build">800</span>
                 <div class="fin-slider"><input type="range" id="fs-build" min="200" max="2000" step="50" value="800" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Equipos paletizacion (COP M)</span><span class="fin-val" id="fv-equip">300</span>
-                <div class="fin-slider"><input type="range" id="fs-equip" min="100" max="800" step="25" value="300" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-equip" min="100" max="800" step="25" value="200" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Vehiculos adicionales (COP M)</span><span class="fin-val" id="fv-vehicles">0</span>
                 <div class="fin-slider"><input type="range" id="fs-vehicles" min="0" max="2000" step="50" value="0" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Capital de trabajo (COP M)</span><span class="fin-val" id="fv-wkcap">200</span>
-                <div class="fin-slider"><input type="range" id="fs-wkcap" min="50" max="500" step="10" value="200" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-wkcap" min="50" max="500" step="10" value="50" oninput="updateFinancialDashboard()"></div>
             </div>
             <div class="capex-bar" id="fd-capex-bar"></div>
             <div class="fin-total">
@@ -933,17 +933,17 @@
             <div class="dc-h"><span class="dc-t">Costos Operativos (OPEX)</span></div>
             <div class="fin-input-g">
                 <span class="fin-label">Personal hub (operarios)</span><span class="fin-val" id="fv-staff">8</span>
-                <div class="fin-slider"><input type="range" id="fs-staff" min="2" max="25" value="8" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-staff" min="2" max="25" value="6" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Salario promedio (COP M/mes)</span><span class="fin-val" id="fv-salary">2.5</span>
-                <div class="fin-slider"><input type="range" id="fs-salary" min="1.5" max="5" step="0.1" value="2.5" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-salary" min="1.5" max="5" step="0.1" value="3.0" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Servicios (COP M/mes)</span><span class="fin-val" id="fv-services">15</span>
-                <div class="fin-slider"><input type="range" id="fs-services" min="5" max="40" value="15" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-services" min="2" max="40" value="6" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Mant. equipos (% CAPEX/ano)</span><span class="fin-val" id="fv-maint">5%</span>
-                <div class="fin-slider"><input type="range" id="fs-maint" min="1" max="10" value="5" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-maint" min="1" max="10" value="2" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Seguros (% CAPEX/ano)</span><span class="fin-val" id="fv-insurance">2%</span>
                 <div class="fin-slider"><input type="range" id="fs-insurance" min="1" max="5" value="2" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Administracion (COP M/mes)</span><span class="fin-val" id="fv-admin">8</span>
-                <div class="fin-slider"><input type="range" id="fs-admin" min="2" max="20" value="8" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-admin" min="2" max="20" value="3" oninput="updateFinancialDashboard()"></div>
             </div>
             <table class="opex-detail" id="fd-opex-detail">
                 <thead><tr><th>Componente</th><th>Mensual</th><th>Anual</th><th>%</th></tr></thead>
@@ -1211,7 +1211,8 @@
 const CONFIG = {
   fleet: { N_MULAS: 4, N_SENC: 6, MULA_CAP: 1152, SENC_CAP: 528 },
   bpr: { bt: 28, bc: 800, pce: 2.5 },
-  cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960 },
+  cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
+          TARIFA_CAJA: 350, FINCA_HUB: 80 },
   // Modelo por viaje: flete por mula, stand-by por hora, horas promedio espera
   trip: { FLETE_VIAJE: 600000, STANDBY_HR: 50000, ESPERA_DIRECT_H: 5.5, ESPERA_HUB_H: 0.75 },
   regional: { ANNUAL_CAJAS: 114e6 }
@@ -2021,13 +2022,14 @@ function showScenarioBanner(sc) {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? '150+ tractomulas/dia. Modelo $/viaje + stand-by duplica costos.'
-                : '150+ tractomulas/dia en via de 1 carril. 5-6h espera. Costo x2.') + '</div>';
+                ? '27 viajes/dia parciales (66% llenado). Modelo $/viaje + stand-by dispara costos.'
+                : '27 viajes/dia en via de 1 carril. 5-6h espera. Mulas a medio llenar.') + '</div>';
     } else {
-        const save = simResults.annualSave || 502;
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
-            '<div class="sc-banner-desc">Solo mulas llenas. 89% menos trafico. $' + save + 'M ahorro/ano.</div>';
+            '<div class="sc-banner-desc">' + (isV
+                ? 'Mulas llenas. 18 viajes/dia. Ahorro neto $2,800M/ano bajo $/viaje.'
+                : 'Solo mulas llenas. 18 viajes consolidados. Valor operativo + preparacion tarifaria.') + '</div>';
     }
     el.style.display = '';
     el.style.animation = 'none';
@@ -2052,19 +2054,19 @@ function updateCallouts() {
     const savePerBox = r.savePerBox || 88;
 
     const isViaje = pricingModel === 'viaje';
-    const costLabel = isViaje ? 'Modelo $/viaje SICE-TAC' : 'Riesgo: $350&rarr;$800/caja';
-    const hubLabel = isViaje ? 'mulas llenas, sin stand-by' : 'contenerizadas';
 
     if (curSc === 'sc1') {
+        const costLabel = isViaje ? '$' + costDirect + '/caja ($/viaje)' : '$' + costDirect + '/caja (tarifa plana)';
         container.innerHTML =
-            '<div class="callout callout-problem pos-tr"><span class="callout-icon">&#x26A0;</span> <span class="callout-num">' + (totalViajes > 0 ? totalViajes : 154) + ' viajes/dia</span><div class="callout-sub">en via de 1 carril</div></div>' +
-            '<div class="callout callout-problem pos-br"><span class="callout-icon">&#x23F3;</span> <span class="callout-num">5-6h espera</span><div class="callout-sub">' + (isViaje ? 'stand-by $275K/viaje' : 'en puerto por mula') + '</div></div>' +
-            '<div class="callout callout-problem pos-bl"><span class="callout-icon">&#x1F4B8;</span> <span class="callout-num">$' + costDirect + '/caja</span><div class="callout-sub">' + costLabel + '</div></div>';
+            '<div class="callout callout-problem pos-tr"><span class="callout-icon">&#x26A0;</span> <span class="callout-num">' + (totalViajes > 0 ? totalViajes : 27) + ' viajes/dia</span><div class="callout-sub">66% llenado promedio</div></div>' +
+            '<div class="callout callout-problem pos-br"><span class="callout-icon">&#x23F3;</span> <span class="callout-num">5-6h espera</span><div class="callout-sub">' + (isViaje ? 'stand-by $275K/viaje' : 'en embarcadero por mula') + '</div></div>' +
+            '<div class="callout callout-problem pos-bl"><span class="callout-icon">&#x1F4B8;</span> <span class="callout-num">' + costLabel + '</span><div class="callout-sub">' + (isViaje ? 'SICE-TAC: flete + stand-by' : 'Subcontratado al transportador') + '</div></div>';
     } else {
+        const saveLabel = isViaje ? '$' + annualSave + 'M ahorro/ano' : 'Valor operativo';
         container.innerHTML =
-            '<div class="callout callout-solution pos-tr"><span class="callout-icon">&#x2714;</span> Solo mulas <span class="callout-num">llenas</span><div class="callout-sub">' + hubLabel + '</div></div>' +
-            '<div class="callout callout-solution pos-br"><span class="callout-icon">&#x1F4C9;</span> <span class="callout-num">' + redPct + '% menos</span><div class="callout-sub">trafico — de ' + (totalViajes > 0 ? totalViajes : 154) + ' a ' + (hubMulas > 0 ? hubMulas : 17) + ' mulas/dia</div></div>' +
-            '<div class="callout callout-solution pos-bl"><span class="callout-icon">&#x1F4B0;</span> <span class="callout-num">$' + annualSave + 'M ahorro/ano</span><div class="callout-sub">-$' + savePerBox + '/caja logistico</div></div>';
+            '<div class="callout callout-solution pos-tr"><span class="callout-icon">&#x2714;</span> Solo mulas <span class="callout-num">llenas</span><div class="callout-sub">' + (isViaje ? 'sin stand-by' : 'contenerizadas') + '</div></div>' +
+            '<div class="callout callout-solution pos-br"><span class="callout-icon">&#x1F4C9;</span> <span class="callout-num">' + redPct + '% menos</span><div class="callout-sub">de ' + (totalViajes > 0 ? totalViajes : 27) + ' a ' + (hubMulas > 0 ? hubMulas : 18) + ' viajes/dia</div></div>' +
+            '<div class="callout callout-solution pos-bl"><span class="callout-icon">&#x1F4B0;</span> <span class="callout-num">' + saveLabel + '</span><div class="callout-sub">' + (isViaje ? '-$' + savePerBox + '/caja' : 'Preparacion cambio tarifario') + '</div></div>';
     }
 }
 
@@ -2318,44 +2320,31 @@ function updateSim(){
     // ============================================================
     // LOGISTICS COST MODEL — reactive to sliders + pricing model
     // ============================================================
-    const {DIESEL_KM, DRIVER_HR, TOLL_TRIP, TOLL_HUB, WEAR_KM, HUB_CONSOL, BOXES_TRUCK} = CONFIG.cost;
+    const {HUB_CONSOL, BOXES_TRUCK, TARIFA_CAJA, FINCA_HUB} = CONFIG.cost;
     const {FLETE_VIAJE, STANDBY_HR, ESPERA_DIRECT_H, ESPERA_HUB_H} = CONFIG.trip;
 
-    const avgDistDirect = OD.reduce((s,o)=>s+o.dd,0)/OD.length;
-    const avgTimeDirect = OD.reduce((s,o)=>s+o.dt,0)/OD.length;
-    const avgDistHub = OD.reduce((s,o)=>s+o.hd,0)/OD.length;
-    const avgTimeHub = OD.reduce((s,o)=>s+o.ht,0)/OD.length;
-
-    let totalDirect, totalHub, fuelDirect, fuelHub, drvDirect, drvHub, tollDirect, tollHub, wearDirect, wearHub;
-    let tripDirect = 0, tripHub = 0, standbyDirect = 0, standbyHub = 0;
+    let totalDirect, totalHub;
+    let row1Direct = 0, row1Hub = 0, row2Direct = 0, row2Hub = 0;
 
     if (pricingModel === 'caja') {
-        // === MODELO ACTUAL: parametrico por componente ===
-        fuelDirect = Math.round((DIESEL_KM * avgDistDirect * 2) / BOXES_TRUCK);
-        fuelHub = Math.round((DIESEL_KM * avgDistHub * 2) / BOXES_TRUCK);
-        drvDirect = Math.round((DRIVER_HR * (avgTimeDirect * cf * 2 / 60)) / BOXES_TRUCK);
-        drvHub = Math.round((DRIVER_HR * (avgTimeHub * Math.min(cf,1.3) * 2 / 60)) / BOXES_TRUCK);
-        tollDirect = Math.round(TOLL_TRIP / BOXES_TRUCK * (g20t > 0 ? 1 : 0));
-        tollHub = Math.round(TOLL_HUB / BOXES_TRUCK * (hubt > 0 ? 1 : 0));
-        wearDirect = Math.round((WEAR_KM * avgDistDirect * 2) / BOXES_TRUCK);
-        wearHub = Math.round((WEAR_KM * avgDistHub * 2) / BOXES_TRUCK);
-        totalDirect = fuelDirect + drvDirect + tollDirect + wearDirect;
-        totalHub = fuelHub + drvHub + tollHub + wearHub + HUB_CONSOL;
+        // === G20 SUBCONTRATA: tarifa plana por caja ===
+        // Transportador cobra lo mismo con o sin hub
+        totalDirect = TARIFA_CAJA;
+        totalHub = TARIFA_CAJA;
+        row1Direct = TARIFA_CAJA; row1Hub = TARIFA_CAJA;
+        row2Direct = 0; row2Hub = 0;
     } else {
         // === MODELO NUEVO: cobro por viaje + stand-by (SICE-TAC) ===
-        // Directo: cada camion hace 1 viaje con carga parcial, espera 5-6h en puerto
+        // Sin hub: despacho individual, llenado promedio 66% (auditoría finca por finca)
         const cajasPerViajeDirect = Math.max(1, Math.round(cpd / Math.max(g20t, 1)));
-        tripDirect = Math.round(FLETE_VIAJE / cajasPerViajeDirect);
-        standbyDirect = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect);
-        fuelDirect = 0; drvDirect = 0; tollDirect = 0; wearDirect = 0;
-        totalDirect = tripDirect + standbyDirect;
+        row1Direct = Math.round(FLETE_VIAJE / cajasPerViajeDirect);
+        row2Direct = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect);
+        totalDirect = row1Direct + row2Direct;
 
-        // Hub: mulas llenas (960 cajas), espera <1h
-        const cajasPerViajeHub = BOXES_TRUCK; // mula llena
-        tripHub = Math.round(FLETE_VIAJE / cajasPerViajeHub);
-        standbyHub = Math.round((STANDBY_HR * ESPERA_HUB_H) / cajasPerViajeHub);
-        fuelHub = 0; drvHub = 0; tollHub = 0; wearHub = 0;
-        totalHub = tripHub + standbyHub + HUB_CONSOL;
+        // Con hub: mulas llenas (960 cajas), espera <1h, + leg finca→hub
+        row1Hub = Math.round(FLETE_VIAJE / BOXES_TRUCK);
+        row2Hub = Math.round((STANDBY_HR * ESPERA_HUB_H) / BOXES_TRUCK);
+        totalHub = row1Hub + row2Hub + HUB_CONSOL + FINCA_HUB;
 
         // Update pricing impact panel
         document.getElementById('pi-flete').textContent = '$' + (FLETE_VIAJE/1000).toFixed(0) + 'K';
@@ -2385,28 +2374,13 @@ function updateSim(){
     const pctFmt = (d,h) => {const p=Math.round(((d-h)/Math.max(d,1))*100); return p>0?`-${p}%`:`+${Math.abs(p)}%`;};
 
     if (pricingModel === 'caja') {
-        document.getElementById('cd-fuel-d').textContent = fmt(fuelDirect);
-        document.getElementById('cd-fuel-h').textContent = fmt(fuelHub);
-        document.getElementById('cd-fuel-s').textContent = pctFmt(fuelDirect,fuelHub);
-        document.getElementById('cd-drv-d').textContent = fmt(drvDirect);
-        document.getElementById('cd-drv-h').textContent = fmt(drvHub);
-        document.getElementById('cd-drv-s').textContent = pctFmt(drvDirect,drvHub);
-        document.getElementById('cd-toll-d').textContent = fmt(tollDirect);
-        document.getElementById('cd-toll-h').textContent = fmt(tollHub);
-        document.getElementById('cd-toll-s').textContent = pctFmt(tollDirect,tollHub);
-        document.getElementById('cd-wear-d').textContent = fmt(wearDirect);
-        document.getElementById('cd-wear-h').textContent = fmt(wearHub);
-        document.getElementById('cd-wear-s').textContent = pctFmt(wearDirect,wearHub);
-        document.getElementById('cd-cons-d').textContent = '--';
-        document.getElementById('cd-cons-h').textContent = fmt(HUB_CONSOL);
-        document.getElementById('cd-cons-s').textContent = `+$${HUB_CONSOL}`;
-    } else {
-        document.getElementById('cd-fuel-d').textContent = fmt(tripDirect);
-        document.getElementById('cd-fuel-h').textContent = fmt(tripHub);
-        document.getElementById('cd-fuel-s').textContent = pctFmt(tripDirect,tripHub);
-        document.getElementById('cd-drv-d').textContent = fmt(standbyDirect);
-        document.getElementById('cd-drv-h').textContent = fmt(standbyHub);
-        document.getElementById('cd-drv-s').textContent = pctFmt(standbyDirect,standbyHub);
+        // G20 subcontrata: tarifa plana, misma con o sin hub
+        document.getElementById('cd-fuel-d').textContent = fmt(TARIFA_CAJA);
+        document.getElementById('cd-fuel-h').textContent = fmt(TARIFA_CAJA);
+        document.getElementById('cd-fuel-s').textContent = '$0';
+        document.getElementById('cd-drv-d').textContent = '--';
+        document.getElementById('cd-drv-h').textContent = '--';
+        document.getElementById('cd-drv-s').textContent = '--';
         document.getElementById('cd-toll-d').textContent = '--';
         document.getElementById('cd-toll-h').textContent = '--';
         document.getElementById('cd-toll-s').textContent = '--';
@@ -2414,8 +2388,24 @@ function updateSim(){
         document.getElementById('cd-wear-h').textContent = '--';
         document.getElementById('cd-wear-s').textContent = '--';
         document.getElementById('cd-cons-d').textContent = '--';
-        document.getElementById('cd-cons-h').textContent = fmt(HUB_CONSOL);
-        document.getElementById('cd-cons-s').textContent = `+$${HUB_CONSOL}`;
+        document.getElementById('cd-cons-h').textContent = '--';
+        document.getElementById('cd-cons-s').textContent = '--';
+    } else {
+        document.getElementById('cd-fuel-d').textContent = fmt(row1Direct);
+        document.getElementById('cd-fuel-h').textContent = fmt(row1Hub);
+        document.getElementById('cd-fuel-s').textContent = pctFmt(row1Direct,row1Hub);
+        document.getElementById('cd-drv-d').textContent = fmt(row2Direct);
+        document.getElementById('cd-drv-h').textContent = fmt(row2Hub);
+        document.getElementById('cd-drv-s').textContent = pctFmt(row2Direct,row2Hub);
+        document.getElementById('cd-toll-d').textContent = '--';
+        document.getElementById('cd-toll-h').textContent = fmt(FINCA_HUB);
+        document.getElementById('cd-toll-s').textContent = '+$' + FINCA_HUB;
+        document.getElementById('cd-wear-d').textContent = '--';
+        document.getElementById('cd-wear-h').textContent = fmt(HUB_CONSOL);
+        document.getElementById('cd-wear-s').textContent = '+$' + HUB_CONSOL;
+        document.getElementById('cd-cons-d').textContent = '--';
+        document.getElementById('cd-cons-h').textContent = '--';
+        document.getElementById('cd-cons-s').textContent = '--';
     }
     document.getElementById('cd-tot-d').textContent = fmt(totalDirect);
     document.getElementById('cd-tot-h').textContent = fmt(totalHub);
@@ -2425,21 +2415,21 @@ function updateSim(){
     if (pricingModel === 'caja') {
         document.getElementById('cost-model-badge').textContent = '$/CAJA';
         document.getElementById('cost-model-badge').style.color = '';
-        document.getElementById('cost-model-desc').textContent = 'Modelo parametrico basado en distancia, tiempo y flota';
-        document.getElementById('cost-table-title').textContent = 'Desglose por componente ($/caja)';
-        document.getElementById('cd-fuel-label').textContent = 'Combustible';
-        document.getElementById('cd-drv-label').textContent = 'Conductor';
-        document.getElementById('cd-toll-label').textContent = 'Peajes';
-        document.getElementById('cd-wear-label').textContent = 'Desgaste vehic.';
+        document.getElementById('cost-model-desc').textContent = 'G20 subcontrata transporte. Tarifa plana por caja al transportador.';
+        document.getElementById('cost-table-title').textContent = 'Tarifa plana ($/caja) — misma con o sin hub';
+        document.getElementById('cd-fuel-label').textContent = 'Tarifa transporte';
+        document.getElementById('cd-drv-label').textContent = '--';
+        document.getElementById('cd-toll-label').textContent = '--';
+        document.getElementById('cd-wear-label').textContent = '--';
     } else {
         document.getElementById('cost-model-badge').textContent = '$/VIAJE';
         document.getElementById('cost-model-badge').style.color = 'var(--red)';
-        document.getElementById('cost-model-desc').textContent = 'Modelo SICE-TAC: cobro por viaje + stand-by por hora';
-        document.getElementById('cost-table-title').textContent = 'Desglose modelo por viaje ($/caja equiv.)';
+        document.getElementById('cost-model-desc').textContent = 'SICE-TAC: cobro por viaje + stand-by. Hub agrega leg finca→hub.';
+        document.getElementById('cost-table-title').textContent = 'Desglose $/viaje (COP/caja equivalente)';
         document.getElementById('cd-fuel-label').textContent = 'Flete/viaje';
         document.getElementById('cd-drv-label').textContent = 'Stand-by';
-        document.getElementById('cd-toll-label').textContent = '--';
-        document.getElementById('cd-wear-label').textContent = '--';
+        document.getElementById('cd-toll-label').textContent = 'Leg finca→hub';
+        document.getElementById('cd-wear-label').textContent = 'Consolidacion';
     }
 
     // Update Riesgo Tarifario card with dynamic $/viaje calculation
@@ -2448,7 +2438,7 @@ function updateSim(){
         const tripRef = Math.round(FLETE_VIAJE / cajasPerViajeDirect_ref);
         const sbRef = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect_ref);
         const directViaje = tripRef + sbRef;
-        const hubViaje = Math.round(FLETE_VIAJE / BOXES_TRUCK) + Math.round((STANDBY_HR * ESPERA_HUB_H) / BOXES_TRUCK) + HUB_CONSOL;
+        const hubViaje = Math.round(FLETE_VIAJE / BOXES_TRUCK) + Math.round((STANDBY_HR * ESPERA_HUB_H) / BOXES_TRUCK) + HUB_CONSOL + FINCA_HUB;
         const tmNuevo = document.getElementById('tm-nuevo-precio');
         const tmHub = document.getElementById('tm-hub-precio');
         if (tmNuevo) tmNuevo.textContent = '$' + directViaje;

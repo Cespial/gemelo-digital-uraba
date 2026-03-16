@@ -153,13 +153,13 @@
     <div class="slide-tag" style="color:var(--red);">El Problema</div>
     <div class="slide-title" style="font-size:38px;">El caos logistico<br>de Uraba</div>
     <div class="slide-body" style="margin-bottom:28px;">
-        Hoy, cada una de nuestras <b style="color:var(--text);">19 fincas</b> despacha de forma independiente hacia el puerto.
+        Hoy, cada una de nuestras <b style="color:var(--text);">19 fincas</b> despacha de forma independiente hacia el puerto o el embarcadero.
         Eso significa tractomulas a medio llenar, en una via de un solo carril, esperando horas en el embarcadero.
     </div>
     <div class="three-col" style="max-width:900px;">
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="kpi-val" style="font-size:36px;color:var(--red);">154</div>
-            <div class="kpi-label">viajes/dia en la via</div>
+            <div class="kpi-val" style="font-size:36px;color:var(--red);">27</div>
+            <div class="kpi-label">viajes/dia (66% fill)</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:36px;color:var(--red);">5-6h</div>
@@ -184,25 +184,25 @@
     <div class="vs" style="margin-top:8px;">
         <div class="vs-col" style="border-color:rgba(240,160,48,0.3);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Hoy: $/Caja</div>
-            <div class="kpi-val" style="font-size:32px;color:var(--yellow);">$300-400</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--yellow);">$350</div>
             <div style="font-size:13px;color:var(--text2);margin-top:8px;line-height:1.6;">
-                Pagamos por caja transportada.<br>
-                Si el camion va medio vacio, <b style="color:var(--text);">es problema del transportador</b>.
+                G20 subcontrata a $350/caja flat.<br>
+                <b style="color:var(--text);">No paga combustible, conductor ni peajes</b>.
             </div>
         </div>
         <div class="vs-arrow">&#x2192;</div>
         <div class="vs-col" style="border-color:rgba(255,59,78,0.3);">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Manana: $/Viaje + Stand-by</div>
-            <div class="kpi-val" style="font-size:32px;color:var(--red);">$625+</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">SICE-TAC: $/Viaje + Stand-by</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--red);">$1,389</div>
             <div style="font-size:13px;color:var(--text2);margin-top:8px;line-height:1.6;">
-                Flete: $600K/viaje + stand-by $50K/hora.<br>
-                <b style="color:var(--red);">El costo se duplica</b> y es <b style="color:var(--text);">nuestro problema</b>.
+                Flete SICE-TAC sin hub: $1,389/caja.<br>
+                <b style="color:var(--red);">4x el costo actual</b> y es <b style="color:var(--text);">nuestro problema</b>.
             </div>
         </div>
     </div>
     <div class="highlight-box yellow" style="margin-top:20px;max-width:1000px;">
         <span style="color:var(--yellow);font-weight:700;">Los transportadores llevan 2 anos exigiendo este cambio.</span>
-        <span style="color:var(--text2);">El SICE-TAC del Ministerio de Transporte ya lo tiene regulado. G20 no ha cedido aun — pero es cuestion de tiempo.</span>
+        <span style="color:var(--text2);">El SICE-TAC del MinTransporte ya lo regula. Con hub, el costo baja a <b style="color:var(--green);">$786/caja</b> (incluye $80 finca&rarr;hub). Sin hub, seria $1,389/caja.</span>
     </div>
 </div>
 
@@ -220,7 +220,7 @@
         <div class="tl-node">
             <div class="tl-dot" style="background:rgba(255,122,48,0.15);border:2px solid #ff7a30;">&#x1F33F;</div>
             <div class="tl-name" style="color:#ff7a30;">19 Fincas</div>
-            <div class="tl-desc">2,000 ha<br>110K cajas/sem</div>
+            <div class="tl-desc">2,000 ha<br>102K cajas/sem</div>
         </div>
         <div class="tl-line" style="background:linear-gradient(90deg,#ff7a30,var(--green));"></div>
         <div class="tl-node">
@@ -237,8 +237,8 @@
         <div class="tl-line" style="background:var(--cyan);"></div>
         <div class="tl-node">
             <div class="tl-dot" style="background:rgba(255,122,48,0.15);border:2px solid #ff7a30;">&#x26F5;</div>
-            <div class="tl-name" style="color:#ff7a30;">Zungo</div>
-            <div class="tl-desc">4 fincas<br>Occidente</div>
+            <div class="tl-name" style="color:#ff7a30;">Emb. Zungo</div>
+            <div class="tl-desc">4 fincas<br>via fluvial</div>
         </div>
         <div class="tl-line" style="background:linear-gradient(90deg,#ff7a30,var(--blue));"></div>
         <div class="tl-node">
@@ -249,79 +249,119 @@
     </div>
     <div class="highlight-box" style="max-width:900px;">
         <b style="color:var(--green);">Resultado:</b>
-        <span style="color:var(--text2);">De 154 a <b style="color:var(--green);">17 mulas/dia</b>. Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora. </span>
-        <b style="color:var(--green);">-89% trafico en la via.</b>
+        <span style="color:var(--text2);">De 27 a <b style="color:var(--green);">18 mulas/dia</b>. Solo salen llenas (100% fill), contenerizadas, con espera menor a 1 hora. </span>
+        <b style="color:var(--green);">-33% trafico en la via.</b>
     </div>
 </div>
 
 <!-- ============================================================ -->
 <!-- SLIDE 5: THE NUMBERS -->
 <!-- ============================================================ -->
-<div class="slide center" id="s4">
-    <div class="slide-tag" style="color:var(--green);">Impacto Financiero</div>
-    <div class="slide-title" style="font-size:36px;">Los numeros hablan</div>
-    <div class="three-col" style="margin-top:12px;">
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
-            <div class="kpi-val" style="font-size:44px;color:var(--green);">$502M</div>
-            <div class="kpi-label">Ahorro anual ($/caja)</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:6px;">$88 COP menos por caja</div>
+<div class="slide left-align" id="s4">
+    <div class="slide-tag" style="color:var(--yellow);">Analisis Tarifario</div>
+    <div class="slide-title" style="font-size:34px;">A partir de que tarifa<br>se paga el hub?</div>
+
+    <div style="display:flex;align-items:center;gap:0;width:100%;max-width:900px;margin:16px 0 24px;">
+        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(240,160,48,0.3);border-radius:10px 0 0 10px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Hoy</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--yellow);">$350</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">flat ($/caja)</div>
         </div>
+        <div style="padding:8px 12px;color:var(--text3);font-size:20px;">&rarr;</div>
+        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Breakeven</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--green);">$855</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">+145% vs hoy</div>
+        </div>
+        <div style="padding:8px 12px;color:var(--text3);font-size:20px;">&rarr;</div>
+        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(255,59,78,0.3);border-radius:0 10px 10px 0;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">SICE-TAC</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">$1,389</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">sin hub</div>
+        </div>
+    </div>
+
+    <div class="highlight-box yellow" style="max-width:900px;margin-bottom:20px;">
+        <b style="color:var(--yellow);">Costo con hub (SICE-TAC):</b>
+        <span style="color:var(--text2);">$786/caja = flete $625 + stand-by $39 + consolidacion $42 + finca&rarr;hub $80</span>
+    </div>
+
+    <div class="three-col" style="max-width:900px;">
         <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
-            <div class="kpi-val" style="font-size:44px;color:var(--green);">-89%</div>
-            <div class="kpi-label">Reduccion tractomulas</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:6px;">154 &rarr; 17 mulas/dia</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--green);">+145%</div>
+            <div class="kpi-label">Tarifa breakeven</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$350 &rarr; $855/caja</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(56,152,255,0.3);">
-            <div class="kpi-val" style="font-size:44px;color:var(--blue);">~46 m</div>
-            <div class="kpi-label">Payback estimado</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:6px;">CAPEX $2,050M COP</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--blue);">-33%</div>
+            <div class="kpi-label">Reduccion viajes</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">27 &rarr; 18 mulas/dia</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:32px;color:var(--red);">$420M</div>
+            <div class="kpi-label">OPEX hub / ano</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">6 personas + operacion</div>
         </div>
     </div>
-    <div class="highlight-box red" style="margin-top:24px;max-width:1100px;">
-        <div style="display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:wrap;">
-            <span style="color:var(--red);font-weight:700;font-family:'JetBrains Mono',monospace;">Si cambia a $/viaje:</span>
-            <span style="color:var(--text);">El ahorro salta a <b style="color:var(--green);font-size:18px;">$2,400M+/ano</b></span>
-            <span style="color:var(--text3);">&mdash; el hub pasa de conveniente a <b style="color:var(--red);">inevitable</b></span>
-        </div>
-    </div>
+
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:16px;">
-        Modelo parametrico: OSRM distancias reales + BPR congestion + CONFIG flota G20 &bull; Interactivo en gemelo-digital-uraba.vercel.app
+        Bajo $/caja: hub cuesta $79/caja adicional (+23%). Hub quema $420M/ano OPEX mientras espera cambio tarifario. Cuando $/viaje activa: ahorro neto $2,800M/ano.
     </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 6: BEYOND MONEY -->
+<!-- SLIDE 6: INVESTMENT RECOVERY -->
 <!-- ============================================================ -->
 <div class="slide left-align" id="s5">
-    <div class="slide-tag" style="color:var(--cyan);">Mas Alla del Ahorro</div>
-    <div class="slide-title" style="font-size:34px;">20 beneficios que no se<br>miden solo en pesos</div>
-    <div class="two-col" style="margin-top:8px;">
-        <div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Hoy (sin centro)</div>
-            <ul class="bullets red">
-                <li>Recoleccion de fruta a las 2-3 AM</li>
-                <li>Camiones devueltos del puerto a las 11 PM</li>
-                <li>Riesgo de contaminacion en esperas largas</li>
-                <li>Anderson coordinando 19 fincas por celular</li>
-                <li>Fruta sin cadena de frio ni trazabilidad</li>
-                <li>Parque automotor de 37 anos promedio</li>
-            </ul>
-        </div>
-        <div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Con centro de consolidacion</div>
-            <ul class="bullets green">
-                <li>Turnos establecidos, despacho planificado</li>
-                <li>Fruta contenerizada desde el Centro</li>
-                <li>Calidad protegida: menor manipulacion</li>
-                <li>Trazabilidad digital de pallet a puerto</li>
-                <li>Cumplimiento de specs de exportacion</li>
-                <li>Escalable a otros productores de la zona</li>
-            </ul>
-        </div>
+    <div class="slide-tag" style="color:var(--blue);">Retorno de Inversion</div>
+    <div class="slide-title" style="font-size:34px;">Cuando se recupera<br>la inversion?</div>
+    <div class="slide-body" style="margin-bottom:20px;">
+        Depende de cuando se active el modelo $/viaje. El hub quema OPEX bajo $/caja, pero genera ahorros masivos cuando la tarifa cambie.
     </div>
-    <div style="margin-top:20px;font-size:13px;color:var(--text3);font-style:italic;">
-        &ldquo;Nosotros sabemos que en tiempo, en operacion, en calidad, en cumplimiento, en todo eso es chuleado.
-        No sabemos si financieramente es beneficioso. Esa es la viabilidad que le tenemos que encontrar.&rdquo;
+
+    <div style="width:100%;max-width:900px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:12px;">FLUJO ACUMULADO POR ANO (ESCENARIO $/VIAJE DESDE ANO 1)</div>
+        <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:13px;border-collapse:collapse;">
+            <tr style="border-bottom:1px solid var(--border2);">
+                <td style="padding:10px 0;color:var(--text3);font-size:10px;text-transform:uppercase;">Periodo</td>
+                <td style="text-align:center;color:var(--text3);font-size:10px;text-transform:uppercase;">Ano 1</td>
+                <td style="text-align:center;color:var(--text3);font-size:10px;text-transform:uppercase;">Ano 2</td>
+                <td style="text-align:center;color:var(--text3);font-size:10px;text-transform:uppercase;">Ano 3</td>
+                <td style="text-align:center;color:var(--text3);font-size:10px;text-transform:uppercase;">Ano 4</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:10px 0;color:var(--text2);">Cajas procesadas</td>
+                <td style="text-align:center;color:var(--text);font-weight:600;">5.3M</td>
+                <td style="text-align:center;color:var(--text);font-weight:600;">5.3M</td>
+                <td style="text-align:center;color:var(--text);font-weight:600;">5.3M</td>
+                <td style="text-align:center;color:var(--text);font-weight:600;">5.3M</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:10px 0;color:var(--text2);">Ahorro neto acumulado</td>
+                <td style="text-align:center;color:var(--yellow);font-weight:600;">19 meses</td>
+                <td style="text-align:center;color:var(--yellow);font-weight:600;">19 meses</td>
+                <td style="text-align:center;color:var(--green);font-weight:600;">32 meses</td>
+                <td style="text-align:center;color:var(--green);font-weight:600;">46 meses</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="three-col" style="margin-top:24px;max-width:900px;">
+        <div class="kpi-box" style="border-color:rgba(56,152,255,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--blue);">$1,200M</div>
+            <div class="kpi-label">CAPEX base</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Terreno $0 (propio G20)</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">$420M/ano</div>
+            <div class="kpi-label">OPEX hub</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">6 personas + operacion</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--green);">2.5-4 anos</div>
+            <div class="kpi-label">Breakeven total</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Segun momento de cambio tarifario</div>
+        </div>
     </div>
 </div>
 
@@ -335,30 +375,33 @@
         <div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:12px;">COMPONENTES DE INVERSION</div>
             <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:13px;border-collapse:collapse;">
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Terreno (5 ha)</td><td style="text-align:right;color:var(--text);font-weight:600;">$750M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Construccion plataforma</td><td style="text-align:right;color:var(--text);font-weight:600;">$800M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Equipos</td><td style="text-align:right;color:var(--text);font-weight:600;">$300M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Capital de trabajo</td><td style="text-align:right;color:var(--text);font-weight:600;">$200M</td></tr>
-                <tr><td style="padding:10px 0;color:var(--green);font-weight:800;font-size:15px;">TOTAL</td><td style="text-align:right;color:var(--green);font-weight:800;font-size:18px;">$2,050M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Terreno (Chinita)</td><td style="text-align:right;color:var(--green);font-weight:600;">$0</td><td style="padding-left:8px;font-size:10px;color:var(--text3);">propio G20</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Construccion plataforma</td><td style="text-align:right;color:var(--text);font-weight:600;">$500-700M</td><td></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Equipos</td><td style="text-align:right;color:var(--text);font-weight:600;">$200-300M</td><td></td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Capital de trabajo</td><td style="text-align:right;color:var(--text);font-weight:600;">$100-200M</td><td></td></tr>
+                <tr><td style="padding:10px 0;color:var(--green);font-weight:800;font-size:15px;">TOTAL</td><td style="text-align:right;color:var(--green);font-weight:800;font-size:18px;">$800-1,200M</td><td></td></tr>
             </table>
             <div style="margin-top:16px;font-size:12px;color:var(--text3);line-height:1.6;">
                 Ubicacion: <b style="color:var(--text);">Finca Chinita</b>, salida de Apartado, cerca de variante.
                 Rampa entrada, plataforma cubierta (pergola), rampa salida. Flujo unidireccional.
             </div>
+            <div style="margin-top:12px;font-size:12px;color:var(--cyan);line-height:1.6;">
+                <b>Valor estrategico:</b> Contenerizar para Puerto Antioquia, negociar tarifas, ofrecer servicio a terceros.
+            </div>
         </div>
         <div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:12px;">RETORNO ESPERADO</div>
             <div class="kpi-box" style="border-color:rgba(0,232,120,0.25);margin-bottom:12px;">
-                <div class="kpi-val" style="font-size:28px;color:var(--green);">$502M/ano</div>
-                <div class="kpi-label">Ahorro modelo $/caja</div>
+                <div class="kpi-val" style="font-size:28px;color:var(--green);">$855/caja</div>
+                <div class="kpi-label">Tarifa breakeven</div>
             </div>
             <div class="kpi-box" style="border-color:rgba(255,59,78,0.25);margin-bottom:12px;">
-                <div class="kpi-val" style="font-size:28px;color:var(--red);">$2,400M+/ano</div>
-                <div class="kpi-label">Ahorro modelo $/viaje</div>
+                <div class="kpi-val" style="font-size:28px;color:var(--green);">$2,800M neto/ano</div>
+                <div class="kpi-label">Ahorro neto con $/viaje</div>
             </div>
             <div class="kpi-box" style="border-color:rgba(56,152,255,0.25);">
-                <div class="kpi-val" style="font-size:28px;color:var(--blue);">~46 meses</div>
-                <div class="kpi-label">Payback ($/caja) &bull; &lt;12 meses ($/viaje)</div>
+                <div class="kpi-val" style="font-size:28px;color:var(--blue);">2.5-4 anos</div>
+                <div class="kpi-label">Breakeven total</div>
             </div>
             <div style="margin-top:12px;font-size:11px;color:var(--text3);">
                 Parametros ajustables en el gemelo digital financiero.
@@ -428,9 +471,8 @@
     <div class="slide-title" style="font-size:38px;">La pregunta para la Junta</div>
     <div style="max-width:800px;margin:0 auto;">
         <div class="quote">
-            Estamos convencidos de que operativamente es beneficioso.
-            Ya tenemos los numeros que muestran que financieramente tambien lo es.
-            <b style="color:var(--green);">La pregunta no es si hacerlo, sino cuando.</b>
+            El hub se paga cuando la tarifa cambie.
+            <b style="color:var(--yellow);">La pregunta es: vale $79/caja en beneficios operativos mientras esperamos?</b>
             <div class="quote-author">&mdash; Viabilidad Centro de Consolidacion, Marzo 2026</div>
         </div>
     </div>
