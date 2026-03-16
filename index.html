@@ -431,6 +431,24 @@
         .map-annotation.ann-red{background:rgba(255,59,78,0.18);border:1px solid rgba(255,59,78,0.35);color:#ff8090;}
         .map-annotation.ann-green{background:rgba(0,232,120,0.14);border:1px solid rgba(0,232,120,0.3);color:#60ffaa;}
 
+        /* ONBOARDING OVERLAY */
+        .onboarding{position:fixed;top:0;left:0;width:100%;height:100%;z-index:200;
+            background:rgba(6,8,10,0.92);backdrop-filter:blur(8px);
+            display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity 0.6s;}
+        .onboarding.out{opacity:0;pointer-events:none;}
+        .onboarding-box{max-width:520px;text-align:center;padding:40px 32px;}
+        .onboarding-title{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:var(--green);letter-spacing:1px;margin-bottom:16px;}
+        .onboarding-desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:24px;}
+        .onboarding-hint{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;animation:pulse 2s infinite;}
+
+        /* CONTEXT BOX */
+        .ctx-box{position:absolute;top:12px;right:56px;z-index:10;
+            background:rgba(6,8,10,0.88);backdrop-filter:blur(12px);
+            border:1px solid var(--border);border-radius:8px;padding:8px 12px;max-width:220px;
+            font-family:'JetBrains Mono',monospace;font-size:9px;line-height:1.6;transition:all 0.3s;}
+        .ctx-title{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:4px;}
+        .ctx-body{color:var(--text2);}
+
         /* RESPONSIVE for narrative components */
         @media(max-width:768px){
             .sc-banner{padding:16px 20px;max-width:90%;}
@@ -443,10 +461,28 @@
             .callout.pos-bl{left:8px;}
             .callout-num{font-size:12px;}
             .map-annotation{font-size:8px;padding:3px 6px;}
+            .onboarding-box{padding:24px 16px;}
+            .onboarding-title{font-size:15px;}
+            .onboarding-desc{font-size:12px;}
+            .ctx-box{right:8px;top:auto;bottom:50px;max-width:160px;font-size:8px;}
         }
     </style>
 </head>
 <body>
+
+<div class="onboarding" id="onboarding" onclick="dismissOnboarding()">
+    <div class="onboarding-box">
+        <div class="onboarding-title">GEMELO DIGITAL LOGISTICO</div>
+        <div class="onboarding-desc">
+            Modelo logistico de las <b style="color:var(--text);">19 fincas de Grupo 20</b> en Uraba.<br><br>
+            Click <b style="color:var(--red);">SITUACION ACTUAL</b> para ver el estado actual:
+            27 viajes/dia, 66% llenado, mulas parciales.<br><br>
+            Click <b style="color:var(--green);">CENTRO OPERANDO</b> para ver la solucion:
+            18 viajes consolidados, mulas llenas, contenerizadas.
+        </div>
+        <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
+    </div>
+</div>
 
 <div class="hdr">
     <div class="hdr-l">
@@ -558,11 +594,11 @@
     <!-- Layers -->
     <div class="c">
         <div class="c-h"><span class="c-t">Capas del Mapa</span></div>
-        <label class="ly"><input type="checkbox" id="ly-municipios" checked onchange="toggleLy('municipios')"><span class="ly-sw"></span><span class="ly-t">Limites municipales (DANE)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-municipios" onchange="toggleLy('municipios')"><span class="ly-sw"></span><span class="ly-t">Limites municipales (DANE)</span></label>
         <label class="ly"><input type="checkbox" id="ly-veredas" onchange="toggleLy('veredas')"><span class="ly-sw"></span><span class="ly-t">Veredas (UPRA, n=611)</span></label>
         <label class="ly"><input type="checkbox" id="ly-sipra" onchange="toggleLy('sipra')"><span class="ly-sw"></span><span class="ly-t">SIPRA Aptitud Banano (real)</span></label>
         <label class="ly"><input type="checkbox" id="ly-roads" onchange="toggleLy('roads')"><span class="ly-sw"></span><span class="ly-t">Red vial OSM (299 seg.)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-farm-poly" checked onchange="toggleLy('farm-poly')"><span class="ly-sw"></span><span class="ly-t">Poligonos fincas (real, n=402)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-farm-poly" onchange="toggleLy('farm-poly')"><span class="ly-sw"></span><span class="ly-t">Poligonos fincas (real, n=402)</span></label>
         <label class="ly"><input type="checkbox" id="ly-farms" checked onchange="toggleLy('farms')"><span class="ly-sw"></span><span class="ly-t">Fincas G20 puntos (n=19)</span></label>
         <label class="ly"><input type="checkbox" id="ly-routes" checked onchange="toggleLy('routes')"><span class="ly-sw"></span><span class="ly-t">Rutas escenario</span></label>
         <label class="ly"><input type="checkbox" id="ly-isochrone" onchange="toggleLy('isochrone')"><span class="ly-sw"></span><span class="ly-t">Isocronas Centro (15/30/45 min)</span></label>
@@ -635,6 +671,12 @@
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
         <div class="mi-i"><div class="mi-c" style="background:transparent;border:1.5px solid #e088ff;"></div>Limite municipal</div>
         <div class="mi-i"><div class="mi-c" style="background:rgba(180,140,255,0.08);border:1px solid rgba(180,140,255,0.3);"></div>Vereda</div>
+    </div>
+
+    <!-- CONTEXT BOX -->
+    <div class="ctx-box" id="ctx-box">
+        <div class="ctx-title">QUE ESTOY VIENDO</div>
+        <div class="ctx-body" id="ctx-body">Situacion actual: 27 viajes/dia, 66% llenado, mulas parciales.</div>
     </div>
 
     <!-- SCENARIO BANNER (appears on scenario switch) -->
@@ -888,6 +930,11 @@
 <!-- ============================================================ -->
 <div id="fin-dashboard">
 <div class="fin-grid">
+
+    <!-- PRICING MODEL INDICATOR -->
+    <div class="fin-full" id="fd-pricing-indicator">
+        <div id="fd-pricing-msg" style="padding:12px 20px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;text-align:center;"></div>
+    </div>
 
     <!-- 1. KPI BANNER -->
     <div class="fin-full">
@@ -1540,16 +1587,17 @@ map.on('load',()=>{
     // ---- MUNICIPAL BOUNDARIES (DANE MGN 2024) ----
     fetch('data/uraba_municipios_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('municipios',{type:'geojson',data:gj});
-        map.addLayer({id:'municipios-fill',type:'fill',source:'municipios',paint:{
+        map.addLayer({id:'municipios-fill',type:'fill',source:'municipios',layout:{visibility:'none'},paint:{
             'fill-color':'rgba(180,140,255,0.03)',
             'fill-opacity':0.6
         }});
-        map.addLayer({id:'municipios-line',type:'line',source:'municipios',paint:{
+        map.addLayer({id:'municipios-line',type:'line',source:'municipios',layout:{visibility:'none'},paint:{
             'line-color':'#e088ff',
             'line-width':2,
             'line-opacity':0.7
         }});
         map.addLayer({id:'municipios-label',type:'symbol',source:'municipios',layout:{
+            visibility:'none',
             'text-field':['get','municipio'],
             'text-size':11,
             'text-font':['DIN Pro Medium','Arial Unicode MS Regular'],
@@ -1848,10 +1896,10 @@ map.on('load',()=>{
     fetch('data/fincas_uraba.geojson').then(r=>r.json()).then(gj=>{
         // All 402 farms colored by comercializadora
         map.addSource('farm-poly-all',{type:'geojson',data:gj});
-        map.addLayer({id:'farm-poly-all-fill',type:'fill',source:'farm-poly-all',paint:{
+        map.addLayer({id:'farm-poly-all-fill',type:'fill',source:'farm-poly-all',layout:{visibility:'none'},paint:{
             'fill-color':comColor,'fill-opacity':0.12
         }});
-        map.addLayer({id:'farm-poly-all-line',type:'line',source:'farm-poly-all',paint:{
+        map.addLayer({id:'farm-poly-all-line',type:'line',source:'farm-poly-all',layout:{visibility:'none'},paint:{
             'line-color':comColorLine,'line-width':0.8,'line-opacity':0.35
         }});
         // Click popup for ALL farms
@@ -1873,13 +1921,13 @@ map.on('load',()=>{
     fetch('data/fincas_g20.geojson').then(r=>r.json()).then(gj=>{
         // GRUPO20 farms highlighted with thick border
         map.addSource('farm-poly-g20',{type:'geojson',data:gj});
-        map.addLayer({id:'farm-poly-fill',type:'fill',source:'farm-poly-g20',paint:{
+        map.addLayer({id:'farm-poly-fill',type:'fill',source:'farm-poly-g20',layout:{visibility:'none'},paint:{
             'fill-color':'#ff7a30','fill-opacity':0.25
         }});
-        map.addLayer({id:'farm-poly-line',type:'line',source:'farm-poly-g20',paint:{
+        map.addLayer({id:'farm-poly-line',type:'line',source:'farm-poly-g20',layout:{visibility:'none'},paint:{
             'line-color':'#ffcc00','line-width':2.5,'line-opacity':0.9
         }});
-        map.addLayer({id:'farm-poly-label',type:'symbol',source:'farm-poly-g20',layout:{
+        map.addLayer({id:'farm-poly-label',type:'symbol',source:'farm-poly-g20',layout:{visibility:'none',
             'text-field':['get','nombre'],
             'text-size':10,
             'text-font':['DIN Pro Medium','Arial Unicode MS Regular'],
@@ -1982,8 +2030,8 @@ map.on('load',()=>{
         lb.textContent=text;
         return new mapboxgl.Marker({element:lb,anchor:'left',offset:[16,0]}).setLngLat([n.lng,n.lat]).addTo(map);
     }
-    window._labelHub = makeNodeLabel('hub','CENTRO CONSOLIDACION','#00e878','none');
-    window._labelMiniHub = makeNodeLabel('mini_hub','MINI-HUB PUERTO','#18d8d0','none');
+    window._labelHub = makeNodeLabel('hub','CENTRO CONSOLIDACION','#00e878','');
+    window._labelMiniHub = makeNodeLabel('mini_hub','MINI-HUB PUERTO','#18d8d0','');
     window._labelZungo = makeNodeLabel('zungo','EMB. ZUNGO','#ff7a30','');
     // Puerto always visible
     makeNodeLabel('puerto','PUERTO ANTIOQUIA','#3898ff','');
@@ -2002,6 +2050,38 @@ map.on('load',()=>{
     updateSim();
     updateFinancialDashboard();
 });
+
+// ============================================================
+// ONBOARDING + CONTEXT BOX
+// ============================================================
+function dismissOnboarding() {
+    const el = document.getElementById('onboarding');
+    if (el) { el.classList.add('out'); setTimeout(() => el.remove(), 600); }
+}
+setTimeout(dismissOnboarding, 7000);
+
+function updateContextBox() {
+    const el = document.getElementById('ctx-body');
+    if (!el) return;
+    const r = simResults;
+    const isV = pricingModel === 'viaje';
+    const box = document.getElementById('ctx-box');
+    if (curSc === 'sc1') {
+        if (box) box.style.borderColor = 'rgba(255,59,78,0.3)';
+        el.innerHTML = isV
+            ? '<span style="color:var(--red);font-weight:700;">Situacion actual ($/viaje):</span><br>' +
+              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Costo: $' + (r.costDirect||1389) + '/caja.'
+            : '<span style="color:var(--red);font-weight:700;">Situacion actual:</span><br>' +
+              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Tarifa plana: $350/caja.';
+    } else {
+        if (box) box.style.borderColor = 'rgba(0,232,120,0.3)';
+        el.innerHTML = isV
+            ? '<span style="color:var(--green);font-weight:700;">Con Centro ($/viaje):</span><br>' +
+              (r.hubMulas||18) + ' viajes llenos, 100%.<br>Costo: $' + (r.costHub||786) + '/caja.'
+            : '<span style="color:var(--green);font-weight:700;">Con Centro:</span><br>' +
+              (r.hubMulas||18) + ' viajes llenos, 100% llenado.<br>Valor operativo + preparacion.';
+    }
+}
 
 // ============================================================
 // NARRATIVA VISUAL
@@ -2155,19 +2235,20 @@ function setScenario(sc){
             if(map.getLayer('hub-port-flow')) map.setLayoutProperty('hub-port-flow','visibility','visible');
         }
     }
-    // Toggle markers
-    if(window._markerHub) _markerHub.getElement().style.display = sc==='sc3'?'':'none';
-    if(window._markerMiniHub) _markerMiniHub.getElement().style.display = sc==='sc3'?'':'none';
+    // Toggle markers — all 3 nodos always visible for executives
+    if(window._markerHub) _markerHub.getElement().style.display = '';
+    if(window._markerMiniHub) _markerMiniHub.getElement().style.display = '';
     if(window._markerZungo) _markerZungo.getElement().style.display = '';
-    // Labels
-    if(window._labelHub) _labelHub.getElement().style.display = sc==='sc3'?'':'none';
-    if(window._labelMiniHub) _labelMiniHub.getElement().style.display = sc==='sc3'?'':'none';
+    // Labels — always visible
+    if(window._labelHub) _labelHub.getElement().style.display = '';
+    if(window._labelMiniHub) _labelMiniHub.getElement().style.display = '';
     if(window._labelZungo) _labelZungo.getElement().style.display = '';
 
     const routesBox = document.getElementById('ly-routes');
     if (routesBox) routesBox.checked = true;
     updateLegend();
     showScenarioBanner(sc);
+    updateContextBox();
     updateSim();
 }
 
@@ -2209,6 +2290,7 @@ function setPricingModel(model) {
     document.getElementById('pricing-badge').style.color = model === 'caja' ? 'var(--yellow)' : 'var(--red)';
     document.getElementById('pricing-impact').style.display = model === 'viaje' ? '' : 'none';
     updateSim();
+    updateContextBox();
 }
 
 // ============================================================
@@ -2584,6 +2666,7 @@ function updateSim(){
     updateCallouts();
     updateKPIStrip();
     updateMapAnnotations();
+    updateContextBox();
 
     // Update dashboards if visible
     if (document.getElementById('fin-dashboard').style.display === 'block') {
@@ -2719,6 +2802,25 @@ async function fetchGMapsTraffic() {
 // FINANCIAL DASHBOARD ENGINE
 // ============================================================
 function updateFinancialDashboard() {
+    // --- Pricing model indicator ---
+    const pricingMsg = document.getElementById('fd-pricing-msg');
+    if (pricingMsg) {
+        if (pricingModel === 'caja') {
+            pricingMsg.style.background = 'var(--yellow-bg)';
+            pricingMsg.style.border = '1px solid rgba(240,160,48,0.3)';
+            pricingMsg.innerHTML = '<span style="color:var(--yellow);font-weight:700;">MODELO ACTIVO: $/CAJA (TARIFA PLANA)</span><br>' +
+                '<span style="color:var(--text2);">G20 subcontrata transporte a $' + (CONFIG.cost.TARIFA_CAJA||350) + '/caja. Sin ahorro diferencial con hub. ' +
+                'Los indicadores reflejan <b style="color:var(--text);">valor operativo</b>. Cambie a $/VIAJE para ver ahorro financiero.</span>';
+        } else {
+            pricingMsg.style.background = 'rgba(255,59,78,0.08)';
+            pricingMsg.style.border = '1px solid rgba(255,59,78,0.25)';
+            pricingMsg.innerHTML = '<span style="color:var(--red);font-weight:700;">MODELO ACTIVO: $/VIAJE (SICE-TAC)</span><br>' +
+                '<span style="color:var(--text2);">Hub reduce costo de <span style="color:var(--red);">$' + (simResults.costDirect||0) + '</span> a ' +
+                '<span style="color:var(--green);">$' + (simResults.costHub||0) + '</span>/caja. ' +
+                '<span style="color:var(--green);font-weight:600;">Ahorro: $' + (simResults.annualSave||0) + 'M/ano.</span></span>';
+        }
+    }
+
     // --- Read all slider values ---
     const landHa   = +document.getElementById('fs-land-ha').value;
     const landCost = +document.getElementById('fs-land-cost').value;
