@@ -199,54 +199,52 @@ y nuestras fincas sigan mandando mulas a medio llenar, el costo por caja se disp
 se paletiza, se conteneriza, y sale en \textbf{\textcolor{verde}{mulas llenas}}
 hacia el embarcadero o Puerto Antioquia.}
 
-\vspace{4pt}
+\vspace{2pt}
 \begin{center}
 \begin{tikzpicture}[
     nodo/.style={circle, minimum size=0.85cm, draw=#1, fill=#1!12, line width=0.8pt, font=\small},
-    linea/.style={line width=1.5pt, ->, >=stealth},
-    lbl/.style={font=\tiny\bfseries, text=#1},
-    sub/.style={font=\fontsize{5}{6}\selectfont, text=gris}
+    linea/.style={line width=1.5pt, ->, >=stealth}
 ]
     % LEFT: 19 fincas
-    \node[nodo=amarillo] (fincas) {\faSeedling};
-    \node[lbl=amarillo, below=2pt of fincas] {19 Fincas};
-    \node[sub, below=10pt of fincas] {2,000 ha};
+    \node[nodo=amarillo] (fincas) at (0,0) {\faSeedling};
 
-    % MIDDLE: 3 nodos (fan-out)
-    \node[nodo=verde, right=2.8cm of fincas, yshift=10pt] (centro) {\faBoxes};
-    \node[nodo=azul, right=2.8cm of fincas, yshift=-22pt] (mini) {\faTruck};
-    \node[nodo=amarillo!70!black, right=2.8cm of fincas, yshift=-54pt] (zungo) {\faShip};
-
-    \node[lbl=verde, right=5pt of centro, anchor=west] {Centro Consolidacion};
-    \node[sub, right=5pt of centro, anchor=west, yshift=-8pt] {12 fincas · 985 ha};
-
-    \node[lbl=azul, right=5pt of mini, anchor=west] {Mini-Hub Guadalupe};
-    \node[sub, right=5pt of mini, anchor=west, yshift=-8pt] {3 fincas};
-
-    \node[lbl=amarillo!70!black, right=5pt of zungo, anchor=west] {Emb. Zungo};
-    \node[sub, right=5pt of zungo, anchor=west, yshift=-8pt] {4 fincas $\cdot$ via fluvial};
+    % MIDDLE: 3 nodos (symmetric, wide vertical spread to clear arrows)
+    \node[nodo=verde] (centro) at (3.5, 1.1) {\faBoxes};
+    \node[nodo=azul] (mini) at (3.5, 0) {\faTruck};
+    \node[nodo=amarillo!70!black] (zungo) at (3.5, -1.1) {\faShip};
 
     % RIGHT: Puerto
-    \node[nodo=azul!80!black, right=7.5cm of fincas, yshift=-22pt] (puerto) {\faAnchor};
-    \node[lbl=azul!80!black, below=2pt of puerto] {Puerto Antioquia};
+    \node[nodo=azul!80!black] (puerto) at (7.0, 0) {\faAnchor};
 
-    % ARROWS: fincas → 3 nodos
-    \draw[linea, verde!70!black] (fincas) -- node[above, font=\fontsize{5}{6}\selectfont, text=gris, sloped] {12} (centro);
-    \draw[linea, azul!70!black] (fincas) -- node[above, font=\fontsize{5}{6}\selectfont, text=gris, sloped, near end] {3} (mini);
-    \draw[linea, amarillo!60!black] (fincas) -- node[below, font=\fontsize{5}{6}\selectfont, text=gris, sloped] {4} (zungo);
-
-    % ARROWS: 3 nodos → puerto
+    % ARROWS first (behind labels)
+    \draw[linea, verde!70!black] (fincas) -- node[above, font=\fontsize{6}{7}\selectfont\bfseries, text=verde, sloped] {12} (centro);
+    \draw[linea, azul!70!black] (fincas) -- node[above, font=\fontsize{6}{7}\selectfont\bfseries, text=azul] {3} (mini);
+    \draw[linea, amarillo!60!black] (fincas) -- node[below, font=\fontsize{6}{7}\selectfont\bfseries, text=amarillo!70!black, sloped] {4} (zungo);
     \draw[linea, verde] (centro) -- (puerto);
     \draw[linea, azul] (mini) -- (puerto);
     \draw[linea, amarillo!70!black] (zungo) -- (puerto);
+
+    % LABELS to the right of middle nodes (offset to avoid arrow overlap)
+    \node[right=6pt of centro, anchor=west, font=\tiny\bfseries, text=verde,
+          fill=white, inner sep=1pt] {Centro (12 fincas)};
+    \node[right=6pt of mini, anchor=west, font=\tiny\bfseries, text=azul,
+          fill=white, inner sep=1pt] {Mini-Hub (3 fincas)};
+    \node[right=6pt of zungo, anchor=west, font=\tiny\bfseries, text=amarillo!70!black,
+          fill=white, inner sep=1pt] {Emb.\ Zungo (4 fincas)};
+
+    % LABELS below nodes (names only, no overlap risk)
+    \node[below=3pt of fincas, font=\tiny\bfseries, text=amarillo] {19 Fincas};
+    \node[below=12pt of fincas, font=\fontsize{5}{6}\selectfont, text=gris] {2,000 ha};
+    \node[below=3pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto};
+    \node[below=12pt of puerto, font=\fontsize{5}{6}\selectfont, text=gris] {Pto.\ Antioquia};
 \end{tikzpicture}
 \end{center}
 
-\vspace{4pt}
+\vspace{2pt}
 \begin{block}{Resultado}
 \small
 De \textbf{27 viajes parciales} a \textbf{\textcolor{verde}{18 viajes llenos/día}}.
-Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora.
+Mulas llenas (960 cajas), contenerizadas, espera $<$1h.
 \textbf{\textcolor{verde}{100\% llenado, --33\% viajes.}}
 \end{block}
 \end{frame}
