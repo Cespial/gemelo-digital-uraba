@@ -202,30 +202,43 @@ hacia el embarcadero o Puerto Antioquia.}
 \vspace{4pt}
 \begin{center}
 \begin{tikzpicture}[
-    nodo/.style={circle, minimum size=0.9cm, draw=#1, fill=#1!12, line width=0.8pt, font=\small},
-    linea/.style={line width=1.5pt, ->, >=stealth}
+    nodo/.style={circle, minimum size=0.85cm, draw=#1, fill=#1!12, line width=0.8pt, font=\small},
+    linea/.style={line width=1.5pt, ->, >=stealth},
+    lbl/.style={font=\tiny\bfseries, text=#1},
+    sub/.style={font=\fontsize{5}{6}\selectfont, text=gris}
 ]
+    % LEFT: 19 fincas
     \node[nodo=amarillo] (fincas) {\faSeedling};
-    \node[nodo=verde, right=1.6cm of fincas] (centro) {\faBoxes};
-    \node[nodo=azul, right=1.6cm of centro] (mini) {\faTruck};
-    \node[nodo=amarillo, below right=0.7cm and 0.4cm of centro] (zungo) {\faShip};
-    \node[nodo=azul!80!black, right=1.6cm of mini] (puerto) {\faAnchor};
+    \node[lbl=amarillo, below=2pt of fincas] {19 Fincas};
+    \node[sub, below=10pt of fincas] {2,000 ha};
 
-    \draw[linea, amarillo] (fincas) -- (centro);
-    \draw[linea, verde] (centro) -- (mini);
+    % MIDDLE: 3 nodos (fan-out)
+    \node[nodo=verde, right=2.8cm of fincas, yshift=10pt] (centro) {\faBoxes};
+    \node[nodo=azul, right=2.8cm of fincas, yshift=-22pt] (mini) {\faTruck};
+    \node[nodo=amarillo!70!black, right=2.8cm of fincas, yshift=-54pt] (zungo) {\faShip};
+
+    \node[lbl=verde, right=5pt of centro, anchor=west] {Centro Consolidacion};
+    \node[sub, right=5pt of centro, anchor=west, yshift=-8pt] {12 fincas · 985 ha};
+
+    \node[lbl=azul, right=5pt of mini, anchor=west] {Mini-Hub Guadalupe};
+    \node[sub, right=5pt of mini, anchor=west, yshift=-8pt] {3 fincas};
+
+    \node[lbl=amarillo!70!black, right=5pt of zungo, anchor=west] {Emb. Zungo};
+    \node[sub, right=5pt of zungo, anchor=west, yshift=-8pt] {4 fincas $\cdot$ via fluvial};
+
+    % RIGHT: Puerto
+    \node[nodo=azul!80!black, right=7.5cm of fincas, yshift=-22pt] (puerto) {\faAnchor};
+    \node[lbl=azul!80!black, below=2pt of puerto] {Puerto Antioquia};
+
+    % ARROWS: fincas → 3 nodos
+    \draw[linea, verde!70!black] (fincas) -- node[above, font=\fontsize{5}{6}\selectfont, text=gris, sloped] {12} (centro);
+    \draw[linea, azul!70!black] (fincas) -- node[above, font=\fontsize{5}{6}\selectfont, text=gris, sloped, near end] {3} (mini);
+    \draw[linea, amarillo!60!black] (fincas) -- node[below, font=\fontsize{5}{6}\selectfont, text=gris, sloped] {4} (zungo);
+
+    % ARROWS: 3 nodos → puerto
+    \draw[linea, verde] (centro) -- (puerto);
     \draw[linea, azul] (mini) -- (puerto);
     \draw[linea, amarillo!70!black] (zungo) -- (puerto);
-
-    \node[below=3pt of fincas, font=\tiny\bfseries, text=amarillo] {19 Fincas};
-    \node[below=12pt of fincas, font=\tiny, text=gris] {2,000 ha};
-    \node[below=3pt of centro, font=\tiny\bfseries, text=verde] {Centro};
-    \node[below=12pt of centro, font=\tiny, text=gris] {12 fincas · 985 ha};
-    \node[below=3pt of mini, font=\tiny\bfseries, text=azul] {Mini-Hub};
-    \node[below=12pt of mini, font=\tiny, text=gris] {3 fincas};
-    \node[below=3pt of zungo, font=\tiny\bfseries, text=amarillo!70!black] {Emb. Zungo};
-    \node[below=12pt of zungo, font=\tiny, text=gris] {4 fincas · vía fluvial};
-    \node[below=3pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto};
-    \node[below=12pt of puerto, font=\tiny, text=gris] {Pto. Antioquia};
 \end{tikzpicture}
 \end{center}
 
