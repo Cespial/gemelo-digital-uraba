@@ -2605,13 +2605,16 @@ function updateSim(){
         if(map.getLayer('hub-port-glow2')) map.setPaintProperty('hub-port-glow2','line-width',trunkW*6);
     }
 
-    // --- OSM road congestion overlay ---
+    // --- OSM road congestion overlay (only in SC1) ---
     if(map.getLayer('osm-roads-congestion')){
-        // Roads glow red when congestion is high
-        const roadOpacity = cfNorm * 0.4;
-        const roadColor = cf<1.5 ? 'rgba(255,160,48,0.3)' : cf<2.5 ? 'rgba(255,120,30,0.5)' : 'rgba(255,40,40,0.7)';
-        map.setPaintProperty('osm-roads-congestion','line-opacity',roadOpacity);
-        map.setPaintProperty('osm-roads-congestion','line-color',roadColor);
+        if(curSc==='sc1'){
+            const roadOpacity = cfNorm * 0.4;
+            const roadColor = cf<1.5 ? 'rgba(255,160,48,0.3)' : cf<2.5 ? 'rgba(255,120,30,0.5)' : 'rgba(255,40,40,0.7)';
+            map.setPaintProperty('osm-roads-congestion','line-opacity',roadOpacity);
+            map.setPaintProperty('osm-roads-congestion','line-color',roadColor);
+        } else {
+            map.setPaintProperty('osm-roads-congestion','line-opacity',0);
+        }
     }
 
     // --- Farm marker size pulses with production slider ---
@@ -2621,8 +2624,10 @@ function updateSim(){
     }
     if(map.getLayer('farms-glow')){
         map.setPaintProperty('farms-glow','circle-radius',['interpolate',['linear'],['get','prod'],4500,12*prodScale,7800,18*prodScale]);
-        // Glow color shifts with congestion: orange -> red
-        const glowColor = cf<1.5 ? 'rgba(255,122,48,0.15)' : cf<2.5 ? 'rgba(255,100,30,0.2)' : 'rgba(255,50,30,0.3)';
+        // Glow: red in SC1 (chaos), green in SC3 (organized)
+        const glowColor = curSc==='sc1'
+            ? (cf<1.5 ? 'rgba(255,122,48,0.15)' : cf<2.5 ? 'rgba(255,100,30,0.2)' : 'rgba(255,50,30,0.3)')
+            : 'rgba(0,232,120,0.15)';
         map.setPaintProperty('farms-glow','circle-color',glowColor);
     }
 
