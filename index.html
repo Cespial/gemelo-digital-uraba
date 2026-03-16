@@ -534,8 +534,8 @@
             <div style="background:var(--red-bg);padding:8px;border-radius:4px;border:1px solid rgba(255,59,78,0.2);">
                 <div style="color:var(--red);font-weight:700;margin-bottom:4px;">IMPACTO MODELO POR VIAJE</div>
                 <div style="color:var(--text2);line-height:1.7;">
-                    Flete mula: <span style="color:var(--text);" id="pi-flete">$600K</span>/viaje<br>
-                    Stand-by: <span style="color:var(--text);" id="pi-standby">$50K</span>/hora<br>
+                    Tarifa proyectada: <span style="color:var(--text);" id="pi-flete">$800</span>/caja sin hub<br>
+                    Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
                     Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$800</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$380</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
@@ -817,21 +817,20 @@
                 </div>
                 <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$1,389</div>
-                    <div class="kpi-l">$/caja (SICE-TAC)</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$800</div>
+                    <div class="kpi-l">$/caja (proyeccion $/viaje)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
             </div>
             <div style="background:var(--bg);padding:8px;border-radius:4px;border:1px solid var(--border);line-height:1.7;color:var(--text2);">
                 <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Transportadores exigen cambio de modelo:</div>
-                Flete mula (20 pallets × 48 cajas): <span style="color:var(--text);">~$600,000 COP/viaje</span><br>
-                Stand-by puerto: <span style="color:var(--text);">$50,000/hora × 5-6h = $275,000</span><br>
-                SICE-TAC (Min. Transporte): <span style="color:var(--red);font-weight:600;">tarifa regulada por peso/destino</span><br>
-                <span style="color:var(--yellow);font-weight:600;">G20 no ha cedido aun</span> — pero es cuestion de tiempo
+                Flete mula (20 pallets &times; 48 cajas): <span style="color:var(--text);">~$600,000 COP/viaje</span><br>
+                Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$800 COP (+129% vs hoy)</span><br>
+                <span style="color:var(--text3);font-size:8px;">Fuente: transcripcion visita Uraba. Stand-by: por validar con transportadores.</span>
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
                 <span style="color:var(--green);font-weight:700;">Con Centro + modelo $/viaje:</span><br>
-                <span style="color:var(--text2);">Mulas salen <b style="color:var(--green);">llenas</b> (960 cajas), espera &lt;1h. Costo baja de <span style="color:var(--red);">$1,389</span> a <span style="color:var(--green);" id="tm-hub-precio">$786</span>/caja (incl. leg finca&rarr;hub).</span>
+                <span style="color:var(--text2);">Mulas salen <b style="color:var(--green);">llenas</b> (960 cajas). Costo hub: <span style="color:var(--green);" id="tm-hub-precio">$767</span>/caja. Breakeven: ~$835/caja (+139%).</span>
             </div>
             <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
                 <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
@@ -1260,8 +1259,8 @@ const CONFIG = {
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
           TARIFA_CAJA: 350, FINCA_HUB: 80 },
-  // Modelo por viaje: flete por mula, stand-by por hora, horas promedio espera
-  trip: { FLETE_VIAJE: 600000, STANDBY_HR: 50000, ESPERA_DIRECT_H: 5.5, ESPERA_HUB_H: 0.75 },
+  // Modelo por viaje: tarifa proyectada (transcripcion Uraba) y costos hub
+  trip: { TARIFA_VIAJE: 800, HUB_FLETE: 625, HUB_STANDBY: 20 },
   regional: { ANNUAL_CAJAS: 114e6 }
 };
 
@@ -2123,13 +2122,13 @@ function showScenarioBanner(sc) {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? '27 viajes/dia parciales (66% llenado). Modelo $/viaje + stand-by dispara costos.'
+                ? '27 viajes/dia parciales (66% llenado). Proyeccion $/viaje: ~$800/caja.'
                 : '27 viajes/dia en via de 1 carril. 5-6h espera. Mulas a medio llenar.') + '</div>';
     } else {
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? 'Mulas llenas. 18 viajes/dia. Ahorro neto $2,800M/ano bajo $/viaje.'
+                ? 'Mulas llenas. 18 viajes/dia. Hub $767/caja. Breakeven a $835/caja.'
                 : 'Solo mulas llenas. 18 viajes consolidados. Valor operativo + preparacion tarifaria.') + '</div>';
     }
     el.style.display = '';
@@ -2427,34 +2426,30 @@ function updateSim(){
     // LOGISTICS COST MODEL — reactive to sliders + pricing model
     // ============================================================
     const {HUB_CONSOL, BOXES_TRUCK, TARIFA_CAJA, FINCA_HUB} = CONFIG.cost;
-    const {FLETE_VIAJE, STANDBY_HR, ESPERA_DIRECT_H, ESPERA_HUB_H} = CONFIG.trip;
+    const {TARIFA_VIAJE, HUB_FLETE, HUB_STANDBY} = CONFIG.trip;
 
     let totalDirect, totalHub;
     let row1Direct = 0, row1Hub = 0, row2Direct = 0, row2Hub = 0;
 
     if (pricingModel === 'caja') {
         // === G20 SUBCONTRATA: tarifa plana por caja ===
-        // Transportador cobra lo mismo con o sin hub
         totalDirect = TARIFA_CAJA;
         totalHub = TARIFA_CAJA;
         row1Direct = TARIFA_CAJA; row1Hub = TARIFA_CAJA;
-        row2Direct = 0; row2Hub = 0;
     } else {
-        // === MODELO NUEVO: cobro por viaje + stand-by (SICE-TAC) ===
-        // Sin hub: despacho individual, llenado promedio 66% (auditoría finca por finca)
-        const cajasPerViajeDirect = Math.max(1, Math.round(cpd / Math.max(g20t, 1)));
-        row1Direct = Math.round(FLETE_VIAJE / cajasPerViajeDirect);
-        row2Direct = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect);
-        totalDirect = row1Direct + row2Direct;
+        // === MODELO $/VIAJE: proyeccion $800/caja (transcripcion Uraba) ===
+        // Sin hub: tarifa proyectada (flete + stand-by incluidos)
+        totalDirect = TARIFA_VIAJE;
+        row1Direct = TARIFA_VIAJE;
 
-        // Con hub: mulas llenas (960 cajas), espera <1h, + leg finca→hub
-        row1Hub = Math.round(FLETE_VIAJE / BOXES_TRUCK);
-        row2Hub = Math.round((STANDBY_HR * ESPERA_HUB_H) / BOXES_TRUCK);
-        totalHub = row1Hub + row2Hub + HUB_CONSOL + FINCA_HUB;
+        // Con hub: mula llena $625 + espera corta $20 + consolidacion $42 + finca→hub $80
+        row1Hub = HUB_FLETE;
+        row2Hub = HUB_STANDBY;
+        totalHub = HUB_FLETE + HUB_STANDBY + HUB_CONSOL + FINCA_HUB;
 
         // Update pricing impact panel
-        document.getElementById('pi-flete').textContent = '$' + (FLETE_VIAJE/1000).toFixed(0) + 'K';
-        document.getElementById('pi-standby').textContent = '$' + (STANDBY_HR/1000).toFixed(0) + 'K';
+        document.getElementById('pi-flete').textContent = '$800';
+        document.getElementById('pi-standby').textContent = '(incluido)';
         document.getElementById('pi-direct-caja').textContent = '$' + totalDirect;
         document.getElementById('pi-hub-caja').textContent = '$' + totalHub;
     }
@@ -2530,25 +2525,20 @@ function updateSim(){
     } else {
         document.getElementById('cost-model-badge').textContent = '$/VIAJE';
         document.getElementById('cost-model-badge').style.color = 'var(--red)';
-        document.getElementById('cost-model-desc').textContent = 'SICE-TAC: cobro por viaje + stand-by. Hub agrega leg finca→hub.';
-        document.getElementById('cost-table-title').textContent = 'Desglose $/viaje (COP/caja equivalente)';
+        document.getElementById('cost-model-desc').textContent = 'Proyeccion $/viaje: ~$800/caja sin hub (fuente: transcripcion Uraba)';
+        document.getElementById('cost-table-title').textContent = 'Comparacion $/viaje (COP/caja)';
         document.getElementById('cd-fuel-label').textContent = 'Flete/viaje';
         document.getElementById('cd-drv-label').textContent = 'Stand-by';
         document.getElementById('cd-toll-label').textContent = 'Leg finca→hub';
         document.getElementById('cd-wear-label').textContent = 'Consolidacion';
     }
 
-    // Update Riesgo Tarifario card with dynamic $/viaje calculation
+    // Update Riesgo Tarifario card
     {
-        const cajasPerViajeDirect_ref = Math.max(1, Math.round(cpd / Math.max(g20t, 1)));
-        const tripRef = Math.round(FLETE_VIAJE / cajasPerViajeDirect_ref);
-        const sbRef = Math.round((STANDBY_HR * ESPERA_DIRECT_H) / cajasPerViajeDirect_ref);
-        const directViaje = tripRef + sbRef;
-        const hubViaje = Math.round(FLETE_VIAJE / BOXES_TRUCK) + Math.round((STANDBY_HR * ESPERA_HUB_H) / BOXES_TRUCK) + HUB_CONSOL + FINCA_HUB;
         const tmNuevo = document.getElementById('tm-nuevo-precio');
         const tmHub = document.getElementById('tm-hub-precio');
-        if (tmNuevo) tmNuevo.textContent = '$' + directViaje;
-        if (tmHub) tmHub.textContent = '$' + hubViaje;
+        if (tmNuevo) tmNuevo.textContent = '$' + TARIFA_VIAJE;
+        if (tmHub) tmHub.textContent = '$' + totalHub;
     }
 
     // Update executive summary cost
