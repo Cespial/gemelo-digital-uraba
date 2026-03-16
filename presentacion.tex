@@ -239,59 +239,85 @@ Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora.
 \end{frame}
 
 % ============================================================
-% SLIDE 5: ¿A PARTIR DE QUÉ TARIFA SE PAGA EL HUB?
+% SLIDE 5: FIRST PRINCIPLES — OPEX Y CAPEX REALISTAS
 % ============================================================
 \begin{frame}
-\frametitle{¿A partir de qué tarifa se paga el hub?}
-\tagline{azul}{Análisis de Breakeven}
+\frametitle{¿Qué cuesta realmente operar el hub?}
+\tagline{azul}{OPEX y CAPEX desde cero}
 
 \vspace{1pt}
-{\scriptsize Subcontratamos el transporte a \$350/caja. El hub agrega costos: transporte hub$\rightarrow$puerto (\$706/caja),
-leg finca$\rightarrow$hub ($\sim$\$80/caja, por validar), y OPEX operativo ($\sim$\$660M/año).
-\textbf{¿A qué tarifa el ahorro por consolidación compensa esos costos?}}
+{\scriptsize El hub es una \textbf{pérgola cubierta con rampas} en Chinita, no un almacén industrial.
+350 pallets/día, 2--3 montacargas, 6 personas. El OPEX debe reflejar eso.}
 
-\vspace{4pt}
-\begin{center}
-\scriptsize
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{l r r r r}
-    \toprule
-    \textbf{Escenario} & \textbf{Tarifa} & \textbf{Costo hub} & \textbf{Ahorro/caja} & \textbf{Neto/año} \\
-    \midrule
-    Hoy (\$/caja plana)           & \$350   & ---    & ---      & --- \\
-    \addlinespace
-    Conservador (+50\%)           & \$525   & \$786  & \textcolor{rojo}{--\$261}  & \textcolor{rojo}{N/A} \\
-    Moderado (tarifa se duplica)  & \$700   & \$786  & \textcolor{rojo}{--\$86}   & \textcolor{rojo}{N/A} \\
-    \rowcolor{amarilloclaro}
-    \textbf{Breakeven (+160\%)}   & \textbf{\$910}   & \$786  & \$0     & \$0 \\
-    Significativo (+200\%)        & \$1,050 & \$786  & \textcolor{verde}{+\$264}  & \textcolor{verde}{\$742M} \\
-    SICE-TAC (\$/viaje puro)      & \$1,389 & \$786  & \textcolor{verde}{+\$603}  & \textcolor{verde}{\$2,541M} \\
-    \bottomrule
-\end{tabular}
-\end{center}
+\vspace{3pt}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+    {\scriptsize\color{gris}\textbf{OPEX ANUAL (first principles)}}
+    \vspace{2pt}
 
-\vspace{2pt}
-{\tiny\color{gris}
-Costo hub: transporte \$706 (flete \$625 + stand-by \$39 + consolidación \$42) + leg finca$\rightarrow$hub \$80.
-Neto/año descuenta OPEX \$660M (8 operarios, servicios, mant. 5\%, seguros 2\%, admin). CAPEX \$2,050M.}
+    \scriptsize
+    \renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{l r}
+        \toprule
+        6 personas (con prestaciones) & \$215M \\
+        Servicios (luz, agua, seg.)   & \$73M \\
+        Mantenimiento (2\% CAPEX)     & \$28M{\tiny *} \\
+        Seguros (1.2\% CAPEX)         & \$17M{\tiny *} \\
+        Admin (contable, legal)       & \$36M \\
+        \midrule
+        \textbf{OPEX lean}            & \textbf{\$369M} \\
+        \textbf{+ 20\% contingencia}  & \textbf{\$443M} \\
+        \bottomrule
+    \end{tabular}
 
-\vspace{2pt}
+    \vspace{2pt}
+    {\tiny {\tiny *}Calculado sobre CAPEX \$1,400M.
+    Gemelo digital usaba \$660M (servicios \$180M + admin \$96M sobreestimados).}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+    {\scriptsize\color{gris}\textbf{CAPEX POR ESCENARIO}}
+    \vspace{2pt}
+
+    \scriptsize
+    \renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{l r}
+        \toprule
+        \textbf{Mínimo} (terreno propio) & \textbf{\$800M} \\
+        ~~Pérgola básica \$600M + equip. \$150M & \\
+        \addlinespace
+        \textbf{Base} (terreno negociado) & \textbf{\$1,400M} \\
+        ~~Terreno \$250M + plataforma \$800M & \\
+        ~~+ equipos \$250M + WK \$100M & \\
+        \addlinespace
+        \textbf{Holgado} (compra terreno) & \textbf{\$2,050M} \\
+        ~~Referencia gemelo digital & \\
+        \bottomrule
+    \end{tabular}
+
+    \vspace{4pt}
+    {\tiny Ubicación: Finca Chinita (propia G20).
+    Escenario mínimo usa terreno propio $=$ \$0 terreno.}
+\end{column}
+\end{columns}
+
+\vspace{3pt}
 \colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{amarillo}{\textbf{Lectura:}} El hub se paga cuando la tarifa suba $>$160\%
-(de \$350 a $\sim$\$910/caja). Los transportadores exigen \$/viaje (\$1,389 equiv.)
-$=$ +300\%, \textbf{muy por encima del breakeven}.\strut}}
+\textcolor{amarillo}{\textbf{Breakeven:}} Con OPEX lean, el hub se paga cuando la tarifa suba
+$>$\textbf{145\%} (de \$350 a $\sim$\$855/caja). Con contingencia: $>$\textbf{148\%}.
+SICE-TAC (\$1,389) es +300\%, \textbf{muy por encima del breakeven en cualquier escenario.}\strut}}
 \end{frame}
 
 % ============================================================
-% SLIDE 6: PAYBACK SEGÚN CAPEX × ESCENARIO
+% SLIDE 6: PAYBACK — RECOMENDACIÓN CAPEX × OPEX
 % ============================================================
 \begin{frame}
-\frametitle{Payback neto según inversión y escenario}
-\tagline{azul}{Sensibilidad CAPEX $\times$ Tarifa}
+\frametitle{Payback bajo escenario SICE-TAC}
+\tagline{verde}{Recomendación de inversión}
 
 \vspace{1pt}
-{\scriptsize Payback en meses, descontando OPEX completo del hub.
-Solo muestra los escenarios donde el hub genera ahorro neto positivo.}
+{\scriptsize Si el modelo cambia a \$/viaje (ahorro bruto \$3,200M/año antes de OPEX),
+¿cuánto tarda en pagarse según el nivel de inversión y operación?}
 
 \vspace{4pt}
 \begin{center}
@@ -299,39 +325,41 @@ Solo muestra los escenarios donde el hub genera ahorro neto positivo.}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{r r r r}
     \toprule
-    & & \multicolumn{2}{c}{\textbf{Payback neto (meses)}} \\
+    & & \multicolumn{2}{c}{\textbf{Payback SICE-TAC (meses)}} \\
     \cmidrule(lr){3-4}
-    \textbf{CAPEX} & \textbf{OPEX/año} & \textbf{+200\% (\$1,050)} & \textbf{SICE-TAC (\$1,389)} \\
+    \textbf{CAPEX} & \textbf{Escenario} & \textbf{OPEX lean} & \textbf{OPEX +20\%} \\
     \midrule
-    \$1,000M  & \$586M  & \textcolor{verde}{15}  & \textcolor{verde}{5} \\
-    \$1,500M  & \$621M  & \textcolor{azul}{23}   & \textcolor{verde}{7} \\
-    \$2,050M  & \$660M  & \textcolor{amarillo}{33}  & \textcolor{verde}{10} \\
-    \$3,000M  & \$726M  & \textcolor{rojo}{53}   & \textcolor{azul}{15} \\
-    \$5,000M  & \$866M  & \textcolor{rojo}{112}  & \textcolor{azul}{24} \\
+    \rowcolor{verdeclaro}
+    \$800M   & Mínimo (terreno propio) & \textcolor{verde}{\textbf{3}}  & \textcolor{verde}{\textbf{3}} \\
+    \$1,000M & & \textcolor{verde}{4}  & \textcolor{verde}{4} \\
+    \rowcolor{verdeclaro}
+    \$1,400M & Base (recomendado)      & \textcolor{verde}{\textbf{6}}  & \textcolor{verde}{\textbf{6}} \\
+    \$2,050M & Ref. gemelo digital     & \textcolor{verde}{9}  & \textcolor{verde}{9} \\
+    \$2,550M & Holgado                 & \textcolor{azul}{11} & \textcolor{azul}{11} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
-\vspace{4pt}
+\vspace{2pt}
 \begin{columns}[T]
 \begin{column}{0.48\textwidth}
-\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-\textcolor{rojo}{\textbf{Si +50\% o +100\%:}} el hub no se paga
-con transporte. Se justifica por beneficios
-operativos y preparación estratégica.\strut}}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Recomendación:}}
+CAPEX \textbf{\$800--1,400M}, OPEX \textbf{\$370--450M/año},
+payback SICE-TAC \textbf{3--6 meses}. 6 personas, pérgola Chinita.\strut}}
 \end{column}
 \begin{column}{0.48\textwidth}
-\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Si SICE-TAC:}} payback 10--24 meses
-según CAPEX. El hub pasa de conveniente
-a \textbf{inevitable.}\strut}}
+\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+\textcolor{rojo}{\textbf{Si tarifa $<$+145\%:}} hub no se paga
+con transporte. Se justifica por operación,
+contenerización Pto.\ Antioquia, y preparación.\strut}}
 \end{column}
 \end{columns}
 
-\vspace{4pt}
+\vspace{1pt}
 {\tiny\color{gris}
-OPEX: staff \$240M + servicios \$180M + admin \$96M + mant. 5\%CAPEX + seguros 2\%CAPEX.
-Escenarios $<$+160\% omitidos: ahorro negativo. Leg finca$\rightarrow$hub incluido a \$80/caja.}
+OPEX lean: 6 pers.\ \$215M + serv.\ \$73M + mant.\ 2\% + seg.\ 1.2\% + admin \$36M.
+Ahorro bruto: \$3,200M/año (27 viajes 66\% → 18 llenos). Leg finca→hub \$80/caja.}
 \end{frame}
 
 % ============================================================
@@ -419,18 +447,18 @@ y ofrecer consolidación a terceros productores.\strut}}
     \begin{tikzpicture}
         \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!40,
               minimum width=5cm, minimum height=1.1cm] (b0) {};
-        \node[font=\normalsize\bfseries, text=amarillo] at ([yshift=2pt]b0.center) {Breakeven: \$910/caja};
-        \node[font=\tiny, text=gris, below=0pt of b0.center] {Tarifa mínima para que el hub se pague};
+        \node[font=\normalsize\bfseries, text=amarillo] at ([yshift=2pt]b0.center) {Breakeven: \$855/caja};
+        \node[font=\tiny, text=gris, below=0pt of b0.center] {Tarifa mínima (+145\% vs hoy)};
 
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b0] (b1) {};
-        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$2,541M neto/año};
-        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro neto si SICE-TAC (con OPEX)};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$2,757M neto/año};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro neto SICE-TAC (OPEX realista)};
 
-        \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
+        \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b1] (b3) {};
-        \node[font=\normalsize\bfseries, text=azul] at ([yshift=2pt]b3.center) {10--24 meses};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {Payback SICE-TAC (CAPEX \$2,050--\$5,000M)};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b3.center) {3--6 meses};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {Payback SICE-TAC (CAPEX \$800--\$1,400M)};
     \end{tikzpicture}
 
     \vspace{6pt}
