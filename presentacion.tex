@@ -239,90 +239,99 @@ Solo salen llenas (960 cajas), contenerizadas, con espera menor a 1 hora.
 \end{frame}
 
 % ============================================================
-% SLIDE 5: PRUEBA ÁCIDA — CIFRAS AUDITADAS
+% SLIDE 5: ¿A PARTIR DE QUÉ TARIFA SE PAGA EL HUB?
 % ============================================================
 \begin{frame}
-\frametitle{Prueba ácida: las cifras auditadas}
-\tagline{verde}{Impacto Financiero · Cálculo finca por finca}
+\frametitle{¿A partir de qué tarifa se paga el hub?}
+\tagline{azul}{Análisis de Breakeven}
 
 \vspace{1pt}
-{\scriptsize 19 fincas despachando individualmente $=$ \textbf{27 viajes/día, 66\% llenado}.
-Consolidadas $=$ \textbf{18 viajes llenos}. Producción: 102K cajas/sem $=$ 5.3M/año.}
-
-\vspace{3pt}
-\begin{center}
-\scriptsize
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{l l r r}
-    \toprule
-    \textbf{Escenario} & \textbf{Modelo} & \textbf{COP/caja} & \textbf{Anual} \\
-    \midrule
-    Hoy, sin hub        & \$/caja (tarifa plana)  & \textcolor{amarillo}{\$350}     & \$1,857M \\
-    Mañana, sin hub     & \$/viaje + stand-by     & \textcolor{rojo}{\textbf{\$1,389}} & \textcolor{rojo}{\textbf{\$7,371M}} \\
-    Mañana, con hub     & \$/viaje + stand-by     & \textcolor{verde}{\textbf{\$706}}  & \textcolor{verde}{\textbf{\$3,747M}} \\
-    \midrule
-    \multicolumn{2}{l}{\textbf{Ahorro bruto anual}} & \textcolor{verde}{\textbf{--\$683}} & \textcolor{verde}{\textbf{\$3,624M}} \\
-    \bottomrule
-\end{tabular}
-\end{center}
-
-\vspace{2pt}
-\begin{center}
-\scriptsize
-\renewcommand{\arraystretch}{1.05}
-\begin{tabular}{l r r}
-    \toprule
-    \textbf{Desglose \$/viaje} & \textcolor{rojo}{\textbf{Sin Hub (27 viajes)}} & \textcolor{verde}{\textbf{Con Hub (18 viajes)}} \\
-    \midrule
-    Flete \$600K $\div$ cajas/viaje    & \$600K/630 $=$ \textcolor{rojo}{\$952}   & \$600K/960 $=$ \textcolor{verde}{\$625} \\
-    Stand-by \$50K/h $\times$ horas    & 5.5h $\rightarrow$ \textcolor{rojo}{\$437}  & 0.75h $\rightarrow$ \textcolor{verde}{\$39} \\
-    Consolidación hub                  & ---                                          & \$42 \\
-    \midrule
-    \textbf{Total}                     & \textcolor{rojo}{\textbf{\$1,389}}           & \textcolor{verde}{\textbf{\$706}} \\
-    \bottomrule
-\end{tabular}
-\end{center}
-
-\vspace{1pt}
-{\tiny\color{gris} 8 fincas necesitan 2 viajes (parciales), 11 fincas 1 viaje (38--81\% llenado). Stand-by 5.5h: visita de campo.}
-\end{frame}
-
-% ============================================================
-% SLIDE 6: SENSIBILIDAD — PAYBACK vs CAPEX
-% ============================================================
-\begin{frame}
-\frametitle{Payback según nivel de inversión}
-\tagline{azul}{Sensibilidad al CAPEX}
-
-\vspace{1pt}
-{\footnotesize No conocemos el CAPEX definitivo. Esta tabla muestra el payback neto
-(descontando OPEX del hub) para distintos niveles de inversión y escenarios de espera.}
+{\scriptsize Subcontratamos el transporte a \$350/caja. El hub agrega costos: transporte hub$\rightarrow$puerto (\$706/caja),
+leg finca$\rightarrow$hub ($\sim$\$80/caja, por validar), y OPEX operativo ($\sim$\$660M/año).
+\textbf{¿A qué tarifa el ahorro por consolidación compensa esos costos?}}
 
 \vspace{4pt}
 \begin{center}
 \scriptsize
 \renewcommand{\arraystretch}{1.15}
-\begin{tabular}{r r r r r}
+\begin{tabular}{l r r r r}
     \toprule
-    & & \multicolumn{3}{c}{\textbf{Payback (meses)}} \\
-    \cmidrule(lr){3-5}
-    \textbf{CAPEX} & \textbf{OPEX/año} & \textbf{Stand-by 2h} & \textbf{Stand-by 3.5h} & \textbf{Stand-by 5.5h} \\
+    \textbf{Escenario} & \textbf{Tarifa} & \textbf{Costo hub} & \textbf{Ahorro/caja} & \textbf{Neto/año} \\
     \midrule
-    \$1,000M  & \$586M  & \textcolor{verde}{7.7}  & \textcolor{verde}{5.5}  & \textcolor{verde}{3.9} \\
-    \$1,500M  & \$621M  & \textcolor{verde}{11.4} & \textcolor{verde}{8.3}  & \textcolor{verde}{6.0} \\
-    \$2,050M  & \$660M  & \textcolor{azul}{15.7}  & \textcolor{verde}{11.6} & \textcolor{verde}{8.3} \\
-    \$3,000M  & \$726M  & \textcolor{azul}{23.0}  & \textcolor{azul}{17.5}  & \textcolor{verde}{12.4} \\
-    \$4,000M  & \$796M  & \textcolor{amarillo}{30.6} & \textcolor{azul}{24.2}  & \textcolor{azul}{17.0} \\
-    \$5,000M  & \$866M  & \textcolor{amarillo}{38.3} & \textcolor{amarillo}{31.3}  & \textcolor{azul}{21.8} \\
+    Hoy (\$/caja plana)           & \$350   & ---    & ---      & --- \\
+    \addlinespace
+    Conservador (+50\%)           & \$525   & \$786  & \textcolor{rojo}{--\$261}  & \textcolor{rojo}{N/A} \\
+    Moderado (tarifa se duplica)  & \$700   & \$786  & \textcolor{rojo}{--\$86}   & \textcolor{rojo}{N/A} \\
+    \rowcolor{amarilloclaro}
+    \textbf{Breakeven (+160\%)}   & \textbf{\$910}   & \$786  & \$0     & \$0 \\
+    Significativo (+200\%)        & \$1,050 & \$786  & \textcolor{verde}{+\$264}  & \textcolor{verde}{\$742M} \\
+    SICE-TAC (\$/viaje puro)      & \$1,389 & \$786  & \textcolor{verde}{+\$603}  & \textcolor{verde}{\$2,541M} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+{\tiny\color{gris}
+Costo hub: transporte \$706 (flete \$625 + stand-by \$39 + consolidación \$42) + leg finca$\rightarrow$hub \$80.
+Neto/año descuenta OPEX \$660M (8 operarios, servicios, mant. 5\%, seguros 2\%, admin). CAPEX \$2,050M.}
+
+\vspace{2pt}
+\colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{amarillo}{\textbf{Lectura:}} El hub se paga cuando la tarifa suba $>$160\%
+(de \$350 a $\sim$\$910/caja). Los transportadores exigen \$/viaje (\$1,389 equiv.)
+$=$ +300\%, \textbf{muy por encima del breakeven}.\strut}}
+\end{frame}
+
+% ============================================================
+% SLIDE 6: PAYBACK SEGÚN CAPEX × ESCENARIO
+% ============================================================
+\begin{frame}
+\frametitle{Payback neto según inversión y escenario}
+\tagline{azul}{Sensibilidad CAPEX $\times$ Tarifa}
+
+\vspace{1pt}
+{\scriptsize Payback en meses, descontando OPEX completo del hub.
+Solo muestra los escenarios donde el hub genera ahorro neto positivo.}
+
+\vspace{4pt}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{r r r r}
+    \toprule
+    & & \multicolumn{2}{c}{\textbf{Payback neto (meses)}} \\
+    \cmidrule(lr){3-4}
+    \textbf{CAPEX} & \textbf{OPEX/año} & \textbf{+200\% (\$1,050)} & \textbf{SICE-TAC (\$1,389)} \\
+    \midrule
+    \$1,000M  & \$586M  & \textcolor{verde}{15}  & \textcolor{verde}{5} \\
+    \$1,500M  & \$621M  & \textcolor{azul}{23}   & \textcolor{verde}{7} \\
+    \$2,050M  & \$660M  & \textcolor{amarillo}{33}  & \textcolor{verde}{10} \\
+    \$3,000M  & \$726M  & \textcolor{rojo}{53}   & \textcolor{azul}{15} \\
+    \$5,000M  & \$866M  & \textcolor{rojo}{112}  & \textcolor{azul}{24} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{4pt}
-\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Lectura:}} Incluso en el escenario más conservador (CAPEX \$5,000M + stand-by solo 2h),
-el payback es 38 meses ($\sim$3 años). En el caso base (\$2,050M, 5.5h), es \textbf{8 meses}.
-OPEX incluye: 8 operarios, servicios, mantenimiento (5\% CAPEX), seguros (2\%), administración.\strut}}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+\textcolor{rojo}{\textbf{Si +50\% o +100\%:}} el hub no se paga
+con transporte. Se justifica por beneficios
+operativos y preparación estratégica.\strut}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Si SICE-TAC:}} payback 10--24 meses
+según CAPEX. El hub pasa de conveniente
+a \textbf{inevitable.}\strut}}
+\end{column}
+\end{columns}
+
+\vspace{4pt}
+{\tiny\color{gris}
+OPEX: staff \$240M + servicios \$180M + admin \$96M + mant. 5\%CAPEX + seguros 2\%CAPEX.
+Escenarios $<$+160\% omitidos: ahorro negativo. Leg finca$\rightarrow$hub incluido a \$80/caja.}
 \end{frame}
 
 % ============================================================
@@ -410,18 +419,18 @@ y ofrecer consolidación a terceros productores.\strut}}
     \begin{tikzpicture}
         \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!40,
               minimum width=5cm, minimum height=1.1cm] (b0) {};
-        \node[font=\normalsize\bfseries, text=amarillo] at ([yshift=2pt]b0.center) {\$350/caja};
-        \node[font=\tiny, text=gris, below=0pt of b0.center] {Lo que pagamos hoy (tarifa plana)};
+        \node[font=\normalsize\bfseries, text=amarillo] at ([yshift=2pt]b0.center) {Breakeven: \$910/caja};
+        \node[font=\tiny, text=gris, below=0pt of b0.center] {Tarifa mínima para que el hub se pague};
 
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b0] (b1) {};
-        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$3,624M/año};
-        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro bruto si cambia a \$/viaje};
+        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$2,541M neto/año};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro neto si SICE-TAC (con OPEX)};
 
-        \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
+        \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b1] (b3) {};
-        \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b3.center) {8--22 meses};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {Rango payback (según CAPEX, con OPEX)};
+        \node[font=\normalsize\bfseries, text=azul] at ([yshift=2pt]b3.center) {10--24 meses};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {Payback SICE-TAC (CAPEX \$2,050--\$5,000M)};
     \end{tikzpicture}
 
     \vspace{6pt}
@@ -435,66 +444,70 @@ y ofrecer consolidación a terceros productores.\strut}}
 % SLIDE 9: ESCALABILIDAD
 % ============================================================
 \begin{frame}
-\frametitle{Servicio a terceros: ingreso adicional}
+\frametitle{Servicio a terceros: baja el breakeven}
 \tagline{azul}{Escalabilidad}
 
 \vspace{1pt}
-{\footnotesize G20 produce 5.3M cajas/año $=$ apenas el \textbf{4.7\%} de la región (114M cajas/año, Uniban).
-Si el Centro ofrece consolidación a otros productores a \$42/caja, genera ingreso adicional:}
+{\scriptsize G20 produce 5.3M cajas/año $=$ apenas el \textbf{4.7\%} de la región (114M cajas/año).
+Si el Centro consolida para otros productores a \$42/caja, ese ingreso \textbf{baja la tarifa de breakeven}:}
 
 \vspace{4pt}
 \begin{columns}[T]
-\begin{column}{0.48\textwidth}
-    \begin{center}
+\begin{column}{0.46\textwidth}
+    {\scriptsize\color{gris}\textbf{INGRESO POR SERVICIO A TERCEROS}}
+    \vspace{2pt}
+
     \scriptsize
-    \renewcommand{\arraystretch}{1.2}
+    \renewcommand{\arraystretch}{1.15}
     \begin{tabular}{r r r}
         \toprule
-        \textbf{\% región} & \textbf{Cajas adic.} & \textbf{Ingreso} \\
+        \textbf{\% región} & \textbf{Cajas} & \textbf{Ingreso} \\
         \midrule
         5\%   & 5.4M    & \$228M/año \\
         10\%  & 10.9M   & \$457M/año \\
-        15\%  & 16.3M   & \$685M/año \\
         25\%  & 27.2M   & \textcolor{verde}{\textbf{\$1,141M/año}} \\
-        \bottomrule
-    \end{tabular}
-    \end{center}
-
-    \vspace{4pt}
-    {\scriptsize\color{gris} Tarifa de consolidación: \$42 COP/caja.
-    Uniban tiene 250+ fincas, 402 fincas bananeras en la zona.
-    Puerto Antioquia: 7M ton de capacidad.}
-\end{column}
-
-\begin{column}{0.48\textwidth}
-    {\scriptsize\color{gris}\textbf{EFECTO EN PAYBACK (CAPEX \$3,000M)}}
-    \vspace{4pt}
-
-    \scriptsize
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{l r}
-        \toprule
-        \textbf{Escenario} & \textbf{Payback} \\
-        \midrule
-        Solo G20              & 12.4 meses \\
-        + 5\% región          & 11.3 meses \\
-        + 10\% región         & 10.4 meses \\
-        + 25\% región         & \textcolor{verde}{\textbf{8.9 meses}} \\
         \bottomrule
     \end{tabular}
 
     \vspace{6pt}
+    {\scriptsize\color{gris}\textbf{EFECTO: BREAKEVEN MÁS BAJO (CAPEX \$3,000M)}}
+    \vspace{2pt}
+
+    \scriptsize
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabular}{l r r}
+        \toprule
+        \textbf{Escenario} & \textbf{Breakeven} & \textbf{vs hoy} \\
+        \midrule
+        Solo G20              & \$923/caja & +164\% \\
+        + 5\% región          & \$880/caja & +151\% \\
+        + 10\% región         & \$837/caja & +139\% \\
+        + 25\% región         & \textcolor{verde}{\textbf{\$786/caja}} & \textcolor{verde}{+125\%} \\
+        \bottomrule
+    \end{tabular}
+\end{column}
+
+\begin{column}{0.48\textwidth}
     \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{verde}{\textbf{Oportunidad:}} El Centro puede ser
-    \textbf{la puerta de entrada al puerto para toda Urabá.}\strut}}
+    \textcolor{verde}{\textbf{Clave:}} Con 25\% de terceros,
+    el hub se paga desde un incremento tarifario del \textbf{125\%} (vs 164\% sin terceros).
+    Uniban tiene 250+ fincas. 402 fincas bananeras en la zona.
+    Puerto Antioquia: 7M ton capacidad.\strut}}
+
+    \vspace{6pt}
+    \colorbox{azulclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+    \textcolor{azul}{\textbf{Contexto:}} Costa Rica 2.5 años en crisis climática.
+    Colombia: proveedor más confiable de Europa (70\% de exportación).
+    Precio estable: \$7.25~USD/caja.
+    \textbf{La oportunidad es ahora.}\strut}}
+
+    \vspace{6pt}
+    \colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
+    \textcolor{amarillo}{\textbf{Nota:}} El leg finca$\rightarrow$hub (\$80/caja)
+    requiere validación con Anderson. Si las fincas usan
+    vehículos propios, el breakeven baja a \textbf{\$830/caja (+137\%)}.\strut}}
 \end{column}
 \end{columns}
-
-\vspace{4pt}
-\colorbox{azulclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{azul}{\textbf{Contexto:}} Costa Rica 2.5 años en crisis climática.
-Colombia es el proveedor más confiable de Europa (70\% de exportación).
-Precio estable: \$7.25~USD/caja. \textbf{La oportunidad es ahora.}\strut}}
 \end{frame}
 
 % ============================================================
