@@ -534,7 +534,7 @@
             <div style="background:var(--red-bg);padding:8px;border-radius:4px;border:1px solid rgba(255,59,78,0.2);">
                 <div style="color:var(--red);font-weight:700;margin-bottom:4px;">IMPACTO MODELO POR VIAJE</div>
                 <div style="color:var(--text2);line-height:1.7;">
-                    Tarifa proyectada: <span style="color:var(--text);" id="pi-flete">$800</span>/caja sin hub<br>
+                    Tarifa ponderada: <span style="color:var(--text);" id="pi-flete">$750</span>/caja (viaje lleno)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
                     Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$800</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$380</span>/caja<br>
@@ -811,26 +811,26 @@
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;">
             <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;margin-bottom:8px;">
                 <div class="kpi" style="border-color:rgba(240,160,48,0.2);">
-                    <div class="kpi-v y" style="font-size:14px;">$300-400</div>
+                    <div class="kpi-v y" style="font-size:14px;">$295-519</div>
                     <div class="kpi-l">$/caja (hoy)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por caja</div>
                 </div>
                 <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$800</div>
-                    <div class="kpi-l">$/caja (proyeccion $/viaje)</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$750</div>
+                    <div class="kpi-l">$/caja (ponderado $/viaje)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
             </div>
             <div style="background:var(--bg);padding:8px;border-radius:4px;border:1px solid var(--border);line-height:1.7;color:var(--text2);">
                 <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Transportadores exigen cambio de modelo:</div>
-                Flete mula (20 pallets &times; 48 cajas): <span style="color:var(--text);">~$600,000 COP/viaje</span><br>
-                Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$800 COP (+129% vs hoy)</span><br>
-                <span style="color:var(--text3);font-size:8px;">Fuente: transcripcion visita Uraba. Stand-by: por validar con transportadores.</span>
+                Flete mula: <span style="color:var(--text);">$250K-500K COP/viaje (segun finca)</span><br>
+                Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$750 COP (+109% vs hoy)</span><br>
+                <span style="color:var(--text3);font-size:8px;">Fuente: datos reales Anderson Mestra, Mar 2026.</span>
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
                 <span style="color:var(--green);font-weight:700;">Con Centro + modelo $/viaje:</span><br>
-                <span style="color:var(--text2);">Mulas salen <b style="color:var(--green);">llenas</b> (960 cajas). Costo hub: <span style="color:var(--green);" id="tm-hub-precio">$767</span>/caja. Breakeven: ~$835/caja (+139%).</span>
+                <span style="color:var(--text2);">Hub desde Chinita: <span style="color:var(--green);" id="tm-hub-precio">$678</span>/caja. Breakeven: ~$746/caja (+108%).</span>
             </div>
             <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
                 <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
@@ -887,7 +887,7 @@
             <span style="color:var(--green);">Isocronas Centro:</span> <span id="iso-stats">cargando...</span><br>
             <span style="color:var(--green);">Eliminacion tractomulas:</span> ~89% en via<br>
             <span style="color:var(--green);">Ahorro logistico:</span> <span id="exec-cost-save">calculando...</span><br>
-            <span style="color:var(--green);">Riesgo transporte:</span> $800/caja nuevo vs $350/caja actual<br>
+            <span style="color:var(--green);">Riesgo transporte:</span> $750/caja nuevo vs $359/caja actual<br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
             <span style="color:var(--green);">Municipios:</span> 9 DANE &bull; <span style="color:var(--green);">Veredas:</span> 611 UPRA
         </div>
@@ -1188,12 +1188,12 @@
     <div class="res-section-t">RIESGO TRANSPORTE: ANTES vs DESPUES</div>
     <div class="res-risk">
         <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="res-risk-v" style="color:var(--red);">$300-400</div>
+            <div class="res-risk-v" style="color:var(--red);">$295-519</div>
             <div class="res-risk-l">COP/caja MODELO ACTUAL<br>Cobro por caja al transportador</div>
         </div>
         <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="res-risk-v" style="color:var(--red);">$800</div>
-            <div class="res-risk-l">COP/caja NUEVO MODELO<br>Cobro por viaje + stand-by (x2)</div>
+            <div class="res-risk-v" style="color:var(--red);">$750</div>
+            <div class="res-risk-l">COP/caja NUEVO MODELO<br>Cobro por viaje ponderado (+109%)</div>
         </div>
     </div>
 
@@ -1201,7 +1201,7 @@
     <div class="res-section-t">CONTEXTO DEL PROYECTO</div>
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
-        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $350 a $800.</p>
+        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $359 a $750.</p>
         <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas solo salen del centro llenas hacia Puerto Antioquia. Resultado: <strong>89% menos tractomulas en via, $502M de ahorro anual</strong>, y eliminacion del riesgo de cobro por viaje.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
     </div>
@@ -1258,9 +1258,9 @@ const CONFIG = {
   fleet: { N_MULAS: 4, N_SENC: 6, MULA_CAP: 1152, SENC_CAP: 528 },
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
-          TARIFA_CAJA: 350, FINCA_HUB: 80 },
-  // Modelo por viaje: tarifa proyectada (transcripcion Uraba) y costos hub
-  trip: { TARIFA_VIAJE: 800, HUB_FLETE: 625, HUB_STANDBY: 20 },
+          TARIFA_CAJA: 359, FINCA_HUB: 80 },
+  // Datos reales: tarifa $/viaje ponderada $750/caja (viaje lleno 540 cajas), hub Chinita→PA $556/caja
+  trip: { TARIFA_VIAJE: 750, HUB_FLETE: 556, HUB_STANDBY: 0 },
   regional: { ANNUAL_CAJAS: 114e6 }
 };
 
@@ -2090,14 +2090,14 @@ function updateContextBox() {
         if (box) box.style.borderColor = 'rgba(255,59,78,0.3)';
         el.innerHTML = isV
             ? '<span style="color:var(--red);font-weight:700;">Situacion actual ($/viaje):</span><br>' +
-              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Costo: $' + (r.costDirect||1389) + '/caja.'
+              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Costo: $' + (r.costDirect||750) + '/caja.'
             : '<span style="color:var(--red);font-weight:700;">Situacion actual:</span><br>' +
-              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Tarifa plana: $350/caja.';
+              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Tarifa plana: $359/caja.';
     } else {
         if (box) box.style.borderColor = 'rgba(0,232,120,0.3)';
         el.innerHTML = isV
             ? '<span style="color:var(--green);font-weight:700;">Con Centro ($/viaje):</span><br>' +
-              (r.hubMulas||18) + ' viajes llenos, 100%.<br>Costo: $' + (r.costHub||786) + '/caja.'
+              (r.hubMulas||18) + ' viajes llenos, 100%.<br>Costo: $' + (r.costHub||678) + '/caja.'
             : '<span style="color:var(--green);font-weight:700;">Con Centro:</span><br>' +
               (r.hubMulas||18) + ' viajes llenos, 100% llenado.<br>Valor operativo + preparacion.';
     }
@@ -2122,13 +2122,13 @@ function showScenarioBanner(sc) {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? '27 viajes/dia parciales (66% llenado). Proyeccion $/viaje: ~$800/caja.'
+                ? '27 viajes/dia parciales (66% llenado). $/viaje ponderado: ~$750/caja (datos reales).'
                 : '27 viajes/dia en via de 1 carril. 5-6h espera. Mulas a medio llenar.') + '</div>';
     } else {
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? 'Mulas llenas. 18 viajes/dia. Hub $767/caja. Breakeven a $835/caja.'
+                ? 'Mulas llenas. 18 viajes/dia. Hub $678/caja. Breakeven ~$746/caja.'
                 : 'Solo mulas llenas. 18 viajes consolidados. Valor operativo + preparacion tarifaria.') + '</div>';
     }
     el.style.display = '';
@@ -2525,7 +2525,7 @@ function updateSim(){
     } else {
         document.getElementById('cost-model-badge').textContent = '$/VIAJE';
         document.getElementById('cost-model-badge').style.color = 'var(--red)';
-        document.getElementById('cost-model-desc').textContent = 'Proyeccion $/viaje: ~$800/caja sin hub (fuente: transcripcion Uraba)';
+        document.getElementById('cost-model-desc').textContent = '$/viaje ponderado: $750/caja sin hub (datos reales Anderson, Mar 2026)';
         document.getElementById('cost-table-title').textContent = 'Comparacion $/viaje (COP/caja)';
         document.getElementById('cd-fuel-label').textContent = 'Flete/viaje';
         document.getElementById('cd-drv-label').textContent = 'Stand-by';
@@ -2828,7 +2828,7 @@ function updateFinancialDashboard() {
             pricingMsg.style.background = 'var(--yellow-bg)';
             pricingMsg.style.border = '1px solid rgba(240,160,48,0.3)';
             pricingMsg.innerHTML = '<span style="color:var(--yellow);font-weight:700;">MODELO ACTIVO: $/CAJA (TARIFA PLANA)</span><br>' +
-                '<span style="color:var(--text2);">G20 subcontrata transporte a $' + (CONFIG.cost.TARIFA_CAJA||350) + '/caja. Sin ahorro diferencial con hub. ' +
+                '<span style="color:var(--text2);">G20 subcontrata transporte a $' + (CONFIG.cost.TARIFA_CAJA||359) + '/caja. Sin ahorro diferencial con hub. ' +
                 'Los indicadores reflejan <b style="color:var(--text);">valor operativo</b>. Cambie a $/VIAJE para ver ahorro financiero.</span>';
         } else {
             pricingMsg.style.background = 'rgba(255,59,78,0.08)';
