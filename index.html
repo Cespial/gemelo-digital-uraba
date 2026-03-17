@@ -536,7 +536,7 @@
                 <div style="color:var(--text2);line-height:1.7;">
                     Tarifa ponderada: <span style="color:var(--text);" id="pi-flete">$750</span>/caja (viaje lleno)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
-                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$800</span>/caja<br>
+                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$750</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$380</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
                         Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">$2,400M</span>
@@ -1175,7 +1175,7 @@
             <div class="res-metric-l">Ahorro por caja</div>
         </div>
         <div class="res-metric">
-            <div class="res-metric-v y">$800</div>
+            <div class="res-metric-v y">$750</div>
             <div class="res-metric-l">Riesgo nuevo modelo $/caja</div>
         </div>
         <div class="res-metric">
@@ -2437,12 +2437,12 @@ function updateSim(){
         totalHub = TARIFA_CAJA;
         row1Direct = TARIFA_CAJA; row1Hub = TARIFA_CAJA;
     } else {
-        // === MODELO $/VIAJE: proyeccion $800/caja (transcripcion Uraba) ===
-        // Sin hub: tarifa proyectada (flete + stand-by incluidos)
+        // === MODELO $/VIAJE: ponderado $750/caja (datos reales Anderson, Mar 2026) ===
+        // Sin hub: tarifa ponderada (flete + stand-by incluidos)
         totalDirect = TARIFA_VIAJE;
         row1Direct = TARIFA_VIAJE;
 
-        // Con hub: mula llena $625 + espera corta $20 + consolidacion $42 + finca→hub $80
+        // Con hub: Chinita→PA $556 + standby $0 + consolidacion $42 + finca→hub $80
         row1Hub = HUB_FLETE;
         row2Hub = HUB_STANDBY;
         totalHub = HUB_FLETE + HUB_STANDBY + HUB_CONSOL + FINCA_HUB;
