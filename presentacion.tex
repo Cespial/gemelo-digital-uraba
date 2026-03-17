@@ -47,7 +47,6 @@
 \setbeamertemplate{itemize item}{\color{verde}\scriptsize$\blacksquare$}
 \setbeamertemplate{itemize subitem}{\color{azul}\scriptsize$\blacktriangleright$}
 
-% ---- FOOTLINE ----
 \setbeamertemplate{footline}{%
     \leavevmode\hbox{%
         \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex,left]{footline}%
@@ -59,13 +58,13 @@
     }%
 }
 
-% ---- COMANDOS ----
 \newcommand{\tagline}[2]{{\scriptsize\color{#1}\textbf{\MakeUppercase{#2}}}}
+\newcommand{\paso}[1]{\textcolor{azul}{\textbf{Paso #1:}}}
 
 \begin{document}
 
 % ============================================================
-% SLIDE 1: PORTADA
+% 1. PORTADA
 % ============================================================
 \begin{frame}[plain]
 \vfill
@@ -92,103 +91,96 @@
 \colorbox{grisclaro}{\small\strut\hspace{6pt}Gemelo Digital: \textcolor{verde}{\textbf{gemelo-digital-uraba.vercel.app}}\hspace{6pt}}
 
 \vspace{12pt}
-{\tiny\color{gris} Datos: OSRM · DANE · UPRA · Geocercas GPS · Uniban 2012--2025}
+{\tiny\color{gris} Datos: OSRM · DANE · UPRA · Geocercas GPS · Producción real G20 · Tarifas 2026}
 \end{center}
 \vfill
 \end{frame}
 
 % ============================================================
-% SLIDE 2: EL PROBLEMA
+% 2. EL PROBLEMA
 % ============================================================
 \begin{frame}
-\frametitle{El caos logístico de Urabá}
+\frametitle{Hoy cada finca despacha por su cuenta}
 \tagline{rojo}{El Problema}
 
 \vspace{4pt}
-Hoy, cada una de nuestras \textbf{19 fincas} despacha de forma independiente
-hacia el puerto o el embarcadero. Tractomulas a medio llenar, en una vía de un solo carril,
-esperando horas. \textbf{Nadie consolida. Nadie optimiza.}
+Nuestras \textbf{19 fincas} producen \textbf{101,003 cajas por semana} (5.25 millones/año).
+Cada finca contrata su propio transporte al puerto o embarcadero.
+\textbf{Nadie consolida. Nadie optimiza.}
 
-\vspace{10pt}
+\vspace{8pt}
 \begin{center}
 \begin{tikzpicture}
     \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!30, minimum width=3cm, minimum height=1.4cm] (k1) {};
-    \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k1.center) {27};
-    \node[font=\tiny, text=gris, below=0pt of k1.center] {viajes/día (66\% llenado)};
+    \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k1.center) {26};
+    \node[font=\tiny, text=gris, below=0pt of k1.center] {viajes/día};
 
     \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!30, minimum width=3cm, minimum height=1.4cm, right=10pt of k1] (k2) {};
-    \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k2.center) {5--6h};
-    \node[font=\tiny, text=gris, below=0pt of k2.center] {espera en embarcadero};
+    \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k2.center) {76\%};
+    \node[font=\tiny, text=gris, below=0pt of k2.center] {llenado promedio};
 
     \node[rounded corners=4pt, fill=rojoclaro, draw=rojo!30, minimum width=3cm, minimum height=1.4cm, right=10pt of k2] (k3) {};
-    \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k3.center) {19};
-    \node[font=\tiny, text=gris, below=0pt of k3.center] {fincas despachando solas};
+    \node[font=\Large\bfseries, text=rojo] at ([yshift=3pt]k3.center) {\$359};
+    \node[font=\tiny, text=gris, below=0pt of k3.center] {COP/caja (tarifa actual)};
 \end{tikzpicture}
 \end{center}
 
-\vspace{8pt}
+\vspace{6pt}
 \begin{alertblock}{}
 \small
-Cada camión hace su recorrido individual. Si la finca produjo pocas cajas,
-la mula sale medio vacía. Anderson coordina 19 fincas por celular.
-Fruta recogida a las 2--3~AM. Embarcadero devuelve camiones a las 11~PM.
+Pagamos \textbf{\$359/caja} promedio ponderado (rango \$295--\$519 según finca).
+Es una tarifa plana: si el camión va medio vacío, es problema del transportador.
+Costo anual: \$359 $\times$ 5.25M cajas $=$ \textbf{\$1,886M COP/año}.
 \end{alertblock}
 
-\vspace{2pt}
-{\tiny\color{gris} Fuente: Geocercas GPS 7 vehículos (Mar 9--12, 2026) · OSRM routing real · Modelo BPR congestión}
+\vspace{1pt}
+{\tiny\color{gris} Fuente: Tarifas reales 2026 + producción promedio por finca (Anderson Mestra, Grupo 20)}
 \end{frame}
 
 % ============================================================
-% SLIDE 3: LA AMENAZA TARIFARIA
+% 3. EL CAMBIO QUE VIENE
 % ============================================================
 \begin{frame}
-\frametitle{El modelo tarifario va a cambiar}
-\tagline{amarillo}{La Amenaza}
+\frametitle{¿Qué pasa cuando nos cobren por viaje?}
+\tagline{amarillo}{El Cambio Tarifario}
 
-\vspace{4pt}
-{\small Hoy le pagamos al transportador \textbf{por caja}. Si el camión va medio vacío, es su problema.
-Pero los transportadores llevan 2 años exigiendo cobrar \textbf{por viaje + stand-by}.}
+\vspace{1pt}
+{\scriptsize Los transportadores quieren cobrar \textbf{por viaje}, no por caja.
+Anderson nos pasó las tarifas. Así se calcula el impacto:}
 
-\vspace{8pt}
-\begin{columns}[c]
-\begin{column}{0.40\textwidth}
+\vspace{3pt}
+{\scriptsize
+\paso{1} Cada finca produce entre \textbf{9 y 38 pallets/día}. \quad
+\paso{2} Sencillo: \textbf{12 pallets}. Mula: \textbf{24}. \quad
+\paso{3} Viaje a PA: \textbf{\$250K--\$500K}.}
+
+\vspace{3pt}
 \begin{center}
-    \colorbox{amarilloclaro}{\parbox{4cm}{\centering\vspace{6pt}
-        {\scriptsize\bfseries\color{amarillo} HOY: \$/CAJA}\\[4pt]
-        {\fontsize{22}{26}\selectfont\bfseries\color{amarillo} \$350}\\[2pt]
-        {\scriptsize\color{gris} Promedio COP/caja\\Es problema del transportador}
-    \vspace{6pt}}}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r r r r}
+    \toprule
+    \textbf{Ejemplo} & \textbf{Pall/día} & \textbf{Vehículo} & \textbf{Viaje PA} & \textbf{\$/caja} \\
+    \midrule
+    Chinita (grande)   & 37.5 & 2 mulas        & \$300K c/u & \$712 \\
+    Sierra (pequeña)   & 10.3 & 1 sencillo     & \$370K     & \$797 \\
+    Punto Fijo (lejos) & 29.1 & mula + senc.   & \$500K c/u & \$1,146 \\
+    \bottomrule
+\end{tabular}
 \end{center}
-\end{column}
 
-\begin{column}{0.08\textwidth}
+\vspace{2pt}
+{\scriptsize \paso{4} Promedio ponderado 19 fincas (por producción):}
 \begin{center}
-    {\LARGE\color{rojo}\bfseries$\Rightarrow$}
+    \colorbox{rojoclaro}{\normalsize\bfseries\color{rojo}\strut\hspace{6pt}26 viajes/día · 76\% llenado · \$963/caja\hspace{6pt}}
 \end{center}
-\end{column}
 
-\begin{column}{0.40\textwidth}
-\begin{center}
-    \colorbox{rojoclaro}{\parbox{4cm}{\centering\vspace{6pt}
-        {\scriptsize\bfseries\color{rojo} MAÑANA: \$/VIAJE}\\[4pt]
-        {\fontsize{22}{26}\selectfont\bfseries\color{rojo} \$963}\\[2pt]
-        {\scriptsize\color{gris} 26 viajes, 76\% llenado\\Es \textbf{nuestro} problema}
-    \vspace{6pt}}}
-\end{center}
-\end{column}
-\end{columns}
-
-\vspace{8pt}
-\begin{alertblock}{}
-\small
-\textbf{Datos reales (Anderson, Mar 2026):} viaje a PA de \$250K a \$500K (sencillo 12 pallets, mula 24 pallets).
-Con mezcla real de vehículos: \textbf{26 viajes/día, 76\% llenado, \$963/caja.}
-El hub consolida en 17 mulas llenas: \$835/caja. \textbf{Ahorro: \$128/caja.}
-\end{alertblock}
+\vspace{1pt}
+{\tiny\color{gris} Sencillo 12 pall., mula 24 pall., pallet 54 cajas. Mula $=$ 2.4$\times$ tarifa 10 pall. Fuente: Anderson, Mar 2026.}
 \end{frame}
 
 % ============================================================
-% SLIDE 4: LA SOLUCIÓN — MODELO 3 NODOS
+% 4. LA SOLUCIÓN — MODELO 3 NODOS
 % ============================================================
 \begin{frame}
 \frametitle{Consolidar antes de despachar}
@@ -205,18 +197,12 @@ hacia el embarcadero o Puerto Antioquia.}
     nodo/.style={circle, minimum size=0.85cm, draw=#1, fill=#1!12, line width=0.8pt, font=\small},
     linea/.style={line width=1.5pt, ->, >=stealth}
 ]
-    % LEFT: 19 fincas
     \node[nodo=amarillo] (fincas) at (0,0) {\faSeedling};
-
-    % MIDDLE: 3 nodos (symmetric, wide vertical spread to clear arrows)
     \node[nodo=verde] (centro) at (3.5, 1.1) {\faBoxes};
     \node[nodo=azul] (mini) at (3.5, 0) {\faTruck};
     \node[nodo=amarillo!70!black] (zungo) at (3.5, -1.1) {\faShip};
-
-    % RIGHT: Puerto
     \node[nodo=azul!80!black] (puerto) at (7.0, 0) {\faAnchor};
 
-    % ARROWS first (behind labels)
     \draw[linea, verde!70!black] (fincas) -- node[above, font=\fontsize{6}{7}\selectfont\bfseries, text=verde, sloped] {12} (centro);
     \draw[linea, azul!70!black] (fincas) -- node[above, font=\fontsize{6}{7}\selectfont\bfseries, text=azul] {3} (mini);
     \draw[linea, amarillo!60!black] (fincas) -- node[below, font=\fontsize{6}{7}\selectfont\bfseries, text=amarillo!70!black, sloped] {4} (zungo);
@@ -224,160 +210,98 @@ hacia el embarcadero o Puerto Antioquia.}
     \draw[linea, azul] (mini) -- (puerto);
     \draw[linea, amarillo!70!black] (zungo) -- (puerto);
 
-    % LABELS to the right of middle nodes (offset to avoid arrow overlap)
-    \node[right=6pt of centro, anchor=west, font=\tiny\bfseries, text=verde,
-          fill=white, inner sep=1pt] {Centro (12 fincas)};
-    \node[right=6pt of mini, anchor=west, font=\tiny\bfseries, text=azul,
-          fill=white, inner sep=1pt] {Mini-Hub (3 fincas)};
-    \node[right=6pt of zungo, anchor=west, font=\tiny\bfseries, text=amarillo!70!black,
-          fill=white, inner sep=1pt] {Emb.\ Zungo (4 fincas)};
-
-    % LABELS below nodes (names only, no overlap risk)
+    \node[right=6pt of centro, anchor=west, font=\tiny\bfseries, text=verde, fill=white, inner sep=1pt] {Centro (12 fincas)};
+    \node[right=6pt of mini, anchor=west, font=\tiny\bfseries, text=azul, fill=white, inner sep=1pt] {Mini-Hub (3 fincas)};
+    \node[right=6pt of zungo, anchor=west, font=\tiny\bfseries, text=amarillo!70!black, fill=white, inner sep=1pt] {Emb.\ Zungo (4 fincas)};
     \node[below=3pt of fincas, font=\tiny\bfseries, text=amarillo] {19 Fincas};
     \node[below=12pt of fincas, font=\fontsize{5}{6}\selectfont, text=gris] {2,000 ha};
-    \node[below=3pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto};
-    \node[below=12pt of puerto, font=\fontsize{5}{6}\selectfont, text=gris] {Pto.\ Antioquia};
+    \node[below=3pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto Antioquia};
 \end{tikzpicture}
 \end{center}
 
 \vspace{2pt}
 \begin{block}{Resultado}
 \small
-De \textbf{26 viajes} (76\% llenado) a \textbf{\textcolor{verde}{17 mulas llenas/día}}.
-Consolidadas (89--98\% llenado), contenerizadas.
-\textbf{\textcolor{verde}{--35\% viajes. Ahorro \$128/caja.}}
+De \textbf{26 viajes} (76\% llenado) a \textbf{\textcolor{verde}{17 mulas llenas/día}} (89--98\% llenado).
+\textbf{\textcolor{verde}{--35\% viajes.}} Fruta contenerizada, turnos planificados.
 \end{block}
 \end{frame}
 
 % ============================================================
-% SLIDE 5: COSTOS REALES DEL HUB
+% 5. ¿CUÁNTO CUESTA EL HUB POR CAJA?
 % ============================================================
 \begin{frame}
-\frametitle{¿Qué cuesta construir y operar el hub?}
-\tagline{azul}{CAPEX y OPEX desde cero}
+\frametitle{¿Cuánto cuesta operar el hub por caja?}
+\tagline{azul}{Cada componente, paso a paso}
 
-\vspace{1pt}
-{\scriptsize El terreno es de Grupo 20 (Finca Chinita). El hub es una pérgola cubierta con rampas.
-350 pallets/día, 2--3 montacargas, 6 personas. No es un almacén industrial.}
+\vspace{2pt}
+{\small El hub tiene tres costos por caja y un costo fijo anual (OPEX):}
 
-\vspace{3pt}
-\begin{columns}[T]
-\begin{column}{0.48\textwidth}
-    {\scriptsize\color{gris}\textbf{CAPEX (terreno propio, \$0)}}
-    \vspace{2pt}
+\vspace{6pt}
+\paso{1} {\small \textbf{Transporte hub $\rightarrow$ Puerto Antioquia}: los 3 hubs consolidan y despachan
+17 mulas/día llenas. Costo ponderado: \textbf{\$713/caja}.}
 
-    \scriptsize
-    \renewcommand{\arraystretch}{1.1}
-    \begin{tabular}{l r}
-        \toprule
-        Construcción pérgola + rampas & \$600--800M \\
-        Equipos (montacargas, IT)     & \$150--250M \\
-        Capital de trabajo            & \$50--100M \\
-        \midrule
-        \textbf{Rango CAPEX}          & \textbf{\$800--1,200M} \\
-        \bottomrule
-    \end{tabular}
+{\tiny\color{gris}\hspace{24pt}Centro: 10 mulas $\times$ \$720K = \$7.2M/día · Mini-Hub: 2 $\times$ \$600K = \$1.2M · Zungo: 5 $\times$ \$1.2M = \$6M · Total: \$14.4M / 20,200 cajas/día}
 
-    \vspace{6pt}
-    {\scriptsize\color{gris}\textbf{OPEX ANUAL}}
-    \vspace{2pt}
+\vspace{4pt}
+\paso{2} {\small \textbf{Consolidación} (paletizar, inspeccionar, cargar): \textbf{\$42/caja}.}
 
-    \scriptsize
-    \renewcommand{\arraystretch}{1.1}
-    \begin{tabular}{l r}
-        \toprule
-        6 personas (con prestaciones) & \$215M \\
-        Servicios (luz, agua, seg.)   & \$73M \\
-        Mant. (2\%) + seguros (1.2\%) & \$38M \\
-        Admin (contable, legal)       & \$36M \\
-        \midrule
-        \textbf{OPEX base}            & \textbf{\$362M} \\
-        \textbf{+ 20\% contingencia}  & \textbf{\$434M} \\
-        \bottomrule
-    \end{tabular}
-\end{column}
+\vspace{4pt}
+\paso{3} {\small \textbf{Transporte finca $\rightarrow$ hub} (vehículos propios, trayecto corto): \textbf{\$80/caja} (supuesto, por validar).}
 
-\begin{column}{0.48\textwidth}
-    {\scriptsize\color{gris}\textbf{LA REALIDAD TEMPORAL}}
-    \vspace{2pt}
+\vspace{6pt}
+\begin{center}
+    \colorbox{verdeclaro}{\parbox{10cm}{\centering\small\vspace{4pt}
+        \textbf{Costo total hub por caja:}\quad \$713 + \$42 + \$80 $=$ \textcolor{verde}{\textbf{\$835/caja}}
+    \vspace{4pt}}}
+\end{center}
 
-    {\scriptsize
-    Bajo el modelo actual (\$/caja), el hub \textbf{no ahorra en transporte}.
-    El transportador cobra lo mismo por caja con o sin hub.
+\vspace{4pt}
+\paso{4} {\small \textbf{OPEX fijo del hub}: 6 personas (\$215M) + servicios (\$73M) + mant.\ + seguros (\$38M) + admin (\$36M) $=$ \textbf{\$362M/año}.}
 
-    \vspace{4pt}
-    El hub \textbf{quema OPEX} (\$362--434M/año) mientras espera
-    el cambio tarifario. Ese es el costo real de anticiparse.}
-
-    \vspace{6pt}
-    \colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{amarillo}{\textbf{Costo de esperar:}}
-    \$362--434M/año $=$ \$68--82 por caja adicional
-    (+19\% sobre tarifa actual de \$359).
-    ¿Valen los beneficios operativos ese costo
-    mientras llega el cambio tarifario?\strut}}
-
-    \vspace{4pt}
-    \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{verde}{\textbf{Con datos reales (Anderson, Mar 2026):}}
-    Sin hub: \$963/caja (26 viajes, 76\% fill).
-    Con hub: \$835/caja (17 mulas). \textbf{Ahorro: \$128/caja (\$672M/año).}\strut}}
-\end{column}
-\end{columns}
+{\tiny\color{gris}\hspace{24pt}Equivale a \$69/caja adicional. CAPEX terreno: \$0 (Chinita es propio G20). Construcción: \$800--1,200M.}
 \end{frame}
 
 % ============================================================
-% SLIDE 6: LÍNEA DE TIEMPO REALISTA
+% 6. LA CUENTA: AHORRO NETO
 % ============================================================
 \begin{frame}
-\frametitle{El centro se paga en 2.6 a 3.8 años}
-\tagline{verde}{Datos reales: producción por finca + vehículos (sencillo 12, mula 24 pallets)}
+\frametitle{La cuenta: de \$963 a \$835}
+\tagline{verde}{Cada número tiene su origen}
 
 \vspace{2pt}
 \begin{center}
-\scriptsize
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{l r r}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l r l}
     \toprule
-    & \textcolor{rojo}{\textbf{Sin hub}} & \textcolor{verde}{\textbf{Con hub}} \\
+    \textcolor{rojo}{Costo sin hub (\$/viaje)} & \textcolor{rojo}{\$963/caja} & {\scriptsize 26 viajes, 76\% llenado (diap.\ 3)} \\
+    \textcolor{verde}{Costo con hub}           & \textcolor{verde}{\$835/caja} & {\scriptsize \$713 + \$42 + \$80 (diap.\ 5)} \\
     \midrule
-    Viajes/día          & 26 (15 mulas + 11 sencillos)   & 17 mulas (consolidadas) \\
-    Llenado promedio    & 76\%                            & 89--98\% \\
-    Costo por caja      & \textcolor{rojo}{\textbf{\$963}}  & \textcolor{verde}{\textbf{\$835}} \\
+    \textbf{Ahorro por caja}                   & \textbf{\$128} & \\
+    $\times$ 5.25M cajas/año                   & \textbf{\$672M} & {\scriptsize bruto} \\
+    $-$ OPEX hub                               & --\$362M       & {\scriptsize 6 pers.\ + servicios} \\
+    \midrule
+    \textbf{Ahorro neto}                       & \textcolor{verde}{\textbf{\$310M/año}} & \\
     \addlinespace
-    \textbf{Ahorro}     & \multicolumn{2}{c}{\textcolor{verde}{\textbf{\$128/caja $=$ \$672M/año bruto}}} \\
+    CAPEX \$800M $\div$ \$310M                 & \textcolor{verde}{\textbf{2.6 años}} & {\scriptsize payback} \\
+    CAPEX \$1,200M $\div$ \$310M               & \textcolor{azul}{\textbf{3.8 años}} & {\scriptsize payback} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{2pt}
-\begin{center}
-\scriptsize
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{l r r r}
-    \toprule
-    \textbf{CAPEX} & \textbf{Neto/año} & \textbf{Payback} \\
-    \midrule
-    \$800M  & \$310M & \textcolor{verde}{\textbf{31 meses (2.6a)}} \\
-    \$1,000M & \$310M & \textcolor{azul}{39 meses (3.3a)} \\
-    \$1,200M & \$310M & \textcolor{azul}{46 meses (3.8a)} \\
-    \bottomrule
-\end{tabular}
-\end{center}
-
-\vspace{1pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Conclusión:}} \$128/caja ahorro (\$963$\rightarrow$\$835).
-\textbf{Payback 2.6--3.8 años.} Hub: flete \$713 + consol \$42 + finca→hub \$80. OPEX \$362M. Terreno propio.\strut}}
+\textcolor{verde}{\textbf{Trazabilidad:}} \$963 viene de 19 fincas $\times$ producción real $\times$ tarifa PA.
+\$835 viene de 17 mulas consolidadas $\times$ tarifa Chinita--PA + consolidación + finca$\rightarrow$hub.
+\$310M = (\$963--\$835) $\times$ 5.25M -- \$362M OPEX. Terreno \$0 (Chinita propio).\strut}}
 
 \vspace{1pt}
-{\tiny\color{gris}
-19 fincas. Tarifas PA: \$250K--500K/viaje. Sencillo 12 pall., mula 24 pall.
-Mula $=$ 2.4$\times$ tarifa 10 pall. Fuente: Anderson Mestra, Mar 2026.}
+{\tiny\color{gris} Supuesto: modelo \$/viaje adoptado. Bajo \$/caja actual: ahorro $=$ \$0. Fuente: Anderson Mestra, Mar 2026.}
 \end{frame}
 
 % ============================================================
-% SLIDE 7: BENEFICIOS OPERATIVOS
+% 7. BENEFICIOS OPERATIVOS
 % ============================================================
 \begin{frame}
 \frametitle{Beneficios que no se miden solo en pesos}
@@ -414,19 +338,19 @@ Mula $=$ 2.4$\times$ tarifa 10 pall. Fuente: Anderson Mestra, Mar 2026.}
 \end{column}
 \end{columns}
 
-\vspace{4pt}
+\vspace{6pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
 \textcolor{verde}{\textbf{Valor estratégico:}}
 Contenerizar para Puerto Antioquia, negociar tarifas desde posición de fuerza,
-y ofrecer consolidación a terceros productores.\strut}}
+y ofrecer consolidación a terceros productores. Estos beneficios aplican \textbf{aun si la tarifa no cambia}.\strut}}
 \end{frame}
 
 % ============================================================
-% SLIDE 8: INVERSIÓN (CAPEX)
+% 8. CAPEX
 % ============================================================
 \begin{frame}
-\frametitle{CAPEX estimado}
-\tagline{azul}{Inversión}
+\frametitle{¿Cuánto cuesta construir el hub?}
+\tagline{azul}{CAPEX estimado}
 
 \vspace{2pt}
 \begin{columns}[T]
@@ -450,55 +374,52 @@ y ofrecer consolidación a terceros productores.\strut}}
     \vspace{8pt}
     {\scriptsize
     \textbf{Ubicación:} Finca Chinita, salida de Apartadó,
-    cerca de la variante. Rampa entrada, plataforma cubierta,
-    rampa salida. Flujo unidireccional.}
+    cerca de la variante. Pérgola cubierta con rampas.
+    No es un almacén industrial.}
 \end{column}
 
 \begin{column}{0.48\textwidth}
-    {\footnotesize\color{gris}\textbf{RETORNO ESPERADO}}
+    {\footnotesize\color{gris}\textbf{RESUMEN FINANCIERO}}
     \vspace{4pt}
 
     \begin{tikzpicture}
-        \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!40,
+        \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm] (b0) {};
         \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b0.center) {\$128/caja ahorro};
-        \node[font=\tiny, text=gris, below=0pt of b0.center] {Sin hub \$963 vs con hub \$835 (datos reales)};
+        \node[font=\tiny, text=gris, below=0pt of b0.center] {\$963 sin hub $\rightarrow$ \$835 con hub};
 
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b0] (b1) {};
         \node[font=\normalsize\bfseries, text=verde] at ([yshift=2pt]b1.center) {\$310M neto/año};
-        \node[font=\tiny, text=gris, below=0pt of b1.center] {Ahorro bruto \$672M -- OPEX \$362M};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {\$672M bruto $-$ \$362M OPEX};
 
         \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
               minimum width=5cm, minimum height=1.1cm, below=6pt of b1] (b3) {};
         \node[font=\normalsize\bfseries, text=azul] at ([yshift=2pt]b3.center) {2.6--3.8 años payback};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {CAPEX \$800--1,200M (terreno propio)};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {CAPEX \$800--1,200M $\div$ \$310M/año};
     \end{tikzpicture}
 
     \vspace{6pt}
-    {\tiny\color{gris} Parámetros ajustables en el gemelo digital financiero.
-    Tasa de descuento: 12\%. Horizonte: 10 años.}
+    {\tiny\color{gris} Interactivo en gemelo-digital-uraba.vercel.app.
+    Sliders para ajustar CAPEX, OPEX y producción.}
 \end{column}
 \end{columns}
 \end{frame}
 
 % ============================================================
-% SLIDE 9: ESCALABILIDAD
+% 9. ESCALABILIDAD
 % ============================================================
 \begin{frame}
-\frametitle{Servicio a terceros: baja el breakeven}
+\frametitle{No solo para Grupo 20}
 \tagline{azul}{Escalabilidad}
 
-\vspace{1pt}
-{\scriptsize G20 produce 5.3M cajas/año $=$ apenas el \textbf{4.7\%} de la región (114M cajas/año).
-Si el Centro consolida para otros productores a \$42/caja, ese ingreso \textbf{baja la tarifa de breakeven}:}
+\vspace{2pt}
+{\small G20 produce 5.25M cajas/año $=$ apenas el \textbf{4.7\%} de la región (114M cajas/año).
+Si el Centro consolida para otros productores a \$42/caja, genera ingreso adicional:}
 
-\vspace{4pt}
+\vspace{6pt}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
-    {\scriptsize\color{gris}\textbf{INGRESO POR SERVICIO A TERCEROS}}
-    \vspace{2pt}
-
     \scriptsize
     \renewcommand{\arraystretch}{1.15}
     \begin{tabular}{r r r}
@@ -511,30 +432,18 @@ Si el Centro consolida para otros productores a \$42/caja, ese ingreso \textbf{b
         \bottomrule
     \end{tabular}
 
-    \vspace{6pt}
-    {\scriptsize\color{gris}\textbf{EFECTO: BREAKEVEN MÁS BAJO (CAPEX \$3,000M)}}
-    \vspace{2pt}
-
-    \scriptsize
-    \renewcommand{\arraystretch}{1.15}
-    \begin{tabular}{l r r}
-        \toprule
-        \textbf{Escenario} & \textbf{Breakeven} & \textbf{vs hoy} \\
-        \midrule
-        Solo G20              & \$923/caja & +164\% \\
-        + 5\% región          & \$880/caja & +151\% \\
-        + 10\% región         & \$837/caja & +139\% \\
-        + 25\% región         & \textcolor{verde}{\textbf{\$767/caja}} & \textcolor{verde}{+125\%} \\
-        \bottomrule
-    \end{tabular}
+    \vspace{8pt}
+    {\scriptsize\color{gris} Tarifa: \$42 COP/caja consolidación.
+    Uniban tiene 250+ fincas. 402 fincas bananeras en la zona.
+    Puerto Antioquia: 7M toneladas de capacidad.}
 \end{column}
 
 \begin{column}{0.48\textwidth}
     \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{verde}{\textbf{Clave:}} Con 25\% de terceros,
-    el hub se paga desde un incremento tarifario del \textbf{125\%} (vs 164\% sin terceros).
-    Uniban tiene 250+ fincas. 402 fincas bananeras en la zona.
-    Puerto Antioquia: 7M ton capacidad.\strut}}
+    \textcolor{verde}{\textbf{Efecto:}} Con 10\% de terceros, el
+    ingreso adicional (\$457M) supera el OPEX del hub (\$362M).
+    El hub se vuelve \textbf{rentable por sí solo}
+    antes del cambio tarifario.\strut}}
 
     \vspace{6pt}
     \colorbox{azulclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
@@ -542,26 +451,20 @@ Si el Centro consolida para otros productores a \$42/caja, ese ingreso \textbf{b
     Colombia: proveedor más confiable de Europa (70\% de exportación).
     Precio estable: \$7.25~USD/caja.
     \textbf{La oportunidad es ahora.}\strut}}
-
-    \vspace{6pt}
-    \colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{amarillo}{\textbf{Nota:}} El leg finca$\rightarrow$hub (\$80/caja)
-    requiere validación con Anderson. Si las fincas usan
-    vehículos propios, el breakeven baja a \textbf{\$830/caja (+137\%)}.\strut}}
 \end{column}
 \end{columns}
 \end{frame}
 
 % ============================================================
-% SLIDE 10: GEMELO DIGITAL
+% 10. GEMELO DIGITAL
 % ============================================================
 \begin{frame}
 \frametitle{Gemelo Digital Interactivo}
 \tagline{verde}{La Herramienta}
 
 \vspace{4pt}
-{\small Todo lo que presentamos hoy está vivo en una herramienta que pueden explorar,
-ajustar parámetros, y ver los resultados en tiempo real.}
+{\small Todo lo que presentamos hoy está vivo en una herramienta donde pueden explorar
+los escenarios, ajustar parámetros, y ver los resultados en tiempo real.}
 
 \vspace{8pt}
 \begin{center}
@@ -582,29 +485,26 @@ ajustar parámetros, y ver los resultados en tiempo real.}
 
 \vspace{6pt}
 \begin{center}
-\colorbox{verde}{\small\bfseries\color{white}\strut\hspace{8pt}ABRIR GEMELO DIGITAL~\faExternalLinkAlt\hspace{8pt}}
+\colorbox{verde}{\small\bfseries\color{white}\strut\hspace{8pt}ABRIR GEMELO DIGITAL\hspace{8pt}}
 \end{center}
 \end{frame}
 
 % ============================================================
-% SLIDE 11: SIGUIENTES PASOS
+% 11. SIGUIENTES PASOS
 % ============================================================
 \begin{frame}
-\frametitle{La pregunta para la Junta}
-\tagline{verde}{Siguientes Pasos}
+\frametitle{Siguientes pasos}
+\tagline{verde}{Para la Junta}
 
 \vspace{8pt}
 \begin{block}{}
 \small
-El Centro de Consolidación nos prepara para el cambio tarifario que viene.
-Con el modelo actual (\$/caja), el beneficio es operativo.
-Con el modelo \$/viaje, el beneficio es financiero y \textbf{masivo}.
-
-\vspace{4pt}
-\textbf{\textcolor{verde}{\large La pregunta no es si hacerlo, sino cuándo.}}
+Con datos reales de producción y tarifas, el Centro ahorra \textbf{\$128/caja} y genera
+\textbf{\$310M netos/año} bajo el modelo \$/viaje. Payback: \textbf{2.6--3.8 años}.
+Sin cambio tarifario, el valor es operativo. Con terceros, puede ser rentable antes.
 \end{block}
 
-\vspace{12pt}
+\vspace{10pt}
 \begin{center}
 \begin{tikzpicture}
     \node[rounded corners=4pt, fill=verdeclaro, draw=verde!30,
@@ -614,8 +514,8 @@ Con el modelo \$/viaje, el beneficio es financiero y \textbf{masivo}.
 
     \node[rounded corners=4pt, fill=azulclaro, draw=azul!30,
           minimum width=3.6cm, minimum height=1.3cm, right=8pt of s1] (s2) {};
-    \node[font=\scriptsize\bfseries, text=azul] at ([yshift=3pt]s2.center) {2. COSTEO OPERATIVO};
-    \node[font=\tiny, text=gris, below=0pt of s2.center] {Anderson: costos $\times$ finca};
+    \node[font=\scriptsize\bfseries, text=azul] at ([yshift=3pt]s2.center) {2. TARIFA FINCA$\rightarrow$HUB};
+    \node[font=\tiny, text=gris, below=0pt of s2.center] {Validar \$80/caja con Anderson};
 
     \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!30,
           minimum width=3.6cm, minimum height=1.3cm, right=8pt of s2] (s3) {};
@@ -624,9 +524,9 @@ Con el modelo \$/viaje, el beneficio es financiero y \textbf{masivo}.
 \end{tikzpicture}
 \end{center}
 
-\vspace{12pt}
+\vspace{10pt}
 \begin{center}
-\colorbox{verde}{\normalsize\bfseries\color{white}\strut\hspace{10pt}VER GEMELO DIGITAL EN VIVO~\faExternalLinkAlt\hspace{10pt}}
+\colorbox{verde}{\normalsize\bfseries\color{white}\strut\hspace{10pt}VER GEMELO DIGITAL EN VIVO\hspace{10pt}}
 
 \vspace{6pt}
 {\tiny\color{gris} Observatorio de Datos y Análisis SAS · Marzo 2026}
