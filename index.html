@@ -478,7 +478,7 @@
             Click <b style="color:var(--red);">SITUACION ACTUAL</b> para ver el estado actual:
             26 viajes/dia, 76% llenado, 15 mulas + 11 sencillos.<br><br>
             Click <b style="color:var(--green);">CENTRO OPERANDO</b> para ver la solucion:
-            17 mulas consolidadas, 89-98% llenado.
+            12 mulas PA + 7 Zungo, 89-98% llenado.
         </div>
         <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
     </div>
@@ -534,9 +534,9 @@
             <div style="background:var(--red-bg);padding:8px;border-radius:4px;border:1px solid rgba(255,59,78,0.2);">
                 <div style="color:var(--red);font-weight:700;margin-bottom:4px;">IMPACTO MODELO POR VIAJE</div>
                 <div style="color:var(--text2);line-height:1.7;">
-                    Sin hub: <span style="color:var(--text);" id="pi-flete">$963</span>/caja (26 viajes, 76% fill)<br>
+                    Sin hub: <span style="color:var(--text);" id="pi-flete">$750</span>/caja (26 viajes, 76% fill)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
-                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$963</span>/caja<br>
+                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$750</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$380</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
                         Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">$2,400M</span>
@@ -817,7 +817,7 @@
                 </div>
                 <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$963</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$750</div>
                     <div class="kpi-l">$/caja (ponderado $/viaje)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
@@ -825,12 +825,12 @@
             <div style="background:var(--bg);padding:8px;border-radius:4px;border:1px solid var(--border);line-height:1.7;color:var(--text2);">
                 <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Transportadores exigen cambio de modelo:</div>
                 Flete mula: <span style="color:var(--text);">$250K-500K COP/viaje (segun finca)</span><br>
-                Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$963 COP (+168% vs hoy)</span><br>
+                Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$750 COP (+109% vs hoy)</span><br>
                 <span style="color:var(--text3);font-size:8px;">Datos reales: produccion por finca + vehiculos sencillo 12 pallets, mula 24 pallets</span>
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
                 <span style="color:var(--green);font-weight:700;">Con Centro + modelo $/viaje:</span><br>
-                <span style="color:var(--text2);">Hub desde Chinita: <span style="color:var(--green);" id="tm-hub-precio">$835</span>/caja. Ahorro $128/caja. Payback 2.6-3.8 anos</span>
+                <span style="color:var(--text2);">Hub desde Chinita: <span style="color:var(--green);" id="tm-hub-precio">$617</span>/caja. Ahorro $133/caja. Payback 2.4-3.6 anos</span>
             </div>
             <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
                 <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
@@ -887,7 +887,7 @@
             <span style="color:var(--green);">Isocronas Centro:</span> <span id="iso-stats">cargando...</span><br>
             <span style="color:var(--green);">Eliminacion tractomulas:</span> ~89% en via<br>
             <span style="color:var(--green);">Ahorro logistico:</span> <span id="exec-cost-save">calculando...</span><br>
-            <span style="color:var(--green);">Riesgo transporte:</span> $963/caja nuevo vs $359/caja actual<br>
+            <span style="color:var(--green);">Riesgo transporte:</span> $750/caja nuevo vs $359/caja actual<br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
             <span style="color:var(--green);">Municipios:</span> 9 DANE &bull; <span style="color:var(--green);">Veredas:</span> 611 UPRA
         </div>
@@ -1175,7 +1175,7 @@
             <div class="res-metric-l">Ahorro por caja</div>
         </div>
         <div class="res-metric">
-            <div class="res-metric-v y">$963</div>
+            <div class="res-metric-v y">$750</div>
             <div class="res-metric-l">Riesgo nuevo modelo $/caja</div>
         </div>
         <div class="res-metric">
@@ -1192,7 +1192,7 @@
             <div class="res-risk-l">COP/caja MODELO ACTUAL<br>Cobro por caja al transportador</div>
         </div>
         <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="res-risk-v" style="color:var(--red);">$963</div>
+            <div class="res-risk-v" style="color:var(--red);">$750</div>
             <div class="res-risk-l">COP/caja NUEVO MODELO<br>Cobro por viaje ponderado (+168%)</div>
         </div>
     </div>
@@ -1201,7 +1201,7 @@
     <div class="res-section-t">CONTEXTO DEL PROYECTO</div>
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
-        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que casi triplica el costo por caja de $359 a $963.</p>
+        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $359 a $750.</p>
         <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas solo salen del centro llenas hacia Puerto Antioquia. Resultado: <strong>89% menos tractomulas en via, $502M de ahorro anual</strong>, y eliminacion del riesgo de cobro por viaje.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
     </div>
@@ -2122,14 +2122,14 @@ function showScenarioBanner(sc) {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? '26 viajes/dia parciales (76% fill). $/viaje: $963/caja (datos reales produccion + vehiculos).'
+                ? '26 viajes/dia parciales (76% fill). $/viaje: $750/caja (datos reales produccion + vehiculos).'
                 : '26 viajes/dia (76% llenado). 15 mulas + 11 sencillos.') + '</div>';
     } else {
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
             '<div class="sc-banner-desc">' + (isV
-                ? 'Mulas llenas. 17 viajes/dia. Hub $835/caja. Ahorro $128/caja ($672M/ano).'
-                : '17 mulas consolidadas (89-98% llenado). Valor operativo + ahorro $128/caja.') + '</div>';
+                ? 'Mulas llenas. 19 viajes (12 PA + 7 Zungo). Hub $617/caja. Ahorro $133/caja ($699M/ano).'
+                : '12 mulas PA + 7 Zungo (89-98% llenado). Valor operativo + ahorro $133/caja.') + '</div>';
     }
     el.style.display = '';
     el.style.animation = 'none';
@@ -2437,7 +2437,7 @@ function updateSim(){
         totalHub = TARIFA_CAJA;
         row1Direct = TARIFA_CAJA; row1Hub = TARIFA_CAJA;
     } else {
-        // === MODELO $/VIAJE: $963/caja sin hub (datos reales produccion + vehiculos, Mar 2026) ===
+        // === MODELO $/VIAJE: $750/caja sin hub (datos reales produccion + vehiculos, Mar 2026) ===
         // Sin hub: tarifa ponderada (flete + stand-by incluidos)
         totalDirect = TARIFA_VIAJE;
         row1Direct = TARIFA_VIAJE;
@@ -2448,7 +2448,7 @@ function updateSim(){
         totalHub = HUB_FLETE + HUB_STANDBY + HUB_CONSOL + FINCA_HUB;
 
         // Update pricing impact panel
-        document.getElementById('pi-flete').textContent = '$963';
+        document.getElementById('pi-flete').textContent = '$750';
         document.getElementById('pi-standby').textContent = '(incluido)';
         document.getElementById('pi-direct-caja').textContent = '$' + totalDirect;
         document.getElementById('pi-hub-caja').textContent = '$' + totalHub;
