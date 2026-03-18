@@ -69,6 +69,7 @@
         .sc-btn.a-chaos{background:var(--red-bg);border-color:var(--red);color:var(--red);}
         .sc-btn.a-hub{background:var(--green-bg);border-color:var(--green);color:var(--green);}
         .sc-btn.a-sc1{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+        .sc-btn.a-sc2{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
         .sc-btn.a-sc3{background:var(--green-bg);border-color:var(--green);color:var(--green);}
         .sc-btn.a-caja{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
         .sc-btn.a-viaje{background:rgba(255,59,78,0.12);border-color:var(--red);color:var(--red);}
@@ -518,8 +519,9 @@
     <div class="c">
         <div class="c-h"><span class="c-t">Escenario Logistico</span></div>
         <div class="sc-btns">
-            <button class="sc-btn a-sc1" id="btn-sc1" onclick="setScenario('sc1')">SITUACION ACTUAL</button>
-            <button class="sc-btn" id="btn-sc3" onclick="setScenario('sc3')">CENTRO OPERANDO</button>
+            <button class="sc-btn a-sc1" id="btn-sc1" onclick="setScenario('sc1')">HOY: ZUNGO</button>
+            <button class="sc-btn" id="btn-sc2" onclick="setScenario('sc2')">TODOS A PA</button>
+            <button class="sc-btn" id="btn-sc3" onclick="setScenario('sc3')">CON HUB</button>
         </div>
     </div>
 
@@ -1830,6 +1832,10 @@ map.on('load',()=>{
         if(map.getLayer('sc1-chaos-flow')){
             map.setPaintProperty('sc1-chaos-flow','line-dasharray',[cd1,cd2,cd3,cd4>0?cd4:0.01]);
         }
+        // SC2 flow animation
+        if(map.getLayer('sc2-flow')){
+            map.setPaintProperty('sc2-flow','line-dasharray',[cd1,cd2,cd3,cd4>0?cd4:0.01]);
+        }
         requestAnimationFrame(animateFlow);
     }
     animateFlow();
@@ -1856,10 +1862,30 @@ map.on('load',()=>{
         'line-color':'#ffaa20','line-width':1.5,'line-opacity':0.7,'line-dasharray':[0,4,3]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
-    // ---- SC3 STRAIGHT LINES: farm→assigned hub (visual convergence) ----
+    // ---- SC2 ROUTES: All 19 farms → Puerto Antioquia direct ----
+    const sc2Feats = FARMS.map(f=>{
+        const feat = routeGJ(R[f.id].p.c);
+        feat.properties = {id:f.id, prod:f.prod};
+        return feat;
+    });
+    map.addSource('sc2-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc2Feats}});
+    map.addLayer({id:'sc2-routes-glow',type:'line',source:'sc2-routes',paint:{
+        'line-color':'#cc8820','line-width':14,'line-opacity':0.12,'line-blur':6
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'sc2-routes',type:'line',source:'sc2-routes',paint:{
+        'line-color':'#f0a030',
+        'line-width':['interpolate',['linear'],['get','prod'],2000,2,11000,5],
+        'line-opacity':0.75
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'sc2-flow',type:'line',source:'sc2-routes',paint:{
+        'line-color':'#ffffff','line-width':1.5,'line-opacity':0.5,'line-dasharray':[0,4,3]
+    },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
+
+    // ---- SC3 ROUTES: farm→assigned hub (OSRM real routes) ----
     const sc3StraightFeats = FARMS.map(f=>{
-        const hubNode = f.hub==='centro'?NODES.hub:f.hub==='mini_hub'?NODES.mini_hub:NODES.zungo;
-        return {type:'Feature',properties:{id:f.id,prod:f.prod,hub:f.hub},geometry:{type:'LineString',coordinates:[[f.lng,f.lat],[hubNode.lng,hubNode.lat]]}};
+        const feat = routeGJ(R[f.id].h.c);
+        feat.properties = {id:f.id, prod:f.prod, hub:f.hub};
+        return feat;
     });
     map.addSource('sc3-straight',{type:'geojson',data:{type:'FeatureCollection',features:sc3StraightFeats}});
     // SC3: Outer glow per hub color
@@ -2088,18 +2114,16 @@ function updateContextBox() {
     const box = document.getElementById('ctx-box');
     if (curSc === 'sc1') {
         if (box) box.style.borderColor = 'rgba(255,59,78,0.3)';
-        el.innerHTML = isV
-            ? '<span style="color:var(--red);font-weight:700;">Situacion actual ($/viaje):</span><br>' +
-              (r.totalViajes||26) + ' viajes/dia, 76% fill.<br>Costo: $' + (r.costDirect||963) + '/caja.'
-            : '<span style="color:var(--red);font-weight:700;">Situacion actual:</span><br>' +
-              (r.totalViajes||27) + ' viajes/dia, 66% llenado.<br>Tarifa plana: $359/caja.';
+        el.innerHTML = '<span style="color:var(--red);font-weight:700;">SC1: Hoy (Zungo)</span><br>' +
+            '26 viajes/dia al embarcadero.<br>$406/caja tarifa plana.';
+    } else if (curSc === 'sc2') {
+        if (box) box.style.borderColor = 'rgba(240,160,48,0.3)';
+        el.innerHTML = '<span style="color:var(--yellow);font-weight:700;">SC2: Todos a PA</span><br>' +
+            '26 viajes parciales (76% fill).<br>$963/caja (+137% vs hoy).';
     } else {
         if (box) box.style.borderColor = 'rgba(0,232,120,0.3)';
-        el.innerHTML = isV
-            ? '<span style="color:var(--green);font-weight:700;">Con Centro ($/viaje):</span><br>' +
-              (r.hubMulas||17) + ' viajes llenos, 100%.<br>Costo: $' + (r.costHub||835) + '/caja.'
-            : '<span style="color:var(--green);font-weight:700;">Con Centro:</span><br>' +
-              (r.hubMulas||18) + ' viajes llenos, 100% llenado.<br>Valor operativo + preparacion.';
+        el.innerHTML = '<span style="color:var(--green);font-weight:700;">SC3: Con Hub</span><br>' +
+            '20 viajes (10 mulas Centro + 3 MiniHub + 7 Zungo).<br>$585/caja prom.';
     }
 }
 
@@ -2120,16 +2144,16 @@ function showScenarioBanner(sc) {
     const isV = pricingModel === 'viaje';
     if (sc === 'sc1') {
         el.classList.add('sc1-bg');
-        el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">El Caos Logistico de Uraba</div>' +
-            '<div class="sc-banner-desc">' + (isV
-                ? '26 viajes/dia parciales (76% fill). $/viaje: $750/caja (datos reales produccion + vehiculos).'
-                : '26 viajes/dia (76% llenado). 15 mulas + 11 sencillos.') + '</div>';
+        el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">SC1: Hoy — Todo a Zungo</div>' +
+            '<div class="sc-banner-desc">19 fincas al embarcadero. $406/caja promedio. 26 viajes/dia.</div>';
+    } else if (sc === 'sc2') {
+        el.classList.add('sc1-bg');
+        el.innerHTML = '<div class="sc-banner-title" style="color:var(--yellow);">SC2: Todos a Puerto Antioquia</div>' +
+            '<div class="sc-banner-desc">Sin hub: 26 viajes parciales, 76% llenado. $963/caja. +137% vs hoy.</div>';
     } else {
         el.classList.add('sc3-bg');
-        el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">La Solucion: Consolidacion</div>' +
-            '<div class="sc-banner-desc">' + (isV
-                ? 'Mulas llenas. 19 viajes (12 PA + 7 Zungo). Hub $617/caja. Ahorro $212/caja ($796M/ano).'
-                : '12 mulas PA + 7 Zungo (89-98% llenado). Valor operativo + ahorro $229/caja.') + '</div>';
+        el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">SC3: Con Centro de Consolidacion</div>' +
+            '<div class="sc-banner-desc">12 fincas Centro consolidadas + 3 Mini-Hub directo + 4 Zungo embarcadero. 20 viajes/dia. $585/caja prom.</div>';
     }
     el.style.display = '';
     el.style.animation = 'none';
@@ -2187,10 +2211,13 @@ function updateKPIStrip() {
 
     const statusEl = document.getElementById('strip-status');
     if (curSc === 'sc1') {
-        statusEl.textContent = 'SITUACION ACTUAL';
+        statusEl.textContent = 'SC1: ZUNGO';
         statusEl.style.color = 'var(--red)';
+    } else if (curSc === 'sc2') {
+        statusEl.textContent = 'SC2: TODOS PA';
+        statusEl.style.color = 'var(--yellow)';
     } else {
-        statusEl.textContent = 'CENTRO OPERANDO';
+        statusEl.textContent = 'SC3: CON HUB';
         statusEl.style.color = 'var(--green)';
     }
 }
@@ -2233,12 +2260,16 @@ let curSc='sc1';
 function setScenario(sc){
     curSc=sc;
     document.getElementById('btn-sc1').className=sc==='sc1'?'sc-btn a-sc1':'sc-btn';
+    document.getElementById('btn-sc2').className=sc==='sc2'?'sc-btn a-sc2':'sc-btn';
     document.getElementById('btn-sc3').className=sc==='sc3'?'sc-btn a-sc3':'sc-btn';
-    document.getElementById('sc-icon').innerHTML=sc==='sc1'?'&#x26A0;':'&#x2714;';
+    document.getElementById('sc-icon').innerHTML=sc==='sc1'?'&#x26A0;':sc==='sc2'?'&#x27A1;':'&#x2714;';
 
     if(map.isStyleLoaded()){
         // Hide all route layers first
-        ['chaos-routes','chaos-routes-glow','sc1-routes','sc1-routes-glow','sc1-routes-glow2','sc1-chaos-flow','sc3-straight','sc3-straight-glow','sc3-flow','sc3-trunks','sc3-trunks-glow','hub-routes','hub-port','hub-port-glow','hub-port-glow2','hub-port-flow'].forEach(l=>{
+        ['chaos-routes','chaos-routes-glow','sc1-routes','sc1-routes-glow','sc1-routes-glow2','sc1-chaos-flow',
+         'sc2-routes','sc2-routes-glow','sc2-flow',
+         'sc3-straight','sc3-straight-glow','sc3-flow','sc3-trunks','sc3-trunks-glow',
+         'hub-routes','hub-port','hub-port-glow','hub-port-glow2','hub-port-flow'].forEach(l=>{
             if(map.getLayer(l)) map.setLayoutProperty(l,'visibility','none');
         });
         if(sc==='sc1'){
@@ -2246,6 +2277,10 @@ function setScenario(sc){
             if(map.getLayer('sc1-routes-glow')) map.setLayoutProperty('sc1-routes-glow','visibility','visible');
             if(map.getLayer('sc1-routes-glow2')) map.setLayoutProperty('sc1-routes-glow2','visibility','visible');
             if(map.getLayer('sc1-chaos-flow')) map.setLayoutProperty('sc1-chaos-flow','visibility','visible');
+        } else if(sc==='sc2'){
+            if(map.getLayer('sc2-routes')) map.setLayoutProperty('sc2-routes','visibility','visible');
+            if(map.getLayer('sc2-routes-glow')) map.setLayoutProperty('sc2-routes-glow','visibility','visible');
+            if(map.getLayer('sc2-flow')) map.setLayoutProperty('sc2-flow','visibility','visible');
         } else {
             if(map.getLayer('sc3-straight')) map.setLayoutProperty('sc3-straight','visibility','visible');
             if(map.getLayer('sc3-straight-glow')) map.setLayoutProperty('sc3-straight-glow','visibility','visible');
@@ -2288,7 +2323,7 @@ function toggleLy(name){
         'roads':['osm-roads'],
         'farm-poly':['farm-poly-fill','farm-poly-line','farm-poly-label','farm-poly-all-fill','farm-poly-all-line'],
         'farms':['farms','farms-glow'],
-        'routes':curSc==='sc1'?['sc1-routes','sc1-routes-glow','sc1-routes-glow2','sc1-chaos-flow']:['sc3-straight','sc3-straight-glow','sc3-flow','sc3-trunks','sc3-trunks-glow','hub-port','hub-port-glow','hub-port-glow2','hub-port-flow'],
+        'routes':curSc==='sc1'?['sc1-routes','sc1-routes-glow','sc1-routes-glow2','sc1-chaos-flow']:curSc==='sc2'?['sc2-routes','sc2-routes-glow','sc2-flow']:['sc3-straight','sc3-straight-glow','sc3-flow','sc3-trunks','sc3-trunks-glow','hub-port','hub-port-glow','hub-port-glow2','hub-port-flow'],
         'isochrone':['iso-45-fill','iso-45-line','iso-30-fill','iso-30-line','iso-15-fill','iso-15-line','iso-labels'],
         'flood':['flood-fill','flood-line'],
         'rivers':['rivers','rivers-glow','rivers-label'],
