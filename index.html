@@ -450,6 +450,26 @@
         .ctx-title{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:4px;}
         .ctx-body{color:var(--text2);}
 
+        /* FARM DETAIL PANEL */
+        .farm-panel{position:fixed;right:0;top:48px;width:380px;height:calc(100vh - 48px);
+            background:var(--bg2);border-left:1px solid var(--border);z-index:50;
+            overflow-y:auto;transform:translateX(100%);transition:transform 0.3s ease;padding:0;}
+        .farm-panel.open{transform:translateX(0);}
+        .farm-panel::-webkit-scrollbar{width:3px;}
+        .farm-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+        .fp-header{padding:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:2;}
+        .fp-close{background:none;border:1px solid var(--border);color:var(--text2);border-radius:4px;padding:4px 8px;cursor:pointer;font-size:12px;}
+        .fp-close:hover{background:var(--bg3);color:var(--text);}
+        .fp-name{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;}
+        .fp-group{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+        .fp-section{padding:10px 12px;border-bottom:1px solid var(--border);}
+        .fp-label{font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:6px;}
+        .fp-row{display:flex;justify-content:space-between;padding:2px 0;font-family:'JetBrains Mono',monospace;font-size:10px;}
+        .fp-k{color:var(--text2);}
+        .fp-v{font-weight:600;}
+        .fp-bar{height:6px;border-radius:3px;margin:2px 0;transition:width 0.3s;}
+        .fp-formula{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);padding:4px 8px;background:var(--bg);border-radius:4px;margin-top:4px;line-height:1.5;border:1px solid var(--border);}
+
         /* RESPONSIVE for narrative components */
         @media(max-width:768px){
             .sc-banner{padding:16px 20px;max-width:90%;}
@@ -697,6 +717,18 @@
 
     <!-- CALLOUTS container -->
     <div class="map-callouts" id="map-callouts"></div>
+</div>
+
+<!-- FARM DETAIL PANEL (slides in from right on farm click) -->
+<div class="farm-panel" id="farm-panel">
+    <div class="fp-header">
+        <div>
+            <div class="fp-name" id="fp-name"></div>
+            <div class="fp-group" id="fp-group"></div>
+        </div>
+        <button class="fp-close" onclick="closeFarmPanel()">CERRAR</button>
+    </div>
+    <div id="fp-content"></div>
 </div>
 
 <!-- RIGHT PANEL -->
@@ -1459,6 +1491,77 @@ const HUB_STATS = {
     zungo: {name:"Embarcadero Zungo",fincas:FARMS.filter(f=>f.hub==="zungo").length,ha:0,prod:FARMS.filter(f=>f.hub==="zungo").reduce((s,f)=>s+f.prod,0)}
 };
 const TOTAL_HA_G20 = 2000;
+
+// ============================================================
+// FARM DETAIL — datos reales Anderson Mestra, Mar 2026
+// Escenario ácido: hub→PA $360K, f→h $200, CAPEX $1,200M
+// ============================================================
+const SENC_PALL = 12, CAJAS_PALL = 54, CAJAS_SENC = SENC_PALL * CAJAS_PALL; // 648
+const FACTOR_12 = 1.2; // tabla da 10 pallets, sencillo lleva 12
+function _trips(pd) { return Math.ceil(pd / SENC_PALL); }
+
+const FARM_DATA = [
+    {id:'F01',name:'Punto Fijo',   g:'zungo',    cs:7856,  pd:29.1,tz:359,tc:499,vPA:500000,dZ:18.2,tZ:32,dPA:51.7,tPA:73},
+    {id:'F02',name:'Almendros',    g:'zungo',    cs:5931,  pd:22.0,tz:349,tc:499,vPA:500000,dZ:15.8,tZ:28,dPA:48.3,tPA:69},
+    {id:'F03',name:'Oasis',        g:'mini_hub', cs:3430,  pd:12.7,tz:519,tc:313,vPA:250000,dZ:22.1,tZ:38,dPA:9.0, tPA:17},
+    {id:'F04',name:'Dunas',        g:'mini_hub', cs:2711,  pd:10.0,tz:519,tc:313,vPA:250000,dZ:20.5,tZ:35,dPA:10.3,tPA:17},
+    {id:'F05',name:'Guadalupe',    g:'mini_hub', cs:2667,  pd:9.9, tz:519,tc:313,vPA:250000,dZ:18.9,tZ:33,dPA:12.4,tPA:17},
+    {id:'F06',name:'Chinita',      g:'centro',   cs:10113, pd:37.5,tz:499,tc:367,vPA:300000,dZ:25.1,tZ:41,dPA:17.5,tPA:27},
+    {id:'F07',name:'Santa Marta',  g:'centro',   cs:7731,  pd:28.6,tz:499,tc:367,vPA:300000,dZ:22.3,tZ:38,dPA:20.6,tPA:32},
+    {id:'F08',name:'La Llave',     g:'centro',   cs:4104,  pd:15.2,tz:499,tc:367,vPA:300000,dZ:27.8,tZ:44,dPA:13.5,tPA:22},
+    {id:'F09',name:'Matogroso 2',  g:'zungo',    cs:8375,  pd:31.0,tz:295,tc:499,vPA:500000,dZ:8.5, tZ:15,dPA:45.2,tPA:65},
+    {id:'F10',name:'Matogroso 1',  g:'zungo',    cs:6662,  pd:24.7,tz:295,tc:499,vPA:500000,dZ:10.2,tZ:18,dPA:47.8,tPA:68},
+    {id:'F11',name:'Sierra',       g:'centro',   cs:2784,  pd:10.3,tz:453,tc:453,vPA:370000,dZ:16.8,tZ:28,dPA:25.0,tPA:36},
+    {id:'F12',name:'Villa Fresia', g:'centro',   cs:3071,  pd:11.4,tz:453,tc:453,vPA:370000,dZ:18.2,tZ:30,dPA:22.5,tPA:34},
+    {id:'F13',name:'Tagual',       g:'centro',   cs:4464,  pd:16.5,tz:453,tc:453,vPA:400000,dZ:15.5,tZ:26,dPA:24.8,tPA:37},
+    {id:'F14',name:'San Felipe',   g:'centro',   cs:4982,  pd:18.5,tz:453,tc:453,vPA:400000,dZ:14.2,tZ:24,dPA:26.1,tPA:38},
+    {id:'F15',name:'Maritu',       g:'centro',   cs:2530,  pd:9.4, tz:453,tc:453,vPA:370000,dZ:19.5,tZ:32,dPA:30.5,tPA:44},
+    {id:'F16',name:'San Juan',     g:'centro',   cs:4235,  pd:15.7,tz:426,tc:514,vPA:400000,dZ:22.8,tZ:37,dPA:38.2,tPA:54},
+    {id:'F17',name:'Santa Helena', g:'centro',   cs:3357,  pd:12.4,tz:426,tc:514,vPA:400000,dZ:24.5,tZ:40,dPA:40.1,tPA:57},
+    {id:'F18',name:'Maria Bonita', g:'centro',   cs:7827,  pd:29.0,tz:304,tc:514,vPA:450000,dZ:12.3,tZ:21,dPA:35.8,tPA:51},
+    {id:'F19',name:'Tucanes',      g:'centro',   cs:8173,  pd:30.3,tz:304,tc:514,vPA:450000,dZ:13.8,tZ:23,dPA:33.2,tPA:48},
+];
+
+// Pre-compute per-farm scenario costs
+const ACID = { HUB_PA_VIAJE: 360000, FH_CAJA: 200, CONSOL: 42, CAPEX: 1200, OPEX: 362 };
+const _centroFD = FARM_DATA.filter(f=>f.g==='centro');
+const _centroPD = _centroFD.reduce((s,f)=>s+f.pd,0);
+const _centroTripsHub = Math.ceil(_centroPD/SENC_PALL);
+const _centroCajasDia = _centroFD.reduce((s,f)=>s+f.cs/5,0);
+const _hubFleteCaja = Math.round(_centroTripsHub * ACID.HUB_PA_VIAJE / _centroCajasDia); // $568
+const _hubTotal = _hubFleteCaja + ACID.CONSOL + ACID.FH_CAJA; // $810
+
+FARM_DATA.forEach(f => {
+    const cd = f.cs / 5; // cajas/dia
+    const t = _trips(f.pd);
+    const vPA12 = Math.round(f.vPA * FACTOR_12);
+    // SC1: hoy a Zungo
+    f.sc1 = { caja: f.tz, viaje: Math.round(f.tz * cd / t), trips: t, costDia: Math.round(f.tz * cd) };
+    // SC2: todos a PA
+    f.sc2 = { viaje: vPA12, caja: Math.round(t * vPA12 / cd), trips: t, costDia: Math.round(t * vPA12), dif: Math.round(t * vPA12 / cd) - f.tz };
+    // SC3: con hub
+    if (f.g === 'centro') {
+        f.sc3 = { mode: 'consolidado', hubFlete: _hubFleteCaja, consol: ACID.CONSOL, fh: ACID.FH_CAJA, total: _hubTotal, ahorro: f.sc2.caja - _hubTotal };
+    } else if (f.g === 'mini_hub') {
+        f.sc3 = { mode: 'directo_pa', total: f.sc2.caja, ahorro: 0 };
+    } else {
+        f.sc3 = { mode: 'zungo', total: f.tz, ahorro: 0 };
+    }
+    // Homologación
+    f.homolog = { hoyCaja: f.tz, hoyViaje: f.sc1.viaje, paViaje: vPA12, paCaja: f.sc2.caja, difCaja: f.sc2.dif, difViaje: vPA12 - f.sc1.viaje };
+    f.cajasDia = cd;
+});
+
+// Aggregates
+const SC_TOTALS = {
+    sc1: { viajes: FARM_DATA.reduce((s,f)=>s+f.sc1.trips,0), costProm: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc1.costDia,0)/FARM_DATA.reduce((s,f)=>s+f.cajasDia,0)), costAnual: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc1.costDia,0)*5*52/1e6) },
+    sc2: { viajes: FARM_DATA.reduce((s,f)=>s+f.sc2.trips,0), costProm: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc2.costDia,0)/FARM_DATA.reduce((s,f)=>s+f.cajasDia,0)), costAnual: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc2.costDia,0)*5*52/1e6) },
+    sc3: { viajes: _centroTripsHub + FARM_DATA.filter(f=>f.g!=='centro').reduce((s,f)=>s+f.sc1.trips,0), hubTotal: _hubTotal, sc2Centro: Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia), ahorroCaja: Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia) - _hubTotal }
+};
+SC_TOTALS.sc3.brutoAnual = Math.round(SC_TOTALS.sc3.ahorroCaja * _centroCajasDia * 5 * 52 / 1e6);
+SC_TOTALS.sc3.netoAnual = SC_TOTALS.sc3.brutoAnual - ACID.OPEX;
+SC_TOTALS.sc3.payback = SC_TOTALS.sc3.netoAnual > 0 ? (ACID.CAPEX / SC_TOTALS.sc3.netoAnual).toFixed(1) : 'N/A';
+
 // Geocerca telemetry data (March 9-12 2026, 7 vehicles)
 const GEOCERCA_DATA = {
     vehicles: 7, period: "9-12 Mar 2026",
@@ -2023,43 +2126,8 @@ map.on('load',()=>{
     }});
 
     map.on('click','farms',e=>{
-        const p=e.features[0].properties;
-        const f=FARMS.find(fm=>fm.id===p.id);
-        const hc = hubColorMap[p.hub] || '#ff7a30';
-        const hubNames = {centro:'Centro',mini_hub:'Mini-Hub',zungo:'Emb. Zungo'};
-        const palletsDia = Math.round(f.prod/6/54*10)/10; // approx pallets/dia
-        const dZungo = haversine(f.lat,f.lng,NODES.zungo.lat,NODES.zungo.lng);
-
-        new mapboxgl.Popup({offset:10,maxWidth:'320px'}).setLngLat(e.lngLat).setHTML(`
-            <div class="p-t" style="color:${hc};">${p.name}</div>
-            <div class="p-r"><span class="p-k">Produccion:</span><span class="p-v">${Number(p.prod).toLocaleString()} cajas/sem · ~${palletsDia} pall/dia</span></div>
-            <div class="p-r"><span class="p-k">Grupo SC3:</span><span class="p-v" style="color:${hc};">${hubNames[p.hub]||p.hub}</span></div>
-            <hr style="border-color:rgba(255,255,255,0.08);margin:4px 0;">
-            <div style="font-size:8px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px;">Comparacion 3 Escenarios</div>
-            <table style="width:100%;font-size:9px;border-collapse:collapse;font-family:'JetBrains Mono',monospace;">
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
-                    <th style="text-align:left;padding:2px 0;color:var(--text3);"></th>
-                    <th style="color:var(--red);padding:2px 4px;">SC1</th>
-                    <th style="color:var(--yellow);padding:2px 4px;">SC2</th>
-                    <th style="color:var(--green);padding:2px 4px;">SC3</th>
-                </tr>
-                <tr><td style="color:var(--text3);padding:1px 0;">Destino</td>
-                    <td style="padding:1px 4px;">Zungo</td>
-                    <td style="padding:1px 4px;">PA</td>
-                    <td style="padding:1px 4px;color:${hc};">${hubNames[p.hub]}</td></tr>
-                <tr><td style="color:var(--text3);padding:1px 0;">Dist.</td>
-                    <td style="padding:1px 4px;">${dZungo.toFixed(1)}km</td>
-                    <td style="padding:1px 4px;">${Number(p.dd).toFixed(1)}km</td>
-                    <td style="padding:1px 4px;">${Number(p.fhd).toFixed(1)}km</td></tr>
-                <tr><td style="color:var(--text3);padding:1px 0;">Tiempo</td>
-                    <td style="padding:1px 4px;">~${Math.round(dZungo*1.6)}m</td>
-                    <td style="padding:1px 4px;">${Math.round(p.dt)}m</td>
-                    <td style="padding:1px 4px;">${Math.round(p.fht)}m</td></tr>
-            </table>
-            <div style="margin-top:4px;font-size:8px;color:var(--text3);">
-                SC3 consolida en hub → <span style="color:#00e878;font-weight:700;">mulas llenas a PA</span>
-            </div>
-        `).addTo(map);
+        const p = e.features[0].properties;
+        openFarmPanel(p.id);
     });
     map.on('mouseenter','farms',()=>map.getCanvas().style.cursor='pointer');
     map.on('mouseleave','farms',()=>map.getCanvas().style.cursor='');
@@ -2140,6 +2208,110 @@ map.on('load',()=>{
 });
 
 // ============================================================
+// ============================================================
+// FARM DETAIL PANEL
+// ============================================================
+function openFarmPanel(farmId) {
+    const fd = FARM_DATA.find(f => f.id === farmId);
+    if (!fd) return;
+    const colors = {centro:'var(--green)', mini_hub:'var(--cyan)', zungo:'var(--orange)'};
+    const groupNames = {centro:'Centro (consolida)', mini_hub:'Mini-Hub (directo PA)', zungo:'Zungo (embarcadero)'};
+    const color = colors[fd.g] || 'var(--text)';
+
+    document.getElementById('fp-name').textContent = fd.name;
+    document.getElementById('fp-name').style.color = color;
+    document.getElementById('fp-group').textContent = groupNames[fd.g];
+    document.getElementById('fp-group').style.color = color;
+
+    // Max $/caja for bar scaling
+    const maxCaja = Math.max(fd.sc1.caja, fd.sc2.caja, fd.sc3.total);
+
+    let html = '';
+
+    // IDENTITY
+    html += '<div class="fp-section">';
+    html += '<div class="fp-label">Produccion</div>';
+    html += '<div class="fp-row"><span class="fp-k">Cajas/semana</span><span class="fp-v">' + fd.cs.toLocaleString() + '</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">Pallets/dia</span><span class="fp-v">' + fd.pd + '</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">Viajes/dia (sencillo 12p)</span><span class="fp-v">' + fd.sc1.trips + '</span></div>';
+    html += '</div>';
+
+    // SC1
+    html += '<div class="fp-section" style="border-left:3px solid var(--red);">';
+    html += '<div class="fp-label" style="color:var(--red);">SC1: Hoy — Zungo</div>';
+    html += '<div class="fp-row"><span class="fp-k">$/caja</span><span class="fp-v" style="color:var(--red);">$' + fd.sc1.caja + '</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">$/viaje equivalente</span><span class="fp-v">$' + (fd.sc1.viaje/1000).toFixed(0) + 'K</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">Distancia</span><span class="fp-v">' + fd.dZ + ' km / ' + fd.tZ + ' min</span></div>';
+    html += '<div class="fp-bar" style="width:' + (fd.sc1.caja/maxCaja*100) + '%;background:var(--red);"></div>';
+    html += '<div class="fp-formula">Calculo: tarifa plana $' + fd.tz + '/caja × ' + Math.round(fd.cajasDia) + ' cajas/dia = $' + fd.sc1.costDia.toLocaleString() + '/dia. Viaje equiv: $' + fd.sc1.costDia.toLocaleString() + ' ÷ ' + fd.sc1.trips + ' = $' + (fd.sc1.viaje/1000).toFixed(0) + 'K. Fuente: Anderson Mestra, tarifas 2026.</div>';
+    html += '</div>';
+
+    // SC2
+    html += '<div class="fp-section" style="border-left:3px solid var(--yellow);">';
+    html += '<div class="fp-label" style="color:var(--yellow);">SC2: Todos a PA</div>';
+    html += '<div class="fp-row"><span class="fp-k">$/viaje PA (12 pallets)</span><span class="fp-v" style="color:var(--yellow);">$' + (fd.sc2.viaje/1000).toFixed(0) + 'K</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">$/caja equivalente</span><span class="fp-v" style="color:var(--yellow);">$' + fd.sc2.caja + '</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">Distancia PA</span><span class="fp-v">' + fd.dPA + ' km / ' + fd.tPA + ' min</span></div>';
+    html += '<div class="fp-row"><span class="fp-k">Diferencia vs hoy</span><span class="fp-v" style="color:var(--red);">+$' + fd.sc2.dif + '/caja</span></div>';
+    html += '<div class="fp-bar" style="width:' + (fd.sc2.caja/maxCaja*100) + '%;background:var(--yellow);"></div>';
+    html += '<div class="fp-formula">Calculo: tarifa tabla $' + (fd.vPA/1000) + 'K (10p) × 1.2 = $' + (fd.sc2.viaje/1000).toFixed(0) + 'K (12p). ' + fd.sc2.trips + ' viajes × $' + (fd.sc2.viaje/1000).toFixed(0) + 'K ÷ ' + Math.round(fd.cajasDia) + ' cajas = $' + fd.sc2.caja + '/caja. Supuesto: tarifa escala linealmente con pallets.</div>';
+    html += '</div>';
+
+    // SC3
+    html += '<div class="fp-section" style="border-left:3px solid ' + color + ';">';
+    html += '<div class="fp-label" style="color:' + color + ';">SC3: ' + groupNames[fd.g] + '</div>';
+    if (fd.sc3.mode === 'consolidado') {
+        html += '<div class="fp-row"><span class="fp-k">Hub flete (hub→PA)</span><span class="fp-v">$' + fd.sc3.hubFlete + '/caja</span></div>';
+        html += '<div class="fp-row"><span class="fp-k">Consolidacion</span><span class="fp-v">$' + fd.sc3.consol + '/caja</span></div>';
+        html += '<div class="fp-row"><span class="fp-k">Finca→hub (acido)</span><span class="fp-v">$' + fd.sc3.fh + '/caja ($' + Math.round(fd.sc3.fh*648/1000) + 'K/viaje)</span></div>';
+        html += '<div class="fp-row"><span class="fp-k">Hub TOTAL</span><span class="fp-v" style="color:var(--green);">$' + fd.sc3.total + '/caja</span></div>';
+        html += '<div class="fp-row"><span class="fp-k">Ahorro vs SC2</span><span class="fp-v" style="color:' + (fd.sc3.ahorro>0?'var(--green)':'var(--red)') + ';">$' + fd.sc3.ahorro + '/caja</span></div>';
+        html += '<div class="fp-formula">Hub flete: ' + _centroTripsHub + ' viajes × $360K ÷ ' + Math.round(_centroCajasDia) + ' cajas Centro/dia = $' + fd.sc3.hubFlete + '. F→H: $' + fd.sc3.fh + '/caja = $' + Math.round(fd.sc3.fh*648/1000) + 'K/viaje (~8-15 km). Ahorro: $' + fd.sc2.caja + ' - $' + fd.sc3.total + ' = $' + fd.sc3.ahorro + '. Supuesto acido: hub→PA sin negociar, f→h alto.</div>';
+    } else if (fd.sc3.mode === 'directo_pa') {
+        html += '<div class="fp-row"><span class="fp-k">Despacho directo a PA</span><span class="fp-v">$' + fd.sc3.total + '/caja</span></div>';
+        html += '<div class="fp-row"><span class="fp-k">Ahorro</span><span class="fp-v">$0 (igual que SC2)</span></div>';
+        html += '<div class="fp-formula">Esta finca esta cerca de PA. No pasa por el hub. Mini-hub solo maneja devoluciones.</div>';
+    } else {
+        html += '<div class="fp-row"><span class="fp-k">Exporta desde embarcadero</span><span class="fp-v">$' + fd.sc3.total + '/caja</span></div>';
+        html += '<div class="fp-row"><span class="fp-k">Ahorro</span><span class="fp-v">$0 (no cambia)</span></div>';
+        html += '<div class="fp-formula">Esta finca exporta directo desde Emb. Zungo. No va a PA. No usa el hub.</div>';
+    }
+    html += '<div class="fp-bar" style="width:' + (fd.sc3.total/maxCaja*100) + '%;background:' + color + ';"></div>';
+    html += '</div>';
+
+    // HOMOLOGACIÓN
+    html += '<div class="fp-section">';
+    html += '<div class="fp-label">Homologacion: $/caja y $/viaje</div>';
+    html += '<table style="width:100%;font-family:\'JetBrains Mono\',monospace;font-size:9px;border-collapse:collapse;">';
+    html += '<tr style="border-bottom:1px solid var(--border);"><th style="text-align:left;padding:3px 0;color:var(--text3);"></th><th style="color:var(--text3);">$/caja</th><th style="color:var(--text3);">$/viaje</th></tr>';
+    html += '<tr><td style="color:var(--red);padding:2px 0;">HOY (Zungo)</td><td style="text-align:center;">$' + fd.homolog.hoyCaja + '</td><td style="text-align:center;">$' + (fd.homolog.hoyViaje/1000).toFixed(0) + 'K</td></tr>';
+    html += '<tr><td style="color:var(--yellow);padding:2px 0;">PA ($/viaje)</td><td style="text-align:center;">$' + fd.homolog.paCaja + '</td><td style="text-align:center;">$' + (fd.homolog.paViaje/1000).toFixed(0) + 'K</td></tr>';
+    html += '<tr style="border-top:1px solid var(--border);"><td style="color:var(--text2);padding:2px 0;">Diferencia</td><td style="text-align:center;color:var(--red);">+$' + fd.homolog.difCaja + '</td><td style="text-align:center;color:var(--red);">+$' + (fd.homolog.difViaje/1000).toFixed(0) + 'K</td></tr>';
+    html += '</table>';
+    html += '</div>';
+
+    // SUPUESTOS
+    html += '<div class="fp-section">';
+    html += '<div class="fp-label">Supuestos y Fuentes</div>';
+    html += '<div class="fp-formula">';
+    html += 'Sencillo: 12 pallets × 54 cajas = 648 cajas/viaje.<br>';
+    html += 'Tarifa PA: tabla Anderson × 1.2 (factor 10→12 pallets).<br>';
+    html += 'Hub→PA: $360K/viaje (tarifa Chinita, sin negociar).<br>';
+    html += 'F→H: $200/caja = $130K/viaje (escenario acido).<br>';
+    html += 'Consolidacion: $42/caja (paletizar+inspeccionar).<br>';
+    html += 'CAPEX: $1,200M. OPEX: $362M/ano.<br>';
+    html += 'Fuente: Anderson Mestra, Grupo 20, Marzo 2026.';
+    html += '</div>';
+    html += '</div>';
+
+    document.getElementById('fp-content').innerHTML = html;
+    document.getElementById('farm-panel').classList.add('open');
+}
+
+function closeFarmPanel() {
+    document.getElementById('farm-panel').classList.remove('open');
+}
+
 // ONBOARDING + CONTEXT BOX
 // ============================================================
 function dismissOnboarding() {
