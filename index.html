@@ -2026,7 +2026,7 @@ map.on('load',()=>{
     // Hub-port: deep outer glow
     map.addLayer({id:'hub-port-glow2',type:'line',source:'hub-port',paint:{'line-color':'#008844','line-width':40,'line-opacity':0.06,'line-blur':16},layout:{visibility:'none','line-cap':'round'}});
     map.addLayer({id:'hub-port-glow',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':22,'line-opacity':0.18,'line-blur':8},layout:{visibility:'none','line-cap':'round'}});
-    map.addLayer({id:'hub-port',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':6,'line-opacity':0.92},layout:{visibility:'none','line-cap':'round'}});
+    map.addLayer({id:'hub-port',type:'line',source:'hub-port',paint:{'line-color':'#00e878','line-width':8,'line-opacity':0.95},layout:{visibility:'none','line-cap':'round'}});
     // Animated flow (hero white animation)
     map.addLayer({id:'hub-port-flow',type:'line',source:'hub-port',paint:{'line-color':'#ffffff','line-width':2.5,'line-opacity':0.75,'line-dasharray':[0,4,3]},layout:{visibility:'none','line-cap':'round'}});
 
@@ -2067,20 +2067,20 @@ map.on('load',()=>{
         return feat;
     });
     map.addSource('sc1-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc1Feats}});
-    // SC1: Double glow (heat halo) for chaotic visual
+    // SC1: CAÓTICO — rojo intenso, dashes, glow difuso, animación frenética
     map.addLayer({id:'sc1-routes-glow2',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#cc1050','line-width':28,'line-opacity':0.06,'line-blur':14
+        'line-color':'#aa0030','line-width':35,'line-opacity':0.08,'line-blur':18
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc1-routes-glow',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#ff2060','line-width':14,'line-opacity':0.18,'line-blur':8
+        'line-color':'#ff1040','line-width':16,'line-opacity':0.2,'line-blur':10
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc1-routes',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#ff2868','line-width':['interpolate',['linear'],['get','prod'],2000,2.5,11000,6],'line-opacity':0.82,
-        'line-dasharray':[8,3]
+        'line-color':'#ff2050','line-width':['interpolate',['linear'],['get','prod'],2000,2.5,11000,6],'line-opacity':0.85,
+        'line-dasharray':[6,4]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
-    // SC1: Animated amber chaos flow (frantic dashes)
+    // SC1: Animated amber chaos flow (2x speed, frantic)
     map.addLayer({id:'sc1-chaos-flow',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#ffaa20','line-width':1.5,'line-opacity':0.7,'line-dasharray':[0,4,3]
+        'line-color':'#ff8800','line-width':2,'line-opacity':0.8,'line-dasharray':[0,4,3]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // ---- SC2 ROUTES: All 19 farms → Puerto Antioquia direct ----
@@ -2090,16 +2090,17 @@ map.on('load',()=>{
         return feat;
     });
     map.addSource('sc2-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc2Feats}});
+    // SC2: CONGESTIÓN — amarillo/naranja, sólido, grueso, todas al mismo punto
     map.addLayer({id:'sc2-routes-glow',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#cc8820','line-width':14,'line-opacity':0.12,'line-blur':6
+        'line-color':'#aa6600','line-width':20,'line-opacity':0.1,'line-blur':10
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc2-routes',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#f0a030',
-        'line-width':['interpolate',['linear'],['get','prod'],2000,2,11000,5],
-        'line-opacity':0.75
+        'line-color':'#e09020',
+        'line-width':['interpolate',['linear'],['get','prod'],2000,2.5,11000,5.5],
+        'line-opacity':0.8
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc2-flow',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#ffffff','line-width':1.5,'line-opacity':0.5,'line-dasharray':[0,4,3]
+        'line-color':'#ffcc00','line-width':1.5,'line-opacity':0.6,'line-dasharray':[0,4,3]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // ---- SC3 ROUTES: farm→assigned hub (OSRM real routes) ----
@@ -2109,19 +2110,19 @@ map.on('load',()=>{
         return feat;
     });
     map.addSource('sc3-straight',{type:'geojson',data:{type:'FeatureCollection',features:sc3StraightFeats}});
-    // SC3: Outer glow per hub color
+    // SC3: ORGANIZADO — verde limpio, líneas finas uniformes, glow suave
     map.addLayer({id:'sc3-straight-glow',type:'line',source:'sc3-straight',paint:{
-        'line-color':['match',['get','hub'],'centro','#00e878','mini_hub','#18d8d0','zungo','#ff7a30','#00e878'],
-        'line-width':10,'line-opacity':0.1,'line-blur':5
+        'line-color':['match',['get','hub'],'centro','#00cc66','mini_hub','#10b8b0','zungo','#dd7030','#00cc66'],
+        'line-width':8,'line-opacity':0.12,'line-blur':4
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
-    // SC3: Main lines — thicker, more visible
+    // SC3: Main lines — uniform width (organized, not chaotic)
     map.addLayer({id:'sc3-straight',type:'line',source:'sc3-straight',paint:{
         'line-color':['match',['get','hub'],'centro','#00e878','mini_hub','#18d8d0','zungo','#ff7a30','#00e878'],
-        'line-width':['interpolate',['linear'],['get','prod'],2000,2.0,11000,4.5],'line-opacity':0.8
+        'line-width':3,'line-opacity':0.9
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
-    // SC3: Animated flow on farm→hub lines (smooth pulse)
+    // SC3: Calm flow (slow, uniform)
     map.addLayer({id:'sc3-flow',type:'line',source:'sc3-straight',paint:{
-        'line-color':'#ffffff','line-width':1.2,'line-opacity':0.5,'line-dasharray':[0,4,3]
+        'line-color':'#aaffcc','line-width':1,'line-opacity':0.4,'line-dasharray':[0,4,3]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // ---- SC3 TRUNK LINES: mini_hub→puerto + zungo→puerto ----
@@ -2765,7 +2766,7 @@ function setScenario(sc){
     if(window._labelZungo) _labelZungo.getElement().style.display = '';
 
     const routesBox = document.getElementById('ly-routes');
-    if (routesBox) routesBox.checked = true;
+    if (routesBox) { routesBox.checked = true; toggleLy('routes'); }
     updateLegend();
     showScenarioBanner(sc);
     updateContextBox();
