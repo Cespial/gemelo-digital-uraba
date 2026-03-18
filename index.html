@@ -548,6 +548,22 @@
         .fp-bar{height:6px;border-radius:3px;margin:2px 0;transition:width 0.3s;}
         .fp-formula{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);padding:4px 8px;background:var(--bg);border-radius:4px;margin-top:4px;line-height:1.5;border:1px solid var(--border);}
 
+        /* VIGNETTE ATMOSFÉRICA */
+        .map-vignette {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 3;
+            transition: opacity 0.8s ease, background 0.8s ease;
+        }
+        .map-vignette.chaos {
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(255,40,50,0.25) 100%);
+            opacity: 1;
+        }
+        .map-vignette.order {
+            background: radial-gradient(ellipse at center, transparent 65%, rgba(0,232,120,0.08) 100%);
+            opacity: 1;
+        }
+        .map-vignette.neutral { opacity: 0; }
+
         /* RESPONSIVE for narrative components */
         @media(max-width:768px){
             .sc-banner{padding:16px 20px;max-width:90%;}
@@ -759,6 +775,7 @@
 <div class="map-wrap" id="panel-map">
     <div class="load-bar"><div class="load-fill" id="load-fill"></div></div>
     <div id="map"></div>
+    <div class="map-vignette neutral" id="map-vignette"></div>
     <div class="map-info">
         <div class="mi-t">Leyenda - Modelo 3 Nodos</div>
         <div class="mi-i"><div class="mi-c" style="background:var(--green);box-shadow:0 0 4px var(--green);"></div>Centro Consolidacion (12)</div>
@@ -2166,12 +2183,17 @@ map.on('load',()=>{
         if(map.getLayer('hub-port-flow')){
             map.setPaintProperty('hub-port-flow','line-dasharray',[d1,d2,d3,d4>0?d4:0.01]);
         }
-        // SC1 chaos flow: frantic amber animation (2x speed)
-        chaosDashStep=(chaosDashStep+2)%100;
+        // SC1 chaos flow: frantic amber animation (3x speed)
+        chaosDashStep=(chaosDashStep+3)%100;
         const ct=chaosDashStep/100;
         const cd1=ct*7, cd2=3, cd3=4, cd4=7-cd1;
         if(map.getLayer('sc1-chaos-flow')){
             map.setPaintProperty('sc1-chaos-flow','line-dasharray',[cd1,cd2,cd3,cd4>0?cd4:0.01]);
+        }
+        // SC1 route breathing (congestion pulse)
+        if(curSc==='sc1' && map.getLayer('sc1-routes-glow')){
+            const pulse = 0.15 + 0.1 * Math.sin(chaosDashStep * 0.12);
+            map.setPaintProperty('sc1-routes-glow','line-opacity', pulse);
         }
         // SC2 flow animation
         if(map.getLayer('sc2-flow')){
@@ -2196,18 +2218,18 @@ map.on('load',()=>{
     map.addSource('sc1-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc1Feats}});
     // SC1: CAÓTICO — rojo intenso, dashes, glow difuso, animación frenética
     map.addLayer({id:'sc1-routes-glow2',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#aa0030','line-width':35,'line-opacity':0.08,'line-blur':18
+        'line-color':'#aa0030','line-width':50,'line-opacity':0.08,'line-blur':18
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc1-routes-glow',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#ff1040','line-width':16,'line-opacity':0.2,'line-blur':10
+        'line-color':'#ff1040','line-width':24,'line-opacity':0.2,'line-blur':10
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc1-routes',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#ff2050','line-width':['interpolate',['linear'],['get','prod'],2000,2.5,11000,6],'line-opacity':0.85,
+        'line-color':'#ff2050','line-width':['interpolate',['linear'],['get','prod'],2000,4,11000,10],'line-opacity':0.85,
         'line-dasharray':[6,4]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
-    // SC1: Animated amber chaos flow (2x speed, frantic)
+    // SC1: Animated amber chaos flow (3x speed, frantic)
     map.addLayer({id:'sc1-chaos-flow',type:'line',source:'sc1-routes',paint:{
-        'line-color':'#ff8800','line-width':2,'line-opacity':0.8,'line-dasharray':[0,4,3]
+        'line-color':'#ff8800','line-width':3.5,'line-opacity':1.0,'line-dasharray':[0,4,3]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // ---- SC2 ROUTES: All 19 farms → Puerto Antioquia direct ----
@@ -2272,7 +2294,7 @@ map.on('load',()=>{
     if(map.getSource('osm-roads')){
         map.addLayer({id:'osm-roads-congestion',type:'line',source:'osm-roads',paint:{
             'line-color':'#ff3b4e',
-            'line-width':['match',['get','highway'],'trunk',4,'primary',3,'secondary',2,1.5],
+            'line-width':['match',['get','highway'],'trunk',6,'primary',5,'secondary',3.5,2.5],
             'line-opacity':0
         },layout:{'line-cap':'round','line-join':'round'}});
     }
@@ -2903,6 +2925,23 @@ function setScenario(sc){
     if(window._labelMiniHub) _labelMiniHub.getElement().style.display = '';
     if(window._labelZungo) _labelZungo.getElement().style.display = '';
 
+    // Atmosphere shift — fog per scenario
+    if(map.isStyleLoaded()){
+        if(sc==='sc1'){
+            map.setFog({'color':'#1a0a0c','high-color':'#200810','horizon-blend':0.12,'space-color':'#100408','star-intensity':0.05});
+        } else if(sc==='sc3'){
+            map.setFog({'color':'#081410','high-color':'#0a1810','horizon-blend':0.06,'space-color':'#040c08','star-intensity':0.2});
+        } else {
+            map.setFog({'color':'#0a0e14','high-color':'#0c1020','horizon-blend':0.08,'space-color':'#050810','star-intensity':0.15});
+        }
+    }
+
+    // Vignette atmosférica
+    const vig = document.getElementById('map-vignette');
+    if(vig){
+        vig.className = 'map-vignette ' + (sc==='sc1' ? 'chaos' : sc==='sc3' ? 'order' : 'neutral');
+    }
+
     const routesBox = document.getElementById('ly-routes');
     if (routesBox) { routesBox.checked = true; toggleLy('routes'); }
     updateLegend();
@@ -3211,7 +3250,7 @@ function updateSim(){
         if(map.getLayer('sc1-routes')){
             map.setPaintProperty('sc1-routes','line-color',rColor);
             map.setPaintProperty('sc1-routes','line-opacity',rOpacity);
-            map.setPaintProperty('sc1-routes','line-width',['interpolate',['linear'],['get','prod'],2000,2.5*wMult,11000,6*wMult]);
+            map.setPaintProperty('sc1-routes','line-width',['interpolate',['linear'],['get','prod'],2000,4*wMult,11000,10*wMult]);
         }
         if(map.getLayer('sc1-routes-glow')){
             map.setPaintProperty('sc1-routes-glow','line-color',rColor);
@@ -3235,8 +3274,8 @@ function updateSim(){
     // --- OSM road congestion overlay (only in SC1) ---
     if(map.getLayer('osm-roads-congestion')){
         if(curSc==='sc1'){
-            const roadOpacity = cfNorm * 0.4;
-            const roadColor = cf<1.5 ? 'rgba(255,160,48,0.3)' : cf<2.5 ? 'rgba(255,120,30,0.5)' : 'rgba(255,40,40,0.7)';
+            const roadOpacity = Math.min(0.6, cfNorm * 0.6 + 0.15);
+            const roadColor = cf<1.5 ? 'rgba(255,160,48,0.5)' : cf<2.5 ? 'rgba(255,120,30,0.7)' : 'rgba(255,40,40,0.9)';
             map.setPaintProperty('osm-roads-congestion','line-opacity',roadOpacity);
             map.setPaintProperty('osm-roads-congestion','line-color',roadColor);
         } else {
@@ -3256,6 +3295,17 @@ function updateSim(){
             ? (cf<1.5 ? 'rgba(255,122,48,0.15)' : cf<2.5 ? 'rgba(255,100,30,0.2)' : 'rgba(255,50,30,0.3)')
             : 'rgba(0,232,120,0.15)';
         map.setPaintProperty('farms-glow','circle-color',glowColor);
+    }
+    // Farm fill color: ALL RED in SC1, hub-colored in SC3
+    if(map.getLayer('farms')){
+        if(curSc==='sc1'){
+            map.setPaintProperty('farms','circle-color','#ff3b4e');
+            map.setPaintProperty('farms','circle-stroke-color','rgba(255,80,80,0.8)');
+        } else {
+            map.setPaintProperty('farms','circle-color',
+                ['match',['get','hub'],'centro','#00e878','mini_hub','#18d8d0','zungo','#ff7a30','#ff7a30']);
+            map.setPaintProperty('farms','circle-stroke-color','rgba(255,255,255,0.6)');
+        }
     }
 
     // --- Hub-port trunk color changes with congestion in hub mode ---
