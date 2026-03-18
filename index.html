@@ -47,6 +47,74 @@
         .dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
         @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 4px var(--green);}50%{opacity:0.3;box-shadow:none;}}
 
+        /* MICRO-ANIMATIONS */
+        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+        @keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+        @keyframes countUp{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+        @keyframes borderGlow{0%,100%{box-shadow:0 0 0 rgba(0,232,120,0);}50%{box-shadow:0 0 12px rgba(0,232,120,0.15);}}
+
+        /* Card entrance animations (staggered) */
+        .panel .c{animation:fadeSlideUp 0.4s ease-out both;}
+        .panel .c:nth-child(1){animation-delay:0.05s;}
+        .panel .c:nth-child(2){animation-delay:0.1s;}
+        .panel .c:nth-child(3){animation-delay:0.15s;}
+        .panel .c:nth-child(4){animation-delay:0.2s;}
+        .panel .c:nth-child(5){animation-delay:0.25s;}
+        .panel .c:nth-child(6){animation-delay:0.3s;}
+
+        /* KPI hover effects */
+        .kpi{transition:all 0.2s ease;}
+        .kpi:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.3);border-color:var(--green);}
+        .kpi-v{transition:all 0.3s ease;}
+
+        /* Active scenario button pulse */
+        .sc-btn.a-sc1,.sc-btn.a-sc2,.sc-btn.a-sc3{animation:borderGlow 2s ease-in-out infinite;}
+
+        /* KPI strip shimmer */
+        .kpi-strip{background:linear-gradient(90deg,rgba(6,8,10,0.82) 0%,rgba(20,24,32,0.9) 50%,rgba(6,8,10,0.82) 100%);
+            background-size:200% 100%;animation:shimmer 8s linear infinite;}
+
+        /* Farm panel entrance */
+        .farm-panel{transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);will-change:transform;}
+        .fp-section{animation:fadeSlideUp 0.3s ease-out both;}
+        .fp-section:nth-child(1){animation-delay:0.05s;}
+        .fp-section:nth-child(2){animation-delay:0.1s;}
+        .fp-section:nth-child(3){animation-delay:0.15s;}
+        .fp-section:nth-child(4){animation-delay:0.2s;}
+        .fp-section:nth-child(5){animation-delay:0.25s;}
+        .fp-section:nth-child(6){animation-delay:0.3s;}
+
+        /* Comparison bars animation */
+        .fp-bar{animation:fadeIn 0.5s ease-out both;animation-delay:0.3s;}
+
+        /* Audit panel sections entrance */
+        .audit-section{animation:fadeSlideUp 0.4s ease-out both;}
+        .audit-section:nth-child(1){animation-delay:0.1s;}
+        .audit-section:nth-child(2){animation-delay:0.2s;}
+        .audit-section:nth-child(3){animation-delay:0.3s;}
+        .audit-section:nth-child(4){animation-delay:0.4s;}
+
+        /* Scenario comparison card hover */
+        #sc-comp-1:hover,#sc-comp-2:hover,#sc-comp-3:hover{transform:scale(1.05);transition:transform 0.2s;}
+
+        /* Hub cost model card highlight on slider move */
+        #hub-total-val{transition:all 0.3s;font-size:14px;}
+        #hub-ahorro-val{transition:all 0.3s;}
+
+        /* Context box fade transition */
+        .ctx-box{transition:all 0.4s ease;opacity:0;animation:fadeIn 0.6s ease-out 1s both;}
+
+        /* Onboarding smoother */
+        .onboarding{animation:fadeIn 0.8s ease-out;}
+
+        /* Map info legend fade */
+        .map-info{animation:fadeSlideUp 0.5s ease-out 0.5s both;}
+
+        /* Tooltip formula boxes */
+        .fp-formula{transition:all 0.2s;cursor:help;}
+        .fp-formula:hover{background:var(--bg3);border-color:var(--green);color:var(--text2);}
+
         /* LAYOUT */
         .main{display:flex;height:calc(100vh - 48px);}
         .panel{background:var(--bg2);overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
@@ -66,11 +134,9 @@
         .sc-btns{display:flex;gap:6px;}
         .sc-btn{flex:1;padding:10px;border:1px solid var(--border);border-radius:6px;background:var(--bg3);color:var(--text2);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.25s;text-align:center;}
         .sc-btn:hover{background:var(--bg4);}
-        .sc-btn.a-chaos{background:var(--red-bg);border-color:var(--red);color:var(--red);}
-        .sc-btn.a-hub{background:var(--green-bg);border-color:var(--green);color:var(--green);}
-        .sc-btn.a-sc1{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+        .sc-btn.a-sc1,.sc-btn.a-chaos{background:var(--red-bg);border-color:var(--red);color:var(--red);}
         .sc-btn.a-sc2{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
-        .sc-btn.a-sc3{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+        .sc-btn.a-sc3,.sc-btn.a-hub{background:var(--green-bg);border-color:var(--green);color:var(--green);}
         .sc-btn.a-caja{background:var(--yellow-bg);border-color:var(--yellow);color:var(--yellow);}
         .sc-btn.a-viaje{background:rgba(255,59,78,0.12);border-color:var(--red);color:var(--red);}
 
@@ -95,7 +161,7 @@
 
         /* CONGESTION */
         .cong-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-top:6px;}
-        .cong-fill{height:100%;border-radius:3px;transition:all 0.5s;}
+        .cong-fill{height:100%;border-radius:3px;transition:all 0.5s;will-change:width,background;}
         .sem{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);margin-top:8px;}
         .sem-l{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);transition:all 0.3s;}
         .sem-l.go{background:var(--green);border-color:var(--green);box-shadow:0 0 10px var(--green);}
@@ -498,6 +564,19 @@
             .onboarding-title{font-size:15px;}
             .onboarding-desc{font-size:12px;}
             .ctx-box{right:8px;top:auto;bottom:50px;max-width:160px;font-size:8px;}
+
+            /* Farm panel fullscreen on mobile */
+            .farm-panel{width:100%;top:44px;height:calc(100vh - 44px);z-index:55;}
+            .fp-close{padding:8px 16px;font-size:14px;}
+            .fp-name{font-size:13px;}
+            .fp-row{font-size:11px;padding:4px 0;}
+            .fp-formula{font-size:9px;padding:6px 10px;}
+            .fp-section{padding:12px 14px;}
+
+            /* Audit panel responsive */
+            .audit-panel{top:44px;height:calc(100vh - 44px);padding:12px 14px;}
+            .audit-row{grid-template-columns:140px 80px 1fr;font-size:8px;}
+            .audit-title{font-size:11px;}
         }
     </style>
 </head>
@@ -578,7 +657,7 @@
             <div style="background:var(--red-bg);padding:8px;border-radius:4px;border:1px solid rgba(255,59,78,0.2);">
                 <div style="color:var(--red);font-weight:700;margin-bottom:4px;">IMPACTO MODELO POR VIAJE</div>
                 <div style="color:var(--text2);line-height:1.7;">
-                    Sin hub: <span style="color:var(--text);" id="pi-flete">$750</span>/caja (26 viajes, 76% fill)<br>
+                    Sin hub: <span style="color:var(--text);" id="pi-flete">$919</span>/caja (26 viajes, 76% fill)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
                     Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$750</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$810</span>/caja<br>
@@ -594,10 +673,10 @@
     <div class="c">
         <div class="c-h"><span class="c-t">Indicadores Clave</span><span id="sc-icon" style="font-size:13px;">&#x26A0;</span></div>
         <div class="kpi-g">
-            <div class="kpi tip" data-tip="Total de viajes de vehiculos por dia en la via principal"><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Viajes/dia en via</div></div>
-            <div class="kpi tip" data-tip="Tiempo promedio ponderado al puerto con congestion BPR"><div class="kpi-v y" id="kpi-time">47</div><div class="kpi-l">Min promedio puerto</div></div>
-            <div class="kpi tip" data-tip="Distancia promedio ponderada de la flota al destino"><div class="kpi-v b" id="kpi-dist">38.2</div><div class="kpi-l">Km promedio</div></div>
-            <div class="kpi tip" data-tip="Reduccion porcentual de viajes al cambiar a Hub & Spoke"><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
+            <div class="kpi tip" data-tip="Calculo: ceil(pallets_dia / 12) por finca, sumados. Sencillo=12 pallets. SC1: 41 viajes a Zungo. SC3: 35 viajes (20 hub + 4 mini-hub + 11 zungo)."><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Viajes/dia en via</div></div>
+            <div class="kpi tip" data-tip="Tiempo promedio ponderado por produccion. BPR: t_congestion = t_base × (1 + (volumen/capacidad)^3). Base OSRM + factor congestion."><div class="kpi-v y" id="kpi-time">47</div><div class="kpi-l">Min promedio</div></div>
+            <div class="kpi tip" data-tip="Distancia promedio ponderada por produccion. SC1: distancia a Zungo (8-28 km). SC2: distancia a PA (9-52 km). SC3: distancia al hub asignado."><div class="kpi-v b" id="kpi-dist">38.2</div><div class="kpi-l">Km promedio</div></div>
+            <div class="kpi tip" data-tip="SC3 vs SC2: ahorro por caja = $919 (SC2 Centro) - $810 (hub acido) = $109/caja. Depende del slider Finca→Hub. Ver panel AUDITAR para calculo completo."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
         </div>
     </div>
 
@@ -728,11 +807,11 @@
 
     <!-- KPI STRIP (persistent bottom bar) -->
     <div class="kpi-strip" id="kpi-strip">
-        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-ahorro">$502M</div><div class="kpi-strip-l">Ahorro/Ano</div></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-ahorro">$109</div><div class="kpi-strip-l">Ahorro/Ano</div></div>
         <div class="kpi-strip-div"></div>
-        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-trucks">-89%</div><div class="kpi-strip-l">Tractomulas</div></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-trucks">-15%</div><div class="kpi-strip-l">Tractomulas</div></div>
         <div class="kpi-strip-div"></div>
-        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">3.8a</div><div class="kpi-strip-l">Payback</div></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">Eq.</div><div class="kpi-strip-l">Payback</div></div>
         <div class="kpi-strip-div"></div>
         <div class="kpi-strip-item"><div class="kpi-strip-v" id="strip-status" style="color:var(--red);">HOY: ZUNGO</div><div class="kpi-strip-l">Escenario</div></div>
     </div>
@@ -899,10 +978,10 @@
         <div class="c-h"><span class="c-t">Costos Logisticos</span><span class="badge badge-b" id="cost-model-badge">$/CAJA</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;" id="cost-model-desc">Modelo parametrico basado en distancia, tiempo y flota</div>
         <div class="kpi-g">
-            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$406</div><div class="kpi-l">$/caja Directo</div></div>
+            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$919</div><div class="kpi-l">$/caja Directo</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$810</div><div class="kpi-l">$/caja Hub</div></div>
-            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-save">-23%</div><div class="kpi-l">Ahorro $/caja</div></div>
-            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">$502M</div><div class="kpi-l">Ahorro anual</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-save">-12%</div><div class="kpi-l">Ahorro $/caja</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">~$0</div><div class="kpi-l">Ahorro anual</div></div>
         </div>
         <div style="margin-top:8px;">
             <div class="sl-t" style="margin-bottom:4px;" id="cost-table-title">Desglose por componente ($/caja)</div>
@@ -914,7 +993,7 @@
                     <tr><td id="cd-toll-label">Peajes</td><td id="cd-toll-d">$35</td><td id="cd-toll-h">$18</td><td class="sav" id="cd-toll-s">-49%</td></tr>
                     <tr><td id="cd-wear-label">Desgaste vehic.</td><td id="cd-wear-d">$68</td><td id="cd-wear-h">$52</td><td class="sav" id="cd-wear-s">-24%</td></tr>
                     <tr><td>Consolidacion Hub</td><td id="cd-cons-d">--</td><td id="cd-cons-h">$42</td><td style="color:var(--yellow);" id="cd-cons-s">+$42</td></tr>
-                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$386</td><td style="color:var(--green);" id="cd-tot-h">$298</td><td class="sav" id="cd-tot-s">-23%</td></tr>
+                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$919</td><td style="color:var(--green);" id="cd-tot-h">$810</td><td class="sav" id="cd-tot-s">-12%</td></tr>
                 </tbody>
             </table>
         </div>
@@ -2705,14 +2784,25 @@ function updateCallouts() {
     }
 }
 
+// Smooth number counter animation
+function animateValue(el, newText) {
+    if (!el || el.textContent === newText) return;
+    el.style.transform = 'scale(1.15)';
+    el.style.opacity = '0.6';
+    el.textContent = newText;
+    requestAnimationFrame(() => {
+        setTimeout(() => { el.style.transform = ''; el.style.opacity = ''; }, 200);
+    });
+}
+
 function updateKPIStrip() {
     const r = simResults;
     const totalViajes = r.totalViajes;
     const hubMulas = r.hubMulas;
     const redPct = totalViajes > 0 ? Math.round(((totalViajes - hubMulas) / totalViajes) * 100) : 89;
 
-    document.getElementById('strip-ahorro').textContent = '$' + (r.annualSave || 502) + 'M';
-    document.getElementById('strip-trucks').textContent = '-' + redPct + '%';
+    animateValue(document.getElementById('strip-ahorro'), '$' + (r.annualSave || 502) + 'M');
+    animateValue(document.getElementById('strip-trucks'), '-' + redPct + '%');
 
     // Payback from financial dashboard if available
     const payEl = document.getElementById('fd-payback');
@@ -2913,22 +3003,22 @@ function updateSim(){
     const aht=OD.reduce((s,o)=>s+o.ht,0)/OD.length;
 
     if(curSc==='sc1'){
-        document.getElementById('kpi-trucks').textContent=totalViajes+rt;
+        animateValue(document.getElementById('kpi-trucks'), String(totalViajes+rt));
         document.getElementById('kpi-trucks').className='kpi-v r';
-        document.getElementById('kpi-time').textContent=Math.round(at*cf);
+        animateValue(document.getElementById('kpi-time'), String(Math.round(at*cf)));
         document.getElementById('kpi-time').className='kpi-v '+(cf>2?'r':'y');
-        document.getElementById('kpi-dist').textContent=ad.toFixed(1);
-        document.getElementById('kpi-save').textContent='--';
+        animateValue(document.getElementById('kpi-dist'), ad.toFixed(1));
+        animateValue(document.getElementById('kpi-save'), '--');
         document.getElementById('kpi-save').className='kpi-v';
     }else{
-        document.getElementById('kpi-trucks').textContent=hubt+rt;
+        animateValue(document.getElementById('kpi-trucks'), String(hubt+rt));
         document.getElementById('kpi-trucks').className='kpi-v g';
-        document.getElementById('kpi-time').textContent=Math.round(aht*Math.min(cf,1.3));
+        animateValue(document.getElementById('kpi-time'), String(Math.round(aht*Math.min(cf,1.3))));
         document.getElementById('kpi-time').className='kpi-v g';
         const rp=Math.round(((totalViajes-hubt)/Math.max(totalViajes,1))*100);
-        document.getElementById('kpi-save').textContent=`-${rp}%`;
+        animateValue(document.getElementById('kpi-save'), `-${rp}%`);
         document.getElementById('kpi-save').className='kpi-v g';
-        document.getElementById('kpi-dist').textContent=(OD.reduce((s,o)=>s+o.hd,0)/OD.length).toFixed(1);
+        animateValue(document.getElementById('kpi-dist'), (OD.reduce((s,o)=>s+o.hd,0)/OD.length).toFixed(1));
     }
 
     document.getElementById('cp-p').textContent=ppd;
@@ -3010,11 +3100,11 @@ function updateSim(){
     }
 
     // Update cost card
-    document.getElementById('cost-direct').textContent = `$${totalDirect}`;
-    document.getElementById('cost-hub').textContent = `$${totalHub}`;
-    document.getElementById('cost-save').textContent = `${savePct > 0 ? '-' : '+'}${Math.abs(savePct)}%`;
+    animateValue(document.getElementById('cost-direct'), `$${totalDirect}`);
+    animateValue(document.getElementById('cost-hub'), `$${totalHub}`);
+    animateValue(document.getElementById('cost-save'), `${savePct > 0 ? '-' : '+'}${Math.abs(savePct)}%`);
     document.getElementById('cost-save').className = 'kpi-v ' + (savePct > 0 ? 'g' : 'r');
-    document.getElementById('cost-annual').textContent = `$${annualSave}M`;
+    animateValue(document.getElementById('cost-annual'), `$${annualSave}M`);
     document.getElementById('cost-annual').className = 'kpi-v ' + (annualSave > 0 ? 'g' : 'r');
 
     // Update cost breakdown table
