@@ -508,9 +508,9 @@
         <div class="onboarding-title">GEMELO DIGITAL LOGISTICO</div>
         <div class="onboarding-desc">
             Modelo logistico de las <b style="color:var(--text);">19 fincas de Grupo 20</b> en Uraba.<br><br>
-            Click <b style="color:var(--red);">SITUACION ACTUAL</b> para ver el estado actual:
+            Click <b style="color:var(--red);">HOY: ZUNGO</b> para ver el estado actual:
             26 viajes/dia, 76% llenado, 15 mulas + 11 sencillos.<br><br>
-            Click <b style="color:var(--green);">CENTRO OPERANDO</b> para ver la solucion:
+            Click <b style="color:var(--green);">CON HUB</b> para ver la solucion:
             12 mulas PA + 7 Zungo, 89-98% llenado.
         </div>
         <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
@@ -581,9 +581,9 @@
                     Sin hub: <span style="color:var(--text);" id="pi-flete">$750</span>/caja (26 viajes, 76% fill)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
                     Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$750</span>/caja<br>
-                    Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$380</span>/caja<br>
+                    Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$810</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
-                        Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">$2,400M</span>
+                        Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">~$0 (acido)</span>
                     </div>
                 </div>
             </div>
@@ -594,7 +594,7 @@
     <div class="c">
         <div class="c-h"><span class="c-t">Indicadores Clave</span><span id="sc-icon" style="font-size:13px;">&#x26A0;</span></div>
         <div class="kpi-g">
-            <div class="kpi tip" data-tip="Total de viajes de vehiculos por dia en la via principal"><div class="kpi-v r" id="kpi-trucks">154</div><div class="kpi-l">Viajes/dia en via</div></div>
+            <div class="kpi tip" data-tip="Total de viajes de vehiculos por dia en la via principal"><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Viajes/dia en via</div></div>
             <div class="kpi tip" data-tip="Tiempo promedio ponderado al puerto con congestion BPR"><div class="kpi-v y" id="kpi-time">47</div><div class="kpi-l">Min promedio puerto</div></div>
             <div class="kpi tip" data-tip="Distancia promedio ponderada de la flota al destino"><div class="kpi-v b" id="kpi-dist">38.2</div><div class="kpi-l">Km promedio</div></div>
             <div class="kpi tip" data-tip="Reduccion porcentual de viajes al cambiar a Hub & Spoke"><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
@@ -734,7 +734,7 @@
         <div class="kpi-strip-div"></div>
         <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">3.8a</div><div class="kpi-strip-l">Payback</div></div>
         <div class="kpi-strip-div"></div>
-        <div class="kpi-strip-item"><div class="kpi-strip-v" id="strip-status" style="color:var(--red);">SITUACION ACTUAL</div><div class="kpi-strip-l">Escenario</div></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" id="strip-status" style="color:var(--red);">HOY: ZUNGO</div><div class="kpi-strip-l">Escenario</div></div>
     </div>
 
     <!-- CALLOUTS container -->
@@ -899,8 +899,8 @@
         <div class="c-h"><span class="c-t">Costos Logisticos</span><span class="badge badge-b" id="cost-model-badge">$/CAJA</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;" id="cost-model-desc">Modelo parametrico basado en distancia, tiempo y flota</div>
         <div class="kpi-g">
-            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$386</div><div class="kpi-l">$/caja Directo</div></div>
-            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$298</div><div class="kpi-l">$/caja Hub</div></div>
+            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$406</div><div class="kpi-l">$/caja Directo</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$810</div><div class="kpi-l">$/caja Hub</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-save">-23%</div><div class="kpi-l">Ahorro $/caja</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">$502M</div><div class="kpi-l">Ahorro anual</div></div>
         </div>
@@ -937,7 +937,7 @@
             <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
                 <div class="comp-bar" id="bar-c" style="width:100%;background:var(--red);height:7px;"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;"><span class="sl-r" style="color:var(--red);" id="bl-c">Directo: 154/dia</span><span class="sl-r" style="color:var(--green);" id="bl-h">Hub: 17/dia</span></div>
+            <div style="display:flex;justify-content:space-between;"><span class="sl-r" style="color:var(--red);" id="bl-c">Directo: 41/dia</span><span class="sl-r" style="color:var(--green);" id="bl-h">Hub: 35/dia</span></div>
             <div style="display:flex;align-items:center;gap:4px;margin-top:1px;">
                 <div class="comp-bar" id="bar-h" style="width:11%;background:var(--green);height:7px;"></div>
             </div>
@@ -1185,7 +1185,7 @@
                 <div class="fin-slider"><input type="range" id="fs-horizon" min="5" max="20" value="10" oninput="updateFinancialDashboard()"></div>
             </div>
             <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);line-height:1.7;">
-                Produccion actual: <span style="color:var(--text);" id="fd-prod-info">110K cajas/sem (5.72M/ano)</span><br>
+                Produccion actual: <span style="color:var(--text);" id="fd-prod-info">101K cajas/sem (5.25M/ano)</span><br>
                 Depreciacion: <span style="color:var(--text);">Linea recta sobre construccion + equipos</span><br>
                 Impuestos: <span style="color:var(--text);">No incluidos (simplificado)</span>
             </div>
@@ -1313,11 +1313,11 @@
             <div class="res-metric-l">Tractomulas en via</div>
         </div>
         <div class="res-metric">
-            <div class="res-metric-v g" id="res-save-box">-$88</div>
+            <div class="res-metric-v g" id="res-save-box">-$109</div>
             <div class="res-metric-l">Ahorro por caja</div>
         </div>
         <div class="res-metric">
-            <div class="res-metric-v y">$750</div>
+            <div class="res-metric-v y">$963</div>
             <div class="res-metric-l">Riesgo nuevo modelo $/caja</div>
         </div>
         <div class="res-metric">
@@ -1343,8 +1343,8 @@
     <div class="res-section-t">CONTEXTO DEL PROYECTO</div>
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
-        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>+150 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $359 a $750.</p>
-        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas solo salen del centro llenas hacia Puerto Antioquia. Resultado: <strong>89% menos tractomulas en via, $502M de ahorro anual</strong>, y eliminacion del riesgo de cobro por viaje.</p>
+        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>41 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $406 a $963.</p>
+        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas solo salen del centro llenas hacia Puerto Antioquia. Resultado: <strong>6 viajes menos en Centro (26→20), ahorro $109/caja (escenario acido)</strong>, y eliminacion del riesgo de cobro por viaje.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
     </div>
 
@@ -3714,11 +3714,11 @@ function calcTIR(cashflows) {
 // ============================================================
 function updateResumenDashboard(){
     // Pull from simResults (already populated by updateSim)
-    const saveAnnual = simResults.annualSave || 502;
-    const savePerBox = simResults.savePerBox || 88;
-    const totalViajes = simResults.totalViajes || 154;
-    const hubMulas = simResults.hubMulas || 17;
-    const trucksPct = totalViajes > 0 ? Math.round(((totalViajes - hubMulas)/totalViajes)*100) : 89;
+    const saveAnnual = simResults.annualSave || 0;
+    const savePerBox = simResults.savePerBox || 109;
+    const totalViajes = SC_TOTALS ? SC_TOTALS.sc2.viajes : 41;
+    const hubViajes = SC_TOTALS ? SC_TOTALS.sc3.viajes : 35;
+    const trucksPct = totalViajes > 0 ? Math.round(((totalViajes - hubViajes)/totalViajes)*100) : 15;
 
     document.getElementById('res-hero-save').textContent = `$${saveAnnual}M`;
     document.getElementById('res-trucks-pct').textContent = `-${trucksPct}%`;
