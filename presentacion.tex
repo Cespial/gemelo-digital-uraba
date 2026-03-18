@@ -220,41 +220,43 @@ Pto.\ Fijo, Almendros, Matogroso 1 y 2.
 % 5. DÓNDE SE AHORRAN LOS VIAJES (DESAGREGADO)
 % ============================================================
 \begin{frame}
-\frametitle{\textquestiondown D\'onde se ahorran los viajes?}
-\tagline{verde}{12 Fincas Centro: de 26 viajes a 20}
+\frametitle{\textquestiondown De d\'onde salen los 6 viajes menos?}
+\tagline{verde}{La l\'ogica de la consolidaci\'on}
 
 \vspace{1pt}
-{\scriptsize Hoy las 12 fincas Centro hacen \textbf{26 viajes individuales/d\'ia} a PA.
-El hub los consolida en \textbf{20 viajes desde Chinita} (\$360K c/u). Ahorro: \textbf{6 viajes/d\'ia.}}
+{\scriptsize \textbf{Sin hub:} cada finca redondea ARRIBA. Si produce 9.4 pallets, necesita 1 viaje de 12
+$\rightarrow$ \textbf{2.6 pallets vac\'ios}. Multiplicado por 12 fincas $=$ mucho espacio desperdiciado.}
 
 \vspace{3pt}
 \begin{center}
 \scriptsize
-\renewcommand{\arraystretch}{0.85}
-\begin{tabular}{l r r l}
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{l r r r}
     \toprule
-    \textbf{Finca Centro} & \textbf{Pall/d\'ia} & \textbf{SC2 viajes} & \textbf{SC3} \\
+    \textbf{Finca Centro} & \textbf{Pall/d\'ia} & \textbf{Viajes ($\div$12)} & \textbf{Pall.\ vac\'ios} \\
     \midrule
-    Chinita       & 37.5 & 4 & $\rightarrow$ consolidado \\
-    Tucanes       & 30.3 & 3 & $\rightarrow$ consolidado \\
-    Maria Bonita  & 29.0 & 3 & $\rightarrow$ consolidado \\
-    Sta.\ Marta   & 28.6 & 3 & $\rightarrow$ consolidado \\
-    San Felipe    & 18.5 & 2 & $\rightarrow$ consolidado \\
-    Tagual        & 16.5 & 2 & $\rightarrow$ consolidado \\
-    San Juan      & 15.7 & 2 & $\rightarrow$ consolidado \\
-    Llave         & 15.2 & 2 & $\rightarrow$ consolidado \\
-    Sta.\ Helena  & 12.4 & 2 & $\rightarrow$ consolidado \\
-    Villa Fresia  & 11.4 & 1 & $\rightarrow$ consolidado \\
-    Sierra        & 10.3 & 1 & $\rightarrow$ consolidado \\
-    Maritu        &  9.4 & 1 & $\rightarrow$ consolidado \\
+    Chinita       & 37.5 & 4 & 10.5 \\
+    Tucanes       & 30.3 & 3 & 5.7 \\
+    Maria Bonita  & 29.0 & 3 & 7.0 \\
+    Sta.\ Marta   & 28.6 & 3 & 7.4 \\
+    Sta.\ Helena  & 12.4 & 2 & \textcolor{rojo}{11.6} \\
+    Llave         & 15.2 & 2 & 8.8 \\
+    {\color{gris}\scriptsize ... 6 m\'as} & & & \\
     \midrule
-    \textbf{Total Centro} & \textbf{234.8} & \textbf{26} & \textbf{20 viajes hub} \\
+    \textbf{Total 12} & \textbf{234.8} & \textbf{26} & \textcolor{rojo}{\textbf{77.2 vac\'ios}} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
-\vspace{1pt}
-{\tiny\color{gris} 234.8 pallets/d\'ia $\div$ 12 pallets/sencillo $=$ 20 viajes (vs 26 individuales). Mini-Hub (4 viajes) y Zungo (11 viajes) no cambian.}
+\vspace{2pt}
+\begin{block}{Con hub: se redondea UNA sola vez}
+\scriptsize
+234.8 pallets $\div$ 12 $=$ 19.6 $\rightarrow$ \textbf{20 viajes} (98\% llenado).
+Los pallets sobrantes de Chinita llenan el espacio de Maritu.
+\textbf{Se eliminan 6 viajes de ``espacio vac\'io''.}
+Los 77 pallets desperdiciados se convierten en 2.4 ($=$ 234.8 $-$ 20$\times$12).
+\end{block}
+{\tiny\color{gris} Mini-Hub (4 viajes) y Zungo (11 viajes) no cambian. Total G20: 41$\rightarrow$35 viajes.}
 \end{frame}
 
 % ============================================================
@@ -383,16 +385,16 @@ Techo: $\sim$\$200/caja (por encima no se paga).}
     \midrule
     \textcolor{verde}{\textbf{= Ahorro neto}} & \textcolor{verde}{\textbf{\$162M/a\~no}} & \\
     \addlinespace
-    CAPEX \$900M $\div$ \$162M & \textcolor{azul}{\textbf{5.6 a\~nos}} & {\scriptsize payback \'acido} \\
+    CAPEX \$1,000M $\div$ \$162M & \textcolor{azul}{\textbf{6.2 a\~nos}} & {\scriptsize payback \'acido} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{1pt}
 \colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{amarillo}{\textbf{Esc.\ \'acido:}} \$162M neto, payback 5.6a (solo transporte).
+\textcolor{amarillo}{\textbf{Esc.\ \'acido:}} \$162M neto, payback 6.2a (solo transporte).
 Con terceros + operaci\'on, justificaci\'on m\'as fuerte.
-{\tiny Con f$\rightarrow$h a \$80: neto \$393M, payback 2.3a. La realidad estar\'a entre ambos.}\strut}}
+{\tiny Con f$\rightarrow$h a \$80: neto \$393M, payback 2.5a. Realidad entre ambos.}\strut}}
 \end{frame}
 
 % ============================================================
@@ -412,18 +414,20 @@ Con terceros + operaci\'on, justificaci\'on m\'as fuerte.
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{l r}
         \toprule
-        Terreno (0.2 ha $\times$ \$30M/ha) & \$6M \\
+        Terreno (0.5 ha $\times$ \$200M/ha) & \$100M \\
         P\'ergola 1,000 m$^2$ (\$600K/m$^2$) & \$600M \\
         Equipos (montacargas, IT) & \$200M \\
         Capital de trabajo & \$100M \\
         \midrule
-        \textcolor{verde}{\textbf{TOTAL CAPEX}} & \textcolor{verde}{\textbf{\$906M}} \\
+        \textcolor{verde}{\textbf{TOTAL CAPEX}} & \textcolor{verde}{\textbf{\$1,000M}} \\
         \bottomrule
     \end{tabular}
 
-    \vspace{4pt}
+    \vspace{3pt}
     {\scriptsize\color{gris}\textbf{OPEX: \$362M/a\~no} {\tiny (6 pers.\ + serv.\ + mant.)}}\\
-    {\tiny\color{gris} Terreno 0.7\% CAPEX. Lucro cesante \$15M/a\~no.}
+    {\tiny\color{gris} Terreno: periferia Apartad\'o con acceso variante.
+    0.5 ha $=$ p\'ergola + patio maniobras + accesos.
+    Lucro cesante: 1,222 cajas/a\~no $=$ \$37M.}
 \end{column}
 
 \begin{column}{0.48\textwidth}
@@ -443,8 +447,8 @@ Con terceros + operaci\'on, justificaci\'on m\'as fuerte.
 
         \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
               minimum width=5cm, minimum height=0.9cm, below=4pt of b1] (b3) {};
-        \node[font=\small\bfseries, text=azul] at ([yshift=1pt]b3.center) {5.6 a\~nos payback};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {\$906M CAPEX $\div$ \$162M/a\~no};
+        \node[font=\small\bfseries, text=azul] at ([yshift=1pt]b3.center) {6.2 a\~nos payback};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {\$1,000M CAPEX $\div$ \$162M/a\~no};
     \end{tikzpicture}
 
     \vspace{4pt}
@@ -592,7 +596,7 @@ Click en cada finca para ver indicadores espec\'ificos por escenario.}
 \textbf{SC1 Hoy:} \$406/caja (\$200K/viaje), 41 viajes, Zungo.\\
 \textbf{SC2 Todos PA:} \$963/caja (\$474K/viaje), 41 viajes, +137\%.\\
 \textbf{SC3 Con Hub:} 12 Centro de \$919 a \$760/caja. \textbf{Ahorro \$159/caja} (esc.\ \'acido \$150 f$\rightarrow$h).\\
-Neto: \$162M/a\~no. CAPEX: \$906M. \textbf{Payback: 5.6 a\~nos} (solo transporte).\\
+Neto: \$162M/a\~no. CAPEX: \$1,000M. \textbf{Payback: 6.2 a\~nos} (solo transporte).\\
 Con servicio a terceros (10\% regi\'on, \$60/caja): \textbf{+\$652M/a\~no adicional}.
 \end{block}
 
