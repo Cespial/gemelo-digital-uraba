@@ -450,6 +450,18 @@
         .ctx-title{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:4px;}
         .ctx-body{color:var(--text2);}
 
+        /* AUDIT PANEL */
+        .audit-panel{position:fixed;top:48px;left:0;width:100%;height:calc(100vh - 48px);
+            background:rgba(6,8,10,0.95);backdrop-filter:blur(8px);z-index:60;
+            overflow-y:auto;display:none;padding:20px 40px;}
+        .audit-panel.open{display:block;}
+        .audit-section{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px;}
+        .audit-title{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+        .audit-row{display:grid;grid-template-columns:200px 100px 1fr;gap:8px;padding:3px 0;font-family:'JetBrains Mono',monospace;font-size:9px;border-bottom:1px solid rgba(255,255,255,0.03);}
+        .audit-k{color:var(--text2);}
+        .audit-v{color:var(--text);font-weight:600;text-align:right;}
+        .audit-f{color:var(--text3);font-size:8px;}
+
         /* FARM DETAIL PANEL */
         .farm-panel{position:fixed;right:0;top:48px;width:380px;height:calc(100vh - 48px);
             background:var(--bg2);border-left:1px solid var(--border);z-index:50;
@@ -505,6 +517,15 @@
     </div>
 </div>
 
+<!-- AUDIT PANEL -->
+<div class="audit-panel" id="audit-panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--green);">AUDITORIA DE CIFRAS</div>
+        <button onclick="toggleAuditPanel()" style="padding:6px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer;">CERRAR</button>
+    </div>
+    <div id="audit-content"></div>
+</div>
+
 <div class="hdr">
     <div class="hdr-l">
         <div class="logo">G20</div>
@@ -521,6 +542,7 @@
         <span class="badge badge-b" id="gm-badge">BPR MODEL</span>
         <div class="dot"></div>
         <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);">LIVE</span>
+        <button onclick="toggleAuditPanel()" style="padding:3px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--text3);font-family:'JetBrains Mono',monospace;font-size:8px;cursor:pointer;text-transform:uppercase;letter-spacing:0.5px;" title="Ver supuestos y formulas de todos los indicadores">AUDITAR</button>
     </div>
 </div>
 
@@ -2410,6 +2432,85 @@ function dismissOnboarding() {
     if (el) { el.classList.add('out'); setTimeout(() => el.remove(), 600); }
 }
 setTimeout(dismissOnboarding, 7000);
+
+// ============================================================
+// AUDIT PANEL — transparencia total de indicadores
+// ============================================================
+function toggleAuditPanel() {
+    const el = document.getElementById('audit-panel');
+    el.classList.toggle('open');
+    if (el.classList.contains('open')) renderAuditPanel();
+}
+
+function renderAuditPanel() {
+    let h = '';
+
+    // 1. PARAMETROS
+    h += '<div class="audit-section"><div class="audit-title">1. Parametros y Supuestos</div>';
+    const params = [
+        ['Sencillo (capacidad)', SENC_PALL + ' pallets', 'Vehiculo de carga estandar G20'],
+        ['Cajas por pallet', CAJAS_PALL, 'Pallet de 54 cajas (formato comun)'],
+        ['Cajas por viaje sencillo', CAJAS_SENC, SENC_PALL + ' pallets × ' + CAJAS_PALL + ' cajas'],
+        ['Factor tabla→sencillo', FACTOR_12 + 'x', 'Tabla da 10 pallets, sencillo lleva 12 → ×1.2'],
+        ['Dias laborales/semana', '5', 'Para calcular cajas/dia = cajas/semana ÷ 5'],
+        ['Hub→PA tarifa/viaje', '$' + (ACID.HUB_PA_VIAJE/1000) + 'K', 'Tarifa Chinita (sin negociar). Fuente: tabla Anderson'],
+        ['Hub→PA flete/caja', '$' + _hubFleteCaja, _centroTripsHub + ' viajes × $' + (ACID.HUB_PA_VIAJE/1000) + 'K ÷ ' + Math.round(_centroCajasDia) + ' cajas Centro/dia'],
+        ['Finca→Hub (acido)', '$' + ACID.FH_CAJA + '/caja', '$' + Math.round(ACID.FH_CAJA*CAJAS_SENC/1000) + 'K/viaje. Estimado por $/km promedio (~8-15 km)'],
+        ['Consolidacion', '$' + ACID.CONSOL + '/caja', 'Paletizar + inspeccionar + cargar'],
+        ['Hub TOTAL (acido)', '$' + _hubTotal + '/caja', '$' + _hubFleteCaja + ' + $' + ACID.CONSOL + ' + $' + ACID.FH_CAJA],
+        ['CAPEX', '$' + ACID.CAPEX + 'M', 'Terreno $100M + pergola $600M + equipos $200M + WK $100M + contingencia $200M'],
+        ['OPEX', '$' + ACID.OPEX + 'M/ano', '6 personas $215M + servicios $73M + mant/seg $38M + admin $36M'],
+        ['$/km promedio (tabla)', '$13,140', 'Promedio ponderado de las 19 rutas tabla Anderson'],
+    ];
+    params.forEach(([k,v,f]) => { h += '<div class="audit-row"><span class="audit-k">'+k+'</span><span class="audit-v">'+v+'</span><span class="audit-f">'+f+'</span></div>'; });
+    h += '</div>';
+
+    // 2. POR FINCA
+    h += '<div class="audit-section"><div class="audit-title">2. Datos por Finca (19 fincas)</div>';
+    h += '<div class="audit-row" style="font-weight:700;border-bottom:1px solid var(--border);"><span>Finca</span><span>Grupo</span><span>Cajas/sem | Pall/dia | SC1 $/caja | SC1 $/viaje | SC2 $/viaje | SC2 $/caja | SC3 $/caja | Ahorro SC3</span></div>';
+    FARM_DATA.forEach(fd => {
+        h += '<div class="audit-row"><span class="audit-k">'+fd.name+'</span><span class="audit-v">'+fd.g+'</span><span class="audit-f">'+
+            fd.cs+' | '+fd.pd+' | $'+fd.sc1.caja+' | $'+(fd.sc1.viaje/1000).toFixed(0)+'K | $'+(fd.sc2.viaje/1000).toFixed(0)+'K | $'+fd.sc2.caja+' | $'+fd.sc3.total+' | '+(fd.sc3.ahorro>0?'+':'')+fd.sc3.ahorro+
+            '</span></div>';
+    });
+    h += '</div>';
+
+    // 3. TOTALES
+    h += '<div class="audit-section"><div class="audit-title">3. Totales 3 Escenarios</div>';
+    const tots = [
+        ['SC1 viajes/dia', SC_TOTALS.sc1.viajes, 'Suma de ceil(pallets_dia/12) por finca'],
+        ['SC1 $/caja promedio', '$' + SC_TOTALS.sc1.costProm, 'Ponderado por produccion: sum(tarifa × cajas) / sum(cajas)'],
+        ['SC1 costo anual', '$' + SC_TOTALS.sc1.costAnual + 'M', 'SC1 costProm × 101,003 cajas/sem × 52 semanas'],
+        ['SC2 viajes/dia', SC_TOTALS.sc2.viajes, 'Mismos viajes que SC1 (mismas fincas, mismos vehiculos)'],
+        ['SC2 $/caja promedio', '$' + SC_TOTALS.sc2.costProm, 'Ponderado: tarifa PA × 1.2 × viajes ÷ cajas'],
+        ['SC2 costo anual', '$' + SC_TOTALS.sc2.costAnual + 'M', ''],
+        ['SC3 viajes/dia', SC_TOTALS.sc3.viajes, 'Hub ' + _centroTripsHub + ' + Mini-Hub ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' + Zungo ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0)],
+        ['SC3 SC2 Centro prom', '$' + SC_TOTALS.sc3.sc2Centro, '12 fincas Centro promedio ponderado bajo SC2'],
+        ['SC3 Hub total (acido)', '$' + _hubTotal, '$' + _hubFleteCaja + ' flete + $' + ACID.CONSOL + ' consol + $' + ACID.FH_CAJA + ' f→h'],
+        ['SC3 ahorro/caja', '$' + SC_TOTALS.sc3.ahorroCaja, '$' + SC_TOTALS.sc3.sc2Centro + ' - $' + _hubTotal],
+        ['SC3 ahorro bruto/ano', '$' + SC_TOTALS.sc3.brutoAnual + 'M', '$' + SC_TOTALS.sc3.ahorroCaja + ' × ' + Math.round(_centroCajasDia) + ' cajas/dia × 5 dias × 52 sem'],
+        ['SC3 ahorro neto/ano', '$' + SC_TOTALS.sc3.netoAnual + 'M', '$' + SC_TOTALS.sc3.brutoAnual + 'M - $' + ACID.OPEX + 'M OPEX'],
+        ['SC3 payback', SC_TOTALS.sc3.payback + ' anos', '$' + ACID.CAPEX + 'M ÷ $' + SC_TOTALS.sc3.netoAnual + 'M'],
+    ];
+    tots.forEach(([k,v,f]) => { h += '<div class="audit-row"><span class="audit-k">'+k+'</span><span class="audit-v">'+v+'</span><span class="audit-f">'+f+'</span></div>'; });
+    h += '</div>';
+
+    // 4. FUENTES
+    h += '<div class="audit-section"><div class="audit-title">4. Fuentes de Datos</div>';
+    h += '<div style="font-family:\'JetBrains Mono\',monospace;font-size:9px;color:var(--text2);line-height:1.8;">';
+    h += 'Tarifas de transporte: Anderson Mestra, Grupo 20, Marzo 2026<br>';
+    h += 'Produccion por finca: Anderson Mestra, promedio 2026<br>';
+    h += 'Vehiculos: sencillo 12 pallets, pallet 54 cajas (formato comun)<br>';
+    h += 'Distancias y tiempos: OSRM routing real (39 rutas calculadas)<br>';
+    h += 'Geocercas GPS: 7 vehiculos, 9-12 Marzo 2026<br>';
+    h += 'Costos construccion: Lamina KR18, Presucosto (bodegas 2025-2026)<br>';
+    h += 'Valor terreno: Century21, Agronegocios, Zona Franca Uraba<br>';
+    h += 'Puerto Antioquia: Infobae, Valora Analitik (operando Feb 2026)<br>';
+    h += 'Productividad historica: Uniban 2012-2025 (19 fincas G20)<br>';
+    h += '</div></div>';
+
+    document.getElementById('audit-content').innerHTML = h;
+}
 
 // ============================================================
 // HUB COST MODEL (reactive slider)
