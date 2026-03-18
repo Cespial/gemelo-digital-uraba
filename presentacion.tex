@@ -278,8 +278,8 @@ Los 77 pallets desperdiciados se convierten en 2.4 ($=$ 234.8 $-$ 20$\times$12).
     Tarifa        & \$/caja     & \$/viaje         & \$/viaje \\
     Viajes/d\'ia  & 41          & 41               & \textcolor{verde}{\textbf{35}} \\
     \$/viaje prom & \$200K      & \$474K           & \textcolor{verde}{\textbf{$\sim$\$360K}} \\
-    \$/caja prom  & \$406       & \textcolor{rojo}{\$963} & \textcolor{verde}{\textbf{$\sim$\$700}} \\
-    Costo anual   & \$2,133M    & \textcolor{rojo}{\$5,058M} & \textcolor{verde}{\$3,600M{\tiny *}} \\
+    \$/caja prom  & \$406       & \textcolor{rojo}{\$963} & \textcolor{verde}{\textbf{$\sim$\$650}} \\
+    Costo anual   & \$2,133M    & \textcolor{rojo}{\$5,058M} & \textcolor{verde}{\$3,400M{\tiny *}} \\
     \bottomrule
 \end{tabular}
 \end{center}
@@ -295,106 +295,187 @@ En \$/caja: de \$406 a \$963. \textbf{Puerto Antioquia est\'a m\'as lejos que Zu
 \vspace{1pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
 \textcolor{verde}{\textbf{SC2$\rightarrow$SC3:}} El hub baja 6 viajes/d\'ia (Centro: 26$\rightarrow$20).
-Las 12 fincas Centro pasan de \$919/caja a \$760/caja (esc.\ \'acido).
-\textbf{Ahorro Centro: \$159/caja.}\strut}}
+Las 12 fincas Centro pasan de \$919/caja a \$697/caja (esc.\ \'acido, tarifa negociada).
+\textbf{Ahorro Centro: \$222/caja.}\strut}}
 \end{frame}
 
 % ============================================================
-% 7. COSTO DEL HUB (ESCENARIO ÁCIDO $150)
+% 7. TARIFA HUB→PA: BASE PARA NEGOCIAR
+% ============================================================
+\begin{frame}
+\frametitle{\textquestiondown Cu\'anto deber\'ia costar Hub$\rightarrow$PA?}
+\tagline{azul}{Base Para Negociar con Transportadores}
+
+\vspace{1pt}
+{\scriptsize El hub hace \textbf{20 viajes/d\'ia} en la misma ruta (Chinita$\rightarrow$PA, 17.5 km).
+Eso es volumen predecible. \textquestiondown Justifica un descuento?}
+
+\vspace{3pt}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+{\scriptsize\color{gris}\textbf{TARIFA vs DISTANCIA (datos reales)}}
+\vspace{1pt}
+
+\scriptsize
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{l r r}
+    \toprule
+    \textbf{Ruta} & \textbf{km} & \textbf{\$/viaje} \\
+    \midrule
+    Oasis$\rightarrow$PA     & 9   & \$300K \\
+    Chinita$\rightarrow$PA   & 17  & \$360K \\
+    Sierra$\rightarrow$PA    & 25  & \$444K \\
+    Tagual$\rightarrow$PA    & 25  & \$480K \\
+    M.Bonita$\rightarrow$PA  & 36  & \$540K \\
+    Pto.Fijo$\rightarrow$PA  & 52  & \$600K \\
+    \midrule
+    \multicolumn{2}{l}{\textbf{Prom.\ \$/km}} & \textbf{\$13,140} \\
+    \bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\tiny Chinita 17.5km $\times$ \$13,140 $=$ \$230K (10p) $=$ \$276K (12p).
+Tarifa tabla: \$360K. \textbf{Chinita paga por encima del \$/km prom.}}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+{\scriptsize\color{gris}\textbf{VENTAJAS DEL HUB PARA NEGOCIAR}}
+\vspace{1pt}
+\begin{itemize}\scriptsize
+    \setlength\itemsep{0pt}
+    \item \textbf{20 viajes/d\'ia} garantizados
+    \item Ruta fija, horario programado
+    \item Sin espera en finca (carga lista)
+    \item Posibilidad retorno con insumos
+\end{itemize}
+
+\vspace{2pt}
+{\scriptsize\color{gris}\textbf{SENSIBILIDAD TARIFA HUB$\rightarrow$PA}}
+\vspace{1pt}
+
+\scriptsize
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{r r r}
+    \toprule
+    \textbf{\$/viaje} & \textbf{\$/caja} & \textbf{Neto/a\~no} \\
+    \midrule
+    \$300K & \$473 & \textcolor{verde}{\$475M} \\
+    \rowcolor{verdeclaro}
+    \textbf{\$320K} & \textbf{\$505} & \textcolor{verde}{\textbf{\$370M}} \\
+    \$360K & \$568 & \$162M \\
+    \$400K & \$631 & --\$46M \\
+    \bottomrule
+\end{tabular}
+
+{\tiny Neto incluye f$\rightarrow$h \$150 + consol \$42 + OPEX \$362M.}
+\end{column}
+\end{columns}
+
+\vspace{2pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Recomendaci\'on:}} Negociar \textbf{\$320K/viaje} (--11\% vs tarifa Chinita).
+Justificable por volumen (20/d\'ia). Hub flete $=$ \$505/caja.
+A \$360K (sin descuento): neto cae a \$162M. \textbf{La negociaci\'on es cr\'itica.}\strut}}
+\end{frame}
+
+% ============================================================
+% 8. COSTO TOTAL DEL HUB + SENSIBILIDAD
 % ============================================================
 \begin{frame}
 \frametitle{Costo del hub por caja (escenario \'acido)}
-\tagline{azul}{Finca$\rightarrow$hub a \$150/caja}
+\tagline{azul}{Tres Componentes + Sensibilidad}
 
 \vspace{2pt}
-{\scriptsize Usamos el \textbf{escenario \'acido} para finca$\rightarrow$hub (\$150/caja), no el optimista (\$80).
-Este es el costo que cada caja del Centro paga al pasar por el hub:}
+{\scriptsize Con tarifa hub$\rightarrow$PA negociada a \$320K y finca$\rightarrow$hub a \$150 (\'acido):}
 
-\vspace{4pt}
+\vspace{3pt}
 \begin{columns}[T]
 \begin{column}{0.48\textwidth}
 \scriptsize
-\renewcommand{\arraystretch}{1.15}
+\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r l r}
     \toprule
     & \textbf{Componente} & \textbf{\$/caja} \\
     \midrule
-    1. & Hub $\rightarrow$ PA (20 senc.) & \$568 \\
+    1. & Hub$\rightarrow$PA (\$320K$\times$20) & \$505 \\
     2. & Consolidaci\'on & \$42 \\
-    3. & Finca $\rightarrow$ hub (\'acido) & \$150 \\
+    3. & Finca$\rightarrow$hub (\'acido) & \$150 \\
     \midrule
-    & \textcolor{verde}{\textbf{Hub total}} & \textcolor{verde}{\textbf{\$760}} \\
+    & \textcolor{verde}{\textbf{Hub total}} & \textcolor{verde}{\textbf{\$697}} \\
     \bottomrule
 \end{tabular}
 
 \vspace{4pt}
-{\tiny Hub$\rightarrow$PA: 20 viajes $\times$ \$360K $\div$ 12,674 cajas/d\'ia.}
+\colorbox{rojoclaro}{\scriptsize\strut\hspace{2pt}\textcolor{rojo}{\textbf{Sin hub:}} \$919/caja\hspace{2pt}}
+\hfill
+\colorbox{verdeclaro}{\scriptsize\strut\hspace{2pt}\textcolor{verde}{\textbf{Con hub:}} \$697/caja\hspace{2pt}}
+\hfill
+{\scriptsize\textbf{Ahorro: \$222/caja}}
 \end{column}
 
 \begin{column}{0.48\textwidth}
 {\scriptsize\color{gris}\textbf{SENSIBILIDAD FINCA$\rightarrow$HUB}}
-\vspace{2pt}
+\vspace{1pt}
 
 \scriptsize
-\renewcommand{\arraystretch}{1.05}
-\begin{tabular}{r r r}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{r r r r}
     \toprule
-    \textbf{F$\rightarrow$H} & \textbf{Hub tot.} & \textbf{Neto/a\~no} \\
+    \textbf{F$\rightarrow$H} & \textbf{Hub} & \textbf{Ahorro} & \textbf{Neto/a} \\
     \midrule
-    \$80  & \$690 & \$393M \\
-    \$100 & \$710 & \$327M \\
+    \$80  & \$627 & \$292 & \$600M \\
+    \$100 & \$647 & \$272 & \$534M \\
     \rowcolor{amarilloclaro}
-    \textbf{\$150} & \textbf{\$760} & \textbf{\$162M} \\
-    \$200 & \$810 & --\$3M \\
+    \textbf{\$150} & \textbf{\$697} & \textbf{\$222} & \textbf{\$370M} \\
+    \$200 & \$747 & \$172 & \$205M \\
+    \$250 & \$797 & \$122 & \$40M \\
     \bottomrule
 \end{tabular}
 
 \vspace{2pt}
-{\tiny SC2 Centro: \$919/caja (26 viajes individuales).
-Techo: $\sim$\$200/caja (por encima no se paga).}
+{\tiny Hub$\rightarrow$PA a \$320K. SC2 Centro: \$919/caja.
+Techo f$\rightarrow$h: $\sim$\$260/caja (neto $=$ \$0).}
 \end{column}
 \end{columns}
 
-\vspace{3pt}
-\colorbox{rojoclaro}{\scriptsize\strut\hspace{4pt}\textcolor{rojo}{\textbf{Sin hub:}} 12 Centro pagan \$919/caja (26 viajes $\times$ \$360--480K)\hspace{4pt}}
-\hfill
-\colorbox{verdeclaro}{\scriptsize\strut\hspace{4pt}\textcolor{verde}{\textbf{Con hub:}} \$760/caja (esc.\ \'acido). Ahorro \$159/caja\hspace{4pt}}
+\vspace{2pt}
+{\tiny\color{gris} Sensibilidad combinada: si hub$\rightarrow$PA sube a \$360K Y f$\rightarrow$h sube a \$150: neto \$162M. Ambos en peor caso: proyecto marginal.}
 \end{frame}
 
 % ============================================================
-% 8. LA CUENTA (ESCENARIO ÁCIDO)
+% 9. LA CUENTA
 % ============================================================
 \begin{frame}
-\frametitle{La cuenta con escenario \'acido}
-\tagline{verde}{Cada l\'inea tiene su origen}
+\frametitle{La cuenta, paso a paso}
+\tagline{verde}{Escenario \'acido: f$\rightarrow$h \$150, hub$\rightarrow$PA \$320K}
 
 \vspace{2pt}
-{\small Supuesto conservador: finca$\rightarrow$hub a \textbf{\$150/caja} (no \$80).}
-
-\vspace{4pt}
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{l r l}
     \toprule
     \textcolor{rojo}{SC2: 12 Centro sin hub} & \textcolor{rojo}{\textbf{\$919/caja}} & {\scriptsize 26 viajes $\times$ \$360--480K (diap.\ 3)} \\
-    \textcolor{verde}{SC3: con hub (\'acido)} & \textcolor{verde}{\textbf{\$760/caja}} & {\scriptsize \$568 + \$42 + \$150 (diap.\ 7)} \\
+    \textcolor{verde}{SC3: con hub (\'acido)} & \textcolor{verde}{\textbf{\$697/caja}} & {\scriptsize \$505 + \$42 + \$150 (diap.\ 8)} \\
     \midrule
-    \textbf{Ahorro/caja} & \textbf{\$159} & {\scriptsize solo 12 fincas Centro} \\
-    $\times$ 3.30M cajas/a\~no & \textbf{\$524M bruto} & \\
+    \textbf{Ahorro/caja} & \textbf{\$222} & {\scriptsize solo 12 fincas Centro} \\
+    $\times$ 3.30M cajas/a\~no & \textbf{\$732M bruto} & \\
     $-$ OPEX hub & $-$\$362M & {\scriptsize 6 pers. + servicios + mant.} \\
     \midrule
-    \textcolor{verde}{\textbf{= Ahorro neto}} & \textcolor{verde}{\textbf{\$162M/a\~no}} & \\
+    \textcolor{verde}{\textbf{= Ahorro neto}} & \textcolor{verde}{\textbf{\$370M/a\~no}} & \\
     \addlinespace
-    CAPEX \$1,000M $\div$ \$162M & \textcolor{azul}{\textbf{6.2 a\~nos}} & {\scriptsize payback \'acido} \\
+    CAPEX \$1,000M $\div$ \$370M & \textcolor{verde}{\textbf{2.7 a\~nos}} & {\scriptsize payback} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
-\vspace{1pt}
+\vspace{2pt}
 \colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{amarillo}{\textbf{Esc.\ \'acido:}} \$162M neto, payback 6.2a (solo transporte).
-Con terceros + operaci\'on, justificaci\'on m\'as fuerte.
-{\tiny Con f$\rightarrow$h a \$80: neto \$393M, payback 2.5a. Realidad entre ambos.}\strut}}
+\textcolor{amarillo}{\textbf{Sensibilidad:}} Si hub$\rightarrow$PA no se negocia (\$360K): neto baja a \$162M, payback 6.2a.
+Si f$\rightarrow$h es \$80 (optimista): neto sube a \$600M, payback 1.7a.
+\textbf{La negociaci\'on de la tarifa hub$\rightarrow$PA es la variable m\'as cr\'itica del proyecto.}\strut}}
+
+\vspace{1pt}
+{\tiny\color{gris} Fuente: tarifas Anderson Mestra, Mar 2026. Producci\'on real por finca. Sencillo 12 pallets.}
 \end{frame}
 
 % ============================================================
@@ -437,18 +518,18 @@ Con terceros + operaci\'on, justificaci\'on m\'as fuerte.
     \begin{tikzpicture}
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=0.9cm] (b0) {};
-        \node[font=\small\bfseries, text=verde] at ([yshift=1pt]b0.center) {\$159/caja ahorro};
-        \node[font=\tiny, text=gris, below=0pt of b0.center] {\$919 sin hub $\rightarrow$ \$760 con hub};
+        \node[font=\small\bfseries, text=verde] at ([yshift=1pt]b0.center) {\$222/caja ahorro};
+        \node[font=\tiny, text=gris, below=0pt of b0.center] {\$919 $\rightarrow$ \$697 (tarifa negociada)};
 
         \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
               minimum width=5cm, minimum height=0.9cm, below=4pt of b0] (b1) {};
-        \node[font=\small\bfseries, text=verde] at ([yshift=1pt]b1.center) {\$162M neto/a\~no};
-        \node[font=\tiny, text=gris, below=0pt of b1.center] {\$524M bruto $-$ \$362M OPEX};
+        \node[font=\small\bfseries, text=verde] at ([yshift=1pt]b1.center) {\$370M neto/a\~no};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {\$732M bruto $-$ \$362M OPEX};
 
         \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
               minimum width=5cm, minimum height=0.9cm, below=4pt of b1] (b3) {};
-        \node[font=\small\bfseries, text=azul] at ([yshift=1pt]b3.center) {6.2 a\~nos payback};
-        \node[font=\tiny, text=gris, below=0pt of b3.center] {\$1,000M CAPEX $\div$ \$162M/a\~no};
+        \node[font=\small\bfseries, text=azul] at ([yshift=1pt]b3.center) {2.7 a\~nos payback};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {\$1,000M CAPEX $\div$ \$370M/a\~no};
     \end{tikzpicture}
 
     \vspace{4pt}
@@ -595,8 +676,9 @@ Click en cada finca para ver indicadores espec\'ificos por escenario.}
 \scriptsize
 \textbf{SC1 Hoy:} \$406/caja (\$200K/viaje), 41 viajes, Zungo.\\
 \textbf{SC2 Todos PA:} \$963/caja (\$474K/viaje), 41 viajes, +137\%.\\
-\textbf{SC3 Con Hub:} 12 Centro de \$919 a \$760/caja. \textbf{Ahorro \$159/caja} (esc.\ \'acido \$150 f$\rightarrow$h).\\
-Neto: \$162M/a\~no. CAPEX: \$1,000M. \textbf{Payback: 6.2 a\~nos} (solo transporte).\\
+\textbf{SC3 Con Hub:} 12 Centro de \$919 a \$697/caja. \textbf{Ahorro \$222/caja} (f$\rightarrow$h \$150, hub$\rightarrow$PA \$320K).\\
+Neto: \$370M/a\~no. CAPEX: \$1,000M. \textbf{Payback: 2.7 a\~nos.}
+Sin negociar hub$\rightarrow$PA: neto \$162M, payback 6.2a.\\
 Con servicio a terceros (10\% regi\'on, \$60/caja): \textbf{+\$652M/a\~no adicional}.
 \end{block}
 
