@@ -147,34 +147,62 @@ Hoy pagamos por caja, pero el equivalente por viaje ya es \$263--526K. Las tarif
 \tagline{rojo}{El Cambio: Todos a Puerto Antioquia}
 
 \vspace{1pt}
-{\scriptsize Con Puerto Antioquia, la fruta va por carretera al puerto. Los transportadores cobrar\'an \textbf{por viaje}.
-Cada mula a medio llenar cuesta lo mismo que una llena. El llenado promedio es \textbf{76\%}. \textquestiondown Por qu\'e?}
+{\scriptsize Con Puerto Antioquia, la fruta va por carretera. Los transportadores cobrar\'an \textbf{por viaje}.
+Hoy los camiones van llenos porque el transportador consolida entre fincas. \textquestiondown Ma\~nana qui\'en coordina?}
 
 \vspace{3pt}
-\begin{center}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+{\scriptsize\color{gris}\textbf{\textquestiondown POR QU\'E 76\%?}}
+\vspace{1pt}
+
 \scriptsize
-\renewcommand{\arraystretch}{0.95}
-\begin{tabular}{l r r r r l}
+\renewcommand{\arraystretch}{0.9}
+\begin{tabular}{l r r}
     \toprule
-    \textbf{Finca} & \textbf{Pall/d} & \textbf{Veh\'iculo} & \textbf{Cap.} & \textbf{Fill} & \\
+    \textbf{Finca} & \textbf{Pall/d} & \textbf{Fill} \\
     \midrule
-    Santa Helena  & 12.4 & 1 mula   & 24 & \textcolor{rojo}{\textbf{52\%}} & {\tiny Necesita mula pero solo llena la mitad} \\
-    Oasis         & 12.7 & 1 mula   & 24 & \textcolor{rojo}{\textbf{53\%}} & {\tiny 0.7 pallets sobre 1 sencillo} \\
-    San Juan      & 15.7 & 1 mula   & 24 & \textcolor{rojo}{\textbf{65\%}} & {\tiny No alcanza para 2 sencillos} \\
-    Villa Fresia  & 11.4 & 1 senc.  & 12 & \textcolor{verde}{\textbf{95\%}} & {\tiny Llena bien el sencillo} \\
-    Almendros     & 22.0 & 1 mula   & 24 & \textcolor{verde}{\textbf{92\%}} & {\tiny Llena bien la mula} \\
-    \midrule
-    \multicolumn{4}{l}{\textbf{Promedio 19 fincas}} & \textbf{76\%} & {\tiny 6 fincas bajo 70\%, bajan el promedio} \\
+    Sta.\ Helena & 12.4 & \textcolor{rojo}{52\%} \\
+    Oasis        & 12.7 & \textcolor{rojo}{53\%} \\
+    San Juan     & 15.7 & \textcolor{rojo}{65\%} \\
+    V.\ Fresia   & 11.4 & \textcolor{verde}{95\%} \\
+    Almendros    & 22.0 & \textcolor{verde}{92\%} \\
     \bottomrule
 \end{tabular}
-\end{center}
 
 \vspace{2pt}
+{\tiny 76\% $=$ si cada finca despacha \textbf{sola}.
+Hoy es m\'as alto porque el transportador consolida entre fincas vecinas (le conviene bajo \$/caja).}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+{\scriptsize\color{gris}\textbf{SENSIBILIDAD: \$/CAJA SEG\'UN LLENADO}}
+\vspace{1pt}
+
+\scriptsize
+\renewcommand{\arraystretch}{0.9}
+\begin{tabular}{r r l}
+    \toprule
+    \textbf{Fill} & \textbf{\$/caja SC2} & \\
+    \midrule
+    76\% & \$963 & {\tiny despacho individual} \\
+    85\% & \$870 & {\tiny consolidaci\'on parcial} \\
+    90\% & \$830 & {\tiny buena coordinaci\'on} \\
+    95\% & \$790 & {\tiny coordinaci\'on perfecta} \\
+    \bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\tiny A cualquier llenado $<$95\%, el hub (\$690/caja) sigue ahorrando. La pregunta es: \textbf{\textquestiondown qui\'en coordina?}}
+\end{column}
+\end{columns}
+
+\vspace{3pt}
 \begin{alertblock}{}
 \scriptsize
-\textbf{El problema son las fincas ``intermedias'':} producen m\'as que un sencillo (12) pero menos que una mula (24).
-Necesitan mula pero la llenan al 52--69\%. \textbf{Cada viaje parcial es dinero perdido bajo \$/viaje.}
-Promedio ponderado SC2: \textcolor{rojo}{\textbf{\$963/caja}} (vs \$406 hoy). Costo anual: \textcolor{rojo}{\textbf{\$5,058M}} (+137\%).
+\textbf{Supuesto conservador:} usamos \textbf{85\% de llenado} ($\sim$\$870/caja) como caso base.
+Hoy el transportador coordina. Ma\~nana, bajo \$/viaje, esa coordinaci\'on \textbf{es responsabilidad nuestra}.
+El hub la garantiza. Sin hub, depende de coordinaci\'on manual. Costo anual SC2 (85\%): $\sim$\textcolor{rojo}{\textbf{\$4,569M}}.
 \end{alertblock}
 \end{frame}
 
@@ -292,8 +320,8 @@ El hub los consolida en \textbf{10 mulas llenas} (98\% llenado).
     Modelo tarifa    & \$/caja (plana) & \$/viaje         & \$/viaje \\
     Viajes/d\'ia     & 26              & 26               & \textcolor{verde}{\textbf{20}} \\
     Llenado          & N/A             & 76\%             & \textcolor{verde}{\textbf{98\% (hub)}} \\
-    \textbf{COP/caja} & \textcolor{amarillo}{\textbf{\$406}} & \textcolor{rojo}{\textbf{\$963}} & \textcolor{verde}{\textbf{\$585}} \\
-    \textbf{Costo anual} & \$2,133M    & \textcolor{rojo}{\$5,058M} & \textcolor{verde}{\$3,071M} \\
+    \textbf{COP/caja} & \textcolor{amarillo}{\textbf{\$406}} & \textcolor{rojo}{\textbf{\$870{\tiny *}}} & \textcolor{verde}{\textbf{\$585}} \\
+    \textbf{Costo anual} & \$2,133M    & \textcolor{rojo}{\$4,569M} & \textcolor{verde}{\$3,071M} \\
     \bottomrule
 \end{tabular}
 \end{center}
@@ -305,9 +333,9 @@ Distancias m\'as largas + \$/viaje con llenado 76\%.\strut}}
 
 \vspace{2pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{SC2$\rightarrow$SC3:}} El hub baja \textbf{--39\%} (\$5,058M $\rightarrow$ \$3,071M).
+\textcolor{verde}{\textbf{SC2$\rightarrow$SC3:}} El hub baja \textbf{--33\%} (\$4,569M $\rightarrow$ \$3,071M).
 12 fincas consolidadas en mulas llenas + 4 siguen en Zungo.
-\textbf{Ahorro: \$378/caja $=$ \$1,985M/a\~no bruto.}\strut}}
+\textbf{Ahorro: \$285/caja $=$ \$1,498M/a\~no bruto.} {\tiny *SC2 a 85\% fill (conservador).}\strut}}
 \end{frame}
 
 % ============================================================
@@ -360,7 +388,7 @@ A \$200/caja el proyecto ya no se paga solo con transporte.
 
 \vspace{2pt}
 {\tiny\color{gris} Hub flete: 10 mulas $\times$ \$720K $\div$ 12,674 cajas Centro/d\'ia $=$ \$568/caja.
-Sin hub (12 Centro): \$919/caja. OPEX \$362M/a\~no. CAPEX \$1,000M para payback.}
+Sin hub (12 Centro, 85\% fill): $\sim$\$830/caja. OPEX \$362M/a\~no. CAPEX \$1,000M para payback.}
 \end{frame}
 
 % ============================================================
@@ -368,38 +396,37 @@ Sin hub (12 Centro): \$919/caja. OPEX \$362M/a\~no. CAPEX \$1,000M para payback.
 % ============================================================
 \begin{frame}
 \frametitle{La cuenta, paso a paso}
-\tagline{verde}{De \$919 a \$690 = \$229 de ahorro por caja}
+\tagline{verde}{Cada l\'inea tiene su origen}
 
 \vspace{2pt}
-{\small Cada l\'inea tiene su origen en una diapositiva anterior:}
+{\small Se usan los supuestos \textbf{conservadores}: 85\% llenado + finca$\rightarrow$hub a \$80/caja.}
 
-\vspace{4pt}
+\vspace{3pt}
 \begin{center}
-\renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.15}
 \begin{tabular}{l r l}
     \toprule
-    \textcolor{rojo}{Sin hub: 12 fincas Centro a PA} & \textcolor{rojo}{\textbf{\$919/caja}} & {\scriptsize diap.\ 3: prom.\ ponderado} \\
-    \textcolor{verde}{Con hub: consolidado}           & \textcolor{verde}{\textbf{\$690/caja}} & {\scriptsize diap.\ 7: \$568+\$42+\$80} \\
+    \textcolor{rojo}{Sin hub: 12 fincas Centro a PA (85\%)} & \textcolor{rojo}{\textbf{$\sim$\$830/caja}} & {\scriptsize diap.\ 3} \\
+    \textcolor{verde}{Con hub: consolidado (98\%)}           & \textcolor{verde}{\textbf{\$690/caja}} & {\scriptsize diap.\ 7: \$568+\$42+\$80} \\
     \midrule
-    \textbf{Ahorro por caja} & \textbf{\$229} & {\scriptsize solo 12 fincas Centro} \\
+    \textbf{Ahorro por caja} & \textbf{$\sim$\$140} & {\scriptsize solo 12 fincas Centro} \\
+    $\times$ 3.30M cajas/a\~no & \textbf{$\sim$\$462M bruto} & \\
+    $-$ OPEX hub & $-$\$362M & {\scriptsize 6 pers.\ + servicios} \\
     \midrule
-    \textbf{$\times$ 3.30 millones cajas/a\~no} & \textbf{\$755M bruto} & {\scriptsize 63,371 cajas/sem $\times$ 52} \\
-    \textbf{$-$ OPEX hub} & \textbf{$-$\$362M} & {\scriptsize 6 personas + servicios} \\
-    \midrule
-    \textcolor{verde}{\textbf{= Ahorro neto/a\~no}} & \textcolor{verde}{\textbf{\$393M}} & \\
+    \textcolor{verde}{\textbf{= Ahorro neto}} & \textcolor{verde}{\textbf{$\sim$\$100M/a\~no}} & \\
+    \addlinespace
+    CAPEX \$1,000M $\div$ \$100M & \textcolor{azul}{\textbf{$\sim$10 a\~nos}} & {\scriptsize payback conservador} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
-\vspace{4pt}
-\colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{amarillo}{\textbf{Nota:}} Estos n\'umeros son el \textbf{mejor escenario} (finca$\rightarrow$hub a \$80/caja).
-Con \$150/caja (\'acido), el ahorro neto baja a \$162M/a\~no.
-\textbf{Aun as\'i, los beneficios operativos y la preparaci\'on para PA justifican la inversi\'on.}\strut}}
-
 \vspace{1pt}
-{\tiny\color{gris} CAPEX \$800M $\div$ \$393M $=$ 2.0 a\~nos. CAPEX \$1,200M $\div$ \$393M $=$ 3.1 a\~nos.
-Escenario \'acido: \$1,000M $\div$ \$162M $=$ 6.2 a\~nos. Fuente: Anderson Mestra, Mar 2026.}
+\colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{amarillo}{\textbf{Rango:}} 76\% fill $\rightarrow$ \$229/caja, payback 2--3a.
+85\% fill $\rightarrow$ \$140/caja, payback $\sim$10a.
+\textbf{En ambos casos, beneficios operativos + terceros justifican.}\strut}}
+
+{\tiny\color{gris} Payback depende de fill rate real y tarifa finca$\rightarrow$hub. Fuente: Anderson, Mar 2026.}
 \end{frame}
 
 % ============================================================
@@ -507,9 +534,9 @@ Escenario \'acido: \$1,000M $\div$ \$162M $=$ 6.2 a\~nos. Fuente: Anderson Mestr
 
 \vspace{4pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Estos beneficios aplican aun si la tarifa no cambia.}}
-Contenerizaci\'on para PA, negociar tarifas, reducir ineficiencias diarias.
-\textbf{Incluso si el ahorro financiero es menor al estimado, el hub se justifica operativamente.}\strut}}
+\textcolor{verde}{\textbf{Aplican aun sin cambio tarifario.}}
+Contenerizaci\'on PA, negociar tarifas, reducir ineficiencias.
+\textbf{El hub se justifica operativamente aun si el ahorro financiero es menor.}\strut}}
 \end{frame}
 
 % ============================================================
@@ -605,9 +632,9 @@ sus indicadores espec\'ificos. Ajustar par\'ametros y ver resultados en tiempo r
 \begin{block}{Resumen}
 \scriptsize
 \scuno\ \textbf{Hoy:} \$406/caja, 26 viajes, todo a Zungo.
-\scdos\ \textbf{Todos a PA:} \$963/caja (+137\%), 26 viajes parciales (76\% llenado).
-\sctres\ \textbf{Con hub:} \$585/caja, 20 viajes. \textbf{Ahorro: \$229/caja (12 Centro), \$393M neto/a\~no.}
-Payback: 2--3 a\~nos (base) a 4--7 a\~nos (escenario \'acido). Beneficios operativos aun sin cambio tarifario.
+\scdos\ \textbf{Todos a PA:} \$870/caja (85\% fill conservador), 26 viajes.
+\sctres\ \textbf{Con hub:} \$585/caja, 20 viajes. \textbf{Ahorro $\sim$\$100M neto/a\~no} (conservador).
+Payback largo ($\sim$10 a\~nos) si solo transporte. \textbf{Se justifica por beneficios operativos + servicio a terceros.}
 \end{block}
 
 \vspace{6pt}
