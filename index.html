@@ -676,7 +676,7 @@
                     Sin hub: <span style="color:var(--text);" id="pi-flete">$919</span>/caja (26 viajes, 76% fill)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
                     Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$750</span>/caja<br>
-                    Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$668</span>/caja<br>
+                    Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$810</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
                         Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">~$0 (acido)</span>
                     </div>
@@ -692,7 +692,7 @@
             <div class="kpi tip" data-tip="SC1: ceil(pallets/12) por finca = 41 viajes sencillo. SC3: 10 mulas Centro + 4 senc mini-hub + 11 senc zungo = 25 viajes."><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Viajes/dia en via</div></div>
             <div class="kpi tip" data-tip="Tiempo promedio ponderado por produccion. BPR: t_congestion = t_base × (1 + (volumen/capacidad)^3). Base OSRM + factor congestion."><div class="kpi-v y" id="kpi-time">47</div><div class="kpi-l">Min promedio</div></div>
             <div class="kpi tip" data-tip="Distancia promedio ponderada por produccion. SC1: distancia a Zungo (8-28 km). SC2: distancia a PA (9-52 km). SC3: distancia al hub asignado."><div class="kpi-v b" id="kpi-dist">38.2</div><div class="kpi-l">Km promedio</div></div>
-            <div class="kpi tip" data-tip="SC3 vs SC2: ahorro por caja = $919 (SC2 Centro) - $668 (hub mula) = $251/caja. Hub→PA usa mulas (10/dia). Ver AUDITAR para detalle."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
+            <div class="kpi tip" data-tip="SC3 vs SC2: ahorro acido = $919 - $810 = $109/caja ($0 desc. mula). Con desc. G20 $150K: hasta $251/caja. Ver AUDITAR y Sensibilidad."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
         </div>
     </div>
 
@@ -872,9 +872,9 @@
             </div>
             <div id="sc-comp-3" style="text-align:center;padding:6px 4px;border-radius:4px;border:1px solid var(--border);">
                 <div style="font-size:7px;color:var(--green);text-transform:uppercase;letter-spacing:0.5px;">SC3 Hub</div>
-                <div style="font-size:16px;font-weight:800;color:var(--green);" id="sc-comp-caja3">$668</div>
-                <div style="font-size:7px;color:var(--text3);">/caja (mula)</div>
-                <div style="font-size:8px;color:var(--text2);margin-top:2px;" id="sc-comp-viaje3">$540K/mula</div>
+                <div style="font-size:16px;font-weight:800;color:var(--green);" id="sc-comp-caja3">$810</div>
+                <div style="font-size:7px;color:var(--text3);">/caja (acido)</div>
+                <div style="font-size:8px;color:var(--text2);margin-top:2px;" id="sc-comp-viaje3">$720K/mula</div>
                 <div style="font-size:8px;color:var(--text3);" id="sc-comp-trips3">25 viajes</div>
             </div>
         </div>
@@ -888,7 +888,7 @@
         <div class="c-h"><span class="c-t">Modelo Costo Hub (Acido)</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.3);background:var(--yellow-bg);">ESC. ACIDO</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;">
             <div style="display:grid;grid-template-columns:auto 1fr auto;gap:2px 8px;align-items:center;">
-                <span style="color:var(--text3);">1.</span><span style="color:var(--text2);">Hub→PA ($540K×10 mulas)</span><span style="color:var(--text);font-weight:600;">$426/caja</span>
+                <span style="color:var(--text3);">1.</span><span style="color:var(--text2);">Hub→PA ($720K×10 mulas)</span><span style="color:var(--text);font-weight:600;">$568/caja</span>
                 <span style="color:var(--text3);">2.</span><span style="color:var(--text2);">Consolidacion</span><span style="color:var(--text);font-weight:600;">$42/caja</span>
                 <span style="color:var(--text3);">3.</span><span style="color:var(--text2);">Finca→Hub (acido)</span><span style="color:var(--yellow);font-weight:600;" id="hub-fh-val">$200/caja</span>
             </div>
@@ -900,11 +900,11 @@
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:2px;">
                 <div style="display:flex;justify-content:space-between;">
                     <span style="color:var(--text2);">Hub TOTAL</span>
-                    <span style="font-weight:800;font-size:13px;" id="hub-total-val" style="color:var(--yellow);">$668/caja</span>
+                    <span style="font-weight:800;font-size:13px;" id="hub-total-val" style="color:var(--yellow);">$810/caja</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;margin-top:2px;">
                     <span style="color:var(--text3);font-size:8px;">SC2 Centro: $919</span>
-                    <span style="font-weight:700;font-size:10px;" id="hub-ahorro-val">Ahorro: $251/caja</span>
+                    <span style="font-weight:700;font-size:10px;" id="hub-ahorro-val">Ahorro: $109/caja</span>
                 </div>
             </div>
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:4px;font-size:8px;color:var(--text3);line-height:1.5;">
@@ -915,8 +915,21 @@
                 <div style="display:flex;justify-content:space-between;font-weight:600;"><span>Payback:</span><span id="hub-payback">N/A</span></div>
             </div>
             <div style="margin-top:4px;font-size:7px;color:var(--text3);line-height:1.4;padding:3px 6px;background:var(--bg);border-radius:3px;border:1px solid var(--border);">
-                Hub flete: 10 mulas × $540K ÷ 12,674 cajas Centro/dia. Mula: sencillo×2 - $150K G20. F→H: slider (equiv. $130K/viaje a $200). CAPEX: terreno $100M + pergola $600M + equipos $200M + WK $100M + contingencia $200M.
+                Hub flete: 10 mulas × $720K ÷ 12,674 cajas Centro/dia. Mula: sencillo×2 (sin descuento). F→H: slider (equiv. $130K/viaje a $200). CAPEX: terreno $100M + pergola $600M + equipos $200M + WK $100M + contingencia $200M.
             </div>
+        </div>
+    </div>
+
+    <!-- SENSITIVITY ANALYSIS -->
+    <div class="c" style="border-color:rgba(56,152,255,0.2);">
+        <div class="c-h"><span class="c-t">Sensibilidad: Descuento Mula G20</span><span class="badge badge-b">RANGO</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text2);margin-bottom:6px;">
+            Mula = sencillo × 2 - descuento. G20 puede negociar hasta $150K/viaje.
+        </div>
+        <div id="sens-table"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--text3);margin-top:4px;line-height:1.4;">
+            Base acida: $0 descuento (peor caso). Toda mejora es upside real.<br>
+            Chinita sencillo $300K × 2 = $600K (20p) × 1.2 = $720K (24p). 10 mulas/dia.
         </div>
     </div>
 
@@ -996,7 +1009,7 @@
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;" id="cost-model-desc">Modelo parametrico basado en distancia, tiempo y flota</div>
         <div class="kpi-g">
             <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$919</div><div class="kpi-l">$/caja Directo</div></div>
-            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$668</div><div class="kpi-l">$/caja Hub</div></div>
+            <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$810</div><div class="kpi-l">$/caja Hub</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-save">-12%</div><div class="kpi-l">Ahorro $/caja</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">~$0</div><div class="kpi-l">Ahorro anual</div></div>
         </div>
@@ -1010,7 +1023,7 @@
                     <tr><td id="cd-toll-label">Peajes</td><td id="cd-toll-d">$35</td><td id="cd-toll-h">$18</td><td class="sav" id="cd-toll-s">-49%</td></tr>
                     <tr><td id="cd-wear-label">Desgaste vehic.</td><td id="cd-wear-d">$68</td><td id="cd-wear-h">$52</td><td class="sav" id="cd-wear-s">-24%</td></tr>
                     <tr><td>Consolidacion Hub</td><td id="cd-cons-d">--</td><td id="cd-cons-h">$42</td><td style="color:var(--yellow);" id="cd-cons-s">+$42</td></tr>
-                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$919</td><td style="color:var(--green);" id="cd-tot-h">$668</td><td class="sav" id="cd-tot-s">-12%</td></tr>
+                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$919</td><td style="color:var(--green);" id="cd-tot-h">$810</td><td class="sav" id="cd-tot-s">-12%</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1063,13 +1076,13 @@
             <div style="background:var(--bg);padding:8px;border-radius:4px;border:1px solid var(--border);line-height:1.7;color:var(--text2);">
                 <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Transportadores exigen cambio de modelo:</div>
                 Flete sencillo (10p): <span style="color:var(--text);">$250K-500K COP/viaje</span><br>
-                Flete mula (20p): <span style="color:var(--text);">sencillo &times;2 - $150K (G20)</span><br>
+                Flete mula (20p): <span style="color:var(--text);">sencillo &times;2 (hasta -$150K G20)</span><br>
                 Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$750 COP (+109% vs hoy)</span><br>
                 <span style="color:var(--text3);font-size:8px;">Sencillo 10p tarifa base, 12p max. Mula 20p tarifa, 24p max. Descuento G20 hasta $150K/viaje mula.</span>
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
-                <span style="color:var(--green);font-weight:700;">Con Centro + mulas consolidadas:</span><br>
-                <span style="color:var(--text2);">Hub (10 mulas/dia): <span style="color:var(--green);" id="tm-hub-precio">$668</span>/caja. Ahorro $251/caja. Payback ~2.6 anos</span>
+                <span style="color:var(--green);font-weight:700;">Con Centro + mulas consolidadas (acido):</span><br>
+                <span style="color:var(--text2);">Hub (10 mulas/dia): <span style="color:var(--green);" id="tm-hub-precio">$810</span>/caja. Ahorro $109/caja. Con desc. G20: hasta $251/caja</span>
             </div>
             <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
                 <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
@@ -1189,7 +1202,7 @@
     <!-- ACID SCENARIO BOX -->
     <div class="fin-full">
         <div style="padding:10px 16px;background:var(--yellow-bg);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte</span><br>SC2 Centro: <b style="color:var(--red);">$919</b>/caja<br>Hub total (mula): <b style="color:var(--yellow);">$668</b>/caja<br>Ahorro: <b style="color:var(--green);">$251</b>/caja</div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte (acido)</span><br>SC2 Centro: <b style="color:var(--red);">$919</b>/caja<br>Hub total (mula $0 desc): <b style="color:var(--yellow);">$810</b>/caja<br>Ahorro: <b style="color:var(--green);">$109</b>/caja</div>
             <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Acido</span><br>Terreno $100M + Pergola $600M<br>Equipos $200M + WK $100M<br>Contingencia $200M = <b>$1,200M</b></div>
             <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado Acido</span><br>Bruto $360M - OPEX $362M<br><b style="color:var(--yellow);">Neto ~$0</b> (equilibrio)<br>Con terceros: <b style="color:var(--green);">+$652M</b></div>
         </div>
@@ -1393,7 +1406,7 @@
 <div class="resumen-inner">
 
     <div class="hero-save" id="res-hero-save" style="color:var(--yellow);">$109/caja</div>
-    <div class="hero-sub">AHORRO POR CAJA (HUB→PA MULA $540K + F→H $200)</div>
+    <div class="hero-sub">AHORRO POR CAJA (ACIDO: HUB→PA MULA $720K, $0 DESCUENTO + F→H $200)</div>
 
     <!-- BEFORE / AFTER -->
     <div class="res-section-t">ANTES vs DESPUES</div>
@@ -1462,9 +1475,9 @@
         </div>
         <div class="res-metric" style="border-color:rgba(0,232,120,0.3);">
             <div style="font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">SC3: Con Hub (acido)</div>
-            <div class="res-metric-v" style="color:var(--yellow);">$668</div>
-            <div class="res-metric-l">$/caja hub · 25 viajes · $251 ahorro</div>
-            <div style="font-size:8px;color:var(--text3);margin-top:2px;">Hub: $426 flete (mula) + $42 consol + $200 f→h</div>
+            <div class="res-metric-v" style="color:var(--yellow);">$810</div>
+            <div class="res-metric-l">$/caja hub (acido) · 25 viajes · $109 ahorro</div>
+            <div style="font-size:8px;color:var(--text3);margin-top:2px;">Hub: $568 flete (mula $0 desc) + $42 consol + $200 f→h</div>
         </div>
     </div>
 
@@ -1472,17 +1485,29 @@
     <div class="res-section-t">ESCENARIO ACIDO: SUPUESTOS Y CALCULOS</div>
     <div class="narrative" style="font-size:11px;">
         <p><strong>Supuestos del escenario acido (el mas conservador):</strong></p>
-        <p>Hub→PA: <strong>mulas 24p, $540K/viaje</strong> (Chinita sencillo $300K × 2 - $150K G20 = $450K × 1.2 fill). 10 mulas/dia × $540K ÷ 12,674 cajas Centro/dia = <strong>$426/caja</strong>.<br>
+        <p>Hub→PA: <strong>mulas 24p, $720K/viaje</strong> (Chinita sencillo $300K × 2 = $600K × 1.2 fill = $720K. Sin descuento G20). 10 mulas/dia × $720K ÷ 12,674 cajas Centro/dia = <strong>$568/caja</strong>.<br>
         Finca→Hub: <strong>$200/caja</strong> = $130K/viaje (~8-15 km, estimado por $/km promedio $13,140/km).<br>
         Consolidacion: <strong>$42/caja</strong> (paletizar + inspeccionar + cargar).<br>
-        Hub total: $426 + $42 + $200 = <strong>$668/caja</strong>.<br>
+        Hub total: $568 + $42 + $200 = <strong>$810/caja</strong>.<br>
         SC2 Centro sin hub: <strong>$919/caja</strong> (26 viajes individuales sencillo, promedio ponderado 12 fincas).<br>
-        Ahorro: $919 - $668 = <strong>$251/caja</strong> × 3.30M cajas Centro/ano = <strong>$827M bruto</strong>.<br>
+        Ahorro: $919 - $810 = <strong>$109/caja</strong> × 3.30M cajas Centro/ano = <strong>$360M bruto</strong>.<br>
         OPEX: <strong>$362M/ano</strong> (6 personas $215M + servicios $73M + mant/seg $38M + admin $36M).<br>
-        Neto: $827M - $362M = <strong>$465M/ano</strong>.<br>
-        CAPEX: <strong>$1,200M</strong> (terreno $100M + pergola $600M + equipos $200M + WK $100M + contingencia $200M).<br>
-        Payback: $1,200M ÷ $465M = <strong>~2.6 anos</strong>.</p>
-        <p><strong>Fuentes:</strong> Tarifas Anderson Mestra Mar 2026. Produccion real por finca. Sencillo: 12p × 54 cajas = 648/viaje (tarifa 10p × 1.2). Mula: 24p × 54 = 1,296/viaje (tarifa 20p × 1.2). Descuento mula G20: hasta $150K/viaje.</p>
+        Neto: $360M - $362M = <strong>~$0/ano</strong> (equilibrio en transporte).<br>
+        CAPEX: <strong>$1,200M</strong> (terreno $100M + pergola $600M + equipos $200M + WK $100M + contingencia $200M).</p>
+        <p><strong>Sensibilidad descuento mula G20:</strong> G20 puede negociar hasta $150K menos por viaje mula.
+        Con $50K desc: hub $763, ahorro $156, neto $152M, payback 7.9a.
+        Con $75K desc: hub $739, ahorro $180, neto $231M, payback 5.2a.
+        Con $150K desc: hub $668, ahorro $251, neto $465M, payback 2.6a.</p>
+        <p><strong>Fuentes:</strong> Tarifas Anderson Mestra Mar 2026. Produccion real por finca. Sencillo: 12p × 54 cajas = 648/viaje (tarifa 10p × 1.2). Mula: 24p × 54 = 1,296/viaje (tarifa 20p × 1.2). Descuento mula G20: $0 (acido) a $150K (maximo).</p>
+    </div>
+
+    <!-- SENSITIVITY TABLE (resumen) -->
+    <div class="res-section-t">SENSIBILIDAD: DESCUENTO MULA G20</div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:8px;">
+            Base acida: $0 descuento (peor caso). G20 puede negociar hasta $150K/viaje mula.
+        </div>
+        <div id="res-sens-table"></div>
     </div>
 
     <!-- NARRATIVE -->
@@ -1490,7 +1515,7 @@
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
         <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>41 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $406 a $963.</p>
-        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas salen del centro llenas (24 pallets) hacia Puerto Antioquia. Resultado: <strong>16 viajes menos en Centro (26 sencillos→10 mulas), ahorro $251/caja, payback ~2.6 anos</strong>, y eliminacion del riesgo de cobro por viaje.</p>
+        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas salen del centro llenas (24 pallets) hacia Puerto Antioquia. Resultado: <strong>16 viajes menos en Centro (26 sencillos→10 mulas), ahorro $109/caja (acido, $0 descuento)</strong>. Con descuento G20 negociado: hasta $251/caja y payback 2.6 anos.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
     </div>
 
@@ -1547,8 +1572,8 @@ const CONFIG = {
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
           TARIFA_CAJA: 359, FINCA_HUB: 200 },
-  // Escenario acido: SC2 Centro $919/caja, hub→PA mula $540K = $426/caja, f→h $200
-  trip: { TARIFA_VIAJE: 919, HUB_FLETE: 426, HUB_STANDBY: 0 },
+  // Escenario acido: SC2 Centro $919/caja, hub→PA mula $720K = $568/caja, f→h $200
+  trip: { TARIFA_VIAJE: 919, HUB_FLETE: 568, HUB_STANDBY: 0 },
   regional: { ANNUAL_CAJAS: 114e6 }
 };
 
@@ -1738,7 +1763,7 @@ const SENC_PALL = 12, CAJAS_PALL = 54, CAJAS_SENC = SENC_PALL * CAJAS_PALL; // 6
 const MULA_PALL = 24, MULA_TARIFA_PALL = 20, CAJAS_MULA = MULA_PALL * CAJAS_PALL; // 1296
 const FACTOR_12 = 1.2; // tabla da 10 pallets, sencillo lleva 12 → ×1.2
 const FACTOR_24 = MULA_PALL / MULA_TARIFA_PALL; // 1.2 — tabla da 20 pallets, mula lleva 24
-const DESC_MULA_G20 = 150000; // descuento negociacion G20 (hasta $150K/viaje mula)
+const DESC_MULA_G20 = 0; // escenario acido: $0 descuento (rango real: hasta $150K)
 function _trips(pd) { return Math.ceil(pd / SENC_PALL); }
 function _tripsMula(pd) { return Math.ceil(pd / MULA_PALL); }
 
@@ -1766,17 +1791,33 @@ const FARM_DATA = [
 
 // Pre-compute per-farm scenario costs
 // Hub→PA usa mulas (24 pallets). Tarifa mula = sencillo × 2 - descuento G20.
-// Chinita (ubicacion hub) vPA = $300K → mula 20p = $300K×2 - $150K = $450K → mula 24p = $540K
+// Escenario acido ($0 desc): Chinita $300K × 2 = $600K (20p) → $720K (24p)
+// Con descuento G20 ($150K): $300K × 2 - $150K = $450K (20p) → $540K (24p)
 const _chinitaVPA = 300000;
-const _mulaTarifa20 = _chinitaVPA * 2 - DESC_MULA_G20; // $450K base mula (20 pallets)
-const _mulaTarifa24 = Math.round(_mulaTarifa20 * FACTOR_24); // $540K mula llena (24 pallets)
+const _mulaTarifa20 = _chinitaVPA * 2 - DESC_MULA_G20; // $600K base mula (20p) — sin descuento
+const _mulaTarifa24 = Math.round(_mulaTarifa20 * FACTOR_24); // $720K mula llena (24p)
 const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 200, CONSOL: 42, CAPEX: 1200, OPEX: 362 };
 const _centroFD = FARM_DATA.filter(f=>f.g==='centro');
 const _centroPD = _centroFD.reduce((s,f)=>s+f.pd,0);
 const _centroTripsHub = Math.ceil(_centroPD / MULA_PALL); // 10 mulas/dia (antes 20 sencillos)
 const _centroCajasDia = _centroFD.reduce((s,f)=>s+f.cs/5,0);
-const _hubFleteCaja = Math.round(_centroTripsHub * ACID.HUB_PA_VIAJE / _centroCajasDia); // $426
-const _hubTotal = _hubFleteCaja + ACID.CONSOL + ACID.FH_CAJA; // $668
+const _hubFleteCaja = Math.round(_centroTripsHub * ACID.HUB_PA_VIAJE / _centroCajasDia); // $568 (acido)
+const _hubTotal = _hubFleteCaja + ACID.CONSOL + ACID.FH_CAJA; // $810 (acido)
+
+// Sensibilidad: impacto del descuento G20 en el modelo hub
+const SENS_DESCUENTOS = [0, 50000, 75000, 100000, 150000];
+const SENS_DATA = SENS_DESCUENTOS.map(d => {
+    const m20 = _chinitaVPA * 2 - d;
+    const m24 = Math.round(m20 * FACTOR_24);
+    const flete = Math.round(_centroTripsHub * m24 / _centroCajasDia);
+    const total = flete + ACID.CONSOL + ACID.FH_CAJA;
+    const sc2c = Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia);
+    const ahorro = sc2c - total;
+    const bruto = Math.round(ahorro * _centroCajasDia * 5 * 52 / 1e6);
+    const neto = bruto - ACID.OPEX;
+    const pb = neto > 0 ? (ACID.CAPEX / neto).toFixed(1) : 'N/A';
+    return { d, m24, flete, total, ahorro, bruto, neto, pb };
+});
 
 FARM_DATA.forEach(f => {
     const cd = f.cs / 5; // cajas/dia
@@ -1811,7 +1852,7 @@ const SC_TOTALS = {
 SC_TOTALS.sc3.brutoAnual = Math.round(SC_TOTALS.sc3.ahorroCaja * _centroCajasDia * 5 * 52 / 1e6);
 SC_TOTALS.sc3.netoAnual = SC_TOTALS.sc3.brutoAnual - ACID.OPEX;
 SC_TOTALS.sc3.payback = SC_TOTALS.sc3.netoAnual > 0 ? (ACID.CAPEX / SC_TOTALS.sc3.netoAnual).toFixed(1) : 'N/A';
-CONFIG.trip.HUB_FLETE = _hubFleteCaja; // actualizado: mula-based ($426)
+CONFIG.trip.HUB_FLETE = _hubFleteCaja; // mula-based acido ($568)
 
 // Geocerca telemetry data (March 9-12 2026, 7 vehicles)
 const GEOCERCA_DATA = {
@@ -2492,6 +2533,7 @@ map.on('load',()=>{
     populateTripMatrix();
     updateHubModel();
     updateScenarioComparison();
+    renderSensTable();
     updateSim();
     updateFinancialDashboard();
 });
@@ -2555,7 +2597,7 @@ function openFarmPanel(farmId) {
         html += '<div class="fp-row"><span class="fp-k">Finca→hub (acido)</span><span class="fp-v">$' + fd.sc3.fh + '/caja ($' + Math.round(fd.sc3.fh*648/1000) + 'K/viaje)</span></div>';
         html += '<div class="fp-row"><span class="fp-k">Hub TOTAL</span><span class="fp-v" style="color:var(--green);">$' + fd.sc3.total + '/caja</span></div>';
         html += '<div class="fp-row"><span class="fp-k">Ahorro vs SC2</span><span class="fp-v" style="color:' + (fd.sc3.ahorro>0?'var(--green)':'var(--red)') + ';">$' + fd.sc3.ahorro + '/caja</span></div>';
-        html += '<div class="fp-formula">Hub flete: ' + _centroTripsHub + ' mulas × $' + (ACID.HUB_PA_VIAJE/1000) + 'K ÷ ' + Math.round(_centroCajasDia) + ' cajas Centro/dia = $' + fd.sc3.hubFlete + '. Mula: Chinita $300K×2 - $150K G20 = $450K (20p) × 1.2 = $540K (24p). F→H: $' + fd.sc3.fh + '/caja. Ahorro: $' + fd.sc2.caja + ' - $' + fd.sc3.total + ' = $' + fd.sc3.ahorro + '.</div>';
+        html += '<div class="fp-formula">Hub flete: ' + _centroTripsHub + ' mulas × $' + (ACID.HUB_PA_VIAJE/1000) + 'K ÷ ' + Math.round(_centroCajasDia) + ' cajas/dia = $' + fd.sc3.hubFlete + '. Acido: Chinita $300K×2 = $600K (20p) × 1.2 = $720K (24p), $0 desc. F→H: $' + fd.sc3.fh + '/caja. Ahorro: $' + fd.sc2.caja + ' - $' + fd.sc3.total + ' = $' + fd.sc3.ahorro + '.</div>';
     } else if (fd.sc3.mode === 'directo_pa') {
         html += '<div class="fp-row"><span class="fp-k">Despacho directo a PA</span><span class="fp-v">$' + fd.sc3.total + '/caja</span></div>';
         html += '<div class="fp-row"><span class="fp-k">Ahorro</span><span class="fp-v">$0 (igual que SC2)</span></div>';
@@ -2586,7 +2628,7 @@ function openFarmPanel(farmId) {
     html += 'Sencillo: 12p × 54 cajas = 648 cajas/viaje (tarifa 10p × 1.2).<br>';
     html += 'Mula: 24p × 54 cajas = 1,296 cajas/viaje (tarifa 20p × 1.2).<br>';
     html += 'Tarifa mula: sencillo × 2 - $150K (descuento G20).<br>';
-    html += 'Hub→PA: $' + (ACID.HUB_PA_VIAJE/1000) + 'K/mula (Chinita $300K×2-$150K=450K×1.2).<br>';
+    html += 'Hub→PA: $' + (ACID.HUB_PA_VIAJE/1000) + 'K/mula (acido: Chinita $300K×2=$600K×1.2, $0 desc).<br>';
     html += 'F→H: $200/caja = $130K/viaje (escenario acido).<br>';
     html += 'Consolidacion: $42/caja (paletizar+inspeccionar).<br>';
     html += 'CAPEX: $1,200M. OPEX: $362M/ano.<br>';
@@ -2632,10 +2674,10 @@ function renderAuditPanel() {
         ['Cajas/viaje mula', CAJAS_MULA, MULA_PALL + 'p × ' + CAJAS_PALL + ' cajas'],
         ['Factor sencillo', FACTOR_12 + 'x', 'Tabla da 10p, sencillo lleva 12 → ×1.2'],
         ['Factor mula', FACTOR_24 + 'x', 'Tabla da 20p, mula lleva 24 → ×1.2'],
-        ['Descuento G20 mula', '$' + (DESC_MULA_G20/1000) + 'K/viaje', 'Capacidad negociacion G20 (hasta $150K menos)'],
+        ['Descuento G20 mula', '$' + (DESC_MULA_G20/1000) + 'K (acido)', 'Rango: $0 (acido) a $150K (maximo). Ver tabla sensibilidad'],
         ['Dias laborales/semana', '5', 'Para calcular cajas/dia = cajas/semana ÷ 5'],
         ['Hub→PA vehiculo', 'Mula 24p', _centroTripsHub + ' mulas/dia (antes 20 sencillos)'],
-        ['Hub→PA tarifa/mula', '$' + (ACID.HUB_PA_VIAJE/1000) + 'K', 'Chinita $300K×2 - $150K = $450K (20p) × 1.2 = $540K (24p)'],
+        ['Hub→PA tarifa/mula', '$' + (ACID.HUB_PA_VIAJE/1000) + 'K', 'Acido: Chinita $300K×2 = $600K (20p) × 1.2 = $720K (24p). $0 desc.'],
         ['Hub→PA flete/caja', '$' + _hubFleteCaja, _centroTripsHub + ' mulas × $' + (ACID.HUB_PA_VIAJE/1000) + 'K ÷ ' + Math.round(_centroCajasDia) + ' cajas Centro/dia'],
         ['Finca→Hub (acido)', '$' + ACID.FH_CAJA + '/caja', '$' + Math.round(ACID.FH_CAJA*CAJAS_SENC/1000) + 'K/viaje. Estimado por $/km promedio (~8-15 km)'],
         ['Consolidacion', '$' + ACID.CONSOL + '/caja', 'Paletizar + inspeccionar + cargar'],
@@ -2692,6 +2734,38 @@ function renderAuditPanel() {
     h += '</div></div>';
 
     document.getElementById('audit-content').innerHTML = h;
+}
+
+// ============================================================
+// SENSITIVITY TABLE — descuento mula G20
+// ============================================================
+function renderSensTable() {
+    function buildTable(fontSize) {
+        let h = '<table style="width:100%;font-family:\'JetBrains Mono\',monospace;font-size:'+fontSize+';border-collapse:collapse;">';
+        h += '<tr style="border-bottom:1px solid var(--border);color:var(--text3);">';
+        h += '<th style="text-align:left;padding:2px 0;">Desc. G20</th><th>Mula 24p</th><th>Flete/caja</th><th>Hub total</th><th>Ahorro</th><th>Neto/ano</th><th>Payback</th></tr>';
+        SENS_DATA.forEach(s => {
+            const isBase = s.d === DESC_MULA_G20;
+            const bg = isBase ? 'background:var(--yellow-bg);' : '';
+            const tag = isBase ? ' ◄ BASE' : '';
+            const netoColor = s.neto > 0 ? 'var(--green)' : s.neto < -10 ? 'var(--red)' : 'var(--yellow)';
+            h += '<tr style="border-bottom:1px solid rgba(30,39,56,0.5);' + bg + '">';
+            h += '<td style="padding:3px 0;color:var(--text);font-weight:'+(isBase?'700':'400')+';">$' + (s.d/1000) + 'K' + tag + '</td>';
+            h += '<td style="text-align:center;color:var(--text2);">$' + (s.m24/1000) + 'K</td>';
+            h += '<td style="text-align:center;color:var(--text2);">$' + s.flete + '</td>';
+            h += '<td style="text-align:center;color:var(--yellow);font-weight:600;">$' + s.total + '</td>';
+            h += '<td style="text-align:center;color:' + (s.ahorro>0?'var(--green)':'var(--red)') + ';">$' + s.ahorro + '</td>';
+            h += '<td style="text-align:center;color:' + netoColor + ';">$' + s.neto + 'M</td>';
+            h += '<td style="text-align:center;color:var(--text2);">' + s.pb + '</td>';
+            h += '</tr>';
+        });
+        h += '</table>';
+        return h;
+    }
+    const el = document.getElementById('sens-table');
+    if (el) el.innerHTML = buildTable('8px');
+    const el2 = document.getElementById('res-sens-table');
+    if (el2) el2.innerHTML = buildTable('10px');
 }
 
 // ============================================================
@@ -3140,7 +3214,7 @@ function updateSim(){
         totalDirect = TARIFA_VIAJE;
         row1Direct = TARIFA_VIAJE;
 
-        // Con hub: mula $540K → $426/caja + standby $0 + consolidacion $42 + finca→hub $200
+        // Con hub: mula $720K (acido) → $568/caja + standby $0 + consolidacion $42 + finca→hub $200
         row1Hub = HUB_FLETE;
         row2Hub = HUB_STANDBY;
         totalHub = HUB_FLETE + HUB_STANDBY + HUB_CONSOL + FINCA_HUB;
