@@ -13,6 +13,7 @@
 \usepackage{fontawesome5}
 \usepackage{array}
 \usepackage{hyperref}
+\usepackage{multicol}
 
 \usetikzlibrary{calc, positioning, arrows.meta}
 
@@ -32,7 +33,6 @@
 \usecolortheme{default}
 \setbeamercolor{structure}{fg=verde}
 \setbeamercolor{frametitle}{bg=verde!8, fg=negro}
-\setbeamercolor{title}{fg=negro}
 \setbeamercolor{footline}{bg=grisclaro, fg=gris}
 \setbeamercolor{block title}{bg=verde, fg=white}
 \setbeamercolor{block body}{bg=verdeclaro}
@@ -42,7 +42,6 @@
 \setbeamercolor{block body example}{bg=azulclaro}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize item}{\color{verde}\scriptsize$\blacksquare$}
-\setbeamertemplate{itemize subitem}{\color{azul}\scriptsize$\blacktriangleright$}
 
 \setbeamertemplate{footline}{%
     \leavevmode\hbox{%
@@ -56,6 +55,9 @@
 }
 
 \newcommand{\tagline}[2]{{\scriptsize\color{#1}\textbf{\MakeUppercase{#2}}}}
+\newcommand{\scuno}{\colorbox{amarilloclaro}{\scriptsize\bfseries\color{amarillo}\strut\ SC1\ }}
+\newcommand{\scdos}{\colorbox{rojoclaro}{\scriptsize\bfseries\color{rojo}\strut\ SC2\ }}
+\newcommand{\sctres}{\colorbox{verdeclaro}{\scriptsize\bfseries\color{verde}\strut\ SC3\ }}
 
 \begin{document}
 
@@ -70,24 +72,24 @@
           font=\small\bfseries, text=white] {G20};
 \end{tikzpicture}
 
-\vspace{10pt}
+\vspace{8pt}
 {\Large\color{verde}\textbf{ESTUDIO DE VIABILIDAD}}
 
-\vspace{6pt}
-{\fontsize{28}{32}\selectfont\textbf{Centro de Consolidación Logística}\par}
-
 \vspace{4pt}
+{\fontsize{26}{30}\selectfont\textbf{Centro de Consolidación Logística}\par}
+
+\vspace{3pt}
 \rule{3cm}{1pt}
 
-\vspace{8pt}
-{\normalsize\color{gris} Modelo 3 Nodos para las 19 fincas de Grupo 20}\\[4pt]
-{\small\color{gris} Urabá, Antioquia · Presentación Junta Directiva · Marzo 2026}
+\vspace{6pt}
+{\normalsize\color{gris} 3 escenarios para las 19 fincas de Grupo 20}\\[3pt]
+{\small\color{gris} Urabá, Antioquia · Junta Directiva · Marzo 2026}
 
-\vspace{20pt}
+\vspace{16pt}
 \colorbox{grisclaro}{\small\strut\hspace{6pt}Gemelo Digital: \textcolor{verde}{\textbf{gemelo-digital-uraba.vercel.app}}\hspace{6pt}}
 
-\vspace{12pt}
-{\tiny\color{gris} Datos reales: Producción por finca · Tarifas 2026 · Geocercas GPS · Anderson Mestra, Grupo 20}
+\vspace{10pt}
+{\tiny\color{gris} Datos reales: Producción por finca · Tarifas 2026 · Vehículos sencillo 12 / mula 24 pallets · Anderson Mestra}
 \end{center}
 \vfill
 \end{frame}
@@ -97,206 +99,158 @@
 % ============================================================
 \begin{frame}
 \frametitle{¿Qué tenemos hoy?}
-\tagline{rojo}{Punto de Partida}
-
-\vspace{4pt}
-Grupo 20 tiene \textbf{19 fincas} que producen \textbf{101,003 cajas por semana}
-(5.25 millones al año). Hoy, cada finca contrata su propio transporte.
-Le pagamos al transportador una \textbf{tarifa plana por caja}.
-
-\vspace{8pt}
-\begin{center}
-\begin{tikzpicture}
-    \node[rounded corners=4pt, fill=grisclaro, draw=gris!30, minimum width=3cm, minimum height=1.4cm] (k1) {};
-    \node[font=\Large\bfseries, text=negro] at ([yshift=3pt]k1.center) {19};
-    \node[font=\tiny, text=gris, below=0pt of k1.center] {fincas};
-
-    \node[rounded corners=4pt, fill=grisclaro, draw=gris!30, minimum width=3cm, minimum height=1.4cm, right=10pt of k1] (k2) {};
-    \node[font=\Large\bfseries, text=negro] at ([yshift=3pt]k2.center) {101K};
-    \node[font=\tiny, text=gris, below=0pt of k2.center] {cajas/semana};
-
-    \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!30, minimum width=3cm, minimum height=1.4cm, right=10pt of k2] (k3) {};
-    \node[font=\Large\bfseries, text=amarillo] at ([yshift=3pt]k3.center) {\$359};
-    \node[font=\tiny, text=gris, below=0pt of k3.center] {COP/caja promedio};
-\end{tikzpicture}
-\end{center}
-
-\vspace{6pt}
-\begin{exampleblock}{¿Cómo funciona hoy?}
-\small
-Pagamos entre \textbf{\$295 y \$519 por caja} según la finca y la distancia.
-Es una tarifa plana: no importa si el camión va lleno o vacío, pagamos lo mismo por caja.
-\textbf{El transportador absorbe la ineficiencia.}
-\end{exampleblock}
-
-\vspace{1pt}
-{\tiny\color{gris} Fuente: Tarifas 2026 reales + producción promedio por finca (Anderson Mestra, Grupo 20)}
-\end{frame}
-
-% ============================================================
-% 3. LAS 19 FINCAS NO SON IGUALES
-% ============================================================
-\begin{frame}
-\frametitle{Las 19 fincas no son iguales}
-\tagline{azul}{Tres Grupos Distintos}
+\tagline{amarillo}{Punto de Partida}
 
 \vspace{2pt}
-{\small Nuestras fincas se dividen en \textbf{3 grupos} según su ubicación y destino de la fruta:}
+{\small 19 fincas, \textbf{101,003 cajas/semana} (5.25M/año). Hoy toda la fruta va al
+\textbf{Embarcadero Zungo} para exportación. Pagamos \textbf{tarifa plana por caja}.}
 
 \vspace{6pt}
 \begin{center}
 \scriptsize
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l c c l l}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{l r r r r}
     \toprule
-    \textbf{Grupo} & \textbf{Fincas} & \textbf{Cajas/año} & \textbf{Destino} & \textbf{¿Usa el Centro?} \\
+    \textbf{Finca} & \textbf{Cajas/sem} & \textbf{Pall/día} & \textbf{\$/caja a Zungo} & \textbf{Dist.} \\
     \midrule
-    \textcolor{verde}{\textbf{Centro}} & 12 & 3.30M (63\%) & Puerto Antioquia & \textcolor{verde}{\textbf{SÍ — se consolida}} \\
-    \textcolor{azul}{\textbf{Mini-Hub}} & 3 & 0.46M (9\%) & Puerto Antioquia & \textcolor{gris}{No — despacho directo} \\
-    \textcolor{amarillo}{\textbf{Zungo}} & 4 & 1.50M (28\%) & Embarcadero Zungo & \textcolor{gris}{No — exporta desde allí} \\
+    Chinita (la mayor)  & 10,113 & 37.5 & \$499 & 25 km \\
+    Matogroso 2         &  8,375 & 31.0 & \$295 &  9 km \\
+    Tucanes             &  8,173 & 30.3 & \$304 & 14 km \\
+    Punto Fijo          &  7,856 & 29.1 & \$359 & 18 km \\
+    \multicolumn{5}{c}{\color{gris}\scriptsize ... y 15 fincas más (rango \$295--\$519/caja)} \\
     \midrule
-    \textbf{Total} & \textbf{19} & \textbf{5.25M} & & \\
+    \textbf{Total 19 fincas} & \textbf{101,003} & \textbf{374} & \textbf{\$406 prom.} & \\
     \bottomrule
 \end{tabular}
 \end{center}
 
-\vspace{6pt}
-\begin{columns}[T]
-\begin{column}{0.30\textwidth}
-\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{12 fincas Centro:}}
-Están lejos de PA. Hoy cada una manda su camión por separado.
-\textbf{Aquí es donde el hub agrega valor.}\strut}}
-\end{column}
-\begin{column}{0.30\textwidth}
-\colorbox{azulclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
-\textcolor{azul}{\textbf{3 fincas Mini-Hub:}}
-Oasis, Dunas, Guadalupe. Están \textbf{cerca de PA}.
-Su mini-hub maneja devoluciones, no consolidación.\strut}}
-\end{column}
-\begin{column}{0.30\textwidth}
-\colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
-\textcolor{amarillo}{\textbf{4 fincas Zungo:}}
-Punto Fijo, Almendros, Matogroso~1~y~2. \textbf{Exportan directo} desde el embarcadero.\strut}}
-\end{column}
-\end{columns}
+\vspace{4pt}
+\begin{exampleblock}{\scuno{} Escenario actual: todos a Zungo}
+\small
+26 viajes/día · \$406/caja promedio · Costo anual: \textbf{\$2,133M}.
+El transportador absorbe ineficiencias (tarifa plana por caja).
+\end{exampleblock}
 \end{frame}
 
 % ============================================================
-% 4. EL CAMBIO TARIFARIO
+% 3. ¿QUÉ VIENE? PUERTO ANTIOQUIA
 % ============================================================
 \begin{frame}
-\frametitle{El modelo tarifario va a cambiar}
-\tagline{amarillo}{La Amenaza}
+\frametitle{¿Qué cambia con Puerto Antioquia?}
+\tagline{rojo}{El Cambio}
 
-\vspace{4pt}
-{\small Hoy pagamos \textbf{por caja} (tarifa plana).
-Los transportadores quieren cobrar \textbf{por viaje}: un precio fijo por cada camión que salga,
-sin importar cuántas cajas lleve. Eso cambia quién paga la ineficiencia.}
+\vspace{2pt}
+{\small Con Puerto Antioquia, la fruta dejará de ir al embarcadero Zungo y tendrá que llegar
+\textbf{por carretera al puerto}. Y los transportadores quieren cobrar \textbf{por viaje}, no por caja.}
 
-\vspace{8pt}
+\vspace{6pt}
 \begin{columns}[c]
-\begin{column}{0.42\textwidth}
+\begin{column}{0.44\textwidth}
 \begin{center}
-    \colorbox{amarilloclaro}{\parbox{4.2cm}{\centering\vspace{6pt}
-        {\scriptsize\bfseries\color{amarillo} HOY: \$/CAJA}\\[4pt]
-        {\fontsize{22}{26}\selectfont\bfseries\color{amarillo} \$359}\\[2pt]
-        {\scriptsize\color{gris} Pagamos por caja.\\Camión vacío = problema\\del transportador.}
-    \vspace{6pt}}}
+    \colorbox{amarilloclaro}{\parbox{4.2cm}{\centering\vspace{4pt}
+        {\scriptsize\bfseries\color{amarillo} \scuno{} HOY: ZUNGO}\\[3pt]
+        {\fontsize{20}{24}\selectfont\bfseries\color{amarillo} \$406/caja}\\[2pt]
+        {\scriptsize\color{gris} Tarifa plana. Distancias\\cortas (8--28 km).}
+    \vspace{4pt}}}
 \end{center}
 \end{column}
-
-\begin{column}{0.06\textwidth}
-\begin{center}
-    {\LARGE\color{rojo}\bfseries$\Rightarrow$}
-\end{center}
+\begin{column}{0.04\textwidth}
+{\LARGE\color{rojo}\bfseries$\Rightarrow$}
 \end{column}
-
-\begin{column}{0.42\textwidth}
+\begin{column}{0.44\textwidth}
 \begin{center}
-    \colorbox{rojoclaro}{\parbox{4.2cm}{\centering\vspace{6pt}
-        {\scriptsize\bfseries\color{rojo} MAÑANA: \$/VIAJE}\\[4pt]
-        {\fontsize{22}{26}\selectfont\bfseries\color{rojo} \$250--500K}\\[2pt]
-        {\scriptsize\color{gris} Pagamos por viaje.\\Camión vacío = problema\\\textbf{nuestro}.}
-    \vspace{6pt}}}
+    \colorbox{rojoclaro}{\parbox{4.2cm}{\centering\vspace{4pt}
+        {\scriptsize\bfseries\color{rojo} \scdos{} TODOS A PA}\\[3pt]
+        {\fontsize{20}{24}\selectfont\bfseries\color{rojo} \$963/caja}\\[2pt]
+        {\scriptsize\color{gris} \$/viaje. Distancias\\largas (9--52 km). Parcial.}
+    \vspace{4pt}}}
 \end{center}
 \end{column}
 \end{columns}
 
 \vspace{6pt}
-\begin{alertblock}{¿Qué significa para nosotros?}
-\small
-Si una finca pequeña llena solo \textbf{la mitad} de un camión, paga el viaje completo.
-Las fincas grandes necesitan \textbf{2 viajes} y el segundo va medio vacío.
-\textbf{Cada viaje parcial es dinero perdido.}
+\begin{alertblock}{¿Por qué sube tanto?}
+\scriptsize
+\textbf{Dos efectos se combinan:} (1) Puerto Antioquia está más lejos que Zungo para la mayoría de fincas
+$\rightarrow$ la tarifa por viaje sube de \$160--280K a \$250--500K. (2) Bajo \$/viaje, cada camión a medio llenar
+cuesta lo mismo que uno lleno $\rightarrow$ llenado parcial (76\%) nos sale carísimo.
+\textbf{Costo anual SC2: \$5,058M} (vs \$2,133M hoy). \textcolor{rojo}{\textbf{+137\%.}}
 \end{alertblock}
 \end{frame}
 
 % ============================================================
-% 5. ¿CUÁNTO COSTARÁ SIN HUB?
+% 4. LAS 19 FINCAS NO SON IGUALES
 % ============================================================
 \begin{frame}
-\frametitle{Sin hub: ¿cuánto le costará a cada finca?}
-\tagline{rojo}{El Cálculo, Finca por Finca}
+\frametitle{Las 19 fincas no son iguales}
+\tagline{azul}{Tres Grupos}
 
-\vspace{1pt}
-{\scriptsize Anderson nos pasó las tarifas por viaje a PA para cada finca (\$250K--\$500K, según distancia).
-Un sencillo carga \textbf{12 pallets}. Una mula, \textbf{24}. Cada pallet tiene \textbf{54 cajas}.}
+\vspace{2pt}
+{\scriptsize Según ubicación y destino, las fincas se dividen en 3 grupos. Esto define el modelo:}
 
 \vspace{4pt}
 \begin{center}
 \scriptsize
-\renewcommand{\arraystretch}{1.05}
-\begin{tabular}{l r r r r}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{l c r l l}
     \toprule
-    \textbf{Finca (ejemplo)} & \textbf{Pallets/día} & \textbf{Vehículos} & \textbf{Viaje a PA} & \textbf{Costo/caja} \\
+    \textbf{Grupo} & \textbf{Fincas} & \textbf{Cajas/año} & \textbf{Destino} & \textbf{¿Usa el hub?} \\
     \midrule
-    Chinita (la más grande)    & 37.5 & 2 mulas         & \$300K c/u & \textcolor{rojo}{\$712} \\
-    Tucanes (grande)           & 30.3 & 1 mula + 1 senc. & \$450K c/u & \textcolor{rojo}{\$991} \\
-    Santa Helena (lejos)       & 12.4 & 1 mula (52\%)    & \$400K     & \textcolor{rojo}{\$1,430} \\
-    Sierra (pequeña, cerca)    & 10.3 & 1 sencillo       & \$370K     & \textcolor{rojo}{\$797} \\
+    \textcolor{verde}{\textbf{Centro}} & 12 & 3.30M (63\%) & Puerto Antioquia & \textcolor{verde}{\textbf{SÍ}} \\
+    \textcolor{azul}{\textbf{Mini-Hub}} & 3 & 0.46M (9\%) & PA directo & No (cerca de PA) \\
+    \textcolor{amarillo}{\textbf{Zungo}} & 4 & 1.50M (28\%) & Embarcadero & No (exporta allí) \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{4pt}
-{\scriptsize \textbf{¿Qué vemos?} Las fincas que llenan un sencillo (Sierra) pagan menos por caja. Las que
-necesitan una mula a medio llenar (Santa Helena, 52\%) pagan más del doble. \textbf{El llenado parcial es el problema.}}
+\begin{columns}[T]
+\begin{column}{0.30\textwidth}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{12 fincas Centro:}}
+Lejos de PA. Hoy cada una manda su camión aparte.
+\textbf{El hub las consolida.}\strut}}
+\end{column}
+\begin{column}{0.30\textwidth}
+\colorbox{azulclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
+\textcolor{azul}{\textbf{3 fincas Mini-Hub:}}
+Oasis, Dunas, Guadalupe. \textbf{Cerca de PA.}
+Mini-hub solo para devoluciones.\strut}}
+\end{column}
+\begin{column}{0.30\textwidth}
+\colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
+\textcolor{amarillo}{\textbf{4 fincas Zungo:}}
+Punto Fijo, Almendros, Matogroso~1 y 2.
+\textbf{Exportan desde embarcadero.}\strut}}
+\end{column}
+\end{columns}
 
 \vspace{4pt}
-\begin{center}
-    \colorbox{rojoclaro}{\parbox{12cm}{\centering\small\vspace{3pt}
-        Promedio ponderado de las \textbf{12 fincas Centro} (por producción):
-        \textbf{16 viajes/día · 76\% llenado · \textcolor{rojo}{\$919/caja}}
-    \vspace{3pt}}}
-\end{center}
-
-\vspace{1pt}
-{\tiny\color{gris} Las 3 fincas Mini-Hub pagan \$681/caja (cercanas a PA). Las 4 Zungo pagan \$398/caja (embarcadero). Solo las 12 Centro pasarían por el hub.}
+{\tiny\color{gris} El hub solo agrega valor a las 12 fincas Centro. Mini-Hub y Zungo no lo necesitan.}
 \end{frame}
 
 % ============================================================
-% 6. LA SOLUCIÓN
+% 5. LA SOLUCIÓN: CONSOLIDAR
 % ============================================================
 \begin{frame}
 \frametitle{La solución: consolidar antes de despachar}
-\tagline{verde}{Modelo 3 Nodos}
+\tagline{verde}{SC3: Modelo Propuesto}
 
 \vspace{2pt}
 {\small Un Centro en \textbf{Chinita}: la fruta de 12 fincas llega, se paletiza, y sale en
-\textbf{\textcolor{verde}{mulas llenas}} hacia Puerto Antioquia. Las demás fincas despachan directo.}
+\textbf{\textcolor{verde}{mulas llenas}} hacia Puerto Antioquia.}
 
 \vspace{4pt}
 \begin{center}
 \begin{tikzpicture}[
-    nodo/.style={circle, minimum size=0.85cm, draw=#1, fill=#1!12, line width=0.8pt, font=\small},
+    nodo/.style={circle, minimum size=0.8cm, draw=#1, fill=#1!12, line width=0.7pt, font=\small},
     linea/.style={line width=1.5pt, ->, >=stealth}
 ]
     \node[nodo=amarillo] (fincas) at (0,0) {\faSeedling};
-    \node[nodo=verde] (centro) at (3.5, 1.1) {\faBoxes};
+    \node[nodo=verde] (centro) at (3.5, 1.0) {\faBoxes};
     \node[nodo=azul] (mini) at (3.5, 0) {\faTruck};
-    \node[nodo=amarillo!70!black] (zungo) at (3.5, -1.1) {\faShip};
-    \node[nodo=azul!80!black] (puerto) at (7.0, 0) {\faAnchor};
+    \node[nodo=amarillo!70!black] (zungo) at (3.5, -1.0) {\faShip};
+    \node[nodo=azul!80!black] (puerto) at (7.0, 0.3) {\faAnchor};
 
     \draw[linea, verde!70!black] (fincas) -- node[above, font=\fontsize{6}{7}\selectfont\bfseries, text=verde, sloped] {12} (centro);
     \draw[linea, azul!70!black] (fincas) -- node[above, font=\fontsize{6}{7}\selectfont\bfseries, text=azul] {3} (mini);
@@ -305,90 +259,136 @@ necesitan una mula a medio llenar (Santa Helena, 52\%) pagan más del doble. \te
     \draw[linea, azul] (mini) -- (puerto);
     \draw[linea, amarillo!70!black] (zungo.east) -- ++(0.3,0) node[right, font=\tiny, text=gris] {exporta};
 
-    \node[right=6pt of centro, anchor=west, font=\tiny\bfseries, text=verde, fill=white, inner sep=1pt] {Centro: consolida $\rightarrow$ 10 mulas llenas};
-    \node[right=6pt of mini, anchor=west, font=\tiny\bfseries, text=azul, fill=white, inner sep=1pt] {Mini-Hub: despacho directo + devoluciones};
-    \node[right=6pt of zungo, anchor=west, font=\tiny\bfseries, text=amarillo!70!black, fill=white, inner sep=1pt] {Emb.\ Zungo: exporta directo};
-    \node[below=3pt of fincas, font=\tiny\bfseries, text=amarillo] {19 Fincas};
-    \node[below=3pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto Antioquia};
+    \node[right=5pt of centro, anchor=west, font=\tiny\bfseries, text=verde, fill=white, inner sep=1pt] {Centro: consolida, mulas llenas};
+    \node[right=5pt of mini, anchor=west, font=\tiny\bfseries, text=azul, fill=white, inner sep=1pt] {Mini-Hub: directo + devoluciones};
+    \node[right=5pt of zungo, anchor=west, font=\tiny\bfseries, text=amarillo!70!black, fill=white, inner sep=1pt] {Zungo: embarcadero};
+    \node[below=2pt of fincas, font=\tiny\bfseries, text=amarillo] {19 Fincas};
+    \node[below=2pt of puerto, font=\tiny\bfseries, text=azul!80!black] {Puerto Antioquia};
 \end{tikzpicture}
 \end{center}
 
 \vspace{2pt}
-\begin{block}{¿Qué cambia?}
-\small
-Las 12 fincas Centro dejan de despachar \textbf{16 viajes parciales} (76\% llenado)
-y en su lugar el hub despacha \textbf{10 mulas llenas} (98\% llenado).
-Las fincas Mini-Hub y Zungo \textbf{no cambian}.
+\begin{block}{}
+\scriptsize
+\textbf{16 viajes parciales} (76\% llenado) de las 12 fincas Centro se convierten en
+\textbf{\textcolor{verde}{10 mulas llenas}} (98\% llenado) desde el hub. Las 3 Mini-Hub siguen directo. Las 4 Zungo siguen al embarcadero.
+\textbf{Total: de 26 a 20 viajes/día.}
 \end{block}
 \end{frame}
 
 % ============================================================
-% 7. ¿CUÁNTO CUESTA EL HUB POR CAJA?
+% 6. COMPARACIÓN: 3 ESCENARIOS
 % ============================================================
 \begin{frame}
-\frametitle{Con hub: ¿cuánto cuesta por caja?}
-\tagline{azul}{Tres Componentes}
+\frametitle{Tres escenarios, una decisión}
+\tagline{azul}{La Comparación}
 
-\vspace{4pt}
-{\small El hub tiene \textbf{tres costos por caja} que se suman para cada caja que pase por el Centro:}
-
-\vspace{8pt}
+\vspace{2pt}
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{r l r l}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l c c c}
     \toprule
-    & \textbf{Componente} & \textbf{Costo} & \textbf{¿De dónde sale?} \\
+    & \scuno{} \textbf{Hoy (Zungo)} & \scdos{} \textbf{Todos PA} & \sctres{} \textbf{Con Hub} \\
     \midrule
-    \textcolor{azul}{\textbf{1.}} & Transporte hub $\rightarrow$ PA & \$568/caja & {\scriptsize 10 mulas $\times$ \$720K $\div$ 12,674 cajas/día} \\
-    \textcolor{azul}{\textbf{2.}} & Consolidación en hub & \$42/caja & {\scriptsize Paletizar, inspeccionar, cargar} \\
-    \textcolor{azul}{\textbf{3.}} & Transporte finca $\rightarrow$ hub & \$80/caja & {\scriptsize Vehículos propios, trayecto corto} \\
-    \midrule
-    & \textcolor{verde}{\textbf{Total por caja}} & \textcolor{verde}{\textbf{\$690}} & \\
+    Destino          & Embarcadero     & Puerto Antioquia & Hub + PA + Zungo \\
+    Modelo tarifa    & \$/caja (plana) & \$/viaje         & \$/viaje \\
+    Viajes/día       & 26              & 26               & \textcolor{verde}{\textbf{20}} \\
+    Llenado          & N/A (plana)     & 76\%             & \textcolor{verde}{\textbf{98\% (hub)}} \\
+    \textbf{COP/caja} & \textcolor{amarillo}{\textbf{\$406}} & \textcolor{rojo}{\textbf{\$963}} & \textcolor{verde}{\textbf{\$585}} \\
+    \textbf{Costo anual} & \$2,133M    & \textcolor{rojo}{\$5,058M} & \textcolor{verde}{\$3,071M} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{4pt}
-\colorbox{rojoclaro}{\scriptsize\strut\hspace{4pt}\textcolor{rojo}{\textbf{Sin hub:}} \$919/caja (cada finca paga su viaje)\hspace{4pt}}
-\hfill
-\colorbox{verdeclaro}{\scriptsize\strut\hspace{4pt}\textcolor{verde}{\textbf{Con hub:}} \$690/caja (consolidado)\hspace{4pt}}
-\hfill
-{\scriptsize\textbf{Ahorro: \$229/caja}}
+\colorbox{rojoclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{rojo}{\textbf{SC1$\rightarrow$SC2:}} El paso de Zungo a PA \textbf{sube} el costo +137\%
+(\$2,133M $\rightarrow$ \$5,058M). Distancias más largas + cobro por viaje con camiones parciales.\strut}}
 
 \vspace{2pt}
-{\tiny\color{gris} Leg finca$\rightarrow$hub (\$80/caja): por validar. Mula hub$\rightarrow$PA: tarifa Chinita \$300K $\times$ 2.4 (24 pallets).}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{SC2$\rightarrow$SC3:}} El hub \textbf{baja} el costo --39\%
+(\$5,058M $\rightarrow$ \$3,071M). Consolida 12 fincas en mulas llenas + 4 siguen en Zungo.
+\textbf{Ahorro: \$378/caja $=$ \$1,985M/año bruto.}\strut}}
 \end{frame}
 
 % ============================================================
-% 8. LA RESTA
+% 7. ¿CÓMO SE CALCULA EL COSTO DEL HUB?
 % ============================================================
 \begin{frame}
-\frametitle{La cuenta completa}
+\frametitle{¿Cómo se calcula el costo del hub por caja?}
+\tagline{azul}{Tres Componentes}
+
+\vspace{2pt}
+{\scriptsize El hub tiene 3 costos por caja. Solo aplica a las 12 fincas Centro (3.30M cajas/año):}
+
+\vspace{4pt}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{r l r l}
+    \toprule
+    & \textbf{Componente} & \textbf{Costo} & \textbf{Cálculo} \\
+    \midrule
+    \textcolor{azul}{\textbf{1.}} & Hub $\rightarrow$ PA (mulas llenas) & \$568/caja & {\tiny 10 mulas $\times$ \$720K $\div$ 12,674 cajas/día} \\
+    \textcolor{azul}{\textbf{2.}} & Consolidación en hub & \$42/caja & {\tiny Paletizar + inspeccionar + cargar} \\
+    \textcolor{azul}{\textbf{3.}} & Finca $\rightarrow$ hub & \$80/caja & {\tiny Vehículos propios, distancia corta (por validar)} \\
+    \midrule
+    & \textcolor{verde}{\textbf{Total hub}} & \textcolor{verde}{\textbf{\$690/caja}} & \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\colorbox{rojoclaro}{\scriptsize\strut\hspace{4pt}\textcolor{rojo}{\textbf{Sin hub (SC2):}} 12 fincas Centro pagan \$919/caja promedio (16 viajes parciales)\hspace{4pt}}
+
+\colorbox{verdeclaro}{\scriptsize\strut\hspace{4pt}\textcolor{verde}{\textbf{Con hub (SC3):}} las mismas 12 fincas pagan \$690/caja (10 mulas llenas)\hspace{4pt}}
+
+\vspace{4pt}
+{\scriptsize\textbf{Ahorro por caja:} \$919 $-$ \$690 $=$ \textcolor{verde}{\textbf{\$229/caja}} para cada caja que pase por el Centro.}
+
+\vspace{2pt}
+{\tiny\color{gris} Las 3 fincas Mini-Hub (\$681/caja) y 4 Zungo (\$324/caja) no pasan por el hub. Mula: \$300K $\times$ 2.4 (24 pallets).}
+\end{frame}
+
+% ============================================================
+% 8. LA CUENTA COMPLETA
+% ============================================================
+\begin{frame}
+\frametitle{La cuenta: ahorro del hub}
 \tagline{verde}{Paso a Paso}
 
-\vspace{1pt}
+\vspace{2pt}
 \begin{center}
 \small
-\renewcommand{\arraystretch}{1.1}
+\renewcommand{\arraystretch}{1.15}
 \begin{tabular}{l r l}
     \toprule
-    \textcolor{rojo}{Costo sin hub} & \textcolor{rojo}{\$919/caja} & {\scriptsize 12 fincas Centro (diap.\ 5)} \\
-    \textcolor{verde}{Costo con hub} & \textcolor{verde}{\$690/caja} & {\scriptsize \$568 + \$42 + \$80 (diap.\ 7)} \\
+    \textcolor{rojo}{Sin hub, 12 fincas Centro (SC2)} & \textcolor{rojo}{\$919/caja} & {\scriptsize diap.\ 6} \\
+    \textcolor{verde}{Con hub (SC3)}                   & \textcolor{verde}{\$690/caja} & {\scriptsize diap.\ 7} \\
     \midrule
-    \textbf{Ahorro/caja} & \textbf{\$229} & \\
-    $\times$ 3.30M cajas/año & \textbf{\$755M bruto} & \\
-    $-$ OPEX hub & $-$\$362M & {\scriptsize 6 pers.\ + servicios (diap.\ 9)} \\
+    \textbf{Ahorro/caja}   & \textbf{\$229}     & \\
+    $\times$ 3.30M cajas   & \textbf{\$755M}    & {\scriptsize bruto (solo Centro)} \\
+    $-$ OPEX hub           & $-$\$362M          & {\scriptsize 6 pers.\ + servicios} \\
     \midrule
     \textcolor{verde}{\textbf{Ahorro neto}} & \textcolor{verde}{\textbf{\$393M/año}} & \\
+    \addlinespace
+    CAPEX \$800M $\div$ \$393M & \textcolor{verde}{\textbf{2.0 años}} & {\scriptsize payback} \\
+    CAPEX \$1,200M $\div$ \$393M & \textcolor{azul}{\textbf{3.1 años}} & {\scriptsize payback} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{3pt}
-\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Payback:}} \$800M CAPEX $\div$ \$393M $=$ \textbf{2.0 años.}
-\$1,200M $\div$ \$393M $=$ \textbf{3.1 años.}
-Mini-Hub y Zungo: sin cambio. Bajo \$/caja actual: ahorro transporte $=$ \$0.\strut}}
+\colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{amarillo}{\textbf{Nota:}} Este ahorro puede ser \textbf{optimista} porque asume adopción completa del modelo \$/viaje
+y mulas al 98\% de llenado. Aun con un ahorro menor, el hub se justifica por los \textbf{beneficios operativos}
+(calidad, contenerización, trazabilidad, turnos) y la \textbf{reducción de ineficiencias diarias} de la operación.\strut}}
+
+\vspace{1pt}
+{\tiny\color{gris} OPEX: 6 personas \$215M + servicios \$73M + mant./seguros \$38M + admin \$36M. Terreno propio \$0.
+Fuente: Anderson Mestra, Mar 2026.}
 \end{frame}
 
 % ============================================================
@@ -402,13 +402,13 @@ Mini-Hub y Zungo: sin cambio. Bajo \$/caja actual: ahorro transporte $=$ \$0.\st
 \begin{columns}[T]
 \begin{column}{0.48\textwidth}
     {\footnotesize\color{gris}\textbf{INVERSIÓN INICIAL (CAPEX)}}
-    \vspace{4pt}
+    \vspace{3pt}
 
     \footnotesize
-    \renewcommand{\arraystretch}{1.3}
+    \renewcommand{\arraystretch}{1.25}
     \begin{tabular}{l r}
         \toprule
-        Terreno (Chinita, propio G20) & \$0 \\
+        Terreno (Chinita, propio G20) & \$0{\tiny *} \\
         Pérgola cubierta + rampas & \$600--800M \\
         Montacargas, IT, equipos & \$150--250M \\
         Capital de trabajo & \$50--100M \\
@@ -417,32 +417,41 @@ Mini-Hub y Zungo: sin cambio. Bajo \$/caja actual: ahorro transporte $=$ \$0.\st
         \bottomrule
     \end{tabular}
 
-    \vspace{8pt}
-    {\footnotesize\color{gris}\textbf{OPERACIÓN ANUAL (OPEX): \$362M}}
-    \vspace{2pt}
+    \vspace{4pt}
+    {\tiny *El terreno es propio pero tiene valor de oportunidad
+    (lucro cesante, zona de alta valorización).
+    Este costo se debe estimar con datos de mercado.}
 
-    {\scriptsize 6 personas \$215M + servicios \$73M + mant./seguros \$38M + admin \$36M.}
+    \vspace{4pt}
+    {\footnotesize\color{gris}\textbf{OPERACIÓN ANUAL (OPEX): \$362M}}\\
+    {\scriptsize 6 personas \$215M + servicios \$73M + mant./seg.\ \$38M + admin \$36M.}
 \end{column}
 
 \begin{column}{0.48\textwidth}
-    {\footnotesize\color{gris}\textbf{¿QUÉ ES EL HUB?}}
-    \vspace{4pt}
+    {\footnotesize\color{gris}\textbf{RESUMEN FINANCIERO}}
+    \vspace{3pt}
 
-    {\small
-    No es un almacén. Es una \textbf{pérgola cubierta con rampas}
-    en Chinita (terreno propio).}
+    \begin{tikzpicture}
+        \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
+              minimum width=5cm, minimum height=0.9cm] (b0) {};
+        \node[font=\small\bfseries, text=verde] at ([yshift=1pt]b0.center) {\$229/caja ahorro};
+        \node[font=\tiny, text=gris, below=0pt of b0.center] {\$919 sin hub $\rightarrow$ \$690 con hub};
+
+        \node[rounded corners=4pt, fill=verdeclaro, draw=verde!40,
+              minimum width=5cm, minimum height=0.9cm, below=4pt of b0] (b1) {};
+        \node[font=\small\bfseries, text=verde] at ([yshift=1pt]b1.center) {\$393M neto/año};
+        \node[font=\tiny, text=gris, below=0pt of b1.center] {\$229 $\times$ 3.30M $-$ \$362M OPEX};
+
+        \node[rounded corners=4pt, fill=azulclaro, draw=azul!40,
+              minimum width=5cm, minimum height=0.9cm, below=4pt of b1] (b3) {};
+        \node[font=\small\bfseries, text=azul] at ([yshift=1pt]b3.center) {2.0--3.1 años payback};
+        \node[font=\tiny, text=gris, below=0pt of b3.center] {CAPEX \$800--1,200M};
+    \end{tikzpicture}
 
     \vspace{4pt}
-    {\scriptsize
-    \begin{itemize}
-        \setlength\itemsep{1pt}
-        \item Camiones de fincas entran por un lado
-        \item Se consolida en pallets
-        \item Mulas llenas salen por el otro
-    \end{itemize}}
-
-    \vspace{4pt}
-    {\scriptsize Capacidad: 235 pallets/día. 2--3 montacargas.
+    {\scriptsize No es un almacén industrial.
+    Es una \textbf{pérgola cubierta con rampas}.
+    Capacidad: 235 pallets/día.
     Salida de Apartadó, cerca de la variante.}
 \end{column}
 \end{columns}
@@ -453,15 +462,15 @@ Mini-Hub y Zungo: sin cambio. Bajo \$/caja actual: ahorro transporte $=$ \$0.\st
 % ============================================================
 \begin{frame}
 \frametitle{Beneficios que no se miden solo en pesos}
-\tagline{azul}{Más Allá del Ahorro}
+\tagline{azul}{Aun Sin Cambio Tarifario}
 
-\vspace{1pt}
+\vspace{2pt}
 \begin{columns}[T]
 \begin{column}{0.47\textwidth}
     {\scriptsize\color{rojo}\textbf{HOY (SIN CENTRO)}}
-    \vspace{2pt}
+    \vspace{1pt}
     \begin{itemize}\scriptsize
-        \setlength\itemsep{1pt}
+        \setlength\itemsep{0pt}
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Recolección de fruta a las 2--3~AM
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Camiones devueltos a las 11~PM
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Riesgo contaminación en esperas
@@ -470,26 +479,26 @@ Mini-Hub y Zungo: sin cambio. Bajo \$/caja actual: ahorro transporte $=$ \$0.\st
         \item[\textcolor{rojo}{\scriptsize$\blacksquare$}] Camiones a medio llenar
     \end{itemize}
 \end{column}
-
 \begin{column}{0.47\textwidth}
     {\scriptsize\color{verde}\textbf{CON CENTRO DE CONSOLIDACIÓN}}
-    \vspace{2pt}
+    \vspace{1pt}
     \begin{itemize}\scriptsize
-        \setlength\itemsep{1pt}
+        \setlength\itemsep{0pt}
         \item Turnos establecidos, despacho planificado
         \item Fruta contenerizada desde el Centro
         \item Calidad protegida: menor manipulación
         \item Trazabilidad digital pallet $\rightarrow$ puerto
         \item Cumplimiento specs de exportación
-        \item Escalable a otros productores de zona
+        \item Escalable a otros productores
     \end{itemize}
 \end{column}
 \end{columns}
 
 \vspace{4pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Importante:}} estos beneficios aplican \textbf{aun si la tarifa no cambia a \$/viaje}.
-Contenerización para Puerto Antioquia, negociar tarifas, ofrecer consolidación a terceros.\strut}}
+\textcolor{verde}{\textbf{Estos beneficios aplican aun si la tarifa no cambia.}}
+Contenerización para PA, negociar tarifas desde posición de fuerza,
+reducir las ineficiencias diarias de la operación.\strut}}
 \end{frame}
 
 % ============================================================
@@ -499,44 +508,40 @@ Contenerización para Puerto Antioquia, negociar tarifas, ofrecer consolidación
 \frametitle{Más adelante: servicio a terceros}
 \tagline{azul}{Escalabilidad}
 
-\vspace{4pt}
-{\small Grupo 20 es apenas el \textbf{4.7\%} de la producción de la región (114M cajas/año).
-Si el Centro ofrece consolidación a otros productores, genera ingreso adicional:}
+\vspace{2pt}
+{\small G20 es apenas el \textbf{4.7\%} de la región (114M cajas/año).
+Si el Centro consolida para otros productores a \$42/caja:}
 
-\vspace{8pt}
+\vspace{6pt}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
     \scriptsize
-    \renewcommand{\arraystretch}{1.2}
+    \renewcommand{\arraystretch}{1.15}
     \begin{tabular}{r r r}
         \toprule
         \textbf{\% región} & \textbf{Cajas} & \textbf{Ingreso} \\
         \midrule
-        5\%   & 5.4M    & \$228M/año \\
-        10\%  & 10.9M   & \$457M/año \\
-        25\%  & 27.2M   & \textcolor{verde}{\textbf{\$1,141M/año}} \\
+        5\%  & 5.4M  & \$228M/año \\
+        10\% & 10.9M & \$457M/año \\
+        25\% & 27.2M & \textcolor{verde}{\textbf{\$1,141M/año}} \\
         \bottomrule
     \end{tabular}
 
-    \vspace{8pt}
-    {\scriptsize\color{gris} Tarifa de consolidación: \$42/caja.
-    Uniban tiene 250+ fincas en la región.
-    402 fincas bananeras en la zona.
-    Puerto Antioquia: 7M toneladas de capacidad.}
-\end{column}
-
-\begin{column}{0.48\textwidth}
-    \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{verde}{\textbf{Con 10\% de terceros:}} el ingreso adicional
-    (\$457M) \textbf{supera el OPEX del hub} (\$362M).
-    El hub se vuelve rentable \textbf{por sí solo},
-    antes del cambio tarifario.\strut}}
-
     \vspace{6pt}
-    \colorbox{azulclaro}{\parbox{\dimexpr\linewidth-10pt}{\scriptsize\strut
-    \textcolor{azul}{\textbf{Contexto de mercado:}} Costa Rica lleva 2.5 años
-    en crisis climática. Colombia es el proveedor más confiable de Europa
-    (70\% de nuestra exportación). Precio estable: \$7.25~USD/caja.\strut}}
+    {\scriptsize\color{gris} Uniban tiene 250+ fincas. 402 fincas bananeras en zona.
+    Puerto Antioquia: 7M toneladas.}
+\end{column}
+\begin{column}{0.48\textwidth}
+    \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
+    \textcolor{verde}{\textbf{Con 10\% de terceros:}} ingreso (\$457M)
+    supera OPEX (\$362M). El hub sería \textbf{rentable
+    por sí solo}, antes de cualquier cambio tarifario.\strut}}
+
+    \vspace{4pt}
+    \colorbox{azulclaro}{\parbox{\dimexpr\linewidth-8pt}{\scriptsize\strut
+    \textcolor{azul}{\textbf{Contexto:}} Costa Rica 2.5 años en crisis climática.
+    Colombia: proveedor más confiable de Europa
+    (70\% exportación). \$7.25~USD/caja.\strut}}
 \end{column}
 \end{columns}
 \end{frame}
@@ -549,27 +554,27 @@ Si el Centro ofrece consolidación a otros productores, genera ingreso adicional
 \tagline{verde}{La Herramienta}
 
 \vspace{4pt}
-{\small Todos los números de esta presentación están vivos en una herramienta
-donde pueden ajustar producción, tarifas y CAPEX, y ver los resultados en tiempo real.}
+{\small Los 3 escenarios están vivos en una herramienta donde pueden ajustar parámetros y
+ver resultados en tiempo real.}
 
-\vspace{8pt}
+\vspace{6pt}
 \begin{center}
 \begin{tikzpicture}
     \node[rounded corners=6pt, fill=grisclaro, draw=gris!30,
-          minimum width=11cm, minimum height=3.4cm] (screen) {};
+          minimum width=11cm, minimum height=3.2cm] (screen) {};
     \node at (screen.center) {
         \begin{tabular}{c}
-            \textcolor{verde}{\Large\faGlobeAmericas}\\[4pt]
-            {\large\textbf{gemelo-digital-uraba.vercel.app}}\\[4pt]
-            {\footnotesize\color{gris} Mapa interactivo · Simulador de estrés vial · Dashboard financiero}\\[2pt]
-            {\footnotesize\color{gris} Toggle \$/caja vs \$/viaje · Sensibilidad · Escenarios}\\[6pt]
-            {\tiny\color{gris} 19 fincas reales · 39 rutas OSRM · 402 polígonos · Geocercas GPS · Uniban 2012--2025}
+            \textcolor{verde}{\Large\faGlobeAmericas}\\[3pt]
+            {\large\textbf{gemelo-digital-uraba.vercel.app}}\\[3pt]
+            {\footnotesize\color{gris} 3 escenarios · Click por finca · Dashboard financiero}\\[2pt]
+            {\footnotesize\color{gris} Rutas reales OSRM · Viajes y cajas por escenario}\\[4pt]
+            {\tiny\color{gris} 19 fincas · 39 rutas · 402 polígonos · Geocercas GPS · Uniban 2012--2025}
         \end{tabular}
     };
 \end{tikzpicture}
 \end{center}
 
-\vspace{6pt}
+\vspace{4pt}
 \begin{center}
 \colorbox{verde}{\small\bfseries\color{white}\strut\hspace{8pt}ABRIR GEMELO DIGITAL\hspace{8pt}}
 \end{center}
@@ -582,41 +587,46 @@ donde pueden ajustar producción, tarifas y CAPEX, y ver los resultados en tiemp
 \frametitle{Siguientes pasos}
 \tagline{verde}{Para la Junta}
 
-\vspace{6pt}
-\begin{block}{Resumen}
-\small
-El Centro de Consolidación ahorra \textbf{\$229/caja} para las 12 fincas Centro
-(3.30M cajas/año), generando \textbf{\$393M netos/año} bajo modelo \$/viaje.
-Payback: \textbf{2 a 3 años}. Las 3 fincas Mini-Hub despachan directo.
-Las 4 fincas Zungo exportan desde el embarcadero.
+\vspace{4pt}
+\begin{block}{Resumen de los 3 escenarios}
+\scriptsize
+\scuno{} \textbf{Hoy:} \$406/caja, 26 viajes, todo a Zungo. \\
+\scdos{} \textbf{Todos a PA:} \$963/caja (+137\%), mismos 26 viajes pero más caros. \\
+\sctres{} \textbf{Con hub:} \$585/caja, 20 viajes. \textbf{Ahorro vs SC2: \$378/caja, \$393M netos/año.}\\
+Payback: \textbf{2--3 años.} Incluso si el ahorro es menor, los beneficios operativos lo justifican.
 \end{block}
 
-\vspace{8pt}
+\vspace{6pt}
 \begin{center}
 \begin{tikzpicture}
     \node[rounded corners=4pt, fill=verdeclaro, draw=verde!30,
-          minimum width=3.4cm, minimum height=1.3cm] (s1) {};
+          minimum width=3.2cm, minimum height=1.2cm] (s1) {};
     \node[font=\scriptsize\bfseries, text=verde] at ([yshift=3pt]s1.center) {1. VALIDAR CAPEX};
-    \node[font=\tiny, text=gris, below=0pt of s1.center] {Implantación + cotización};
+    \node[font=\tiny, text=gris, below=0pt of s1.center] {Cotización + lucro cesante};
 
     \node[rounded corners=4pt, fill=azulclaro, draw=azul!30,
-          minimum width=3.4cm, minimum height=1.3cm, right=6pt of s1] (s2) {};
+          minimum width=3.2cm, minimum height=1.2cm, right=5pt of s1] (s2) {};
     \node[font=\scriptsize\bfseries, text=azul] at ([yshift=3pt]s2.center) {2. FINCA$\rightarrow$HUB};
     \node[font=\tiny, text=gris, below=0pt of s2.center] {Validar \$80/caja};
 
     \node[rounded corners=4pt, fill=amarilloclaro, draw=amarillo!30,
-          minimum width=3.4cm, minimum height=1.3cm, right=6pt of s2] (s3) {};
-    \node[font=\scriptsize\bfseries, text=amarillo] at ([yshift=3pt]s3.center) {3. NEGOCIAR TARIFA};
-    \node[font=\tiny, text=gris, below=0pt of s3.center] {Anticipar modelo \$/viaje};
+          minimum width=3.2cm, minimum height=1.2cm, right=5pt of s2] (s3) {};
+    \node[font=\scriptsize\bfseries, text=amarillo] at ([yshift=3pt]s3.center) {3. TARIFA \$/VIAJE};
+    \node[font=\tiny, text=gris, below=0pt of s3.center] {Negociar con transportadores};
+
+    \node[rounded corners=4pt, fill=grisclaro, draw=gris!30,
+          minimum width=3.2cm, minimum height=1.2cm, right=5pt of s3] (s4) {};
+    \node[font=\scriptsize\bfseries, text=gris] at ([yshift=3pt]s4.center) {4. VALORIZACIÓN};
+    \node[font=\tiny, text=gris, below=0pt of s4.center] {Proyectos bodegas zona};
 \end{tikzpicture}
 \end{center}
 
-\vspace{10pt}
-\begin{center}
-\colorbox{verde}{\normalsize\bfseries\color{white}\strut\hspace{10pt}VER GEMELO DIGITAL EN VIVO\hspace{10pt}}
-
 \vspace{6pt}
-{\tiny\color{gris} Observatorio de Datos y Análisis SAS · Datos: Anderson Mestra, Grupo 20 · Marzo 2026}
+\begin{center}
+\colorbox{verde}{\normalsize\bfseries\color{white}\strut\hspace{8pt}VER GEMELO DIGITAL EN VIVO\hspace{8pt}}
+
+\vspace{4pt}
+{\tiny\color{gris} Observatorio de Datos y Análisis SAS · Anderson Mestra, Grupo 20 · Marzo 2026}
 \end{center}
 \end{frame}
 
