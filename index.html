@@ -740,6 +740,23 @@
         </div>
     </div>
 
+    <!-- Trip Matrix 3 Scenarios -->
+    <div class="c" id="trip-matrix-card">
+        <div class="c-h"><span class="c-t">Viajes por Finca (3 Escenarios)</span><span class="badge badge-b">SC1/SC2/SC3</span></div>
+        <div style="overflow-x:auto;max-height:300px;overflow-y:auto;">
+            <table class="od-t" id="trip-matrix">
+                <thead><tr>
+                    <th>Finca</th>
+                    <th style="color:var(--red);">SC1 km</th>
+                    <th style="color:var(--yellow);">SC2 km</th>
+                    <th style="color:var(--green);">SC3 km</th>
+                    <th style="color:var(--green);">Grupo</th>
+                </tr></thead>
+                <tbody id="trip-matrix-body"></tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- Traffic Card -->
     <div class="c" id="traffic-card">
         <div class="c-h"><span class="c-t">Tiempos de Ruta</span><span class="badge badge-b" style="font-size:8px;" id="traffic-badge">OSRM + BPR</span></div>
@@ -2007,17 +2024,41 @@ map.on('load',()=>{
 
     map.on('click','farms',e=>{
         const p=e.features[0].properties;
+        const f=FARMS.find(fm=>fm.id===p.id);
         const hc = hubColorMap[p.hub] || '#ff7a30';
-        const hubNames = {centro:'Centro Consolidacion',mini_hub:'Mini-Hub Puerto',zungo:'Embarcadero Zungo'};
-        new mapboxgl.Popup({offset:10}).setLngLat(e.lngLat).setHTML(`
-            <div class="p-t" style="color:${hc};">${p.name} (${p.id})</div>
-            <div class="p-r"><span class="p-k">Nodo:</span><span class="p-v" style="color:${hc};">${hubNames[p.hub]||p.hub}</span></div>
-            <div class="p-r"><span class="p-k">Produccion:</span><span class="p-v">${Number(p.prod).toLocaleString()} cajas/sem</span></div>
+        const hubNames = {centro:'Centro',mini_hub:'Mini-Hub',zungo:'Emb. Zungo'};
+        const palletsDia = Math.round(f.prod/6/54*10)/10; // approx pallets/dia
+        const dZungo = haversine(f.lat,f.lng,NODES.zungo.lat,NODES.zungo.lng);
+
+        new mapboxgl.Popup({offset:10,maxWidth:'320px'}).setLngLat(e.lngLat).setHTML(`
+            <div class="p-t" style="color:${hc};">${p.name}</div>
+            <div class="p-r"><span class="p-k">Produccion:</span><span class="p-v">${Number(p.prod).toLocaleString()} cajas/sem · ~${palletsDia} pall/dia</span></div>
+            <div class="p-r"><span class="p-k">Grupo SC3:</span><span class="p-v" style="color:${hc};">${hubNames[p.hub]||p.hub}</span></div>
             <hr style="border-color:rgba(255,255,255,0.08);margin:4px 0;">
-            <div class="p-r"><span class="p-k">Directo puerto:</span><span class="p-v">${p.dd} km / ${Math.round(p.dt)} min</span></div>
-            <div class="p-r"><span class="p-k">Al Nodo:</span><span class="p-v">${p.fhd} km / ${Math.round(p.fht)} min</span></div>
-            <div class="p-r"><span class="p-k">Nodo-Puerto:</span><span class="p-v">${p.hpd} km / ${Math.round(p.hpt)} min</span></div>
-            <div class="p-r"><span class="p-k">Tractomulas elim:</span><span class="p-v" style="color:#00e878;">-${p.stk}/sem</span></div>
+            <div style="font-size:8px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px;">Comparacion 3 Escenarios</div>
+            <table style="width:100%;font-size:9px;border-collapse:collapse;font-family:'JetBrains Mono',monospace;">
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                    <th style="text-align:left;padding:2px 0;color:var(--text3);"></th>
+                    <th style="color:var(--red);padding:2px 4px;">SC1</th>
+                    <th style="color:var(--yellow);padding:2px 4px;">SC2</th>
+                    <th style="color:var(--green);padding:2px 4px;">SC3</th>
+                </tr>
+                <tr><td style="color:var(--text3);padding:1px 0;">Destino</td>
+                    <td style="padding:1px 4px;">Zungo</td>
+                    <td style="padding:1px 4px;">PA</td>
+                    <td style="padding:1px 4px;color:${hc};">${hubNames[p.hub]}</td></tr>
+                <tr><td style="color:var(--text3);padding:1px 0;">Dist.</td>
+                    <td style="padding:1px 4px;">${dZungo.toFixed(1)}km</td>
+                    <td style="padding:1px 4px;">${Number(p.dd).toFixed(1)}km</td>
+                    <td style="padding:1px 4px;">${Number(p.fhd).toFixed(1)}km</td></tr>
+                <tr><td style="color:var(--text3);padding:1px 0;">Tiempo</td>
+                    <td style="padding:1px 4px;">~${Math.round(dZungo*1.6)}m</td>
+                    <td style="padding:1px 4px;">${Math.round(p.dt)}m</td>
+                    <td style="padding:1px 4px;">${Math.round(p.fht)}m</td></tr>
+            </table>
+            <div style="margin-top:4px;font-size:8px;color:var(--text3);">
+                SC3 consolida en hub → <span style="color:#00e878;font-weight:700;">mulas llenas a PA</span>
+            </div>
         `).addTo(map);
     });
     map.on('mouseenter','farms',()=>map.getCanvas().style.cursor='pointer');
@@ -2093,6 +2134,7 @@ map.on('load',()=>{
     // Initial state
     setScenario('sc1');
     populateOD();
+    populateTripMatrix();
     updateSim();
     updateFinancialDashboard();
 });
@@ -3364,6 +3406,27 @@ function populateOD(){
             }
         }
         tr.innerHTML=`<td>${r.name}</td><td>${directCol}</td><td>${hubCol}</td><td class="sav">-${r.stk} TM</td>`;
+        tb.appendChild(tr);
+    });
+}
+
+// ============================================================
+// TRIP MATRIX — 19 fincas × 3 escenarios
+// ============================================================
+function populateTripMatrix(){
+    const tb = document.getElementById('trip-matrix-body');
+    if (!tb) return;
+    tb.innerHTML = '';
+    const hubLabels = {centro:'Centro', mini_hub:'M-Hub', zungo:'Zungo'};
+    const hubColors = {centro:'var(--green)', mini_hub:'var(--cyan)', zungo:'var(--orange)'};
+    OD.sort((a,b) => b.prod - a.prod).forEach(r => {
+        const dZungo = haversine(r.lat, r.lng, NODES.zungo.lat, NODES.zungo.lng);
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + r.name + '</td>' +
+            '<td style="color:var(--red);">' + dZungo.toFixed(1) + '</td>' +
+            '<td style="color:var(--yellow);">' + r.dd.toFixed(1) + '</td>' +
+            '<td style="color:var(--green);">' + r.fhd.toFixed(1) + '</td>' +
+            '<td style="color:' + (hubColors[r.hub]||'var(--text2)') + ';font-weight:600;">' + hubLabels[r.hub] + '</td>';
         tb.appendChild(tr);
     });
 }
