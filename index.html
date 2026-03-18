@@ -1089,12 +1089,21 @@
         </div>
     </div>
 
+    <!-- ACID SCENARIO BOX -->
+    <div class="fin-full">
+        <div style="padding:10px 16px;background:var(--yellow-bg);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte</span><br>SC2 Centro: <b style="color:var(--red);">$919</b>/caja<br>Hub total: <b style="color:var(--yellow);">$810</b>/caja<br>Ahorro: <b style="color:var(--green);">$109</b>/caja</div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Acido</span><br>Terreno $100M + Pergola $600M<br>Equipos $200M + WK $100M<br>Contingencia $200M = <b>$1,200M</b></div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado Acido</span><br>Bruto $360M - OPEX $362M<br><b style="color:var(--yellow);">Neto ~$0</b> (equilibrio)<br>Con terceros: <b style="color:var(--green);">+$652M</b></div>
+        </div>
+    </div>
+
     <!-- 2. CAPEX -->
     <div class="fin-half">
         <div class="dc">
             <div class="dc-h"><span class="dc-t">Inversion Inicial (CAPEX)</span></div>
             <div class="fin-input-g">
-                <span class="fin-label">Terreno hub (hectareas)</span><span class="fin-val" id="fv-land-ha">5</span>
+                <span class="fin-label">Terreno hub (hectareas)</span><span class="fin-val" id="fv-land-ha">0</span>
                 <div class="fin-slider"><input type="range" id="fs-land-ha" min="0" max="20" value="0" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Costo terreno (COP M/ha)</span><span class="fin-val" id="fv-land-cost">150</span>
                 <div class="fin-slider"><input type="range" id="fs-land-cost" min="50" max="500" step="10" value="150" oninput="updateFinancialDashboard()"></div>
@@ -1110,7 +1119,7 @@
             <div class="capex-bar" id="fd-capex-bar"></div>
             <div class="fin-total">
                 <span class="fin-total-l">CAPEX Total</span>
-                <span class="fin-total-v g" id="fin-capex-total">$2.050M</span>
+                <span class="fin-total-v g" id="fin-capex-total">$1,050M</span>
             </div>
         </div>
     </div>
@@ -1122,15 +1131,15 @@
             <div class="fin-input-g">
                 <span class="fin-label">Personal hub (operarios)</span><span class="fin-val" id="fv-staff">8</span>
                 <div class="fin-slider"><input type="range" id="fs-staff" min="2" max="25" value="6" oninput="updateFinancialDashboard()"></div>
-                <span class="fin-label">Salario promedio (COP M/mes)</span><span class="fin-val" id="fv-salary">2.5</span>
+                <span class="fin-label">Salario promedio (COP M/mes)</span><span class="fin-val" id="fv-salary">3.0</span>
                 <div class="fin-slider"><input type="range" id="fs-salary" min="1.5" max="5" step="0.1" value="3.0" oninput="updateFinancialDashboard()"></div>
-                <span class="fin-label">Servicios (COP M/mes)</span><span class="fin-val" id="fv-services">15</span>
+                <span class="fin-label">Servicios (COP M/mes)</span><span class="fin-val" id="fv-services">6</span>
                 <div class="fin-slider"><input type="range" id="fs-services" min="2" max="40" value="6" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Mant. equipos (% CAPEX/ano)</span><span class="fin-val" id="fv-maint">5%</span>
                 <div class="fin-slider"><input type="range" id="fs-maint" min="1" max="10" value="2" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Seguros (% CAPEX/ano)</span><span class="fin-val" id="fv-insurance">2%</span>
                 <div class="fin-slider"><input type="range" id="fs-insurance" min="1" max="5" value="2" oninput="updateFinancialDashboard()"></div>
-                <span class="fin-label">Administracion (COP M/mes)</span><span class="fin-val" id="fv-admin">8</span>
+                <span class="fin-label">Administracion (COP M/mes)</span><span class="fin-val" id="fv-admin">3</span>
                 <div class="fin-slider"><input type="range" id="fs-admin" min="2" max="20" value="3" oninput="updateFinancialDashboard()"></div>
             </div>
             <table class="opex-detail" id="fd-opex-detail">
@@ -1286,8 +1295,8 @@
 <div id="resumen-dashboard">
 <div class="resumen-inner">
 
-    <div class="hero-save" id="res-hero-save">$502M</div>
-    <div class="hero-sub">AHORRO ANUAL ESTIMADO CON CENTRO DE CONSOLIDACION</div>
+    <div class="hero-save" id="res-hero-save" style="color:var(--yellow);">$109/caja</div>
+    <div class="hero-sub">AHORRO POR CAJA (ESCENARIO ACIDO: hub→PA $360K + f→h $200)</div>
 
     <!-- BEFORE / AFTER -->
     <div class="res-section-t">ANTES vs DESPUES</div>
@@ -1334,9 +1343,48 @@
             <div class="res-risk-l">COP/caja MODELO ACTUAL<br>Cobro por caja al transportador</div>
         </div>
         <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="res-risk-v" style="color:var(--red);">$750</div>
-            <div class="res-risk-l">COP/caja NUEVO MODELO<br>Cobro por viaje ponderado (+168%)</div>
+            <div class="res-risk-v" style="color:var(--red);">$919</div>
+            <div class="res-risk-l">COP/caja SC2 Centro ($/viaje)<br>12 fincas Centro promedio ponderado</div>
         </div>
+    </div>
+
+    <!-- 3 SCENARIOS COMPARISON -->
+    <div class="res-section-t">COMPARACION 3 ESCENARIOS</div>
+    <div class="res-metrics" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="res-metric" style="border-color:rgba(255,59,78,0.3);">
+            <div style="font-size:8px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">SC1: Hoy (Zungo)</div>
+            <div class="res-metric-v" style="color:var(--red);">$406</div>
+            <div class="res-metric-l">$/caja · $200K/viaje · 41 viajes</div>
+            <div style="font-size:8px;color:var(--text3);margin-top:2px;">Costo anual: $2,133M</div>
+        </div>
+        <div class="res-metric" style="border-color:rgba(240,160,48,0.3);">
+            <div style="font-size:8px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">SC2: Todos a PA</div>
+            <div class="res-metric-v" style="color:var(--yellow);">$963</div>
+            <div class="res-metric-l">$/caja · $474K/viaje · 41 viajes</div>
+            <div style="font-size:8px;color:var(--text3);margin-top:2px;">Costo anual: $5,058M (+137%)</div>
+        </div>
+        <div class="res-metric" style="border-color:rgba(0,232,120,0.3);">
+            <div style="font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">SC3: Con Hub (acido)</div>
+            <div class="res-metric-v" style="color:var(--yellow);">$810</div>
+            <div class="res-metric-l">$/caja hub · 35 viajes · $109 ahorro</div>
+            <div style="font-size:8px;color:var(--text3);margin-top:2px;">Hub: $568+$42+$200 (esc. acido)</div>
+        </div>
+    </div>
+
+    <!-- ACID SCENARIO DETAIL -->
+    <div class="res-section-t">ESCENARIO ACIDO: SUPUESTOS Y CALCULOS</div>
+    <div class="narrative" style="font-size:11px;">
+        <p><strong>Supuestos del escenario acido (el mas conservador):</strong></p>
+        <p>Hub→PA: <strong>$360K/viaje</strong> (tarifa Chinita, sin negociar). 20 viajes/dia × $360K ÷ 12,674 cajas Centro/dia = <strong>$568/caja</strong>.<br>
+        Finca→Hub: <strong>$200/caja</strong> = $130K/viaje (~8-15 km, estimado por $/km promedio $13,140/km).<br>
+        Consolidacion: <strong>$42/caja</strong> (paletizar + inspeccionar + cargar).<br>
+        Hub total: $568 + $42 + $200 = <strong>$810/caja</strong>.<br>
+        SC2 Centro sin hub: <strong>$919/caja</strong> (26 viajes individuales, promedio ponderado 12 fincas).<br>
+        Ahorro: $919 - $810 = <strong>$109/caja</strong> × 3.30M cajas Centro/ano = <strong>$360M bruto</strong>.<br>
+        OPEX: <strong>$362M/ano</strong> (6 personas $215M + servicios $73M + mant/seg $38M + admin $36M).<br>
+        Neto: $360M - $362M = <strong>~$0/ano</strong> (equilibrio en transporte).<br>
+        CAPEX: <strong>$1,200M</strong> (terreno $100M + pergola $600M + equipos $200M + WK $100M + contingencia $200M).</p>
+        <p><strong>Fuentes:</strong> Tarifas Anderson Mestra Mar 2026. Produccion real por finca. Sencillo 12 pallets × 54 cajas = 648 cajas/viaje. Tarifa tabla ×1.2 para 12 pallets.</p>
     </div>
 
     <!-- NARRATIVE -->
@@ -1400,9 +1448,9 @@ const CONFIG = {
   fleet: { N_MULAS: 4, N_SENC: 6, MULA_CAP: 1152, SENC_CAP: 528 },
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
-          TARIFA_CAJA: 359, FINCA_HUB: 80 },
-  // Datos reales: 15 fincas PA ($890) + 4 Zungo embarcadero ($398) = ponderado $750. Hub 12 mulas PA = $582
-  trip: { TARIFA_VIAJE: 750, HUB_FLETE: 582, HUB_STANDBY: 0 },
+          TARIFA_CAJA: 359, FINCA_HUB: 200 },
+  // Escenario acido: SC2 Centro $919/caja, hub→PA $360K sin negociar = $568/caja, f→h $200
+  trip: { TARIFA_VIAJE: 919, HUB_FLETE: 568, HUB_STANDBY: 0 },
   regional: { ANNUAL_CAJAS: 114e6 }
 };
 
@@ -3720,7 +3768,7 @@ function updateResumenDashboard(){
     const hubViajes = SC_TOTALS ? SC_TOTALS.sc3.viajes : 35;
     const trucksPct = totalViajes > 0 ? Math.round(((totalViajes - hubViajes)/totalViajes)*100) : 15;
 
-    document.getElementById('res-hero-save').textContent = `$${saveAnnual}M`;
+    document.getElementById('res-hero-save').textContent = SC_TOTALS ? '$' + SC_TOTALS.sc3.ahorroCaja + '/caja' : '$109/caja';
     document.getElementById('res-trucks-pct').textContent = `-${trucksPct}%`;
     document.getElementById('res-save-box').textContent = `-$${Math.round(savePerBox)}`;
 
