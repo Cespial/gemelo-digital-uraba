@@ -604,9 +604,9 @@
         <div class="onboarding-desc">
             Modelo logistico de las <b style="color:var(--text);">19 fincas de Grupo 20</b> en Uraba.<br><br>
             Click <b style="color:var(--red);">HOY: ZUNGO</b> para ver el estado actual:
-            26 viajes/dia, 76% llenado, 15 mulas + 11 sencillos.<br><br>
+            41 viajes/dia, 76% llenado, 4 mulas + 6 sencillos.<br><br>
             Click <b style="color:var(--green);">CON HUB</b> para ver la solucion:
-            12 mulas PA + 7 Zungo, 89-98% llenado.
+            10 mulas Centro + 4 mini-hub + 11 zungo = 25 viajes, 89-98% llenado.
         </div>
         <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
     </div>
@@ -675,7 +675,7 @@
                 <div style="color:var(--text2);line-height:1.7;">
                     Sin hub: <span style="color:var(--text);" id="pi-flete">$919</span>/caja (26 viajes, 76% fill)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
-                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$750</span>/caja<br>
+                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$919</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$810</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
                         Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">~$0 (acido)</span>
@@ -1068,8 +1068,8 @@
                 </div>
                 <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$750</div>
-                    <div class="kpi-l">$/caja (ponderado $/viaje)</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$919</div>
+                    <div class="kpi-l">$/caja Centro ($/viaje)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
             </div>
@@ -1077,7 +1077,7 @@
                 <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Transportadores exigen cambio de modelo:</div>
                 Flete sencillo (10p): <span style="color:var(--text);">$250K-500K COP/viaje</span><br>
                 Flete mula (20p): <span style="color:var(--text);">sencillo &times;2 (hasta -$150K G20)</span><br>
-                Equivalente por caja: <span style="color:var(--red);font-weight:600;">~$750 COP (+109% vs hoy)</span><br>
+                Equivalente por caja Centro: <span style="color:var(--red);font-weight:600;">$919 COP (+126% vs $406 hoy)</span><br>
                 <span style="color:var(--text3);font-size:8px;">Sencillo 10p tarifa base, 12p max. Mula 20p tarifa, 24p max. Descuento G20 hasta $150K/viaje mula.</span>
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
@@ -1139,7 +1139,7 @@
             <span style="color:var(--green);">Isocronas Centro:</span> <span id="iso-stats">cargando...</span><br>
             <span style="color:var(--green);">Eliminacion tractomulas:</span> ~89% en via<br>
             <span style="color:var(--green);">Ahorro logistico:</span> <span id="exec-cost-save">calculando...</span><br>
-            <span style="color:var(--green);">Riesgo transporte:</span> $750/caja nuevo vs $359/caja actual<br>
+            <span style="color:var(--green);">Riesgo transporte:</span> $919/caja ($/viaje) vs $406/caja actual<br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
             <span style="color:var(--green);">Municipios:</span> 9 DANE &bull; <span style="color:var(--green);">Veredas:</span> 611 UPRA
         </div>
@@ -1568,7 +1568,7 @@
 // CENTRALIZED CONFIG — all parameters in one place
 // ============================================================
 const CONFIG = {
-  fleet: { N_MULAS: 4, N_SENC: 6, MULA_CAP: 1152, SENC_CAP: 528 },
+  fleet: { N_MULAS: 4, N_SENC: 6, MULA_CAP: 1296, SENC_CAP: 648 }, // 24×54, 12×54
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 35000, TOLL_HUB: 18000, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
           TARIFA_CAJA: 359, FINCA_HUB: 200 },
@@ -3117,7 +3117,7 @@ function updateSim(){
     cv.textContent=c<=5?'Solo G20':c<=20?'G20+algunos':c<=60?`+Uniban (${c}%)`:`Todos (${c}%)`;
     cv.className='sl-v '+(c>60?'r':c>30?'y':'g');
 
-    const cpw=p*1000, cpd=cpw/6, ppd=Math.ceil(cpd/48), tpd=(cpd*20)/1000;
+    const cpw=p*1000, cpd=cpw/5, ppd=Math.ceil(cpd/CAJAS_PALL), tpd=(cpd*20)/1000;
     const {N_MULAS, N_SENC, MULA_CAP, SENC_CAP} = CONFIG.fleet;
     const capViajeDia=(N_MULAS*MULA_CAP+N_SENC*SENC_CAP);
     const viajesNeed=Math.ceil(cpd/capViajeDia);
@@ -3210,7 +3210,7 @@ function updateSim(){
         totalHub = TARIFA_CAJA;
         row1Direct = TARIFA_CAJA; row1Hub = TARIFA_CAJA;
     } else {
-        // === MODELO $/VIAJE: $750/caja sin hub (datos reales produccion + vehiculos, Mar 2026) ===
+        // === MODELO $/VIAJE: $919/caja Centro sin hub (datos reales produccion + vehiculos, Mar 2026) ===
         // Sin hub: tarifa ponderada (flete + stand-by incluidos)
         totalDirect = TARIFA_VIAJE;
         row1Direct = TARIFA_VIAJE;
@@ -3221,7 +3221,7 @@ function updateSim(){
         totalHub = HUB_FLETE + HUB_STANDBY + HUB_CONSOL + FINCA_HUB;
 
         // Update pricing impact panel
-        document.getElementById('pi-flete').textContent = '$750';
+        document.getElementById('pi-flete').textContent = '$' + TARIFA_VIAJE;
         document.getElementById('pi-standby').textContent = '(incluido)';
         document.getElementById('pi-direct-caja').textContent = '$' + totalDirect;
         document.getElementById('pi-hub-caja').textContent = '$' + totalHub;
@@ -3298,7 +3298,7 @@ function updateSim(){
     } else {
         document.getElementById('cost-model-badge').textContent = '$/VIAJE';
         document.getElementById('cost-model-badge').style.color = 'var(--red)';
-        document.getElementById('cost-model-desc').textContent = '$/viaje ponderado: $750/caja sin hub (datos reales Anderson, Mar 2026)';
+        document.getElementById('cost-model-desc').textContent = '$/viaje ponderado Centro: $' + TARIFA_VIAJE + '/caja sin hub (Anderson, Mar 2026)';
         document.getElementById('cost-table-title').textContent = 'Comparacion $/viaje (COP/caja)';
         document.getElementById('cd-fuel-label').textContent = 'Flete/viaje';
         document.getElementById('cd-drv-label').textContent = 'Stand-by';
