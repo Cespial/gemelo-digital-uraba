@@ -1804,21 +1804,6 @@ const _centroCajasDia = _centroFD.reduce((s,f)=>s+f.cs/5,0);
 const _hubFleteCaja = Math.round(_centroTripsHub * ACID.HUB_PA_VIAJE / _centroCajasDia); // $568 (acido)
 const _hubTotal = _hubFleteCaja + ACID.CONSOL + ACID.FH_CAJA; // $810 (acido)
 
-// Sensibilidad: impacto del descuento G20 en el modelo hub
-const SENS_DESCUENTOS = [0, 50000, 75000, 100000, 150000];
-const SENS_DATA = SENS_DESCUENTOS.map(d => {
-    const m20 = _chinitaVPA * 2 - d;
-    const m24 = Math.round(m20 * FACTOR_24);
-    const flete = Math.round(_centroTripsHub * m24 / _centroCajasDia);
-    const total = flete + ACID.CONSOL + ACID.FH_CAJA;
-    const sc2c = Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia);
-    const ahorro = sc2c - total;
-    const bruto = Math.round(ahorro * _centroCajasDia * 5 * 52 / 1e6);
-    const neto = bruto - ACID.OPEX;
-    const pb = neto > 0 ? (ACID.CAPEX / neto).toFixed(1) : 'N/A';
-    return { d, m24, flete, total, ahorro, bruto, neto, pb };
-});
-
 FARM_DATA.forEach(f => {
     const cd = f.cs / 5; // cajas/dia
     const t = _trips(f.pd);
@@ -1853,6 +1838,22 @@ SC_TOTALS.sc3.brutoAnual = Math.round(SC_TOTALS.sc3.ahorroCaja * _centroCajasDia
 SC_TOTALS.sc3.netoAnual = SC_TOTALS.sc3.brutoAnual - ACID.OPEX;
 SC_TOTALS.sc3.payback = SC_TOTALS.sc3.netoAnual > 0 ? (ACID.CAPEX / SC_TOTALS.sc3.netoAnual).toFixed(1) : 'N/A';
 CONFIG.trip.HUB_FLETE = _hubFleteCaja; // mula-based acido ($568)
+
+// Sensibilidad: impacto del descuento G20 en el modelo hub
+// (debe ir DESPUES de FARM_DATA.forEach porque necesita f.sc2.costDia)
+const SENS_DESCUENTOS = [0, 50000, 75000, 100000, 150000];
+const SENS_DATA = SENS_DESCUENTOS.map(d => {
+    const m20 = _chinitaVPA * 2 - d;
+    const m24 = Math.round(m20 * FACTOR_24);
+    const flete = Math.round(_centroTripsHub * m24 / _centroCajasDia);
+    const total = flete + ACID.CONSOL + ACID.FH_CAJA;
+    const sc2c = Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia);
+    const ahorro = sc2c - total;
+    const bruto = Math.round(ahorro * _centroCajasDia * 5 * 52 / 1e6);
+    const neto = bruto - ACID.OPEX;
+    const pb = neto > 0 ? (ACID.CAPEX / neto).toFixed(1) : 'N/A';
+    return { d, m24, flete, total, ahorro, bruto, neto, pb };
+});
 
 // Geocerca telemetry data (March 9-12 2026, 7 vehicles)
 const GEOCERCA_DATA = {
