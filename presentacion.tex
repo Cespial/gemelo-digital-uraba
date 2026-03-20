@@ -435,18 +435,18 @@ Almendros, Matogroso 1 y 2.
     \node[nodo=verde] (h) at (2.8,0) {\faIcon{warehouse}};
     \node[etiq=verde, below=1pt of h] {Centro\\12 fincas};
 
-    \node[nodo=cian] (m) at (5.5,0.8) {\faIcon{truck}};
+    \node[nodo=cian] (m) at (5.5,1.2) {\faIcon{truck}};
     \node[etiq=cian, below=1pt of m] {Mini-Hub (3)};
 
-    \node[nodo=naranja] (z) at (5.5,-0.8) {\faIcon{ship}};
+    \node[nodo=naranja] (z) at (5.5,-1.2) {\faIcon{ship}};
     \node[etiq=naranja, below=1pt of z] {Zungo (4)};
 
-    \node[nodo=azul] (p) at (8.5,0) {\faIcon{anchor}};
+    \node[nodo=azul] (p) at (9,0) {\faIcon{anchor}};
     \node[etiq=azul, below=1pt of p] {Puerto Ant.};
 
-    \draw[linea=verde] (f) -- (h);
-    \draw[linea=verde, line width=2pt] (h) -- node[above, font=\tiny\bfseries, text=verde] {10 mulas} (p);
-    \draw[linea=cian] (m) -- node[above, font=\tiny, text=gris] {4 vj} (p);
+    \draw[linea=verde] (f) -- node[above, font=\tiny, text=gris] {26 senc.} (h);
+    \draw[linea=verde, line width=2pt] (h) -- node[below, font=\tiny\bfseries, text=verde] {10 mulas} (p);
+    \draw[linea=cian] (m) -- node[above, font=\tiny, text=gris, sloped] {4 vj} (p);
     \draw[linea=naranja] (f.south east) -- (z.west);
 \end{tikzpicture}
 \end{center}
