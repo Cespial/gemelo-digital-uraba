@@ -606,7 +606,7 @@
             Click <b style="color:var(--red);">HOY: ZUNGO</b> para ver el estado actual:
             41 viajes/dia, 76% llenado, 4 mulas + 6 sencillos.<br><br>
             Click <b style="color:var(--green);">CON HUB</b> para ver la solucion:
-            10 mulas Centro + 4 mini-hub + 11 zungo = 25 viajes, 89-98% llenado.
+            25 viajes en via principal (10 mulas + 4 mini-hub + 11 zungo) + 26 cortos finca&rarr;hub.
         </div>
         <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
     </div>
@@ -689,10 +689,10 @@
     <div class="c">
         <div class="c-h"><span class="c-t">Indicadores Clave</span><span id="sc-icon" style="font-size:13px;">&#x26A0;</span></div>
         <div class="kpi-g">
-            <div class="kpi tip" data-tip="SC1: ceil(pallets/12) por finca = 41 viajes sencillo. SC3: 10 mulas Centro + 4 senc mini-hub + 11 senc zungo = 25 viajes."><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Viajes/dia en via</div></div>
+            <div class="kpi tip" data-tip="Viajes en VIA PRINCIPAL. SC1: 41 (todo en via). SC3: 25 en via (10 mulas + 4 mini-hub + 11 zungo) + 26 cortos finca-hub en vias locales."><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Viajes en via principal</div></div>
             <div class="kpi tip" data-tip="Tiempo promedio ponderado por produccion. BPR: t_congestion = t_base × (1 + (volumen/capacidad)^3). Base OSRM + factor congestion."><div class="kpi-v y" id="kpi-time">47</div><div class="kpi-l">Min promedio</div></div>
             <div class="kpi tip" data-tip="Distancia promedio ponderada por produccion. SC1: distancia a Zungo (8-28 km). SC2: distancia a PA (9-52 km). SC3: distancia al hub asignado."><div class="kpi-v b" id="kpi-dist">38.2</div><div class="kpi-l">Km promedio</div></div>
-            <div class="kpi tip" data-tip="SC3 vs SC2: ahorro acido = $919 - $810 = $109/caja ($0 desc. mula). Con desc. G20 $150K: hasta $251/caja. Ver AUDITAR y Sensibilidad."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
+            <div class="kpi tip" data-tip="Ahorro acido: $919 - $810 = $109/caja ($0 desc. mula). Via principal: 41→25 (-39%). Viajes totales: 41→51 (+26 finca→hub cortos)."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro vs directo</div></div>
         </div>
     </div>
 
@@ -826,7 +826,7 @@
     <div class="kpi-strip" id="kpi-strip">
         <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-ahorro">$109</div><div class="kpi-strip-l">Ahorro/Ano</div></div>
         <div class="kpi-strip-div"></div>
-        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-trucks">-15%</div><div class="kpi-strip-l">Tractomulas</div></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-trucks">-39%</div><div class="kpi-strip-l">Via principal</div></div>
         <div class="kpi-strip-div"></div>
         <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">Eq.</div><div class="kpi-strip-l">Payback</div></div>
         <div class="kpi-strip-div"></div>
@@ -875,7 +875,7 @@
                 <div style="font-size:16px;font-weight:800;color:var(--green);" id="sc-comp-caja3">$810</div>
                 <div style="font-size:7px;color:var(--text3);">/caja (acido)</div>
                 <div style="font-size:8px;color:var(--text2);margin-top:2px;" id="sc-comp-viaje3">$720K/mula</div>
-                <div style="font-size:8px;color:var(--text3);" id="sc-comp-trips3">25 viajes</div>
+                <div style="font-size:8px;color:var(--text3);" id="sc-comp-trips3">25 via + 26 local</div>
             </div>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);margin-top:6px;text-align:center;" id="sc-comp-annual">
@@ -1052,7 +1052,7 @@
             </div>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);text-align:center;margin-top:8px;">
-            Reduccion: <span style="color:var(--green);font-weight:700;" id="red-pct">89%</span> menos tractomulas
+            Reduccion via principal: <span style="color:var(--green);font-weight:700;" id="red-pct">39%</span> menos viajes en via
         </div>
     </div>
 
@@ -1137,7 +1137,7 @@
             <span style="color:var(--green);">Embarcadero Zungo:</span> 4 fincas (occidente)<br>
             <span style="color:var(--green);">Centro-Puerto OSRM:</span> <span id="exec-hp-dist">--</span><br>
             <span style="color:var(--green);">Isocronas Centro:</span> <span id="iso-stats">cargando...</span><br>
-            <span style="color:var(--green);">Eliminacion tractomulas:</span> ~89% en via<br>
+            <span style="color:var(--green);">Via principal:</span> 41→25 viajes (-39%), +26 cortos finca→hub<br>
             <span style="color:var(--green);">Ahorro logistico:</span> <span id="exec-cost-save">calculando...</span><br>
             <span style="color:var(--green);">Riesgo transporte:</span> $919/caja ($/viaje) vs $406/caja actual<br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
@@ -1428,7 +1428,7 @@
     <div class="res-section-t">METRICAS CLAVE</div>
     <div class="res-metrics">
         <div class="res-metric">
-            <div class="res-metric-v g" id="res-trucks-pct">-89%</div>
+            <div class="res-metric-v g" id="res-trucks-pct">-39%</div>
             <div class="res-metric-l">Tractomulas en via</div>
         </div>
         <div class="res-metric">
@@ -1476,7 +1476,7 @@
         <div class="res-metric" style="border-color:rgba(0,232,120,0.3);">
             <div style="font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">SC3: Con Hub (acido)</div>
             <div class="res-metric-v" style="color:var(--yellow);">$810</div>
-            <div class="res-metric-l">$/caja hub (acido) · 25 viajes · $109 ahorro</div>
+            <div class="res-metric-l">$/caja hub (acido) · 25 via principal · $109 ahorro</div>
             <div style="font-size:8px;color:var(--text3);margin-top:2px;">Hub: $568 flete (mula $0 desc) + $42 consol + $200 f→h</div>
         </div>
     </div>
@@ -1515,7 +1515,7 @@
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Analisis SAS para viabilizar el centro de consolidacion,</strong> y en el camino mapeamos la crisis logistica de la region.</p>
         <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>41 viajes diarios de tractomulas</strong> en una via de un solo carril. Cada mula espera 5-6 horas en puerto. Los transportadores estan migrando a un modelo de cobro por viaje que duplica el costo por caja de $406 a $963.</p>
-        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas salen del centro llenas (24 pallets) hacia Puerto Antioquia. Resultado: <strong>16 viajes menos en Centro (26 sencillos→10 mulas), ahorro $109/caja (acido, $0 descuento)</strong>. Con descuento G20 negociado: hasta $251/caja y payback 2.6 anos.</p>
+        <p>El Centro de Consolidacion Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas salen llenas (24 pallets) hacia Puerto Antioquia. En la <strong>via principal: 26 sencillos se reemplazan por 10 mulas (-62%)</strong>. Se agregan 26 viajes cortos finca→hub (8-15 km, vias locales). Ahorro: $109/caja (acido, $0 descuento). Con descuento G20: hasta $251/caja.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectareas, con capacidad de escalar a otros generadores de carga de la region.</p>
     </div>
 
@@ -2709,7 +2709,7 @@ function renderAuditPanel() {
         ['SC2 viajes/dia', SC_TOTALS.sc2.viajes, 'Mismos viajes que SC1 (mismas fincas, mismos vehiculos)'],
         ['SC2 $/caja promedio', '$' + SC_TOTALS.sc2.costProm, 'Ponderado: tarifa PA × 1.2 × viajes ÷ cajas'],
         ['SC2 costo anual', '$' + SC_TOTALS.sc2.costAnual + 'M', ''],
-        ['SC3 viajes/dia', SC_TOTALS.sc3.viajes, 'Hub ' + _centroTripsHub + ' mulas + Mini-Hub ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' senc + Zungo ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0) + ' senc'],
+        ['SC3 via principal', SC_TOTALS.sc3.viajes, 'Hub ' + _centroTripsHub + ' mulas + MH ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' + Z ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0) + '. +26 finca→hub (vias locales, 8-15 km)'],
         ['SC3 SC2 Centro prom', '$' + SC_TOTALS.sc3.sc2Centro, '12 fincas Centro promedio ponderado bajo SC2'],
         ['SC3 Hub total (acido)', '$' + _hubTotal, '$' + _hubFleteCaja + ' flete + $' + ACID.CONSOL + ' consol + $' + ACID.FH_CAJA + ' f→h'],
         ['SC3 ahorro/caja', '$' + SC_TOTALS.sc3.ahorroCaja, '$' + SC_TOTALS.sc3.sc2Centro + ' - $' + _hubTotal],
@@ -2812,7 +2812,7 @@ function updateScenarioComparison() {
     document.getElementById('sc-comp-caja3').textContent = '$' + _hubTotal;
     document.getElementById('sc-comp-trips1').textContent = SC_TOTALS.sc1.viajes + ' viajes';
     document.getElementById('sc-comp-trips2').textContent = SC_TOTALS.sc2.viajes + ' viajes';
-    document.getElementById('sc-comp-trips3').textContent = SC_TOTALS.sc3.viajes + ' viajes';
+    document.getElementById('sc-comp-trips3').textContent = SC_TOTALS.sc3.viajes + ' via + 26 local';
 }
 
 function updateContextBox() {
@@ -2832,7 +2832,7 @@ function updateContextBox() {
     } else {
         if (box) box.style.borderColor = 'rgba(0,232,120,0.3)';
         el.innerHTML = '<span style="color:var(--green);font-weight:700;">SC3: Con Hub</span><br>' +
-            SC_TOTALS.sc3.viajes + ' viajes (' + _centroTripsHub + ' mulas Centro + ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' MiniHub + ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0) + ' Zungo).<br>$' + _hubTotal + '/caja Centro.';
+            SC_TOTALS.sc3.viajes + ' viajes via principal (' + _centroTripsHub + ' mulas + ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' MH + ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0) + ' Z) + 26 cortos finca→hub.<br>$' + _hubTotal + '/caja Centro.';
     }
 }
 
@@ -2862,7 +2862,7 @@ function showScenarioBanner(sc) {
     } else {
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">SC3: Con Centro de Consolidacion</div>' +
-            '<div class="sc-banner-desc">12 fincas Centro consolidadas + 3 Mini-Hub directo + 4 Zungo embarcadero. ' + SC_TOTALS.sc3.viajes + ' viajes/dia (' + _centroTripsHub + ' mulas). $' + _hubTotal + '/caja Centro.</div>';
+            '<div class="sc-banner-desc">12 fincas Centro consolidadas. ' + SC_TOTALS.sc3.viajes + ' viajes via principal (' + _centroTripsHub + ' mulas) + 26 cortos finca→hub. $' + _hubTotal + '/caja Centro.</div>';
     }
     el.style.display = '';
     el.style.animation = 'none';
@@ -2898,7 +2898,7 @@ function updateCallouts() {
         const saveLabel = isViaje ? '$' + annualSave + 'M ahorro/ano' : 'Valor operativo';
         container.innerHTML =
             '<div class="callout callout-solution pos-tr"><span class="callout-icon">&#x2714;</span> Solo mulas <span class="callout-num">llenas</span><div class="callout-sub">' + (isViaje ? 'sin stand-by' : 'contenerizadas') + '</div></div>' +
-            '<div class="callout callout-solution pos-br"><span class="callout-icon">&#x1F4C9;</span> <span class="callout-num">' + redPct + '% menos</span><div class="callout-sub">de ' + (totalViajes > 0 ? totalViajes : 27) + ' a ' + (hubMulas > 0 ? hubMulas : 18) + ' viajes/dia</div></div>' +
+            '<div class="callout callout-solution pos-br"><span class="callout-icon">&#x1F4C9;</span> <span class="callout-num">' + redPct + '% menos en via</span><div class="callout-sub">' + (totalViajes > 0 ? totalViajes : 27) + '→' + (hubMulas > 0 ? hubMulas : 18) + ' (via ppal)</div></div>' +
             '<div class="callout callout-solution pos-bl"><span class="callout-icon">&#x1F4B0;</span> <span class="callout-num">' + saveLabel + '</span><div class="callout-sub">' + (isViaje ? '-$' + savePerBox + '/caja' : 'Preparacion cambio tarifario') + '</div></div>';
     }
 }
@@ -2921,7 +2921,7 @@ function updateKPIStrip() {
     const redPct = totalViajes > 0 ? Math.round(((totalViajes - hubMulas) / totalViajes) * 100) : 89;
 
     animateValue(document.getElementById('strip-ahorro'), '$' + (r.annualSave || 502) + 'M');
-    animateValue(document.getElementById('strip-trucks'), '-' + redPct + '%');
+    animateValue(document.getElementById('strip-trucks'), '-' + redPct + '% via');
 
     // Payback from financial dashboard if available
     const payEl = document.getElementById('fd-payback');
