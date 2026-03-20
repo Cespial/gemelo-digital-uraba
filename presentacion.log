@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.12)  17 MAR 2026 17:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.12)  19 MAR 2026 20:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -861,6 +861,18 @@ File: pgflibraryarrows.meta.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfarrowwidth=\dimen323
 \pgfarrowlinewidth=\dimen324
 )
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+))
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
 (/usr/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty
 (/usr/local/texlive/2022/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)
 
@@ -875,24 +887,24 @@ LaTeX Info: Redefining \% on input line 25.
 )
 \openout1 = `presentacion.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -950,7 +962,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 64.
+Package hyperref Info: Link coloring OFF on input line 62.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -964,70 +976,70 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count356
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
-LaTeX Info: Redefining \nameref on input line 64.
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
+LaTeX Info: Redefining \nameref on input line 62.
  (./presentacion.out) (./presentacion.out)
 \@outlinefile=\write5
 \openout5 = `presentacion.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 64.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 64.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 62.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 64.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 64.
+(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 62.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 64.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 64.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 64.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 62.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 64.
+(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 64.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 64.
+(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 62.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 64.
+(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 64.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 64.
+(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 62.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 64.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 64.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 62.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 64.
+(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 62.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 64.
+(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 64.
+(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/cmss/b/n --> T1/cmss/b/n on input line 64.
+(Font)                  T1/cmss/b/n --> T1/cmss/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 64.
+(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 64.
+(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 64.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 64.
+(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 62.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 62.
 LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `normal' on input line 64
+(Font)              `pureletters' in the math version `normal' on input line 62
 .
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 64
+(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 62
 .
 LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `bold' on input line 64.
+(Font)              `pureletters' in the math version `bold' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 64
+(Font)                  T1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 62
 .
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 64.
+ut line 62.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/translator/translator-basic-dicti
 onary-English.dict
@@ -1053,53 +1065,111 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 64.
-LaTeX Info: Redefining \% on input line 64.
+LaTeX Info: Redefining \. on input line 62.
+LaTeX Info: Redefining \% on input line 62.
  (./presentacion.nav)
-LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-64.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
 
-(/usr/local/texlive/2022/texmf-dist/tex/latex/base/ts1cmss.fd
-File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-
-LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <28> not available
-(Font)              size <29.86> substituted on input line 97.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/bx/n' in size <28> not available
-(Font)              size <29.86> substituted on input line 97.
-
-[1
-
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 138
-.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 138
-.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 138.
+ut line 62.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-) [2
+)
 
-] [3
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <26> not available
+(Font)              size <24.88> substituted on input line 94.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/bx/n' in size <26> not available
+(Font)              size <24.88> substituted on input line 94.
+
+[1
+
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.142 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.142 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.142 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.142 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.142 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.142 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+[2
+
+]
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <28> not available
+(Font)              size <29.86> substituted on input line 179.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/bx/n' in size <28> not available
+(Font)              size <29.86> substituted on input line 179.
+
+[3
 
 ]
 ! Illegal parameter number in definition of \iterate.
 <to be read again> 
                    1
-l.228 \end{frame}
+l.240 \end{frame}
                  
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
@@ -1108,7 +1178,7 @@ are all screwed up? I'm going to assume that you meant ##.
 ! Illegal parameter number in definition of \iterate.
 <to be read again> 
                    1
-l.228 \end{frame}
+l.240 \end{frame}
                  
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
@@ -1117,7 +1187,7 @@ are all screwed up? I'm going to assume that you meant ##.
 ! Illegal parameter number in definition of \iterate.
 <to be read again> 
                    1
-l.228 \end{frame}
+l.240 \end{frame}
                  
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
@@ -1126,7 +1196,43 @@ are all screwed up? I'm going to assume that you meant ##.
 ! Illegal parameter number in definition of \iterate.
 <to be read again> 
                    1
-l.228 \end{frame}
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.240 \end{frame}
                  
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
@@ -1135,7 +1241,7 @@ are all screwed up? I'm going to assume that you meant ##.
 ! Illegal parameter number in definition of \beamer@doifinframe.
 <to be read again> 
                    1
-l.228 \end{frame}
+l.240 \end{frame}
                  
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
@@ -1144,46 +1250,623 @@ are all screwed up? I'm going to assume that you meant ##.
 ! Illegal parameter number in definition of \beamer@doifinframe.
 <to be read again> 
                    1
-l.228 \end{frame}
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.240 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree3 on i
+nput line 240.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fontawesome5/ufontawesomefree3.fd
+) [4
+
+]
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.292 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree0 on i
+nput line 292.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/fontawesome5/ufontawesomefree0.fd
+) [5
+
+]
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.351 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.351 \end{frame}
                  
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on i
-nput line 228.
+nput line 351.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/fontawesome5/ufontawesomefree2.fd
 )
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree0 on i
-nput line 228.
+Overfull \vbox (18.04243pt too high) detected at line 351
+ []
 
-(/usr/local/texlive/2022/texmf-dist/tex/latex/fontawesome5/ufontawesomefree0.fd
-)
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree3 on i
-nput line 228.
-
-(/usr/local/texlive/2022/texmf-dist/tex/latex/fontawesome5/ufontawesomefree3.fd
-) [4
-
-] [5
-
-] [6
+[6
 
 ] [7
 
-] [8
+]
 
-] [9
+LaTeX Font Warning: Font shape `T1/cmss/bx/n' in size <20> not available
+(Font)              size <20.74> substituted on input line 461.
+
+
+Overfull \vbox (8.76372pt too high) detected at line 461
+ []
+
+[8
+
+]
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.515 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.515 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.515 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+                   1
+l.515 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.515 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+                   1
+l.515 \end{frame}
+                 
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <24> not available
+(Font)              size <24.88> substituted on input line 515.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/bx/n' in size <24> not available
+(Font)              size <24.88> substituted on input line 515.
+
+! Undefined control sequence.
+\pgfutil@next ...flinewidth =\tikzscope@linewidth 
+                                                  \tikz@path@do@at@end 
+l.515 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \let 
+l.515 \end{frame}
+                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \let 
+l.515 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgfutil@next ...flinewidth =\tikzscope@linewidth 
+                                                  \tikz@path@do@at@end 
+l.515 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \let 
+l.515 \end{frame}
+                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \let 
+l.515 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgfutil@next ...flinewidth =\tikzscope@linewidth 
+                                                  \tikz@path@do@at@end 
+l.515 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \global 
+l.515 \end{frame}
+                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \global 
+l.515 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgfsys@call@end ->\pgfsys@end@save 
+                                    \pgfsys@endscope 
+l.515 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.515 \end{frame}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Undefined control sequence.
+\endpgfscope ...pgflinewidth =\pgfscope@linewidth 
+                                                  \global \let \pgf@strokeco...
+l.515 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \global 
+l.515 \end{frame}
+                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \global 
+l.515 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Extra }, or forgotten \endgroup.
+\endpgfpicture ...dpicture \endgroup \hss \egroup 
+                                                  \pgfsys@typesetpicturebox ...
+l.515 \end{frame}
+                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+! LaTeX Error: \begin{beamer@frameslide} on input line 515 ended by \end{tikzpi
+cture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.515 \end{frame}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.515 \end{frame}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Infinite glue shrinkage found in a paragraph.
+<inserted text> }
+                 
+l.515 \end{frame}
+                 
+The paragraph just ended includes some glue that has
+infinite shrinkability, e.g., `\hskip 0pt minus 1fil'.
+Such glue doesn't belong there---it allows a paragraph
+of any length to fit on one line. But it's safe to proceed,
+since the offensive shrinkability has been made finite.
+
+
+! LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.515 \end{frame}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.515 \end{frame}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+
+! LaTeX Error: \begin{document} ended by \end{beamer@framepauses}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.515 \end{frame}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.515 \end{frame}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+! Too many }'s.
+\endbeamer@frameslide ...amer@framepauses}\egroup 
+                                                  \ifx \beamer@frametitle \@...
+l.515 \end{frame}
+                 
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+! Undefined control sequence.
+\endbeamer@frameslide ...box \else \beamer@zoomer 
+                                                  \fi \beamer@undolabels \be...
+l.515 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{beamer@frameslide}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.515 \end{frame}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.515 \end{frame}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+[9
+
+] [10
+
+] [11
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 674--674
+\T1/cmss/m/n/8 Menos con-ges-tión, me-nos
+ []
+
+
+Underfull \hbox (badness 5403) in paragraph at lines 674--674
+\T1/cmss/m/n/8 Car-ga sa-le con-te-ne-ri-za-da pa-ra
+ []
+
+[12
+
+] [13
 
 ]
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
-nput line 490.
+nput line 745.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd
-) [10
+) [14
 
-] [11
+] [15
 
 ]
 \tf@nav=\write6
@@ -1207,47 +1890,48 @@ Package rerunfilecheck Info: File `presentacion.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30380 strings out of 478268
- 614751 string characters out of 5846347
- 848085 words of memory out of 5000000
- 47960 multiletter control sequences out of 15000+600000
- 500320 words of font info for 105 fonts, out of 8000000 for 9000
+ 31105 strings out of 478268
+ 630618 string characters out of 5846347
+ 874570 words of memory out of 5000000
+ 48666 multiletter control sequences out of 15000+600000
+ 512343 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,416b,1051s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{
-/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{/
-usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free3.enc}{/u
-sr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc}{/us
-r/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc}</usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free
--Solid.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ss12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-s8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
-pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
-0.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0500.
-pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></us
-r/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/
-local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/loca
-l/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx0600.pfb></usr/local/
-texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx0800.pfb></usr/local/te
-xlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx0900.pfb></usr/local/texl
-ive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texliv
-e/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/
-2022/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/20
-22/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2022
-/texmf-dist/fonts/type1/public/cm-super/sfsx2986.pfb>
-Output written on presentacion.pdf (11 pages, 402033 bytes).
+ 128i,17n,122p,416b,1073s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{
+/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc}{/
+usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc}{/u
+sr/local/texlive/2022/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free3.enc}</us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Fre
+e-Solid.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsi0800.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb></u
+sr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/l
+ocal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx0600.pfb></usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx0800.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/public/cm-super/sfsx0900.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb></usr/local/texlive/2022/texm
+f-dist/fonts/type1/public/cm-super/sfsx2986.pfb>
+Output written on presentacion.pdf (15 pages, 434186 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
- 170 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 287 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 
