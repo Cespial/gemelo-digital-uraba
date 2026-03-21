@@ -244,55 +244,128 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 4: COMO FUNCIONA LA TARIFA (PEDAGOGICO) -->
+<!-- SLIDE 4a: TARIFA SENCILLO — PASO A PASO -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--blue);">Entendiendo las Tarifas</div>
-    <div class="slide-title" style="font-size:32px;">Como se cobra<br>el transporte por viaje</div>
-    <div class="two-col" style="margin-top:8px;">
-        <div class="tariff-card">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Camion Sencillo</div>
-            <div class="tariff-row">
-                <div class="tariff-icon">&#x1F69A;</div>
-                <div class="tariff-detail">
-                    <div style="font-size:12px;color:var(--text2);">Tarifa base (10 pallets)</div>
-                    <div class="tariff-price" style="color:var(--yellow);">$250K&ndash;$500K</div>
-                    <div style="font-size:10px;color:var(--text3);">Segun distancia y finca</div>
+    <div class="slide-tag" style="color:var(--blue);">Entendiendo las Tarifas (1/2)</div>
+    <div class="slide-title" style="font-size:32px;">Paso a paso: tarifa de<br>un camion sencillo</div>
+    <div class="slide-body" style="margin-bottom:16px;">
+        La tabla de Anderson Mestra da el precio por viaje para <b style="color:var(--text);">10 pallets</b>. El sencillo carga <b style="color:var(--text);">12 pallets</b>.
+    </div>
+
+    <div class="block-stack" style="max-width:800px;">
+        <div class="block" style="background:rgba(56,152,255,0.08);border:1px solid rgba(56,152,255,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(56,152,255,0.15);color:var(--blue);">A</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Tarifa tabla Anderson</b> (10 pallets)</div>
+                    <div class="block-math">Varia segun finca y distancia</div>
                 </div>
             </div>
-            <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:10px;">
-                <div style="font-size:11px;color:var(--text2);line-height:1.6;">
-                    <span style="color:var(--text3);">Capacidad real:</span> <b style="color:var(--text);">12 pallets</b><br>
-                    <span style="color:var(--text3);">Factor:</span> 12/10 = <b style="color:var(--yellow);">&times;1.2</b> sobre tarifa base<br>
-                    <span style="color:var(--text3);">Ejemplo Chinita:</span> $300K &times; 1.2 = <b>$360K/viaje</b>
-                </div>
-            </div>
+            <div class="block-val" style="color:var(--text2);font-size:14px;">Ej: $300K</div>
         </div>
-        <div class="tariff-card">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Tractomula (Mula)</div>
-            <div class="tariff-row">
-                <div class="tariff-icon">&#x1F69B;</div>
-                <div class="tariff-detail">
-                    <div style="font-size:12px;color:var(--text2);">Tarifa = sencillo &times; 2</div>
-                    <div class="tariff-price" style="color:var(--orange);">$500K&ndash;$1,000K</div>
-                    <div style="font-size:10px;color:var(--text3);">Proporcional al sencillo</div>
+        <div class="block" style="background:rgba(56,152,255,0.08);border:1px solid rgba(56,152,255,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(56,152,255,0.15);color:var(--blue);">B</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Sencillo carga 12p, no 10</b> &rarr; factor &times;1.2</div>
+                    <div class="block-math">tarifa base &times; 1.2</div>
                 </div>
             </div>
-            <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:10px;">
-                <div style="font-size:11px;color:var(--text2);line-height:1.6;">
-                    <span style="color:var(--text3);">Capacidad real:</span> <b style="color:var(--text);">24 pallets</b><br>
-                    <span style="color:var(--text3);">Factor:</span> 24/20 = <b style="color:var(--orange);">&times;1.2</b> sobre tarifa mula<br>
-                    <span style="color:var(--text3);">Ejemplo Chinita:</span> $600K &times; 1.2 = <b>$720K/viaje</b>
+            <div class="block-val" style="color:var(--blue);font-size:14px;">$300K &times; 1.2 = <b>$360K</b></div>
+        </div>
+        <div class="block" style="background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(0,232,120,0.15);color:var(--green);">C</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Cada viaje = 12p &times; 54 cajas = 648 cajas</b></div>
+                    <div class="block-math">$/caja = $/viaje &divide; 648</div>
                 </div>
             </div>
+            <div class="block-val" style="color:var(--green);font-size:14px;">$360K &divide; 648 = <b>$556/caja</b></div>
         </div>
     </div>
-    <div class="highlight-box blue" style="margin-top:20px;max-width:1100px;">
-        <span style="color:var(--blue);font-weight:700;">Descuento G20:</span>
-        <span style="color:var(--text2);"> Por volumen, G20 puede negociar hasta <b style="color:var(--green);">$150,000 menos</b> por viaje de mula. En el escenario acido, asumimos <b style="color:var(--yellow);">$0 de descuento</b> (peor caso).</span>
+
+    <div style="margin-top:20px;width:100%;max-width:800px;">
+        <table class="sens-table" style="font-size:12px;">
+            <tr>
+                <th style="text-align:left;">Finca</th>
+                <th>Tabla (10p)</th>
+                <th>&times;1.2 (12p)</th>
+                <th>$/caja</th>
+                <th>km a PA</th>
+            </tr>
+            <tr><td style="color:var(--text2);">Oasis (Mini-Hub)</td><td>$250K</td><td>$300K</td><td>$437</td><td style="color:var(--text3);">9 km</td></tr>
+            <tr><td style="color:var(--text2);">Chinita (Centro)</td><td>$300K</td><td>$360K</td><td>$556</td><td style="color:var(--text3);">17 km</td></tr>
+            <tr><td style="color:var(--text2);">Sierra (Centro)</td><td>$370K</td><td>$444K</td><td>$685</td><td style="color:var(--text3);">25 km</td></tr>
+            <tr><td style="color:var(--text2);">M. Bonita (Centro)</td><td>$450K</td><td>$540K</td><td>$833</td><td style="color:var(--text3);">36 km</td></tr>
+            <tr><td style="color:var(--text2);">Pto. Fijo (Zungo)</td><td>$500K</td><td>$600K</td><td>$926</td><td style="color:var(--text3);">52 km</td></tr>
+        </table>
     </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:12px;">
-        Fuente: Anderson Mestra, Marzo 2026. Pallet: 54 cajas. Sencillo max 12p, mula max 24p.
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
+        Fuente: tabla Anderson Mestra, Marzo 2026. Pallet: 54 cajas.
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4b: TARIFA MULA — PASO A PASO -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--blue);">Entendiendo las Tarifas (2/2)</div>
+    <div class="slide-title" style="font-size:32px;">Paso a paso: tarifa de<br>una mula (tractomula)</div>
+    <div class="slide-body" style="margin-bottom:16px;">
+        La mula carga el <b style="color:var(--text);">doble</b> de pallets. La tarifa es <b style="color:var(--text);">proporcional</b> al sencillo.
+    </div>
+
+    <div class="block-stack" style="max-width:800px;">
+        <div class="block" style="background:rgba(255,122,48,0.08);border:1px solid rgba(255,122,48,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(255,122,48,0.15);color:var(--orange);">A</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Tarifa mula (20p) = sencillo (10p) &times; 2</b></div>
+                    <div class="block-math">Proporcional</div>
+                </div>
+            </div>
+            <div class="block-val" style="color:var(--text2);font-size:14px;">$300K &times; 2 = <b>$600K</b></div>
+        </div>
+        <div class="block" style="background:rgba(255,122,48,0.08);border:1px solid rgba(255,122,48,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(255,122,48,0.15);color:var(--orange);">B</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Mula carga 24p, no 20</b> &rarr; factor &times;1.2</div>
+                    <div class="block-math">tarifa mula &times; 1.2</div>
+                </div>
+            </div>
+            <div class="block-val" style="color:var(--orange);font-size:14px;">$600K &times; 1.2 = <b>$720K</b></div>
+        </div>
+        <div class="block" style="background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(0,232,120,0.15);color:var(--green);">C</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Cada mula = 24p &times; 54 cajas = 1,296 cajas</b></div>
+                    <div class="block-math">$/caja = $/viaje &divide; 1,296</div>
+                </div>
+            </div>
+            <div class="block-val" style="color:var(--green);font-size:14px;">$720K &divide; 1,296 = <b>$556/caja</b></div>
+        </div>
+        <div class="block" style="background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.15);">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <div class="step-num" style="background:rgba(0,232,120,0.15);color:var(--green);">D</div>
+                <div>
+                    <div class="block-label"><b style="color:var(--text);">Descuento G20: hasta $150K menos por viaje</b></div>
+                    <div class="block-math">Acido: $0 (no se logra negociar nada)</div>
+                </div>
+            </div>
+            <div class="block-val" style="color:var(--yellow);font-size:14px;">$720K &minus; $0 = <b>$720K</b></div>
+        </div>
+    </div>
+
+    <div class="highlight-box yellow" style="margin-top:16px;max-width:800px;">
+        <span style="color:var(--yellow);font-weight:700;">Supuesto clave:</span>
+        <span style="color:var(--text2);"> "La tarifa es proporcional entre sencillo y mula, con tolerancia de hasta $150K menos, segun la capacidad de negociacion de G20." &mdash; Informacion del cliente, Marzo 2026.</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
+        Sencillo: max 12p (tarifa base 10p). Mula: max 24p (tarifa base 20p). Pallet: 54 cajas.
     </div>
 </div>
 
@@ -338,9 +411,77 @@
         </div>
     </div>
     <div class="highlight-box" style="max-width:900px;">
-        <b style="color:var(--green);">Resultado:</b>
-        <span style="color:var(--text2);">De 41 viajes/dia a <b style="color:var(--green);">25 viajes</b> (10 mulas Centro + 4 mini-hub + 11 zungo). Contenerizadas, 89-98% llenado, espera &lt;1 hora en puerto.</span>
-        <b style="color:var(--green);"> &minus;39% trafico en via.</b>
+        <b style="color:var(--green);">Via principal:</b>
+        <span style="color:var(--text2);">41 &rarr; <b style="color:var(--green);">25 viajes</b> (<b style="color:var(--green);">&minus;39%</b>). Se agregan <b style="color:var(--yellow);">26 viajes cortos</b> finca&rarr;hub (8&ndash;15 km, vias locales). Total: 41 &rarr; 51. Contenerizado, 89&ndash;98% llenado, espera &lt;1h en puerto.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5b: LA CUENTA REAL DE VIAJES -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--yellow);">Transparencia</div>
+    <div class="slide-title" style="font-size:34px;">La cuenta real de viajes</div>
+    <div class="slide-body" style="margin-bottom:16px;">
+        El hub reduce viajes en la via principal, pero <b style="color:var(--text);">agrega</b> viajes cortos finca&rarr;hub:
+    </div>
+
+    <table class="sens-table" style="max-width:800px;">
+        <tr>
+            <th style="text-align:left;">Tipo de viaje</th>
+            <th>SC1 (Hoy)</th>
+            <th>SC3 (Hub)</th>
+            <th>Cambio</th>
+        </tr>
+        <tr><td colspan="4" style="text-align:left;color:var(--red);font-weight:700;font-size:11px;padding:8px 12px 4px;border:none;">VIA PRINCIPAL (carretera de un carril)</td></tr>
+        <tr>
+            <td style="color:var(--text2);">Centro &rarr; Zungo/PA</td>
+            <td style="color:var(--red);font-weight:600;">26</td>
+            <td style="color:var(--text3);">&mdash;</td>
+            <td style="color:var(--text3);font-size:11px;">reemplazados</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text2);">Hub &rarr; PA (mulas)</td>
+            <td style="color:var(--text3);">&mdash;</td>
+            <td style="color:var(--green);font-weight:600;">10</td>
+            <td style="color:var(--text3);font-size:11px;">nuevos, consolidados</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text2);">Mini-Hub &rarr; PA</td>
+            <td>4</td>
+            <td>4</td>
+            <td style="color:var(--text3);font-size:11px;">sin cambio</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text2);">Zungo &rarr; Embarcadero</td>
+            <td>11</td>
+            <td>11</td>
+            <td style="color:var(--text3);font-size:11px;">sin cambio</td>
+        </tr>
+        <tr style="background:rgba(0,232,120,0.06);">
+            <td style="color:var(--green);font-weight:700;">Subtotal via ppal.</td>
+            <td style="color:var(--red);font-weight:700;">41</td>
+            <td style="color:var(--green);font-weight:700;">25</td>
+            <td style="color:var(--green);font-weight:700;">&minus;39%</td>
+        </tr>
+        <tr><td colspan="4" style="text-align:left;color:var(--blue);font-weight:700;font-size:11px;padding:8px 12px 4px;border:none;">VIAS LOCALES (internas, 8&ndash;15 km)</td></tr>
+        <tr>
+            <td style="color:var(--text2);">Finca &rarr; Hub</td>
+            <td>0</td>
+            <td style="color:var(--blue);font-weight:600;">26</td>
+            <td style="color:var(--text3);font-size:11px;">nuevos, cortos</td>
+        </tr>
+        <tr style="background:rgba(240,160,48,0.06);border-top:2px solid var(--border2);">
+            <td style="color:var(--text);font-weight:800;">TOTAL viajes</td>
+            <td style="color:var(--text);font-weight:800;">41</td>
+            <td style="color:var(--text);font-weight:800;">51</td>
+            <td style="color:var(--red);font-weight:700;">+24%</td>
+        </tr>
+    </table>
+
+    <div class="highlight-box yellow" style="margin-top:16px;max-width:800px;">
+        <span style="color:var(--yellow);font-weight:700;">Lectura honesta:</span>
+        <span style="color:var(--text2);"> Los viajes totales <b style="color:var(--text);">suben</b> de 41 a 51. Pero los 26 nuevos viajes finca&rarr;hub son <b style="color:var(--text);">cortos</b> (8&ndash;15 km) y en <b style="color:var(--text);">vias locales/internas</b>, no en la carretera congestionada de un solo carril. El beneficio real es la <b style="color:var(--green);">reduccion de 41 a 25 en la via principal (&minus;39%)</b>, con carga contenerizada.</span>
     </div>
 </div>
 
@@ -562,23 +703,39 @@
     <div class="three-col" style="margin-top:8px;">
         <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
             <div class="kpi-val" style="font-size:36px;color:var(--green);">-39%</div>
-            <div class="kpi-label">Trafico en via</div>
-            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">41 viajes &rarr; 25 viajes.<br>26 sencillos Centro &rarr; 10 mulas.</div>
+            <div class="kpi-label">Via principal</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">41 &rarr; 25 en via ppal.<br>+26 cortos finca&rarr;hub.</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(24,216,208,0.2);">
-            <div class="kpi-val" style="font-size:36px;color:var(--cyan);">&#x1F4E6;</div>
-            <div class="kpi-label">Contenerizacion</div>
-            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">Carga sale contenerizada para Puerto Antioquia. Espera &lt;1h vs 5-6h hoy.</div>
+            <div class="kpi-val" style="font-size:36px;color:var(--cyan);">&lt;1h</div>
+            <div class="kpi-label">Espera en puerto</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">Contenerizado listo<br>vs 5&ndash;6h hoy.</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(56,152,255,0.2);">
             <div class="kpi-val" style="font-size:36px;color:var(--blue);">402</div>
-            <div class="kpi-label">Fincas en la zona</div>
-            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">Servicio a terceros genera ingresos. Uniban tiene 250 fincas en la region.</div>
+            <div class="kpi-label">Fincas en zona</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">Servicio a terceros.<br>Ingresos adicionales.</div>
         </div>
     </div>
-    <div class="highlight-box" style="margin-top:24px;max-width:1100px;">
-        <b style="color:var(--green);">Posicion estrategica:</b>
-        <span style="color:var(--text2);"> Puerto Antioquia maneja 7M ton/ano. Todo productor necesita consolidar antes de llegar. G20 puede ser el <b style="color:var(--text);">operador logistico de referencia</b> en Uraba &mdash; no solo para banano.</span>
+    <div class="two-col" style="margin-top:20px;max-width:1100px;">
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Hoy (sin centro)</div>
+            <ul class="bullets red" style="font-size:13px;line-height:2;">
+                <li>Recoleccion a las 2&ndash;3 AM</li>
+                <li>Camiones devueltos a las 11 PM</li>
+                <li>Coordinacion manual 19 fincas</li>
+                <li>Sin trazabilidad</li>
+            </ul>
+        </div>
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Con centro</div>
+            <ul class="bullets green" style="font-size:13px;line-height:2;">
+                <li>Turnos planificados desde 9 AM</li>
+                <li>Fruta contenerizada</li>
+                <li>Trazabilidad pallet &rarr; puerto</li>
+                <li>Escalable a terceros</li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -588,30 +745,49 @@
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--cyan);">Escalabilidad</div>
     <div class="slide-title" style="font-size:34px;">Servicio a terceros:<br>acelerando el payback</div>
-    <div class="slide-body" style="margin-bottom:20px;">
-        El Centro no tiene por que servir solo a G20. Cualquier productor que necesite llegar a Puerto Antioquia es un cliente potencial.
+    <div class="slide-body" style="margin-bottom:16px;">
+        G20 = 4.7% region. Consolidacion cuesta <b style="color:var(--text);">$42/caja</b> &rarr; tarifa minima a terceros: <b style="color:var(--text);">&gt;$42</b>.
     </div>
-    <div class="two-col" style="max-width:900px;">
-        <div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:8px;">FASE 1: GRUPO 20</div>
-            <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);margin-bottom:12px;">
-                <div class="kpi-val" style="font-size:28px;color:var(--green);">19 fincas</div>
-                <div class="kpi-label">2,000 ha &bull; 5.7M cajas/ano</div>
-            </div>
-            <div style="font-size:13px;color:var(--text2);line-height:1.6;">
-                Consolidar la operacion propia. Validar el modelo. Generar datos reales de costo y eficiencia.
-            </div>
-        </div>
-        <div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:8px;">FASE 2: TERCEROS</div>
-            <div class="kpi-box" style="border-color:rgba(56,152,255,0.2);margin-bottom:12px;">
-                <div class="kpi-val" style="font-size:28px;color:var(--blue);">402 fincas</div>
-                <div class="kpi-label">Potencial regional completo</div>
-            </div>
-            <div style="font-size:13px;color:var(--text2);line-height:1.6;">
-                Cobrar servicio de consolidacion. Ingresos adicionales cubren OPEX y aceleran el payback significativamente.
-            </div>
-        </div>
+
+    <table class="sens-table" style="max-width:800px;margin-bottom:16px;">
+        <tr>
+            <th style="text-align:left;">Tarifa/caja</th>
+            <th>5% region</th>
+            <th>10% region</th>
+            <th>25% region</th>
+        </tr>
+        <tr style="background:rgba(255,59,78,0.05);">
+            <td style="color:var(--text3);">$42 (= costo)</td>
+            <td style="color:var(--text3);">$228M</td>
+            <td style="color:var(--text3);">$457M</td>
+            <td style="color:var(--text3);">$1,142M</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$50</td>
+            <td>$272M</td>
+            <td>$544M</td>
+            <td>$1,359M</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$60</td>
+            <td>$326M</td>
+            <td style="color:var(--green);font-weight:600;">$652M</td>
+            <td>$1,631M</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$80</td>
+            <td>$435M</td>
+            <td>$870M</td>
+            <td>$2,175M</td>
+        </tr>
+    </table>
+
+    <div class="highlight-box" style="max-width:800px;">
+        <b style="color:var(--green);">Con $60/caja y 10% region:</b>
+        <span style="color:var(--text2);"> ingreso <b style="color:var(--green);">$652M</b> &gt; OPEX $362M. El hub se paga solo con terceros, <b style="color:var(--text);">sin depender del ahorro de transporte</b>. Con el acido (transporte en equilibrio): <b style="color:var(--green);">terceros son la rentabilidad del proyecto</b>.</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
+        PA 7M ton. Uniban 250+ fincas. 402 bananeras en zona. Piso = costo consolidacion $42/caja.
     </div>
 </div>
 
@@ -639,11 +815,13 @@
 <div class="slide center">
     <div class="slide-tag" style="color:var(--green);">Siguientes Pasos</div>
     <div class="slide-title" style="font-size:38px;">La pregunta para la Junta</div>
-    <div style="max-width:800px;margin:0 auto;">
-        <div class="quote">
-            En el peor caso ($0 descuento), el hub se paga solo en transporte. Con negociacion realista, el payback es de 3 a 5 anos. El beneficio logistico &mdash; menos camiones, contenerizacion, posicion estrategica en Puerto Antioquia &mdash; no tiene precio.
-            <b style="color:var(--green);">La pregunta es cuando empezamos.</b>
-            <div class="quote-author">&mdash; Anderson Mestra, Marzo 2026 &bull; Modelo auditado con datos reales por finca</div>
+    <div style="max-width:900px;margin:0 auto;">
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:20px;">
+            <b style="color:var(--text);">Sin hub:</b> $919/caja ($474K/viaje prom.), 26 sencillos Centro, 41 viajes/dia total.<br>
+            <b style="color:var(--green);">Con hub (acido):</b> $810/caja, 10 mulas Centro, 25 viajes/dia. <b style="color:var(--green);">Ahorro $109/caja &rarr; equilibrio.</b><br>
+            <b style="color:var(--green);">Con negociacion $75K desc:</b> payback 5.2a, neto $231M/ano.<br>
+            <b style="color:var(--blue);">Con terceros (10%, $60/caja):</b> $652M ingresos adicionales.<br>
+            <b style="color:var(--green);">Via ppal:</b> &minus;39% (41&rarr;25), +26 cortos finca&rarr;hub. Contenerizado, &lt;1h espera.
         </div>
     </div>
     <div style="margin-top:36px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
@@ -674,7 +852,7 @@
 
 <!-- NAVIGATION -->
 <div class="nav">
-    <span class="nav-counter" id="counter">1 / 13</span>
+    <span class="nav-counter" id="counter">1 / 15</span>
     <button class="nav-btn" onclick="prev()">&#x2190;</button>
     <button class="nav-btn" onclick="next()">&#x2192;</button>
 </div>

@@ -2628,7 +2628,7 @@ function openFarmPanel(farmId) {
     html += '<div class="fp-formula">';
     html += 'Sencillo: 12p × 54 cajas = 648 cajas/viaje (tarifa 10p × 1.2).<br>';
     html += 'Mula: 24p × 54 cajas = 1,296 cajas/viaje (tarifa 20p × 1.2).<br>';
-    html += 'Tarifa mula: sencillo × 2 - $150K (descuento G20).<br>';
+    html += 'Tarifa mula: sencillo × 2 (hasta -$' + (DESC_MULA_G20/1000) + 'K desc G20, acido: $0).<br>';
     html += 'Hub→PA: $' + (ACID.HUB_PA_VIAJE/1000) + 'K/mula (acido: Chinita $300K×2=$600K×1.2, $0 desc).<br>';
     html += 'F→H: $200/caja = $130K/viaje (escenario acido).<br>';
     html += 'Consolidacion: $42/caja (paletizar+inspeccionar).<br>';

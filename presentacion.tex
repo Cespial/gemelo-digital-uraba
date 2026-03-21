@@ -413,6 +413,70 @@ Almendros, Matogroso 1 y 2.
 \end{frame}
 
 % ============================================================
+% 7b. LAS 19 FINCAS (DETALLE)
+% ============================================================
+\begin{frame}
+\frametitle{Las 19 fincas: producci\'on y costos}
+\tagline{azul}{Detalle por Finca}
+\vspace{-4pt}
+
+\begin{center}
+\tiny
+\renewcommand{\arraystretch}{0.88}
+\begin{tabular}{c l l r r r r}
+    \toprule
+    \textbf{ID} & \textbf{Finca} & \textbf{Grupo} & \textbf{Cajas/sem} & \textbf{Pall/d} & \textbf{\$/cj hoy} & \textbf{\$/vj PA} \\
+    \midrule
+    \rowcolor{amarilloclaro}
+    F01 & Punto Fijo    & \textcolor{naranja}{Zungo}    & 7,856 & 29.1 & \$359 & \$500K \\
+    \rowcolor{amarilloclaro}
+    F02 & Almendros     & \textcolor{naranja}{Zungo}    & 5,931 & 22.0 & \$349 & \$500K \\
+    \rowcolor{azulclaro}
+    F03 & Oasis         & \textcolor{cian}{Mini-Hub}     & 3,430 & 12.7 & \$519 & \$250K \\
+    \rowcolor{azulclaro}
+    F04 & Dunas         & \textcolor{cian}{Mini-Hub}     & 2,711 & 10.0 & \$519 & \$250K \\
+    \rowcolor{azulclaro}
+    F05 & Guadalupe     & \textcolor{cian}{Mini-Hub}     & 2,667 &  9.9 & \$519 & \$250K \\
+    \rowcolor{verdeclaro}
+    F06 & Chinita       & \textcolor{verde}{Centro}      & 10,113 & 37.5 & \$499 & \$300K \\
+    \rowcolor{verdeclaro}
+    F07 & Santa Marta   & \textcolor{verde}{Centro}      & 7,731 & 28.6 & \$499 & \$300K \\
+    \rowcolor{verdeclaro}
+    F08 & La Llave      & \textcolor{verde}{Centro}      & 4,104 & 15.2 & \$499 & \$300K \\
+    \rowcolor{amarilloclaro}
+    F09 & Matogroso 2   & \textcolor{naranja}{Zungo}     & 8,375 & 31.0 & \$295 & \$500K \\
+    \rowcolor{amarilloclaro}
+    F10 & Matogroso 1   & \textcolor{naranja}{Zungo}     & 6,662 & 24.7 & \$295 & \$500K \\
+    \rowcolor{verdeclaro}
+    F11 & Sierra        & \textcolor{verde}{Centro}      & 2,784 & 10.3 & \$453 & \$370K \\
+    \rowcolor{verdeclaro}
+    F12 & Villa Fresia  & \textcolor{verde}{Centro}      & 3,071 & 11.4 & \$453 & \$370K \\
+    \rowcolor{verdeclaro}
+    F13 & Tagual        & \textcolor{verde}{Centro}      & 4,464 & 16.5 & \$453 & \$400K \\
+    \rowcolor{verdeclaro}
+    F14 & San Felipe    & \textcolor{verde}{Centro}      & 4,982 & 18.5 & \$453 & \$400K \\
+    \rowcolor{verdeclaro}
+    F15 & Maritu        & \textcolor{verde}{Centro}      & 2,530 &  9.4 & \$453 & \$370K \\
+    \rowcolor{verdeclaro}
+    F16 & San Juan      & \textcolor{verde}{Centro}      & 4,235 & 15.7 & \$426 & \$400K \\
+    \rowcolor{verdeclaro}
+    F17 & Santa Helena  & \textcolor{verde}{Centro}      & 3,357 & 12.4 & \$426 & \$400K \\
+    \rowcolor{verdeclaro}
+    F18 & Maria Bonita  & \textcolor{verde}{Centro}      & 7,827 & 29.0 & \$304 & \$450K \\
+    \rowcolor{verdeclaro}
+    F19 & Tucanes       & \textcolor{verde}{Centro}      & 8,173 & 30.3 & \$304 & \$450K \\
+    \midrule
+    & \textbf{TOTAL} & \textbf{19 fincas} & \textbf{101,003} & \textbf{374.2} & & \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1pt}
+{\tiny\color{gris} \$/cj hoy = tarifa a Zungo (tz). \$/vj PA = tarifa Anderson 10 pallets. Pall/d = cajas/sem $\div$ 5 $\div$ 54.
+\textcolor{verde}{Verde}: Centro (12, van al hub). \textcolor{cian}{Cian}: Mini-Hub (3, PA directo). \textcolor{naranja}{Naranja}: Zungo (4, embarcadero).}
+\end{frame}
+
+% ============================================================
 % 8. LA SOLUCIÓN: 3 NODOS
 % ============================================================
 \begin{frame}
@@ -800,6 +864,54 @@ Todo descuento es \textbf{upside puro}.\strut}}
 \end{frame}
 
 % ============================================================
+% 14b. SENSIBILIDAD FINCA→HUB
+% ============================================================
+\begin{frame}
+\frametitle{Sensibilidad: costo Finca $\rightarrow$ Hub}
+\tagline{amarillo}{Segunda Variable Clave}
+\vspace{-2pt}
+
+{\scriptsize El \'acido asume F$\rightarrow$H = \$200/caja, pero el rango real es \$80--\$300. Hub total = \$568 (flete) + \$42 (consol) + F$\rightarrow$H:}
+
+\vspace{3pt}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r r r r}
+    \toprule
+    \textbf{F$\rightarrow$H \$/caja} & \textbf{Hub total} & \textbf{Ahorro} & \textbf{Neto/a\~no} & \textbf{Payback} \\
+    \midrule
+    \rowcolor{verdeclaro}
+    \textcolor{verde}{\textbf{\$80 (optimista)}} & \$690 & \$229 & \textcolor{verde}{\textbf{\$396M}} & \textcolor{verde}{\textbf{3.0a}} \\
+    \$120 & \$730 & \$189 & \$264M & 4.5a \\
+    \$150 & \$752 & \$167 & \$189M & 6.3a \\
+    \rowcolor{amarilloclaro}
+    \textcolor{amarillo}{\textbf{\$200 $\leftarrow$ \'ACIDO}} & \textbf{\$810} & \$109 & $\sim$\$0 & N/A \\
+    \$250 & \$860 & \$59 & $-$\$167M & N/A \\
+    \rowcolor{rojoclaro}
+    \textcolor{rojo}{\textbf{\$300 (extremo)}} & \$910 & \$9 & $-$\$331M & N/A \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1pt}
+{\tiny\color{gris} Hub total = \$568 + \$42 + F$\rightarrow$H. Ahorro = \$919 $-$ Hub total.
+Bruto = ahorro $\times$ 3.295M cajas/a\~no. Neto = bruto $-$ \$362M OPEX.
+Payback = \$1,200M $\div$ neto. Verif: \$200 $\rightarrow$ \$810, ahorro \$109, bruto \$359M, neto $\approx$ \$0 \checkmark}
+
+\vspace{4pt}
+\colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{amarillo}{\textbf{Nota:}} Esta sensibilidad es \textbf{con \$0 descuento G20} (\'acido).
+Las dos sensibilidades (descuento G20 y F$\rightarrow$H) son \textbf{variables independientes}.\strut}}
+
+\vspace{3pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\faIcon{sliders-h}}\hspace{2pt}
+\textcolor{verde}{\textbf{F$\rightarrow$H es ajustable con el slider en el gemelo digital.}}
+Variable clave: negociar tarifa interna corta.\strut}}
+\end{frame}
+
+% ============================================================
 % 15. CAPEX + OPEX
 % ============================================================
 \begin{frame}
@@ -911,6 +1023,68 @@ Ingresos adicionales.\strut}}
     \end{itemize}
 \end{column}
 \end{columns}
+\end{frame}
+
+% ============================================================
+% 16b. DATOS GPS / GEOCERCAS
+% ============================================================
+\begin{frame}
+\frametitle{Datos GPS reales: 9--12 Marzo 2026}
+\tagline{azul}{Evidencia Emp\'irica}
+\vspace{-2pt}
+
+{\scriptsize Geocercas instaladas en 7 veh\'iculos del Grupo 20. Datos brutos que alimentan el modelo:}
+
+\vspace{4pt}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+{\scriptsize\color{azul}\textbf{RESUMEN DE RASTREO}}
+\vspace{2pt}
+
+\scriptsize
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{>{\color{azul}\bfseries}r l}
+    \toprule
+    7 & veh\'iculos rastreados \\
+    42 & viajes registrados \\
+    2.5 & viajes/d\'ia/veh\'iculo \\
+    78 min & promedio en embarcadero \\
+    45 min & promedio cargue en finca \\
+    22 min & Casa Verde $\rightarrow$ Zungo \\
+    68 km/h & velocidad m\'axima en v\'ia \\
+    \bottomrule
+\end{tabular}
+\end{column}
+
+\begin{column}{0.47\textwidth}
+{\scriptsize\color{verde}\textbf{UBICACIONES CLAVE}}
+\vspace{2pt}
+
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l l}
+    \toprule
+    \textbf{Punto} & \textbf{Rol} \\
+    \midrule
+    Casa Verde & Base operativa \\
+    Zungo & Embarcadero fluvial \\
+    Chinita & Ubicaci\'on hub \\
+    Puerto Antioqu. & Destino final \\
+    Fincas (19) & Origen de carga \\
+    \bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\colorbox{grisclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{gris}{\textbf{Fuente:}} IP Uniban, GPS\\
+Anderson Mestra, Marzo 2026\strut}}
+\end{column}
+\end{columns}
+
+\vspace{4pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Estos datos calibran el gemelo digital:}} tiempos de cargue, velocidades,
+esperas en embarcadero y frecuencia de viajes. El modelo no asume --- \textbf{mide}.\strut}}
 \end{frame}
 
 % ============================================================
