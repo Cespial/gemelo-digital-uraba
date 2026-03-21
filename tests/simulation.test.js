@@ -65,8 +65,8 @@ function computeBPR(p, l, c, scenario) {
 function computeCost(cf, g20t, hubt) {
   const DIESEL_KM = 3200;
   const DRIVER_HR = 28000;
-  const TOLL_TRIP = 35000;
-  const TOLL_HUB = 18000;
+  const TOLL_TRIP = 0; // no hay peajes en estos trayectos
+  const TOLL_HUB = 0;
   const WEAR_KM = 1800;
   const HUB_CONSOL = 42;
   const BOXES_TRUCK = 960;
