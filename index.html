@@ -535,7 +535,7 @@
         .farm-panel.open{transform:translateX(0);}
         .farm-panel::-webkit-scrollbar{width:3px;}
         .farm-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-        .fp-header{padding:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:2;}
+        .fp-header{padding:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:15;}
         .fp-close{background:none;border:1px solid var(--border);color:var(--text2);border-radius:4px;padding:4px 8px;cursor:pointer;font-size:12px;}
         .fp-close:hover{background:var(--bg3);color:var(--text);}
         .fp-name{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;}
@@ -574,6 +574,7 @@
             .kpi-strip-l{font-size:7px;}
             .callout{font-size:10px;max-width:180px;padding:6px 10px;}
             .callout.pos-bl{left:8px;}
+            .callout.pos-br{bottom:60px;right:8px;}
             .callout-num{font-size:12px;}
             .map-annotation{font-size:8px;padding:3px 6px;}
             .onboarding-box{padding:24px 16px;}
@@ -635,6 +636,7 @@
         <span class="badge badge-g">DANE/UPRA GEO</span>
         <span class="badge badge-b">OSRM ROUTING</span>
         <span class="badge badge-b" id="gm-badge">BPR MODEL</span>
+        <button onclick="document.getElementById('onboarding').style.display=''" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:13px;cursor:pointer;font-weight:700;" title="Ayuda">?</button>
         <div class="dot"></div>
         <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);">LIVE</span>
         <button onclick="toggleAuditPanel()" style="padding:3px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--text3);font-family:'JetBrains Mono',monospace;font-size:8px;cursor:pointer;text-transform:uppercase;letter-spacing:0.5px;" title="Ver supuestos y formulas de todos los indicadores">AUDITAR</button>

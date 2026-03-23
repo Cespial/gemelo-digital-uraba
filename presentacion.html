@@ -118,6 +118,7 @@
         .sens-table td:first-child { text-align: left; }
         .sens-table .row-base { background: rgba(240,160,48,0.08); }
         .sens-table .row-best { background: rgba(0,232,120,0.06); }
+        .sens-table .row-worst { background: rgba(255,59,78,0.06); }
 
         /* STEP INDICATOR */
         .step-num { width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
@@ -663,6 +664,78 @@
 </div>
 
 <!-- ============================================================ -->
+<!-- SLIDE 8b: SENSIBILIDAD F→H -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--yellow);">Segunda Variable Clave</div>
+    <div class="slide-title" style="font-size:34px;">Sensibilidad: costo<br>Finca &rarr; Hub</div>
+    <div class="slide-body" style="margin-bottom:20px;">
+        El acido asume F&rarr;H = <b style="color:var(--text);">$200/caja</b>, pero el rango real es <b style="color:var(--text);">$80&ndash;$300</b>. Hub total = $568 (flete) + $42 (consol) + F&rarr;H:
+    </div>
+
+    <table class="sens-table">
+        <tr>
+            <th style="text-align:left;">F&rarr;H $/caja</th>
+            <th>Hub total</th>
+            <th>Ahorro/caja</th>
+            <th>Neto/a&ntilde;o</th>
+            <th>Payback</th>
+        </tr>
+        <tr class="row-best">
+            <td style="color:var(--green);font-weight:700;">$80 (optimista)</td>
+            <td style="color:var(--green);font-weight:600;">$690</td>
+            <td style="color:var(--green);font-weight:600;">$229</td>
+            <td style="color:var(--green);font-weight:600;">$396M</td>
+            <td style="color:var(--green);font-weight:600;">3.0a</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$120</td>
+            <td style="color:var(--text);">$730</td>
+            <td style="color:var(--text);">$189</td>
+            <td style="color:var(--green);">$264M</td>
+            <td style="color:var(--text);">4.5a</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$150</td>
+            <td style="color:var(--text);">$752</td>
+            <td style="color:var(--text);">$167</td>
+            <td style="color:var(--green);">$189M</td>
+            <td style="color:var(--text);">6.3a</td>
+        </tr>
+        <tr class="row-base">
+            <td style="color:var(--yellow);font-weight:700;">$200 &larr; ACIDO</td>
+            <td style="color:var(--yellow);font-weight:600;">$810</td>
+            <td style="color:var(--text);">$109</td>
+            <td style="color:var(--yellow);">~$0</td>
+            <td style="color:var(--text2);">N/A</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$250</td>
+            <td style="color:var(--text);">$860</td>
+            <td style="color:var(--text);">$59</td>
+            <td style="color:var(--red);">-$167M</td>
+            <td style="color:var(--text2);">N/A</td>
+        </tr>
+        <tr class="row-worst">
+            <td style="color:var(--red);font-weight:700;">$300 (extremo)</td>
+            <td style="color:var(--red);font-weight:600;">$910</td>
+            <td style="color:var(--text);">$9</td>
+            <td style="color:var(--red);font-weight:600;">-$331M</td>
+            <td style="color:var(--text2);">N/A</td>
+        </tr>
+    </table>
+
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;max-width:900px;">
+        Hub total = $568 + $42 + F&rarr;H. Con $0 descuento G20. Las dos sensibilidades son variables independientes.
+    </div>
+
+    <div class="highlight-box" style="margin-top:16px;max-width:900px;">
+        <b style="color:var(--green);">F&rarr;H es ajustable con el slider en el gemelo digital.</b>
+        <span style="color:var(--text2);"> Variable clave: negociar tarifa interna corta.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
 <!-- SLIDE 9: CAPEX -->
 <!-- ============================================================ -->
 <div class="slide left-align">
@@ -855,7 +928,7 @@
 
 <!-- NAVIGATION -->
 <div class="nav">
-    <span class="nav-counter" id="counter">1 / 15</span>
+    <span class="nav-counter" id="counter">1 / 16</span>
     <button class="nav-btn" onclick="prev()">&#x2190;</button>
     <button class="nav-btn" onclick="next()">&#x2192;</button>
 </div>
