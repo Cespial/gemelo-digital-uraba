@@ -595,6 +595,17 @@
             .audit-row{grid-template-columns:140px 80px 1fr;font-size:8px;}
             .audit-title{font-size:11px;}
         }
+    @media print {
+        body { overflow: visible; height: auto; }
+        .hdr, .nav, .map-wrap, .onboarding, .kpi-strip, .map-vignette,
+        .mob-tabs, .sc-banner, .callout, .map-annotation, .ctx-box { display: none !important; }
+        .main { display: block !important; height: auto !important; }
+        .panel { position: static !important; width: 100% !important; height: auto !important;
+            overflow: visible !important; max-height: none !important; }
+        .c { break-inside: avoid; page-break-inside: avoid; margin-bottom: 8px; }
+        * { color: #000 !important; background: #fff !important; border-color: #ccc !important; }
+        .kpi-v { font-size: 14px !important; }
+    }
     </style>
 </head>
 <body>
@@ -633,6 +644,7 @@
             <button class="view-btn" data-view="resumen" onclick="switchView('resumen')">RESUMEN</button>
             <button class="view-btn" data-view="finance" onclick="switchView('finance')">FINANCIERO</button>
         </div>
+        <button class="share-btn" onclick="shareState()" style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;">&#x26D3; Link</button>
         <span class="badge badge-g">DANE/UPRA GEO</span>
         <span class="badge badge-b">OSRM ROUTING</span>
         <span class="badge badge-b" id="gm-badge">BPR MODEL</span>
@@ -2552,6 +2564,9 @@ map.on('load',()=>{
     renderSensTable();
     updateSim();
     updateFinancialDashboard();
+
+    // Sprint 4.1: Restore state from URL params (after all init)
+    restoreFromURL();
 });
 
 // ============================================================
@@ -4155,6 +4170,46 @@ function populateTripMatrix(){
         tb.appendChild(tr);
     });
 }
+
+// ============================================================
+// SPRINT 4.1 — SHARE STATE AS URL PARAMS
+// ============================================================
+function shareState() {
+    const params = new URLSearchParams({
+        sc: curSc,
+        p: document.getElementById('sl-p').value,
+        l: document.getElementById('sl-l').value,
+        c: document.getElementById('sl-c').value,
+        fh: document.getElementById('sl-fh').value,
+        pm: pricingModel
+    });
+    const url = location.origin + location.pathname + '?' + params.toString();
+    navigator.clipboard.writeText(url).then(() => {
+        const btn = document.querySelector('.share-btn');
+        if (btn) { btn.textContent = '\u2713 Copiado'; setTimeout(() => btn.textContent = '\u26D3 Link', 2000); }
+    });
+}
+
+function restoreFromURL() {
+    const params = new URLSearchParams(location.search);
+    if (params.has('p')) document.getElementById('sl-p').value = params.get('p');
+    if (params.has('l')) document.getElementById('sl-l').value = params.get('l');
+    if (params.has('c')) document.getElementById('sl-c').value = params.get('c');
+    if (params.has('fh')) document.getElementById('sl-fh').value = params.get('fh');
+    if (params.has('pm') && params.get('pm') === 'viaje') setPricingModel('viaje');
+    if (params.has('sc')) setScenario(params.get('sc'));
+}
+
+// ============================================================
+// SPRINT 4.3 — KEYBOARD SHORTCUTS
+// ============================================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === '1') setScenario('sc1');
+    if (e.key === '3') setScenario('sc3');
+    if (e.key === 'Escape') { closeFarmPanel(); if (typeof closeAuditPanel === 'function') closeAuditPanel(); }
+    if (e.key === '?') document.getElementById('onboarding').style.display = '';
+});
 </script>
 </body>
 </html>
