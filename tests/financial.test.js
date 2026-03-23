@@ -156,8 +156,8 @@ describe('Financial Module — CONFIG', () => {
   it('CONFIG fleet params match expected values', () => {
     expect(CONFIG.fleet.N_MULAS).toBe(4);
     expect(CONFIG.fleet.N_SENC).toBe(6);
-    expect(CONFIG.fleet.MULA_CAP).toBe(1152);
-    expect(CONFIG.fleet.SENC_CAP).toBe(528);
+    expect(CONFIG.fleet.MULA_CAP).toBe(1296);
+    expect(CONFIG.fleet.SENC_CAP).toBe(648);
   });
 
   it('CONFIG BPR params: bt=28, bc=800', () => {

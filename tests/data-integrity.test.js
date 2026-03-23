@@ -113,15 +113,15 @@ describe('Data Integrity', () => {
   });
 
   // ----- 5. NODES has 8 required keys -----
-  it('NODES has 8 required keys (hub, puerto, apartado, carepa, chigorodo, turbo, aeropuerto, embarcadero)', () => {
-    const expectedKeys = ['hub', 'puerto', 'apartado', 'carepa', 'chigorodo', 'turbo', 'aeropuerto', 'embarcadero'];
+  it('NODES has 9 required keys (hub, mini_hub, zungo, puerto, apartado, carepa, chigorodo, turbo, aeropuerto)', () => {
+    const expectedKeys = ['hub', 'mini_hub', 'zungo', 'puerto', 'apartado', 'carepa', 'chigorodo', 'turbo', 'aeropuerto'];
     for (const key of expectedKeys) {
       expect(NODES).toHaveProperty(key);
       expect(NODES[key]).toHaveProperty('lat');
       expect(NODES[key]).toHaveProperty('lng');
       expect(NODES[key]).toHaveProperty('name');
     }
-    expect(Object.keys(NODES)).toHaveLength(8);
+    expect(Object.keys(NODES)).toHaveLength(9);
   });
 
   // ----- 6. GeoJSON files have correct feature counts -----

@@ -42,7 +42,7 @@ const OD = calcOD();
 function computeBPR(p, l, c, scenario) {
   const cpw = p * 1000;
   const cpd = cpw / 6;
-  const MULA_CAP = 1152, SENC_CAP = 528, N_MULAS = 4, N_SENC = 6;
+  const MULA_CAP = 1296, SENC_CAP = 648, N_MULAS = 4, N_SENC = 6;
   const capViajeDia = N_MULAS * MULA_CAP + N_SENC * SENC_CAP;
   const viajesNeed = Math.ceil(cpd / capViajeDia);
   const totalViajes = viajesNeed * (N_MULAS + N_SENC);
@@ -133,7 +133,7 @@ describe('Simulation — BPR Congestion Model', () => {
 
     expect(cost.fuelDirect).toBeGreaterThan(0);
     expect(cost.drvDirect).toBeGreaterThan(0);
-    expect(cost.tollDirect).toBeGreaterThan(0);
+    expect(cost.tollDirect).toBe(0);
     expect(cost.wearDirect).toBeGreaterThan(0);
 
     // Total = sum of components
@@ -178,11 +178,11 @@ describe('Simulation — BPR Congestion Model', () => {
 
     // totalViajes = ceil(cpd / capViajeDia) * 10 vehicles
     const cpd110 = 110 * 1000 / 6;
-    const capViajeDia = 4 * 1152 + 6 * 528;  // 7776 cajas per round
+    const capViajeDia = 4 * 1296 + 6 * 648;  // 9072 cajas per round
     expect(r110.totalViajes).toBe(Math.ceil(cpd110 / capViajeDia) * 10);
 
-    // hubMulas = ceil(cpd / 1152) — only mulas go to port from hub
-    expect(r110.hubMulas).toBe(Math.ceil(cpd110 / 1152));
+    // hubMulas = ceil(cpd / 1296) — only mulas go to port from hub
+    expect(r110.hubMulas).toBe(Math.ceil(cpd110 / 1296));
 
     // hubt = ceil(hubMulas * 1.1) — 10% scheduling overhead
     expect(r110.hubt).toBe(Math.ceil(r110.hubMulas * 1.1));

@@ -900,7 +900,7 @@
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:2px;">
                 <div style="display:flex;justify-content:space-between;">
                     <span style="color:var(--text2);">Hub TOTAL</span>
-                    <span style="font-weight:800;font-size:13px;" id="hub-total-val" style="color:var(--yellow);">$810/caja</span>
+                    <span style="font-weight:800;font-size:13px;color:var(--yellow);" id="hub-total-val">$810/caja</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;margin-top:2px;">
                     <span style="color:var(--text3);font-size:8px;">SC2 Centro: $919</span>
@@ -1562,8 +1562,18 @@
 </div>
 </div>
 
-<script src="config.js" onerror="console.log('config.js not found, using fallback token')"></script>
+<script src="config.js" onerror="void(0)"></script>
 <script>
+// ============================================================
+// SAFE FETCH — timeout + HTTP status check
+// ============================================================
+function safeFetch(url, timeout=8000) {
+    return Promise.race([
+        fetch(url).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r; }),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+    ]);
+}
+
 // ============================================================
 // CENTRALIZED CONFIG — all parameters in one place
 // ============================================================
@@ -1937,6 +1947,17 @@ const map = new mapboxgl.Map({
     attributionControl:false
 });
 
+map.on('error', (e) => {
+    const mapEl = document.getElementById('map');
+    if (mapEl && !mapEl.querySelector('.map-error')) {
+        const err = document.createElement('div');
+        err.className = 'map-error';
+        err.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--red);font-family:JetBrains Mono,monospace;font-size:12px;text-align:center;z-index:5;';
+        err.textContent = 'Error cargando mapa. Verifique conexion.';
+        mapEl.appendChild(err);
+    }
+});
+
 map.addControl(new mapboxgl.NavigationControl({showCompass:true}),'top-right');
 map.addControl(new mapboxgl.ScaleControl({maxWidth:120}),'bottom-right');
 map.addControl(new mapboxgl.AttributionControl({compact:true}),'bottom-right');
@@ -2002,7 +2023,7 @@ map.on('load',()=>{
     }},'waterway');
 
     // ---- MUNICIPAL BOUNDARIES (DANE MGN 2024) ----
-    fetch('data/uraba_municipios_web.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/uraba_municipios_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('municipios',{type:'geojson',data:gj});
         map.addLayer({id:'municipios-fill',type:'fill',source:'municipios',layout:{visibility:'none'},paint:{
             'fill-color':'rgba(180,140,255,0.03)',
@@ -2030,12 +2051,11 @@ map.on('load',()=>{
             const p=e.features[0].properties;
             new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(`<div class="p-t" style="color:#e088ff;">${p.municipio}</div><div class="p-r"><span class="p-k">Departamento:</span><span class="p-v">${p.departamen||'Antioquia'}</span></div><div class="p-r"><span class="p-k">Codigo DANE:</span><span class="p-v">${p.cod_dane_mpio}</span></div><div class="p-r"><span class="p-k">Fuente:</span><span class="p-v">DANE MGN 2024</span></div>`).addTo(map);
         });
-        console.log(`Municipios loaded: ${gj.features.length}`);
         setLoad(35);
-    }).catch(e=>console.warn('Municipios not loaded:',e));
+    }).catch(e=>{console.error('Municipios layer failed:',e.message);});
 
     // ---- VEREDAL BOUNDARIES (UPRA) ----
-    fetch('data/uraba_veredas_web.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/uraba_veredas_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('veredas',{type:'geojson',data:gj});
         map.addLayer({id:'veredas-fill',type:'fill',source:'veredas',paint:{
             'fill-color':'rgba(180,140,255,0.04)',
@@ -2052,12 +2072,11 @@ map.on('load',()=>{
         });
         map.on('mouseenter','veredas-fill',()=>map.getCanvas().style.cursor='pointer');
         map.on('mouseleave','veredas-fill',()=>map.getCanvas().style.cursor='');
-        console.log(`Veredas loaded: ${gj.features.length}`);
         setLoad(45);
-    }).catch(e=>console.warn('Veredas not loaded:',e));
+    }).catch(e=>{console.error('Veredas layer failed:',e.message);});
 
     // ---- SIPRA REAL DATA ----
-    fetch('data/sipra_uraba_web.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/sipra_uraba_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('sipra',{type:'geojson',data:gj});
         map.addLayer({id:'sipra-fill',type:'fill',source:'sipra',layout:{visibility:'none'},paint:{
             'fill-color':['match',['get','aptitud'],'Aptitud alta','#00cc44','Aptitud media','#88cc00','Aptitud baja','#ccaa00','#666666'],
@@ -2074,24 +2093,22 @@ map.on('load',()=>{
         });
         map.on('mouseenter','sipra-fill',()=>map.getCanvas().style.cursor='pointer');
         map.on('mouseleave','sipra-fill',()=>map.getCanvas().style.cursor='');
-        console.log(`SIPRA loaded: ${gj.features.length} polygons`);
         setLoad(55);
-    }).catch(e=>console.warn('SIPRA not loaded:',e));
+    }).catch(e=>{console.error('SIPRA layer failed:',e.message);});
 
     // ---- OSM ROADS ----
-    fetch('data/osm_roads.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/osm_roads.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('osm-roads',{type:'geojson',data:gj});
         map.addLayer({id:'osm-roads',type:'line',source:'osm-roads',paint:{
             'line-color':['match',['get','highway'],'trunk','#cccccc','primary','#bbbbbb','secondary','#888888','#555555'],
             'line-width':['match',['get','highway'],'trunk',2.5,'primary',2,'secondary',1.5,1],
             'line-opacity':['match',['get','highway'],'trunk',0.5,'primary',0.4,'secondary',0.25,0.15]
         },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
-        console.log(`OSM roads loaded: ${gj.features.length} segments`);
         setLoad(65);
-    }).catch(e=>console.warn('OSM roads not loaded:',e));
+    }).catch(e=>{console.error('OSM roads layer failed:',e.message);});
 
     // ---- WATERWAYS (OSM real network: 759 segments) ----
-    fetch('data/osm_waterways_web.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/osm_waterways_web.geojson').then(r=>r.json()).then(gj=>{
         map.addSource('rivers',{type:'geojson',data:gj});
         // Glow halo layer
         map.addLayer({id:'rivers-glow',type:'line',source:'rivers',paint:{
@@ -2121,8 +2138,7 @@ map.on('load',()=>{
             'text-halo-width':2,
             'text-opacity':0.6
         }});
-        console.log(`Waterways loaded: ${gj.features.length} segments`);
-    }).catch(e=>console.warn('Waterways not loaded:',e));
+    }).catch(e=>{console.error('Waterways layer failed:',e.message);});
 
     // ---- FLOOD ZONES ----
     const floodGJ={type:'FeatureCollection',features:FLOOD_ZONES.map(z=>({type:'Feature',properties:{name:z.name,risk:z.risk},geometry:{type:'Polygon',coordinates:[z.coords]}}))};
@@ -2133,7 +2149,7 @@ map.on('load',()=>{
     // ---- ISOCHRONES FROM HUB (Mapbox Isochrone API) ----
     const isoToken = mapboxgl.accessToken;
     const hubLng = NODES.hub.lng, hubLat = NODES.hub.lat;
-    fetch(`https://api.mapbox.com/isochrone/v1/mapbox/driving/${hubLng},${hubLat}?contours_minutes=15,30,45&polygons=true&access_token=${isoToken}`)
+    safeFetch(`https://api.mapbox.com/isochrone/v1/mapbox/driving/${hubLng},${hubLat}?contours_minutes=15,30,45&polygons=true&access_token=${isoToken}`)
     .then(r=>r.json()).then(gj=>{
         map.addSource('isochrones',{type:'geojson',data:gj});
         // 45 min (outermost, red)
@@ -2187,8 +2203,7 @@ map.on('load',()=>{
             `<span style="color:var(--green);">${farmsIn15}</span> fincas a 15 min &bull; `+
             `<span style="color:var(--yellow);">${farmsIn30}</span> a 30 min &bull; `+
             `<span style="color:var(--red);">${farmsIn45}</span> a 45 min`;
-        console.log(`Isochrones loaded: ${farmsIn15}/${farmsIn30}/${farmsIn45} farms in 15/30/45 min`);
-    }).catch(e=>console.warn('Isochrones not loaded:',e));
+    }).catch(e=>{console.error('Isochrones layer failed:',e.message);});
 
     // ---- ROUTES ----
     // Chaos routes with per-farm production for width scaling
@@ -2368,7 +2383,7 @@ map.on('load',()=>{
         'Uniban','#ffaa66','Banacol','#4dd0e1','Banafrut','#b2ff59',
         'Tropical','#ea80fc','Otros','#ffe082','Independiente','#aaaaaa','#888888'];
 
-    fetch('data/fincas_uraba.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/fincas_uraba.geojson').then(r=>r.json()).then(gj=>{
         // All 402 farms colored by comercializadora
         map.addSource('farm-poly-all',{type:'geojson',data:gj});
         map.addLayer({id:'farm-poly-all-fill',type:'fill',source:'farm-poly-all',layout:{visibility:'none'},paint:{
@@ -2390,10 +2405,9 @@ map.on('load',()=>{
         });
         map.on('mouseenter','farm-poly-all-fill',()=>map.getCanvas().style.cursor='pointer');
         map.on('mouseleave','farm-poly-all-fill',()=>map.getCanvas().style.cursor='');
-        console.log(`Farm polygons (all): ${gj.features.length}`);
-    }).catch(e=>console.warn('Farm polygons (all) not loaded:',e));
+    }).catch(e=>{console.error('Farm polygons (all) failed:',e.message);});
 
-    fetch('data/fincas_g20.geojson').then(r=>r.json()).then(gj=>{
+    safeFetch('data/fincas_g20.geojson').then(r=>r.json()).then(gj=>{
         // GRUPO20 farms highlighted with thick border
         map.addSource('farm-poly-g20',{type:'geojson',data:gj});
         map.addLayer({id:'farm-poly-fill',type:'fill',source:'farm-poly-g20',layout:{visibility:'none'},paint:{
@@ -2413,8 +2427,7 @@ map.on('load',()=>{
             'text-halo-color':'rgba(6,8,10,0.9)',
             'text-halo-width':1.5
         }});
-        console.log(`Farm polygons (G20): ${gj.features.length}`);
-    }).catch(e=>console.warn('Farm polygons (G20) not loaded:',e));
+    }).catch(e=>{console.error('Farm polygons (G20) failed:',e.message);});
 
     // ---- FARM MARKERS (colored by hub assignment) ----
     const hubColorMap = {'centro':'#00e878','mini_hub':'#18d8d0','zungo':'#ff7a30'};
@@ -2545,7 +2558,7 @@ map.on('load',()=>{
 // ============================================================
 function openFarmPanel(farmId) {
     const fd = FARM_DATA.find(f => f.id === farmId);
-    if (!fd) return;
+    if (!fd) { console.error('Farm not found:', farmId); return; }
     const colors = {centro:'var(--green)', mini_hub:'var(--cyan)', zungo:'var(--orange)'};
     const groupNames = {centro:'Centro (consolida)', mini_hub:'Mini-Hub (directo PA)', zungo:'Zungo (embarcadero)'};
     const color = colors[fd.g] || 'var(--text)';
@@ -3087,6 +3100,9 @@ function setPricingModel(model) {
     document.getElementById('pricing-impact').style.display = model === 'viaje' ? '' : 'none';
     updateSim();
     updateContextBox();
+    if (document.getElementById('fin-dashboard').style.display !== 'none') {
+        updateFinancialDashboard();
+    }
 }
 
 // ============================================================
@@ -3502,7 +3518,7 @@ async function fetchGMapsTraffic() {
         const hub = `${NODES.hub.lat},${NODES.hub.lng}`;
         const puerto = `${NODES.puerto.lat},${NODES.puerto.lng}`;
 
-        const hpRes = await fetch(gmApiUrl(hub, puerto)).then(r => r.json());
+        const hpRes = await safeFetch(gmApiUrl(hub, puerto)).then(r => r.json());
 
         // Check for API-level errors
         if (hpRes.error) {
@@ -3525,7 +3541,7 @@ async function fetchGMapsTraffic() {
         for (let i = 0; i < FARMS.length; i += batchSize) {
             const batch = FARMS.slice(i, i + batchSize);
             const origins = batch.map(f => `${f.lat},${f.lng}`).join('|');
-            const res = await fetch(gmApiUrl(origins, hub)).then(r => r.json());
+            const res = await safeFetch(gmApiUrl(origins, hub)).then(r => r.json());
             if (res.status === 'OK') {
                 res.rows.forEach((row, idx) => {
                     const el = row.elements[0];
@@ -3543,7 +3559,7 @@ async function fetchGMapsTraffic() {
         for (let i = 0; i < FARMS.length; i += batchSize) {
             const batch = FARMS.slice(i, i + batchSize);
             const origins = batch.map(f => `${f.lat},${f.lng}`).join('|');
-            const res = await fetch(gmApiUrl(origins, puerto)).then(r => r.json());
+            const res = await safeFetch(gmApiUrl(origins, puerto)).then(r => r.json());
             if (res.status === 'OK') {
                 res.rows.forEach((row, idx) => {
                     const el = row.elements[0];

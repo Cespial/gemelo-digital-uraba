@@ -5,6 +5,7 @@ node_modules/
 __pycache__/
 .DS_Store
 config.js
+*.xlsx
 
 # Large source data
 data/sipra/*.zip
