@@ -2333,7 +2333,7 @@ map.on('load',()=>{
         dashStep=(dashStep+1)%100;
         const t=dashStep/100;
         const d1=t*7, d2=3, d3=4, d4=7-d1;
-        if(map.getLayer('hub-port-flow')){
+        if(curSc==='sc3' && map.getLayer('hub-port-flow')){
             map.setPaintProperty('hub-port-flow','line-dasharray',[d1,d2,d3,d4>0?d4:0.01]);
         }
         // SC1 chaos flow: frantic amber animation (3x speed)
@@ -2349,7 +2349,7 @@ map.on('load',()=>{
             map.setPaintProperty('sc1-routes-glow','line-opacity', pulse);
         }
         // SC2 flow animation
-        if(map.getLayer('sc2-flow')){
+        if(curSc==='sc2' && map.getLayer('sc2-flow')){
             map.setPaintProperty('sc2-flow','line-dasharray',[cd1,cd2,cd3,cd4>0?cd4:0.01]);
         }
         // SC3 calm flow animation (1x speed, gentle)
@@ -2404,10 +2404,10 @@ map.on('load',()=>{
     map.addSource('sc2-routes',{type:'geojson',data:{type:'FeatureCollection',features:sc2Feats}});
     // SC2: CONGESTIÓN — amarillo/naranja, sólido, grueso, todas al mismo punto
     map.addLayer({id:'sc2-routes-glow',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#aa6600','line-width':20,'line-opacity':0.1,'line-blur':10
+        'line-color':'#cc8020','line-width':20,'line-opacity':0.1,'line-blur':10
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     map.addLayer({id:'sc2-routes',type:'line',source:'sc2-routes',paint:{
-        'line-color':'#e09020',
+        'line-color':'#f0a030',
         'line-width':['interpolate',['linear'],['get','prod'],2000,2.5,11000,5.5],
         'line-opacity':0.8
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
@@ -2434,7 +2434,7 @@ map.on('load',()=>{
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
     // SC3: Calm flow (slow, uniform)
     map.addLayer({id:'sc3-flow',type:'line',source:'sc3-straight',paint:{
-        'line-color':'#aaffcc','line-width':1,'line-opacity':0.4,'line-dasharray':[0,4,3]
+        'line-color':'#66ffaa','line-width':1,'line-opacity':0.4,'line-dasharray':[0,4,3]
     },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
 
     // ---- SC3 TRUNK LINES: mini_hub→puerto + zungo→puerto ----
@@ -2533,12 +2533,12 @@ map.on('load',()=>{
     })};
     map.addSource('farms',{type:'geojson',data:farmGJ});
     map.addLayer({id:'farms-glow',type:'circle',source:'farms',paint:{
-        'circle-radius':['interpolate',['linear'],['get','prod'],2000,10,11000,20],
+        'circle-radius':['interpolate',['linear'],['get','prod'],2000,12,11000,20],
         'circle-color':['match',['get','hub'],'centro','rgba(0,232,120,0.15)','mini_hub','rgba(24,216,208,0.15)','zungo','rgba(255,122,48,0.15)','rgba(255,122,48,0.15)'],
         'circle-blur':1
     }});
     map.addLayer({id:'farms',type:'circle',source:'farms',paint:{
-        'circle-radius':['interpolate',['linear'],['get','prod'],2000,4,11000,10],
+        'circle-radius':['interpolate',['linear'],['get','prod'],2000,5,11000,10],
         'circle-color':['match',['get','hub'],'centro','#00e878','mini_hub','#18d8d0','zungo','#ff7a30','#ff7a30'],
         'circle-stroke-color':'rgba(255,255,255,0.6)','circle-stroke-width':2,'circle-opacity':0.85
     }});
@@ -2546,7 +2546,8 @@ map.on('load',()=>{
     map.on('click','farms',e=>{
         const p = e.features[0].properties;
         openFarmPanel(p.id);
-        map.easeTo({ center: e.lngLat, offset: [0, -80], duration: 500 });
+        const isMobile = window.innerWidth < 768;
+        map.easeTo({ center: e.lngLat, offset: isMobile ? [0, 0] : [0, -80], duration: 500 });
     });
     let _farmTip = null;
     map.on('mouseenter','farms',()=>map.getCanvas().style.cursor='pointer');
@@ -2554,7 +2555,7 @@ map.on('load',()=>{
         const p = e.features[0].properties;
         const fd = FARM_DATA.find(f=>f.id===p.id);
         if (!fd) return;
-        if (!_farmTip) _farmTip = new mapboxgl.Popup({closeButton:false,closeOnClick:false,offset:12,maxWidth:'220px'});
+        if (!_farmTip) _farmTip = new mapboxgl.Popup({closeButton:false,closeOnClick:false,offset:12,maxWidth: window.innerWidth < 768 ? '180px' : '220px'});
         const sc3lbl = fd.sc3.mode==='consolidado'?'Hub $'+fd.sc3.total:fd.sc3.mode==='zungo'?'Zungo $'+fd.sc3.total:'PA $'+fd.sc3.total;
         _farmTip.setLngLat(e.lngLat).setHTML(
             '<div style="font-family:\'JetBrains Mono\',monospace;font-size:9px;">'+
@@ -2608,12 +2609,22 @@ map.on('load',()=>{
     // City labels
     [NODES.apartado,NODES.carepa,NODES.chigorodo,NODES.turbo,NODES.aeropuerto].forEach(n=>{
         const el=document.createElement('div');
+        el.className='city-ref';
         el.style.cssText='width:8px;height:8px;background:#666;border:1.5px solid #999;border-radius:50%;';
         new mapboxgl.Marker({element:el}).setLngLat([n.lng,n.lat]).addTo(map);
         const lb=document.createElement('div');
+        lb.className='city-ref';
         lb.style.cssText='font-family:"JetBrains Mono",monospace;font-size:10px;color:#888;white-space:nowrap;text-shadow:0 0 6px #000,0 0 12px #000;pointer-events:none;';
         lb.textContent=n.name;
         new mapboxgl.Marker({element:lb,anchor:'left',offset:[8,0]}).setLngLat([n.lng,n.lat]).addTo(map);
+    });
+
+    // Hide city labels at low zoom for cleaner view
+    map.on('zoom', () => {
+        const z = map.getZoom();
+        document.querySelectorAll('.city-ref').forEach(el => {
+            el.style.display = z < 9 ? 'none' : '';
+        });
     });
 
     // Node + Puerto labels (stored for show/hide per scenario)
@@ -3126,14 +3137,18 @@ function setScenario(sc){
             if(map.getLayer('hub-port-flow')) map.setLayoutProperty('hub-port-flow','visibility','visible');
         }
     }
-    // Toggle markers — all 3 nodos always visible for executives
-    if(window._markerHub) _markerHub.getElement().style.display = '';
-    if(window._markerMiniHub) _markerMiniHub.getElement().style.display = '';
+    // Markers: zungo + puerto always visible, hub + mini-hub only in SC3
+    if(window._markerHub) _markerHub.getElement().style.display = sc==='sc3' ? '' : 'none';
+    if(window._markerMiniHub) _markerMiniHub.getElement().style.display = sc==='sc3' ? '' : 'none';
     if(window._markerZungo) _markerZungo.getElement().style.display = '';
-    // Labels — always visible
-    if(window._labelHub) _labelHub.getElement().style.display = '';
-    if(window._labelMiniHub) _labelMiniHub.getElement().style.display = '';
+    // Labels match markers
+    if(window._labelHub) _labelHub.getElement().style.display = sc==='sc3' ? '' : 'none';
+    if(window._labelMiniHub) _labelMiniHub.getElement().style.display = sc==='sc3' ? '' : 'none';
     if(window._labelZungo) _labelZungo.getElement().style.display = '';
+    // Hub pulse only in SC3
+    if(window._markerHub) {
+        _markerHub.getElement().style.animation = sc==='sc3' ? 'hubPulse 2s ease-in-out infinite' : 'none';
+    }
 
     // Atmosphere shift — fog per scenario
     if(map.isStyleLoaded()){
@@ -3166,6 +3181,20 @@ function setScenario(sc){
             ? '0 0 25px #3898ff, 0 0 50px rgba(56,152,255,0.4)'
             : '0 0 12px #3898ff, 0 0 24px rgba(56,152,255,0.2)';
     }
+    // Hub glow — enhanced in SC3
+    if(window._markerHub) {
+        const hEl = _markerHub.getElement();
+        if(sc==='sc3') {
+            hEl.style.boxShadow = '0 0 20px #00e878, 0 0 40px rgba(0,232,120,0.3)';
+        }
+    }
+    // Mini-Hub glow — enhanced in SC3
+    if(window._markerMiniHub) {
+        const mEl = _markerMiniHub.getElement();
+        if(sc==='sc3') {
+            mEl.style.boxShadow = '0 0 15px #18d8d0, 0 0 30px rgba(24,216,208,0.3)';
+        }
+    }
 
     // Scenario badge on map
     const scBadge = document.getElementById('map-sc-badge');
@@ -3189,7 +3218,7 @@ function setScenario(sc){
     }
 
     const routesBox = document.getElementById('ly-routes');
-    if (routesBox) { routesBox.checked = true; toggleLy('routes'); }
+    if (routesBox && routesBox.checked) { toggleLy('routes'); }
     updateLegend();
     showScenarioBanner(sc);
     updateContextBox();
@@ -3503,7 +3532,7 @@ function updateSim(){
         }
         if(map.getLayer('sc1-routes-glow')){
             map.setPaintProperty('sc1-routes-glow','line-color',rColor);
-            map.setPaintProperty('sc1-routes-glow','line-opacity',0.12 + cfNorm * 0.12);
+            // line-opacity controlled solely by animateFlow() pulse — removed cfNorm override
         }
         if(map.getLayer('sc1-routes-glow2')){
             map.setPaintProperty('sc1-routes-glow2','line-color',rColor);
@@ -3535,7 +3564,7 @@ function updateSim(){
     // --- Farm marker size pulses with production slider ---
     const prodScale = p / 110; // relative to default 110K
     if(map.getLayer('farms')){
-        map.setPaintProperty('farms','circle-radius',['interpolate',['linear'],['get','prod'],4500,5*prodScale,7800,9*prodScale]);
+        map.setPaintProperty('farms','circle-radius',['interpolate',['linear'],['get','prod'],4500,6*prodScale,7800,9*prodScale]);
     }
     if(map.getLayer('farms-glow')){
         map.setPaintProperty('farms-glow','circle-radius',['interpolate',['linear'],['get','prod'],4500,12*prodScale,7800,18*prodScale]);
