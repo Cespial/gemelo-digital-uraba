@@ -815,7 +815,7 @@
         <label class="ly"><input type="checkbox" id="ly-veredas" onchange="toggleLy('veredas')"><span class="ly-sw"></span><span class="ly-t">Veredas (UPRA, n=611)</span></label>
         <label class="ly"><input type="checkbox" id="ly-sipra" onchange="toggleLy('sipra')"><span class="ly-sw"></span><span class="ly-t">SIPRA Aptitud Banano (real)</span></label>
         <label class="ly"><input type="checkbox" id="ly-roads" onchange="toggleLy('roads')"><span class="ly-sw"></span><span class="ly-t">Red vial OSM (299 seg.)</span></label>
-        <label class="ly"><input type="checkbox" id="ly-farm-poly" onchange="toggleLy('farm-poly')"><span class="ly-sw"></span><span class="ly-t">Poligonos fincas (real, n=402)</span></label>
+        <label class="ly"><input type="checkbox" id="ly-farm-poly" onchange="toggleLy('farm-poly')"><span class="ly-sw"></span><span class="ly-t">Detalle 402 fincas (por comercializadora)</span></label>
         <label class="ly"><input type="checkbox" id="ly-farms" checked onchange="toggleLy('farms')"><span class="ly-sw"></span><span class="ly-t">Fincas G20 puntos (n=19)</span></label>
         <label class="ly"><input type="checkbox" id="ly-routes" checked onchange="toggleLy('routes')"><span class="ly-sw"></span><span class="ly-t">Rutas escenario</span></label>
         <label class="ly"><input type="checkbox" id="ly-isochrone" onchange="toggleLy('isochrone')"><span class="ly-sw"></span><span class="ly-t">Isocronas Centro (15/30/45 min)</span></label>
@@ -861,7 +861,8 @@
         <div class="mi-i"><div class="mi-c" style="background:var(--cyan);box-shadow:0 0 4px var(--cyan);"></div>Mini-Hub Puerto (3)</div>
         <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Embarcadero Zungo (4)</div>
         <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
-        <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (borde dorado)</div>
+        <div class="mi-i"><div class="mi-c" style="background:#ffcc00;border:1.5px solid #ffcc00;"></div>Fincas G20 (19, borde dorado)</div>
+        <div class="mi-i"><div class="mi-c" style="background:rgba(160,140,60,0.3);border:1px solid rgba(180,160,80,0.4);"></div>Plantaciones regionales (402)</div>
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
         <div class="mi-t" style="margin-top:4px;">RUTAS POR NODO</div>
         <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Centro (12 fincas)</div>
@@ -2535,13 +2536,24 @@ map.on('load',()=>{
         'Tropical','#ea80fc','Otros','#ffe082','Independiente','#aaaaaa','#888888'];
 
     safeFetch('data/fincas_uraba.geojson').then(r=>r.json()).then(gj=>{
-        // All 402 farms colored by comercializadora
+        // All 402 farms — subtle background always visible, colored by comercializadora
         map.addSource('farm-poly-all',{type:'geojson',data:gj});
+        // Background layer: always visible, very subtle, fades in at zoom 9+
+        map.addLayer({id:'farm-poly-bg-fill',type:'fill',source:'farm-poly-all',paint:{
+            'fill-color':'rgba(160,140,60,0.06)',
+            'fill-opacity':['interpolate',['linear'],['zoom'],8,0,9.5,0.5,12,0.8]
+        }});
+        map.addLayer({id:'farm-poly-bg-line',type:'line',source:'farm-poly-all',paint:{
+            'line-color':'rgba(180,160,80,0.15)',
+            'line-width':0.5,
+            'line-opacity':['interpolate',['linear'],['zoom'],8,0,9.5,0.3,12,0.5]
+        }});
+        // Detail layer: toggled on/off by user, colored by comercializadora
         map.addLayer({id:'farm-poly-all-fill',type:'fill',source:'farm-poly-all',layout:{visibility:'none'},paint:{
-            'fill-color':comColor,'fill-opacity':0.12
+            'fill-color':comColor,'fill-opacity':0.15
         }});
         map.addLayer({id:'farm-poly-all-line',type:'line',source:'farm-poly-all',layout:{visibility:'none'},paint:{
-            'line-color':comColorLine,'line-width':0.8,'line-opacity':0.35
+            'line-color':comColorLine,'line-width':0.8,'line-opacity':0.4
         }});
         // Click popup for ALL farms
         map.on('click','farm-poly-all-fill',e=>{
@@ -2561,13 +2573,15 @@ map.on('load',()=>{
     safeFetch('data/fincas_g20.geojson').then(r=>r.json()).then(gj=>{
         // GRUPO20 farms highlighted with thick border
         map.addSource('farm-poly-g20',{type:'geojson',data:gj});
-        map.addLayer({id:'farm-poly-fill',type:'fill',source:'farm-poly-g20',layout:{visibility:'none'},paint:{
-            'fill-color':'#ff7a30','fill-opacity':0.25
+        map.addLayer({id:'farm-poly-fill',type:'fill',source:'farm-poly-g20',paint:{
+            'fill-color':'rgba(255,200,0,0.08)',
+            'fill-opacity':['interpolate',['linear'],['zoom'],8,0,9.5,0.6,12,1]
         }});
-        map.addLayer({id:'farm-poly-line',type:'line',source:'farm-poly-g20',layout:{visibility:'none'},paint:{
-            'line-color':'#ffcc00','line-width':2.5,'line-opacity':0.9
+        map.addLayer({id:'farm-poly-line',type:'line',source:'farm-poly-g20',paint:{
+            'line-color':'#ffcc00','line-width':['interpolate',['linear'],['zoom'],9,1,12,2.5],
+            'line-opacity':['interpolate',['linear'],['zoom'],8,0,9.5,0.6,12,0.9]
         }});
-        map.addLayer({id:'farm-poly-label',type:'symbol',source:'farm-poly-g20',layout:{visibility:'none',
+        map.addLayer({id:'farm-poly-label',type:'symbol',source:'farm-poly-g20',minzoom:11,layout:{
             'text-field':['get','nombre'],
             'text-size':10,
             'text-font':['DIN Pro Medium','Arial Unicode MS Regular'],
@@ -3291,7 +3305,7 @@ function toggleLy(name){
         'veredas':['veredas-fill','veredas-line'],
         'sipra':['sipra-fill','sipra-line'],
         'roads':['osm-roads'],
-        'farm-poly':['farm-poly-fill','farm-poly-line','farm-poly-label','farm-poly-all-fill','farm-poly-all-line'],
+        'farm-poly':['farm-poly-all-fill','farm-poly-all-line'],
         'farms':['farms','farms-glow'],
         'routes':curSc==='sc1'?['sc1-routes','sc1-routes-glow','sc1-routes-glow2','sc1-chaos-flow']:curSc==='sc2'?['sc2-routes','sc2-routes-glow','sc2-flow']:['sc3-straight','sc3-straight-glow','sc3-flow','sc3-trunks','sc3-trunks-glow','hub-port','hub-port-glow','hub-port-glow2','hub-port-flow'],
         'isochrone':['iso-45-fill','iso-45-line','iso-30-fill','iso-30-line','iso-15-fill','iso-15-line','iso-labels'],
