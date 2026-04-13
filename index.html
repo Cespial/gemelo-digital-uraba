@@ -2002,16 +2002,61 @@ const SENS_DATA = SENS_DESCUENTOS.map(d => {
     return { d, m24, flete, total, ahorro, bruto, neto, pb };
 });
 
-// Geocerca telemetry data (March 9-12 2026, 7 vehicles)
-const GEOCERCA_DATA = {
-    vehicles: 7, period: "9-12 Mar 2026",
-    avgEmbarcaderoTime: 78, // min per trip at Zungo embarcadero
-    avgFarmLoadTime: 45, // min per farm stop
-    avgTripsPerDay: 2.5,
-    avgCasaVerdeToZungo: 22, // min transit
-    avgMaxSpeed: 68, // km/h on via
-    totalTripsTracked: 42,
-    keyLocations: ["Casa Verde","Zungo Embarcadero","La Chinita","La Llave","Santa Marta","Marandua","Los Almendros","Punto Fijo","Matogroso 1","Matogroso 2","Tucanes","Maria Bonita"]
+// Geocerca telemetry data (March 9-12 2026, 7 vehicles) — replaced by OPS_2025 below
+// ============================================================
+// OPERATIONAL DATA 2025 — Real metrics from 12,860 trips + 132K geocerca events
+// Sources: Viajes 2025 GrupoVeinte.xlsx, geocercasvehiculos.zip (16 vehicles, 303 days)
+// ============================================================
+const OPS_2025 = {
+    totalTrips: 12860,
+    totalBoxesShipped: 5057968,
+    totalBoxesReceived: 5349445,
+    avgBoxesPerTrip: 393,
+    avgPalletsPerTrip: 7.8,
+    avgOccupancy: 0.728,
+    operatingDays: 303,
+    tripsPerDay: 42.4,
+    tripsPerWeek: 470,
+    vehicles: 485,
+    drivers: 691,
+    pctInconvenient: 39.6,
+    pctOptimal: 2.3,
+    transitMeanHrs: 2.2,
+    transitMedianHrs: 1.0,
+    standby: {
+        totalEvents: 132488,
+        vehicles: 16,
+        daysTracked: 303,
+        farmMedianMin: 14,
+        farmMeanMin: 52.9,
+        farmP75Min: 41.5,
+        farmP90Min: 97.3,
+        farmP95Min: 152.9,
+        embarqueroMedianMin: 113,
+        embarqueroP90Min: 249,
+        pctOver1Hr: 18,
+        pctOver2Hr: 7.4,
+        tripsWithSignificantWait: 2315,
+        farms: [
+            { name: 'Tucanes',       visits: 597, medianMin: 47, p90Min: 128, id: 'F19' },
+            { name: 'San Juan',      visits: 482, medianMin: 43, p90Min: 135, id: 'F16' },
+            { name: 'La Chinita',    visits: 509, medianMin: 40, p90Min: 117, id: 'F06' },
+            { name: 'Castillete',    visits: 471, medianMin: 55, p90Min: 141, id: null },
+            { name: 'Nueva Colonia', visits: 393, medianMin: 79, p90Min: 234, id: null },
+            { name: 'Punto Fijo',    visits: 370, medianMin: 28, p90Min: 95,  id: 'F01' },
+            { name: 'Matogroso 2',   visits: 410, medianMin: 22, p90Min: 78,  id: 'F09' },
+            { name: 'Santa Marta',   visits: 398, medianMin: 31, p90Min: 102, id: 'F07' },
+            { name: 'Maritu',        visits: 125, medianMin: 35, p90Min: 110, id: 'F15' },
+            { name: 'Maria Bonita',  visits: 320, medianMin: 25, p90Min: 88,  id: 'F18' }
+        ]
+    },
+    nocturnos: {
+        palletsYear: 50000,
+        costPerPallet: 4200,
+        totalCostYear: 210,
+        targetSavings: 100,
+        pctNocturnal: 48
+    }
 };
 // Transport cost model comparison
 const TRANSPORT_MODEL = {
