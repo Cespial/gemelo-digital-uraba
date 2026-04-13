@@ -1286,10 +1286,11 @@
 
     <!-- ACID SCENARIO BOX -->
     <div class="fin-full">
-        <div style="padding:10px 16px;background:var(--yellow-bg);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div style="padding:10px 16px;background:var(--yellow-bg);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
             <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte (conservador)</span><br>SC2 Centro: <b style="color:var(--red);">$919</b>/caja<br>Hub total (mula $0 desc): <b style="color:var(--yellow);">$810</b>/caja<br>Ahorro: <b style="color:var(--green);">$109</b>/caja</div>
             <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Conservador</span><br>Terreno $100M + Pergola $600M<br>Equipos $200M + WK $100M<br>Contingencia $200M = <b>$1,200M</b></div>
             <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado Conservador</span><br>Bruto $360M - OPEX $362M<br><b style="color:var(--yellow);">Neto ~$0</b> (equilibrio)<br>Con terceros: <b style="color:var(--green);">+$652M</b></div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Nuevas Palancas (2025)</span><br>Standby evitado: <b style="color:var(--cyan);">$42-83M</b>/ano<br>Nocturnos evitados: <b style="color:var(--cyan);">$100M</b>/ano<br>Con palancas: <b style="color:var(--green);">+$142M</b></div>
         </div>
     </div>
 
@@ -1367,9 +1368,31 @@
                     <div class="fin-slider"><input type="range" id="fs-ext-rate" min="50" max="200" step="5" value="80" oninput="updateFinancialDashboard()"></div>
                 </div>
             </div>
+            <div class="div" style="border-top:1px solid var(--border);margin:8px 0;"></div>
+            <div class="dc-h" style="margin-bottom:4px;"><span class="dc-t" style="font-size:10px;color:var(--cyan);">Datos Operativos 2025 (Geocercas + Viajes)</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
+                <div class="kpi" style="padding:8px;"><div class="kpi-v b" style="font-size:13px;">12,860</div><div class="kpi-l">Viajes/ano</div></div>
+                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">72.8%</div><div class="kpi-l">Ocupacion real</div></div>
+                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">39.6%</div><div class="kpi-l">Llegadas fuera hora</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">53 min</div><div class="kpi-l">Espera media finca</div></div>
+                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">1h53m</div><div class="kpi-l">Espera media Zungo</div></div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);margin-bottom:8px;">PALANCAS ADICIONALES CON CENTRO DE CONSOLIDACION</div>
+            <div class="fin-input-g">
+                <span class="fin-label">Tarifa standby (COP/hora)</span><span class="fin-val" id="fv-standby-rate">20,000</span>
+                <div class="fin-slider"><input type="range" id="fs-standby-rate" min="0" max="40000" step="5000" value="20000" oninput="updateFinancialDashboard()"></div>
+                <span class="fin-label">% standby evitado con hub</span><span class="fin-val" id="fv-standby-pct">50%</span>
+                <div class="fin-slider"><input type="range" id="fs-standby-pct" min="0" max="100" step="10" value="50" oninput="updateFinancialDashboard()"></div>
+                <span class="fin-label">Ahorro nocturnos (% capturado)</span><span class="fin-val" id="fv-noct-pct">50%</span>
+                <div class="fin-slider"><input type="range" id="fs-noct-pct" min="0" max="100" step="10" value="50" oninput="updateFinancialDashboard()"></div>
+            </div>
             <div class="fin-total" style="flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;"><span class="fin-total-l">Standby evitado / ano</span><span class="fin-total-v" style="color:var(--cyan);" id="fd-standby-save">$0M</span></div>
+                <div style="display:flex;justify-content:space-between;"><span class="fin-total-l">Nocturnos evitados / ano</span><span class="fin-total-v" style="color:var(--cyan);" id="fd-noct-save">$0M</span></div>
                 <div style="display:flex;justify-content:space-between;"><span class="fin-total-l">Ingreso ext. anual</span><span class="fin-total-v b" id="fd-ext-income">$0M</span></div>
-                <div style="display:flex;justify-content:space-between;"><span class="fin-total-l">Ingreso total anual</span><span class="fin-total-v g" id="fd-total-income">$502M</span></div>
+                <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:4px;"><span class="fin-total-l" style="font-weight:700;">Ingreso total anual</span><span class="fin-total-v g" id="fd-total-income">$502M</span></div>
             </div>
         </div>
     </div>
