@@ -28,6 +28,10 @@ const FARMS = extractArray('FARMS');
 const rMatch = html.match(/const R\s*=\s*(\{[\s\S]*?\});\s*\n/);
 const R = new Function(`return ${rMatch[1]}`)();
 
+// ---- Extract CONFIG from index.html ----
+const configMatch = html.match(/const CONFIG\s*=\s*(\{[\s\S]*?\});/);
+const CONFIG = new Function(`return ${configMatch[1]}`)();
+
 function calcOD() {
   return FARMS.map(f => {
     const r = R[f.id];
@@ -191,4 +195,20 @@ describe('Simulation — BPR Congestion Model', () => {
     expect(r135.totalViajes).toBeGreaterThanOrEqual(r110.totalViajes);
     expect(r135.hubMulas).toBeGreaterThan(r110.hubMulas);
   });
+});
+
+// ============================================================
+describe('Standby and nocturnal config', () => {
+    it('CONFIG has standby rates', () => {
+        expect(CONFIG.standby).toBeDefined();
+        expect(CONFIG.standby.RATE_HR).toBe(20000);
+        expect(CONFIG.standby.AVG_WAIT_HR).toBeCloseTo(0.92, 1);
+        expect(CONFIG.standby.TRIPS_WITH_WAIT_PCT).toBe(18);
+    });
+    it('CONFIG has nocturnal rates', () => {
+        expect(CONFIG.nocturno).toBeDefined();
+        expect(CONFIG.nocturno.PALLETS_YEAR).toBe(50000);
+        expect(CONFIG.nocturno.COST_PALLET).toBe(4200);
+        expect(CONFIG.nocturno.TARGET_SAVINGS_M).toBe(100);
+    });
 });

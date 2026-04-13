@@ -1721,7 +1721,9 @@ const CONFIG = {
           TARIFA_CAJA: 359, FINCA_HUB: 200 },
   // Escenario conservador: SC2 Centro $919/caja, hub→PA mula $720K = $568/caja, f→h $200
   trip: { TARIFA_VIAJE: 919, HUB_FLETE: 568, HUB_STANDBY: 0 },
-  regional: { ANNUAL_CAJAS: 114e6 }
+  regional: { ANNUAL_CAJAS: 114e6 },
+  standby: { RATE_HR: 20000, AVG_WAIT_HR: 0.92, TRIPS_WITH_WAIT_PCT: 18 },
+  nocturno: { PALLETS_YEAR: 50000, COST_PALLET: 4200, TARGET_SAVINGS_M: 100 }
 };
 
 // ============================================================
@@ -3388,7 +3390,8 @@ function setPricingModel(model) {
 // ============================================================
 const simResults = {
     prodK: 110, annualBoxes: 0, savePerBox: 0, costDirect: 0, costHub: 0,
-    annualSave: 0, savePct: 0, congestionFactor: 1, totalViajes: 0, hubMulas: 0, scenario: 'sc1'
+    annualSave: 0, savePct: 0, congestionFactor: 1, totalViajes: 0, hubMulas: 0, scenario: 'sc1',
+    standbyAnnualM: 0, nocturnoAnnualM: 0
 };
 
 // ============================================================
