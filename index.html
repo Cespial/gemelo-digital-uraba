@@ -3965,6 +3965,9 @@ function updateFinancialDashboard() {
     const discount = +document.getElementById('fs-discount').value;
     const inflation = +document.getElementById('fs-inflation').value;
     const horizon  = +document.getElementById('fs-horizon').value;
+    const standbyRate = +document.getElementById('fs-standby-rate').value;
+    const standbyPct  = +document.getElementById('fs-standby-pct').value;
+    const noctPct     = +document.getElementById('fs-noct-pct').value;
 
     // --- Update slider display values ---
     document.getElementById('fv-land-ha').textContent = landHa;
@@ -3985,6 +3988,9 @@ function updateFinancialDashboard() {
     document.getElementById('fv-discount').textContent = discount + '%';
     document.getElementById('fv-inflation').textContent = inflation + '%';
     document.getElementById('fv-horizon').textContent = horizon;
+    document.getElementById('fv-standby-rate').textContent = standbyRate.toLocaleString('es-CO');
+    document.getElementById('fv-standby-pct').textContent = standbyPct + '%';
+    document.getElementById('fv-noct-pct').textContent = noctPct + '%';
 
     // --- CAPEX ---
     const capexLand = landHa * landCost;
@@ -4028,13 +4034,26 @@ function updateFinancialDashboard() {
     const annualSaveG20 = savePerBox * annualBoxes / 1e6;
     const extIncomeMonth = (extBoxes * 1000 * 4.33 * extRate) / 1e6;
     const extIncomeYear = extIncomeMonth * 12;
-    const totalIncomeYear = annualSaveG20 + extIncomeYear;
+
+    const _tripsWithWait = Math.round(OPS_2025.totalTrips * OPS_2025.standby.pctOver1Hr / 100);
+    const standbyTotalYear = _tripsWithWait * CONFIG.standby.AVG_WAIT_HR * standbyRate / 1e6;
+    const standbyEvitadoYear = standbyTotalYear * standbyPct / 100;
+
+    const nocTotalYear = CONFIG.nocturno.PALLETS_YEAR * CONFIG.nocturno.COST_PALLET / 1e6;
+    const nocturnoEvitadoYear = nocTotalYear * noctPct / 100;
+
+    const totalIncomeYear = annualSaveG20 + extIncomeYear + standbyEvitadoYear + nocturnoEvitadoYear;
+
+    simResults.standbyAnnualM = standbyEvitadoYear;
+    simResults.nocturnoAnnualM = nocturnoEvitadoYear;
 
     // Update income section
     document.getElementById('fd-cost-direct').textContent = '$' + (simResults.costDirect || 0);
     document.getElementById('fd-cost-hub').textContent = '$' + (simResults.costHub || 0);
     document.getElementById('fd-save-box').textContent = '$' + Math.round(savePerBox);
     document.getElementById('fd-save-annual').textContent = fmtM(annualSaveG20);
+    document.getElementById('fd-standby-save').textContent = fmtM(standbyEvitadoYear);
+    document.getElementById('fd-noct-save').textContent = fmtM(nocturnoEvitadoYear);
     document.getElementById('fd-ext-income').textContent = fmtM(extIncomeYear);
     document.getElementById('fd-total-income').textContent = fmtM(totalIncomeYear);
 
@@ -4069,7 +4088,9 @@ function updateFinancialDashboard() {
         const inf = Math.pow(inflMult, y - 1);
         const incG20 = annualSaveG20 * gf;
         const incExt = extIncomeYear * gf;
-        const incTotal = incG20 + incExt;
+        const incStandby = standbyEvitadoYear * gf;
+        const incNoct = nocturnoEvitadoYear * gf;
+        const incTotal = incG20 + incExt + incStandby + incNoct;
 
         const yStaff = opexStaff * 12 * inf;
         const yServ = services * 12 * inf;
