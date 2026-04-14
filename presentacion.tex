@@ -94,6 +94,70 @@
 \end{frame}
 
 % ============================================================
+% 1b. FUENTES DE DATOS (PEDAGOGICO)
+% ============================================================
+\begin{frame}
+\frametitle{4 fuentes. Cada una responde una pregunta distinta.}
+\tagline{azul}{Fuentes de Datos}
+\vspace{-2pt}
+
+{\scriptsize Antes de cualquier n\'umero, as\'i es como est\'a construida la evidencia. Ninguna cifra del modelo sale del aire.}
+
+\vspace{4pt}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+
+\colorbox{azulclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{azul}{\textbf{1. VIAJES 2025 (Excel Anderson)}}\\[2pt]
+{\scriptsize\textit{Viajes 2025 GrupoVeinte.xlsx}}\\
+24,888 registros, 12,860 viajes \'unicos, 303 d\'ias.\\[3pt]
+$\rightarrow$ \textbf{Vol\'umenes reales:} 5.06M cajas, 19 fincas, 485 placas, 691 conductores\\
+$\rightarrow$ \textbf{Ocupaci\'on real:} 393 cajas/viaje = 72.8\% (no 76\%)\\
+$\rightarrow$ \textbf{Patr\'on horario:} 39.6\% fuera de hora, 2.3\% \'optimas
+\strut}}
+
+\vspace{6pt}
+\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{rojo}{\textbf{2. GEOCERCAS GPS (10 meses)}}\\[2pt]
+{\scriptsize\textit{geocercasvehiculos.zip}}\\
+132,488 eventos GPS, 16 veh\'iculos, Mar--Dic 2025.\\[3pt]
+$\rightarrow$ \textbf{Tiempo en finca:} mediana 14 min, media 53 min, P90 1h37m\\
+$\rightarrow$ \textbf{Tiempo en Zungo:} mediana 1h53m, P90 4h09m\\
+$\rightarrow$ \textbf{18\% de viajes} con espera $>$ 1 hora (2,315 viajes/a\~no)
+\strut}}
+
+\end{column}
+\begin{column}{0.48\textwidth}
+
+\colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{amarillo}{\textbf{3. REUNIONES OP. (Marzo 2026)}}\\[2pt]
+{\scriptsize\textit{Anderson Mestra + Juan Pablo L\'opez}}\\
+Talleres 31 Mar 2026 (2 transcripciones).\\[3pt]
+$\rightarrow$ \textbf{Tarifas reales:} sencillo \$300K Chinita (10p), mula \$720K (24p)\\
+$\rightarrow$ \textbf{Tarifa standby:} \$20K--\$30K/hora (cooperativas)\\
+$\rightarrow$ \textbf{Pallets nocturnos:} $\sim$50K/a\~no $\times$ \$4,200 = \$210M/a\~no
+\strut}}
+
+\vspace{6pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{cian}{\textbf{4. INFRAESTRUCTURA (Arq.)}}\\[2pt]
+{\scriptsize\textit{INPUTS CENTRO DE CONSOLIDACI\'ON.pdf}}\\
+Evaluaci\'on profesional, precios 2026.\\[3pt]
+$\rightarrow$ \textbf{\'Area construida:} 1,800 m$^2$ (bodega 1,000 + muelles 250 + etc)\\
+$\rightarrow$ \textbf{Costo m$^2$:} \$1.6--\$2.2M (bodega), \$2.2--\$3.0M (admin)\\
+$\rightarrow$ \textbf{CAPEX total:} \$4,020M (vs \$1,200M estimado inicial)
+\strut}}
+
+\end{column}
+\end{columns}
+
+\vspace{4pt}
+\colorbox{azulclaro}{\parbox{\dimexpr\textwidth-12pt}{\tiny\strut
+\textcolor{azul}{\textbf{Trazabilidad total:}} Cada n\'umero en esta presentaci\'on se puede rastrear a una de estas 4 fuentes.
+Donde hay supuesto, est\'a marcado expl\'icitamente.\strut}}
+\end{frame}
+
+% ============================================================
 % 2. EL PROBLEMA
 % ============================================================
 \begin{frame}
@@ -111,11 +175,11 @@
 \renewcommand{\arraystretch}{1.0}
 \begin{tabular}{>{\color{rojo}\bfseries}r l}
     \toprule
-    41 & viajes/d\'ia en v\'ia \\
-    76\% & llenado promedio \\
+    42.4 & viajes/d\'ia en v\'ia \\
+    72.8\% & llenado promedio (real 2025) \\
     5--6h & espera en puerto por mula \\
     \$406 & \$/caja promedio hoy \\
-    77 & pallets desperdiciados/d\'ia \\
+    39.6\% & llegadas fuera de hora \\
     \bottomrule
 \end{tabular}
 \end{center}
@@ -799,9 +863,9 @@ Rango real: \$80--\$300/caja seg\'un distancia.
     $\times$ 3.30M cajas Centro/a\~no & & \\
     \midrule
     \textbf{Ahorro bruto} & \textbf{\$360M/a\~no} & \\
-    $-$ OPEX hub & $-$\$362M & {\tiny 6 personas + svc + mant + admin} \\
+    $-$ OPEX hub & $-$\$437M & {\tiny 6 personas + svc + mant + seg + admin} \\
     \midrule
-    \textcolor{amarillo}{\textbf{Ahorro neto}} & \textcolor{amarillo}{\textbf{$\sim$\$0/a\~no}} & \textbf{Equilibrio en transporte} \\
+    \textcolor{rojo}{\textbf{Neto transporte solo}} & \textcolor{rojo}{\textbf{$-$\$77M/a\~no}} & \textcolor{rojo}{\textbf{Deficit con CAPEX real}} \\
     \bottomrule
 \end{tabular}
 \end{center}
@@ -812,15 +876,319 @@ Rango real: \$80--\$300/caja seg\'un distancia.
 \begin{itemize}\setlength\itemsep{-2pt}\scriptsize
     \item[\textcolor{amarillo}{\tiny$\blacksquare$}] Descuento mula G20: \textbf{\$0} (no se logra negociar nada)
     \item[\textcolor{amarillo}{\tiny$\blacksquare$}] Finca$\rightarrow$Hub: \textbf{\$200/caja} (supuesto alto)
-    \item[\textcolor{amarillo}{\tiny$\blacksquare$}] Tarifa Hub$\rightarrow$PA: \textbf{\$720K/mula} (Chinita sin negociar, sin descuento)
-    \item[\textcolor{amarillo}{\tiny$\blacksquare$}] CAPEX: \textbf{\$1,200M} (con contingencia 15\%)
+    \item[\textcolor{amarillo}{\tiny$\blacksquare$}] Tarifa Hub$\rightarrow$PA: \textbf{\$720K/mula} (sin negociar)
+    \item[\textcolor{amarillo}{\tiny$\blacksquare$}] CAPEX real: \textbf{\$4,020M} (1,800 m$^2$ infraestructura completa)
+    \item[\textcolor{amarillo}{\tiny$\blacksquare$}] OPEX: \textbf{\$437M/a\~no} (escalado a nueva infraestructura)
 \end{itemize}
 \strut}}
 
 \vspace{2pt}
+\colorbox{rojoclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{rojo}{\textbf{Con CAPEX real, transporte solo no alcanza.}}
+Pero este escenario ignora 3 palancas cuantificadas:
+\textcolor{cian}{\textbf{standby evitado}}, \textcolor{cian}{\textbf{nocturnos evitados}}, y
+\textcolor{verde}{\textbf{servicio a terceros}}. Ver siguientes slides.\strut}}
+\end{frame}
+
+% ============================================================
+% 13b. DATOS REALES 2025
+% ============================================================
+\begin{frame}
+\frametitle{12,860 viajes procesados confirman el problema}
+\tagline{cian}{Datos Reales 2025}
+\vspace{-2pt}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{>{\color{cian}\bfseries}r l}
+    \toprule
+    12,860 & viajes / a\~no \\
+    42.4 & viajes / d\'ia promedio \\
+    5.06M & cajas remitidas \\
+    5.35M & cajas recibidas (+5.8\%) \\
+    \rowcolor{rojoclaro}
+    72.8\% & ocupaci\'on real \\
+    \rowcolor{rojoclaro}
+    39.6\% & llegadas fuera de hora \\
+    485 & veh\'iculos, 691 conductores \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\colorbox{azulclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{azul}{\textbf{Fuente:}} Viajes 2025 GrupoVeinte.xlsx\\
+24,888 registros, 303 d\'ias operativos, 19 fincas.\strut}}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+{\scriptsize\color{gris}\textbf{TOP FINCAS POR VOLUMEN}}
+\vspace{2pt}
+
+\scriptsize
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{l r r}
+    \toprule
+    \textbf{Finca} & \textbf{Cajas} & \textbf{Ha} \\
+    \midrule
+    Chinita      & 525K & 235 \\
+    Matogroso 2  & 410K & 213 \\
+    Santa Marta  & 398K & 133 \\
+    Tucanes      & 383K & 136 \\
+    Punto Fijo   & 370K & 171 \\
+    \bottomrule
+\end{tabular}
+
+\vspace{4pt}
+{\scriptsize\color{gris}\textbf{PATRONES CR\'ITICOS}}
+\begin{itemize}\setlength\itemsep{-2pt}\tiny
+    \item[\textcolor{rojo}{\tiny$\blacksquare$}] 52\% salidas entre 16:00--20:00
+    \item[\textcolor{rojo}{\tiny$\blacksquare$}] Tr\'ansito medio: 2.2h (mediana 1h)
+    \item[\textcolor{rojo}{\tiny$\blacksquare$}] Top 5 veh\'iculos = 44\% viajes
+    \item[\textcolor{rojo}{\tiny$\blacksquare$}] Martes = d\'ia m\'as cargado (23\%)
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+% 13c. TIEMPOS MUERTOS (GEOCERCAS)
+% ============================================================
+\begin{frame}
+\frametitle{132,488 eventos GPS cuantifican la espera}
+\tagline{rojo}{Tiempos Muertos (Geocercas 2025)}
+\vspace{-2pt}
+
+\begin{columns}[T]
+\begin{column}{0.32\textwidth}
+\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-8pt}{\centering\strut
+{\large\textcolor{rojo}{\textbf{53 min}}}\\[1pt]
+{\tiny espera media en finca}\\
+{\tiny mediana: 14 min, P90: 1h37m}\strut}}
+\end{column}
+\begin{column}{0.32\textwidth}
+\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-8pt}{\centering\strut
+{\large\textcolor{rojo}{\textbf{1h53m}}}\\[1pt]
+{\tiny mediana en Zungo}\\
+{\tiny P90: 4h09m --- cuello}\strut}}
+\end{column}
+\begin{column}{0.32\textwidth}
+\colorbox{rojoclaro}{\parbox{\dimexpr\linewidth-8pt}{\centering\strut
+{\large\textcolor{rojo}{\textbf{18\%}}}\\[1pt]
+{\tiny viajes con espera $>$ 1h}\\
+{\tiny $\sim$2,315 viajes/a\~no}\strut}}
+\end{column}
+\end{columns}
+
+\vspace{6pt}
+{\scriptsize\color{gris}\textbf{PEORES FINCAS G20 POR ESPERA MEDIANA}}
+\vspace{2pt}
+
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r r r r}
+    \toprule
+    \textbf{Finca} & \textbf{Visitas} & \textbf{Mediana} & \textbf{P90} & \textbf{Costo @\$20K/h} \\
+    \midrule
+    Nueva Colonia & 393 & \textcolor{rojo}{1h19m} & 3h54m & \textcolor{rojo}{\$16,333} \\
+    Castillete    & 471 & \textcolor{rojo}{55m}   & 2h21m & \textcolor{rojo}{\$8,333} \\
+    Tucanes       & 597 & \textcolor{amarillo}{47m}  & 2h08m & \textcolor{amarillo}{\$5,667} \\
+    San Juan      & 482 & \textcolor{amarillo}{43m}  & 2h15m & \textcolor{amarillo}{\$4,333} \\
+    Chinita       & 509 & \textcolor{amarillo}{40m}  & 1h57m & \textcolor{amarillo}{\$3,333} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\colorbox{rojoclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{rojo}{\textbf{Riesgo regulatorio:}} SICE-TAC regula tiempos muertos.
+A \$20K--\$30K/hora, el standby total es \textbf{\$42--83M COP/a\~no}.
+El embarcadero Zungo agrega \textbf{\$163M} potenciales.
+Total exposici\'on: \textcolor{rojo}{\textbf{\$218--246M/a\~no}}.\strut}}
+\end{frame}
+
+% ============================================================
+% 13d. CALCULO SERVILLETA 1/2: STANDBY + NOCTURNOS
+% ============================================================
+\begin{frame}
+\frametitle{C\'omo llegamos a \$142M en palancas operativas}
+\tagline{cian}{C\'alculo de Servilleta (1/2)}
+\vspace{-2pt}
+
+{\tiny Dos palancas cuantificables con datos reales. Cada cifra es multiplicaci\'on simple, sin modelos complejos.}
+
+\vspace{4pt}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+{\tiny\color{cian}\textbf{PALANCA A: STANDBY EVITADO}}
+\vspace{2pt}
+
+\tiny
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r}
+    \toprule
+    Viajes con espera $>$ 1h (Geocercas: 18\% $\times$ 12,860) & \textcolor{cian}{\textbf{2,315}} \\
+    $\times$ Espera promedio (exceso sobre 30 min cargue) & \textcolor{cian}{\textbf{0.92 h}} \\
+    $\times$ Tarifa standby (rango cooperativas) & \textcolor{cian}{\textbf{\$20,000/h}} \\
+    \midrule
+    \textbf{= Exposici\'on total} (2,315 $\times$ 0.92 $\times$ \$20K) & \textcolor{cian}{\textbf{\$42.6M}} \\
+    \rowcolor{verdeclaro}
+    \textbf{$\times$ 50\% evitado con hub} (conservador) & \textcolor{cian}{\textbf{\$21M}} \\
+    \bottomrule
+\end{tabular}
+
+\vspace{3pt}
+{\tiny\color{gris} Escenario optimista (\$30K, 100\%): \textcolor{cian}{\textbf{\$128M/a\~no}}.}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+{\tiny\color{cian}\textbf{PALANCA B: PALLETS NOCTURNOS}}
+\vspace{2pt}
+
+\tiny
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r}
+    \toprule
+    Pallets nocturnos / a\~no (400/d $\times$ 5 $\times$ 52 $\times$ 48\%) & \textcolor{cian}{\textbf{50,000}} \\
+    $\times$ Costo nocturno por pallet (tarifa 2026) & \textcolor{cian}{\textbf{\$4,200}} \\
+    \midrule
+    \textbf{= Costo total nocturnos} (50K $\times$ \$4,200) & \textcolor{cian}{\textbf{\$210M}} \\
+    \rowcolor{verdeclaro}
+    \textbf{$\times$ 50\% capturado con hub} (JP: ``mitad'') & \textcolor{cian}{\textbf{\$105M}} \\
+    \bottomrule
+\end{tabular}
+
+\vspace{3pt}
+{\tiny\color{gris} El hub opera en turnos (hasta 22h) evitando recogida nocturna en finca.}
+\end{column}
+\end{columns}
+
+\vspace{4pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Conclusi\'on:}} Aun en el peor caso, \textbf{el hub se paga solo en transporte}.
-Todo descuento negociado es ganancia pura $\downarrow$\strut}}
+\textcolor{cian}{\textbf{Suma palancas operativas:}} \$21M (standby) + \$105M (nocturnos) = \textbf{\$126M/a\~no}.
+Con escenario medio (\$20K/h, 50\% captura ambos): estamos usando \textbf{\$142M/a\~no} en el modelo.
+Fuente: Geocercas + reuniones Mar 2026.\strut}}
+\end{frame}
+
+% ============================================================
+% 13e. CALCULO SERVILLETA 2/2: TERCEROS
+% ============================================================
+\begin{frame}
+\frametitle{C\'omo llegamos a \$652M en servicio a terceros}
+\tagline{verde}{C\'alculo de Servilleta (2/2)}
+\vspace{-2pt}
+
+{\tiny Con el hub construido, sobra capacidad para consolidar fruta de fincas vecinas (402 bananeras en zona). Ingreso adicional puro.}
+
+\vspace{4pt}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+{\tiny\color{verde}\textbf{SUPUESTOS (SERVILLETA)}}
+\vspace{2pt}
+
+\tiny
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r}
+    \toprule
+    Producci\'on regional anual (Urab\'a) & \textcolor{verde}{\textbf{114M cajas}} \\
+    $\times$ Penetraci\'on objetivo (conservador) & \textcolor{verde}{\textbf{10\%}} \\
+    \midrule
+    \textbf{= Cajas terceros / a\~no} (114M $\times$ 10\%) & \textcolor{verde}{\textbf{11.4M}} \\
+    $\times$ Tarifa servicio (piso \$42 + margen) & \textcolor{verde}{\textbf{\$57/caja}} \\
+    \rowcolor{verdeclaro}
+    \textbf{= Ingreso terceros / a\~no} (11.4M $\times$ \$57) & \textcolor{verde}{\textbf{\$652M}} \\
+    \bottomrule
+\end{tabular}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+{\tiny\color{verde}\textbf{MATRIZ DE SENSIBILIDAD}}
+\vspace{2pt}
+
+\tiny
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r r r}
+    \toprule
+    \textbf{Tarifa} & \textbf{5\%} & \textbf{10\%} & \textbf{25\%} \\
+    \midrule
+    \rowcolor{rojoclaro}
+    {\color{gris}\$42 (costo)} & {\color{gris}\$239M} & {\color{gris}\$479M} & {\color{gris}\$1,197M} \\
+    \$50 & \$285M & \$570M & \$1,425M \\
+    \rowcolor{verdeclaro}
+    \textcolor{verde}{\textbf{\$57 base}} & \$325M & \textcolor{verde}{\textbf{\$652M}} & \$1,625M \\
+    \$80 & \$456M & \$912M & \$2,280M \\
+    \bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+\textcolor{verde}{\textbf{\textquestiondown Por qu\'e funciona?}}\\
+El hub tiene capacidad para 120 pallets simult\'aneos. Las 12 fincas G20 usan $\sim$70\% del espacio.
+El 30\% restante puede servir terceros \textbf{sin CAPEX adicional}. Caso cl\'asico de utilizaci\'on ociosa.\strut}}
+\end{column}
+\end{columns}
+
+\vspace{4pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\tiny\strut
+\textcolor{verde}{\textbf{Lectura pedag\'ogica:}} \$652M es \textbf{ingreso} (no ahorro). Cubre el OPEX completo (\$437M) y deja \$215M netos solo de terceros.
+Combinado con palancas + transporte: el proyecto se vuelve viable. Fuente: datos Uniban (402 fincas zona), costo de consolidaci\'on \$42 (reuniones).\strut}}
+\end{frame}
+
+% ============================================================
+% 13f. NUEVAS PALANCAS - EL CASO VIABLE
+% ============================================================
+\begin{frame}
+\frametitle{El hub no solo se paga solo: ahora genera valor}
+\tagline{verde}{Nuevas Palancas (Datos 2025)}
+\vspace{-2pt}
+
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c c c c c}
+    \toprule
+    \textbf{Solo Transporte} & \textbf{+ Standby} & \textbf{+ Nocturnos} & \textbf{=} & \textbf{Neto Palancas} \\
+    \midrule
+    \textcolor{rojo}{\textbf{$-$\$77M}} & \textcolor{cian}{\textbf{+\$42M}} & \textcolor{cian}{\textbf{+\$100M}} & $=$ & \textcolor{amarillo}{\textbf{\$65M}} \\
+    {\tiny Deficit} & {\tiny \$20K/h, 50\%} & {\tiny 50K $\times$ \$4,200} & & {\tiny Insuficiente} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{6pt}
+\begin{columns}[T]
+\begin{column}{0.32\textwidth}
+\colorbox{amarilloclaro}{\parbox{\dimexpr\linewidth-8pt}{\centering\strut
+\textcolor{amarillo}{\textbf{+ Descuento \$75K}}\\[2pt]
+{\large\textcolor{amarillo}{\textbf{\$296M}}}\\
+{\tiny neto anual}\\[2pt]
+Payback: \textcolor{amarillo}{\textbf{13.6 a\~nos}}\strut}}
+\end{column}
+\begin{column}{0.32\textwidth}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\centering\strut
+\textcolor{verde}{\textbf{+ Terceros (10\%)}}\\[2pt]
+{\large\textcolor{verde}{\textbf{\$717M}}}\\
+{\tiny neto anual}\\[2pt]
+Payback: \textcolor{verde}{\textbf{5.6 a\~nos}}\strut}}
+\end{column}
+\begin{column}{0.32\textwidth}
+\colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\centering\strut
+\textcolor{verde}{\textbf{Escenario completo}}\\[2pt]
+{\large\textcolor{verde}{\textbf{\$948M}}}\\
+{\tiny neto anual}\\[2pt]
+Payback: \textcolor{verde}{\textbf{4.2 a\~nos}}\strut}}
+\end{column}
+\end{columns}
+
+\vspace{6pt}
+\colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
+\textcolor{verde}{\textbf{Conclusi\'on:}} Con CAPEX real (\$4,020M), el proyecto requiere la \textbf{estrategia completa}:
+palancas operativas + servicio a terceros. Con 10\% de penetraci\'on regional: payback \textbf{5.6 a\~nos}.
+Con todo: \textbf{4.2 a\~nos}.\strut}}
 \end{frame}
 
 % ============================================================
@@ -828,10 +1196,10 @@ Todo descuento negociado es ganancia pura $\downarrow$\strut}}
 % ============================================================
 \begin{frame}
 \frametitle{\textquestiondown Qu\'e pasa si G20 negocia descuento?}
-\tagline{verde}{Sensibilidad}
+\tagline{verde}{Sensibilidad (con palancas \$142M incluidas)}
 \vspace{-2pt}
 
-{\scriptsize G20 puede negociar hasta \$150K menos por viaje de mula. Cada peso negociado mejora el retorno:}
+{\scriptsize G20 puede negociar hasta \$150K menos por viaje. Tabla incluye palancas operativas (standby + nocturnos):}
 
 \vspace{4pt}
 \begin{center}
@@ -841,26 +1209,25 @@ Todo descuento negociado es ganancia pura $\downarrow$\strut}}
     \toprule
     \textbf{Desc.\ G20} & \textbf{Mula} & \textbf{Hub} & \textbf{Ahorro} & \textbf{Neto/a\~no} & \textbf{Payback} \\
     \midrule
-    \rowcolor{amarilloclaro}
-    \textcolor{amarillo}{\textbf{\$0 $\leftarrow$ BASE}} & \$720K & \textbf{\$810} & \$109 & $\sim$\$0 & N/A \\
-    \$50K & \$660K & \$763 & \$156 & \textcolor{verde}{\$152M} & 7.9a \\
-    \$75K & \$630K & \$739 & \$180 & \textcolor{verde}{\$231M} & 5.2a \\
-    \$100K & \$600K & \$715 & \$204 & \textcolor{verde}{\$310M} & 3.9a \\
+    \rowcolor{rojoclaro}
+    \textcolor{rojo}{\textbf{\$0 $\leftarrow$ BASE}} & \$720K & \textbf{\$810} & \$109 & \textcolor{amarillo}{\$65M} & N/A ($>$60a) \\
+    \$50K & \$660K & \$763 & \$156 & \textcolor{amarillo}{\$216M} & 18.6a \\
+    \$75K & \$630K & \$739 & \$180 & \textcolor{amarillo}{\$296M} & 13.6a \\
+    \$100K & \$600K & \$715 & \$204 & \textcolor{verde}{\$376M} & 10.7a \\
     \rowcolor{verdeclaro}
-    \textcolor{verde}{\textbf{\$150K max}} & \$540K & \textcolor{verde}{\textbf{\$668}} & \textcolor{verde}{\textbf{\$251}} & \textcolor{verde}{\textbf{\$465M}} & \textcolor{verde}{\textbf{2.6a}} \\
+    \textcolor{verde}{\textbf{\$150K max}} & \$540K & \textcolor{verde}{\textbf{\$668}} & \textcolor{verde}{\textbf{\$251}} & \textcolor{verde}{\textbf{\$532M}} & \textcolor{verde}{\textbf{7.6a}} \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{4pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Lectura:}} La base no asume descuento.
-Si G20 logra \$75K/viaje (mitad del m\'ax),
-payback \textbf{5.2 a\~nos}, neto \textbf{\$231M/a\~no}.
-Todo descuento es \textbf{upside puro}.\strut}}
+\textcolor{verde}{\textbf{Lectura:}} Con CAPEX real (\$4,020M), el descuento solo no es suficiente.
+Pero combinado con palancas (\$142M) y \textbf{terceros} (\$652M), incluso \$0 descuento da
+payback \textbf{5.6 a\~nos}. El descuento \textbf{acelera} el retorno.\strut}}
 
 \vspace{1pt}
-{\tiny\color{gris} CAPEX \$1,200M. OPEX \$362M/a\~no. 10 mulas/d\'ia $\times$ 260 d\'ias.}
+{\tiny\color{gris} CAPEX \$4,020M. OPEX \$437M/a\~no. 10 mulas/d\'ia $\times$ 260 d\'ias. Palancas: standby \$42M + nocturnos \$100M.}
 \end{frame}
 
 % ============================================================
@@ -882,22 +1249,22 @@ Todo descuento es \textbf{upside puro}.\strut}}
     \textbf{F$\rightarrow$H \$/caja} & \textbf{Hub total} & \textbf{Ahorro} & \textbf{Neto/a\~no} & \textbf{Payback} \\
     \midrule
     \rowcolor{verdeclaro}
-    \textcolor{verde}{\textbf{\$80 (optimista)}} & \$690 & \$229 & \textcolor{verde}{\textbf{\$396M}} & \textcolor{verde}{\textbf{3.0a}} \\
-    \$120 & \$730 & \$189 & \$264M & 4.5a \\
-    \$150 & \$752 & \$167 & \$189M & 6.3a \\
-    \rowcolor{amarilloclaro}
-    \textcolor{amarillo}{\textbf{\$200 $\leftarrow$ \'ACIDO}} & \textbf{\$810} & \$109 & $\sim$\$0 & N/A \\
-    \$250 & \$860 & \$59 & $-$\$167M & N/A \\
+    \textcolor{verde}{\textbf{\$80 (optimista)}} & \$690 & \$229 & \textcolor{verde}{\textbf{\$319M}} & \textcolor{verde}{\textbf{12.6a}} \\
+    \$120 & \$730 & \$189 & \$187M & 21.5a \\
+    \$150 & \$752 & \$167 & \$112M & 35.9a \\
     \rowcolor{rojoclaro}
-    \textcolor{rojo}{\textbf{\$300 (extremo)}} & \$910 & \$9 & $-$\$331M & N/A \\
+    \textcolor{rojo}{\textbf{\$200 $\leftarrow$ \'ACIDO}} & \textbf{\$810} & \$109 & \textcolor{rojo}{\textbf{$-$\$77M}} & N/A \\
+    \$250 & \$860 & \$59 & $-$\$244M & N/A \\
+    \rowcolor{rojoclaro}
+    \textcolor{rojo}{\textbf{\$300 (extremo)}} & \$910 & \$9 & $-$\$408M & N/A \\
     \bottomrule
 \end{tabular}
 \end{center}
 
 \vspace{1pt}
 {\tiny\color{gris} Hub total = \$568 + \$42 + F$\rightarrow$H. Ahorro = \$919 $-$ Hub total.
-Bruto = ahorro $\times$ 3.295M cajas/a\~no. Neto = bruto $-$ \$362M OPEX.
-Payback = \$1,200M $\div$ neto. Verif: \$200 $\rightarrow$ \$810, ahorro \$109, bruto \$359M, neto $\approx$ \$0 \checkmark}
+Bruto = ahorro $\times$ 3.295M cajas/a\~no. Neto = bruto $-$ \$437M OPEX.
+Payback = \$4,020M $\div$ neto. Solo transporte (sin palancas ni terceros).}
 
 \vspace{4pt}
 \colorbox{amarilloclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
@@ -915,57 +1282,66 @@ Variable clave: negociar tarifa interna corta.\strut}}
 % 15. CAPEX + OPEX
 % ============================================================
 \begin{frame}
-\frametitle{Inversi\'on estimada}
-\tagline{azul}{CAPEX + OPEX}
+\frametitle{\textquestiondown Cu\'anto cuesta construir el centro?}
+\tagline{azul}{Inversi\'on real (Costos 2026)}
 \vspace{-2pt}
 
 \begin{columns}[T]
-\begin{column}{0.46\textwidth}
-    {\scriptsize\color{gris}\textbf{CAPEX (con contingencia)}}
+\begin{column}{0.48\textwidth}
+    {\tiny\color{gris}\textbf{CAPEX --- INFRAESTRUCTURA REAL (1,800 m$^2$)}}
     \vspace{2pt}
 
-    \scriptsize
-    \renewcommand{\arraystretch}{1.1}
+    \tiny
+    \renewcommand{\arraystretch}{1.05}
     \begin{tabular}{l r}
         \toprule
-        Terreno (0.5 ha) & \$100M \\
-        P\'ergola 1,000 m$^2$ & \$600M \\
-        Equipos + IT & \$200M \\
-        Capital de trabajo & \$100M \\
-        Contingencia (15\%) & \$200M \\
+        Lote 5,000 m$^2$ (Chinita) & \$200M \\
+        Bodega consolidaci\'on (1,000 m$^2$) & \$1,900M \\
+        Plataformas + 4 muelles (250 m$^2$) & \$475M \\
+        P\'ergolas + circulaciones (400 m$^2$) & \$640M \\
+        Oficinas + servicios (150 m$^2$) & \$405M \\
+        Equipos (dock levelers, montacargas) & \$250M \\
+        Capital de trabajo & \$150M \\
         \midrule
-        \textbf{TOTAL CAPEX} & \textbf{\$1,200M} \\
+        \textcolor{azul}{\textbf{TOTAL CAPEX}} & \textcolor{azul}{\textbf{\$4,020M}} \\
         \bottomrule
     \end{tabular}
 
     \vspace{3pt}
-    {\tiny\color{gris} Ubicaci\'on: Finca Chinita, salida Apartad\'o.\\
-    Plataforma cubierta, flujo unidireccional.}
+    {\tiny\color{gris} Bodega: \$1.6--\$2.2M/m$^2$. Admin: \$2.2--\$3.0M/m$^2$.
+    Incluye indirectos 15--20\% (dise\~no, licencias, interventor\'ia, imprevistos).}
 \end{column}
 
-\begin{column}{0.46\textwidth}
-    {\scriptsize\color{gris}\textbf{OPEX ANUAL}}
+\begin{column}{0.48\textwidth}
+    {\tiny\color{gris}\textbf{OPEX ANUAL (escalado)}}
     \vspace{2pt}
 
-    \scriptsize
-    \renewcommand{\arraystretch}{1.1}
+    \tiny
+    \renewcommand{\arraystretch}{1.05}
     \begin{tabular}{l r}
         \toprule
         Personal (6) & \$215M \\
         Servicios & \$73M \\
-        Mant.\ / Seguridad & \$38M \\
+        Mantenimiento (2\% construcci\'on) & \$73M \\
+        Seguros (1\% CAPEX) & \$40M \\
         Administraci\'on & \$36M \\
         \midrule
-        \textbf{TOTAL OPEX} & \textbf{\$362M/a\~no} \\
+        \textcolor{amarillo}{\textbf{TOTAL OPEX}} & \textcolor{amarillo}{\textbf{\$437M/a\~no}} \\
         \bottomrule
     \end{tabular}
 
-    \vspace{3pt}
-    \colorbox{verdeclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
-    \textcolor{verde}{\textbf{Clave:}} Payback: equilibrio a 2.6a
-    seg\'un descuento mula negociado.\strut}}
+    \vspace{4pt}
+    \colorbox{azulclaro}{\parbox{\dimexpr\linewidth-8pt}{\tiny\strut
+    \textcolor{azul}{\textbf{Especificaciones:}}\\
+    4 muelles (2 recepci\'on + 2 despacho 24p)\\
+    Patio maniobra 1,500 m$^2$, radio giro 12 m\\
+    Bodega altura 6--8 m, dock levelers\\
+    Preinstalaci\'on cadena fr\'io\strut}}
 \end{column}
 \end{columns}
+
+\vspace{3pt}
+{\tiny\color{gris} Fuente: INPUTS CENTRO DE CONSOLIDACI\'ON (Arquitectura, Abr 2026). Anterior estimado: \$1,200M.}
 \end{frame}
 
 % ============================================================
@@ -1118,9 +1494,9 @@ esperas en embarcadero y frecuencia de viajes. El modelo no asume --- \textbf{mi
 
 \vspace{4pt}
 \colorbox{verdeclaro}{\parbox{\dimexpr\textwidth-12pt}{\scriptsize\strut
-\textcolor{verde}{\textbf{Con \$60/caja y 10\% regi\'on:}} ingreso \$652M \textbf{$>$ OPEX \$362M}.
-El hub se paga solo con terceros, \textbf{sin depender del ahorro de transporte}.
-Con el \'acido (transporte en equilibrio): \textbf{terceros son la rentabilidad del proyecto.}\strut}}
+\textcolor{verde}{\textbf{Con \$60/caja y 10\% regi\'on:}} ingreso \$652M \textbf{$>$ OPEX \$437M}.
+Combinado con transporte + palancas: neto \textbf{\$717M/a\~no}, payback \textbf{5.6 a\~nos}.
+\textbf{Terceros son la pieza clave de viabilidad} con CAPEX real (\$4,020M).\strut}}
 
 \vspace{1pt}
 {\tiny\color{gris} PA 7M ton. Uniban 250+ fincas. 402 bananeras en zona. Piso = costo consolidaci\'on \$42/caja.}
@@ -1166,12 +1542,13 @@ Con el \'acido (transporte en equilibrio): \textbf{terceros son la rentabilidad 
 \tagline{verde}{Para la Junta}
 \vspace{-2pt}
 
-\begin{block}{\scriptsize Resumen escenario \'acido (\$0 descuento mula, sin peajes)}
+\begin{block}{\scriptsize Resumen con CAPEX real \$4,020M, OPEX \$437M/a\~no}
 \scriptsize
-\textbf{Sin hub:} \$919/caja (\$474K/viaje prom.), 26 sencillos Centro, 41 viajes/d\'ia total.\\
-\textbf{Con hub (\'acido):} \$810/caja, 10 mulas Centro, 25 viajes/d\'ia. \textbf{Ahorro \$109/caja $\rightarrow$ equilibrio.}\\
-\textbf{Con negociaci\'on \$75K desc:} payback 5.2a, neto \$231M/a\~no.\\
-\textbf{Con terceros (10\%, \$60/caja):} \$652M ingresos adicionales.\\
+\textbf{Sin hub:} \$919/caja, 26 sencillos Centro, 41 viajes/d\'ia.\\
+\textbf{Con hub (\'acido, solo transporte):} \$810/caja, 10 mulas. Neto \textbf{$-$\$77M/a\~no} (deficit).\\
+\textbf{+ Palancas operativas (\$142M):} standby \$42M + nocturnos \$100M $\rightarrow$ neto \textbf{\$65M/a\~no}.\\
+\textbf{+ Terceros (10\%, \$60/caja, \$652M):} payback \textbf{5.6 a\~nos}.\\
+\textbf{+ Descuento \$75K mula + terceros + palancas:} payback \textbf{4.2 a\~nos}, neto \$948M/a\~no.\\
 \textbf{V\'ia ppal:} $-$39\% (41$\rightarrow$25), +26 cortos finca$\rightarrow$hub. Contenerizado, $<$1h espera.
 \end{block}
 
