@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro de Consolidacion Logistica | Grupo 20 — Junta Directiva</title>
+    <title>Centro de Consolidación Logística | Grupo 20 — Junta Directiva</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -164,18 +164,98 @@
 <!-- ============================================================ -->
 <div class="slide active center">
     <div class="slide-tag" style="color:var(--green);">Estudio de Viabilidad</div>
-    <div class="slide-title" style="font-size:44px;">Centro de Consolidacion<br>Logistica</div>
+    <div class="slide-title" style="font-size:44px;">Centro de Consolidación<br>Logística</div>
     <div style="width:60px;height:3px;background:var(--green);margin:16px auto 20px;border-radius:2px;"></div>
     <div class="slide-subtitle center">
         Modelo 3 Nodos para las 19 fincas de Grupo 20<br>
-        <span style="color:var(--text3);">Uraba, Antioquia &bull; Presentacion Junta Directiva</span>
+        <span style="color:var(--text3);">Urabá, Antioquia &bull; Presentación Junta Directiva</span>
     </div>
     <div style="margin-top:40px;display:flex;gap:20px;align-items:center;">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);padding:6px 12px;border:1px solid var(--border);border-radius:6px;">
             GEMELO DIGITAL INTERACTIVO &bull; <a href="https://gemelo-digital-uraba.vercel.app" target="_blank" style="color:var(--green);text-decoration:none;">gemelo-digital-uraba.vercel.app</a>
         </div>
     </div>
-    <div class="slide-footer">Observatorio de Datos y Analisis SAS &bull; Datos: OSRM, DANE, UPRA, Geocercas GPS, Anderson Mestra (Marzo 2026)</div>
+    <div class="slide-footer">Observatorio de Datos y Análisis SAS &bull; Datos: OSRM, DANE, UPRA, Geocercas GPS, Anderson Mestra (Marzo 2026)</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 1b: FUENTES DE DATOS (NUEVO - PEDAGOGICO) -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--blue);">Fuentes de Datos</div>
+    <div class="slide-title" style="font-size:32px;">4 fuentes. Cada una<br>responde una pregunta distinta.</div>
+    <div class="slide-body" style="margin-bottom:16px;max-width:1100px;">
+        Antes de cualquier número, así es como está construida la evidencia. Ninguna cifra del modelo sale del aire.
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:1100px;">
+
+        <div class="kpi-box" style="border-color:rgba(56,152,255,0.3);text-align:left;padding:18px 20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:rgba(56,152,255,0.15);color:var(--blue);font-family:'JetBrains Mono',monospace;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12px;">1</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px;">Viajes 2025 (Excel Anderson)</div>
+            </div>
+            <div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:8px;">
+                <b>Viajes 2025 GrupoVeinte.xlsx</b> &mdash; 24,888 registros, 12,860 viajes únicos, 303 días operativos.
+            </div>
+            <div style="font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;line-height:1.7;">
+                &rarr; <b style="color:var(--text2);">Volumenes reales:</b> 5.06M cajas remitidas, 19 fincas, 485 placas, 691 conductores<br>
+                &rarr; <b style="color:var(--text2);">Ocupación real:</b> 393 cajas/viaje = 72.8% (no el 76% estimado)<br>
+                &rarr; <b style="color:var(--text2);">Patrón horario:</b> 39.6% llegadas fuera de hora, solo 2.3% óptimas
+            </div>
+        </div>
+
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);text-align:left;padding:18px 20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,59,78,0.15);color:var(--red);font-family:'JetBrains Mono',monospace;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12px;">2</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:0.5px;">Geocercas GPS (10 meses)</div>
+            </div>
+            <div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:8px;">
+                <b>geocercasvehículos.zip</b> &mdash; 132,488 eventos GPS, 16 vehículos, Mar&ndash;Dic 2025.
+            </div>
+            <div style="font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;line-height:1.7;">
+                &rarr; <b style="color:var(--text2);">Tiempo en finca:</b> mediana 14 min, media 53 min, P90 1h37m<br>
+                &rarr; <b style="color:var(--text2);">Tiempo en Zungo:</b> mediana 1h53m, P90 4h09m (cuello real)<br>
+                &rarr; <b style="color:var(--text2);">18% de viajes</b> tienen espera &gt; 1 hora (2,315 viajes/año)
+            </div>
+        </div>
+
+        <div class="kpi-box" style="border-color:rgba(240,160,48,0.3);text-align:left;padding:18px 20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:rgba(240,160,48,0.15);color:var(--yellow);font-family:'JetBrains Mono',monospace;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12px;">3</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.5px;">Reuniones Op. (Mar 2026)</div>
+            </div>
+            <div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:8px;">
+                <b>Anderson Mestra + Juan Pablo López</b> &mdash; Talleres 31 Marzo 2026 (2 transcripciones).
+            </div>
+            <div style="font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;line-height:1.7;">
+                &rarr; <b style="color:var(--text2);">Tarifas reales:</b> sencillo $300K Chinita (10p), mula $720K (24p)<br>
+                &rarr; <b style="color:var(--text2);">Tarifa standby:</b> $20K&ndash;$30K/hora (propuesta cooperativas)<br>
+                &rarr; <b style="color:var(--text2);">Pallets nocturnos:</b> ~50K/año &times; $4,200 = $210M/año
+            </div>
+        </div>
+
+        <div class="kpi-box" style="border-color:rgba(24,216,208,0.3);text-align:left;padding:18px 20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:rgba(24,216,208,0.15);color:var(--cyan);font-family:'JetBrains Mono',monospace;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12px;">4</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:0.5px;">Infraestructura (Arq.)</div>
+            </div>
+            <div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:8px;">
+                <b>INPUTS CENTRO DE CONSOLIDACIÓN.pdf</b> &mdash; Evaluación profesional, precios 2026.
+            </div>
+            <div style="font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;line-height:1.7;">
+                &rarr; <b style="color:var(--text2);">Area construida:</b> 1,800 m&sup2; (bodega 1,000 + muelles 250 + etc)<br>
+                &rarr; <b style="color:var(--text2);">Costo m&sup2;:</b> $1.6&ndash;$2.2M (bodega), $2.2&ndash;$3.0M (admin)<br>
+                &rarr; <b style="color:var(--text2);">CAPEX total:</b> $4,020M (vs $1,200M estimado inicial)
+            </div>
+        </div>
+
+    </div>
+
+    <div class="highlight-box blue" style="margin-top:14px;max-width:1100px;">
+        <span style="color:var(--blue);font-weight:700;">Trazabilidad total:</span>
+        <span style="color:var(--text2);"> Cada número en esta presentación se puede rastrear a una de estas 4 fuentes. Donde hay supuesto, está marcado explícitamente.</span>
+    </div>
 </div>
 
 <!-- ============================================================ -->
@@ -186,12 +266,12 @@
     <div class="slide-title" style="font-size:38px;">19 fincas, cada una<br>por su cuenta</div>
     <div class="slide-body" style="margin-bottom:28px;">
         Hoy, cada finca despacha de forma independiente hacia el embarcadero o el puerto.
-        Camiones a medio llenar, en una via de un solo carril, esperando horas.
+        Camiones a medio llenar, en una vía de un solo carril, esperando horas.
     </div>
     <div class="four-col" style="max-width:1000px;">
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:36px;color:var(--red);">41</div>
-            <div class="kpi-label">viajes/dia en via</div>
+            <div class="kpi-label">viajes/día en vía</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:36px;color:var(--red);">72.8%</div>
@@ -208,7 +288,7 @@
         </div>
     </div>
     <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);">
-        Fuente: Geocercas GPS 7 vehiculos (Mar 9-12, 2026) &bull; Flota: 4 mulas + 6 sencillos &bull; OSRM routing real
+        Fuente: Geocercas GPS 7 vehículos (Mar 9-12, 2026) &bull; Flota: 4 mulas + 6 sencillos &bull; OSRM routing real
     </div>
 </div>
 
@@ -225,7 +305,7 @@
             <div style="font-size:13px;color:var(--text2);margin-top:8px;line-height:1.6;">
                 G20 subcontrata al transportador.<br>
                 Paga por caja, <b style="color:var(--text);">sin importar el vehiculo</b>.<br>
-                Rango: $295&ndash;$519 segun finca.
+                Rango: $295&ndash;$519 según finca.
             </div>
         </div>
         <div class="vs-arrow">&#x2192;</div>
@@ -240,8 +320,8 @@
         </div>
     </div>
     <div class="highlight-box yellow" style="margin-top:20px;max-width:1000px;">
-        <span style="color:var(--yellow);font-weight:700;">Los transportadores llevan 2 anos exigiendo este cambio.</span>
-        <span style="color:var(--text2);"> El SICE-TAC del MinTransporte ya lo regula. La pregunta no es <i>si</i> va a cambiar, sino <i>cuando</i>.</span>
+        <span style="color:var(--yellow);font-weight:700;">Los transportadores llevan 2 años exigiendo este cambio.</span>
+        <span style="color:var(--text2);"> El SICE-TAC del MinTransporte ya lo regula. La pregunta no es <i>si</i> va a cambiar, sino <i>cuándo</i>.</span>
     </div>
 </div>
 
@@ -250,7 +330,7 @@
 <!-- ============================================================ -->
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--blue);">Entendiendo las Tarifas (1/2)</div>
-    <div class="slide-title" style="font-size:32px;">Paso a paso: tarifa de<br>un camion sencillo</div>
+    <div class="slide-title" style="font-size:32px;">Paso a paso: tarifa de<br>un camión sencillo</div>
     <div class="slide-body" style="margin-bottom:16px;">
         La tabla de Anderson Mestra da el precio por viaje para <b style="color:var(--text);">10 pallets</b>. El sencillo carga <b style="color:var(--text);">12 pallets</b>.
     </div>
@@ -261,7 +341,7 @@
                 <div class="step-num" style="background:rgba(56,152,255,0.15);color:var(--blue);">A</div>
                 <div>
                     <div class="block-label"><b style="color:var(--text);">Tarifa tabla Anderson</b> (10 pallets)</div>
-                    <div class="block-math">Varia segun finca y distancia</div>
+                    <div class="block-math">Varía según finca y distancia</div>
                 </div>
             </div>
             <div class="block-val" style="color:var(--text2);font-size:14px;">Ej: $300K</div>
@@ -355,7 +435,7 @@
                 <div class="step-num" style="background:rgba(0,232,120,0.15);color:var(--green);">D</div>
                 <div>
                     <div class="block-label"><b style="color:var(--text);">Descuento G20: hasta $150K menos por viaje</b></div>
-                    <div class="block-math">Acido: $0 (no se logra negociar nada)</div>
+                    <div class="block-math">Ácido: $0 (no se logra negociar nada)</div>
                 </div>
             </div>
             <div class="block-val" style="color:var(--yellow);font-size:14px;">$720K &minus; $0 = <b>$720K</b></div>
@@ -364,7 +444,7 @@
 
     <div class="highlight-box yellow" style="margin-top:16px;max-width:800px;">
         <span style="color:var(--yellow);font-weight:700;">Supuesto clave:</span>
-        <span style="color:var(--text2);"> "La tarifa es proporcional entre sencillo y mula, con tolerancia de hasta $150K menos, segun la capacidad de negociacion de G20." &mdash; Informacion del cliente, Marzo 2026.</span>
+        <span style="color:var(--text2);"> "La tarifa es proporcional entre sencillo y mula, con tolerancia de hasta $150K menos, según la capacidad de negociación de G20." &mdash; Información del cliente, Marzo 2026.</span>
     </div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
         Sencillo: max 12p (tarifa base 10p). Mula: max 24p (tarifa base 20p). Pallet: 54 cajas.
@@ -372,13 +452,13 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 5: LA SOLUCION -->
+<!-- SLIDE 5: LA SOLUCIÓN -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--green);">La Solucion</div>
+    <div class="slide-tag" style="color:var(--green);">La Solución</div>
     <div class="slide-title" style="font-size:38px;">Consolidar antes<br>de despachar</div>
     <div class="slide-body" style="margin-bottom:24px;">
-        Un Centro de Consolidacion en <b style="color:var(--text);">Chinita</b> donde la fruta de 12 fincas
+        Un Centro de Consolidación en <b style="color:var(--text);">Chinita</b> donde la fruta de 12 fincas
         llega, se paletiza, se conteneriza, y sale en <b style="color:var(--green);">mulas llenas</b> hacia Puerto Antioquia.
     </div>
     <div class="timeline">
@@ -403,7 +483,7 @@
         <div class="tl-node">
             <div class="tl-dot" style="background:rgba(255,122,48,0.15);border:2px solid #ff7a30;">&#x26F5;</div>
             <div class="tl-name" style="color:#ff7a30;">Emb. Zungo</div>
-            <div class="tl-desc">4 fincas<br>via fluvial</div>
+            <div class="tl-desc">4 fincas<br>vía fluvial</div>
         </div>
         <div class="tl-line" style="background:linear-gradient(90deg,#ff7a30,var(--blue));"></div>
         <div class="tl-node">
@@ -413,8 +493,8 @@
         </div>
     </div>
     <div class="highlight-box" style="max-width:900px;">
-        <b style="color:var(--green);">Via principal:</b>
-        <span style="color:var(--text2);">41 &rarr; <b style="color:var(--green);">25 viajes</b> (<b style="color:var(--green);">&minus;39%</b>). Se agregan <b style="color:var(--yellow);">26 viajes cortos</b> finca&rarr;hub (8&ndash;15 km, vias locales). Total: 41 &rarr; 51. Contenerizado, 89&ndash;98% llenado, espera &lt;1h en puerto.</span>
+        <b style="color:var(--green);">Vía principal:</b>
+        <span style="color:var(--text2);">41 &rarr; <b style="color:var(--green);">25 viajes</b> (<b style="color:var(--green);">&minus;39%</b>). Se agregan <b style="color:var(--yellow);">26 viajes cortos</b> finca&rarr;hub (8&ndash;15 km, vías locales). Total: 41 &rarr; 51. Contenerizado, 89&ndash;98% llenado, espera &lt;1h en puerto.</span>
     </div>
 </div>
 
@@ -425,7 +505,7 @@
     <div class="slide-tag" style="color:var(--yellow);">Transparencia</div>
     <div class="slide-title" style="font-size:34px;">La cuenta real de viajes</div>
     <div class="slide-body" style="margin-bottom:16px;">
-        El hub reduce viajes en la via principal, pero <b style="color:var(--text);">agrega</b> viajes cortos finca&rarr;hub:
+        El hub reduce viajes en la vía principal, pero <b style="color:var(--text);">agrega</b> viajes cortos finca&rarr;hub:
     </div>
 
     <table class="sens-table" style="max-width:800px;">
@@ -435,7 +515,7 @@
             <th>SC3 (Hub)</th>
             <th>Cambio</th>
         </tr>
-        <tr><td colspan="4" style="text-align:left;color:var(--red);font-weight:700;font-size:11px;padding:8px 12px 4px;border:none;">VIA PRINCIPAL (carretera de un carril)</td></tr>
+        <tr><td colspan="4" style="text-align:left;color:var(--red);font-weight:700;font-size:11px;padding:8px 12px 4px;border:none;">VÍA PRINCIPAL (carretera de un carril)</td></tr>
         <tr>
             <td style="color:var(--text2);">Centro &rarr; Zungo/PA</td>
             <td style="color:var(--red);font-weight:600;">26</td>
@@ -461,12 +541,12 @@
             <td style="color:var(--text3);font-size:11px;">sin cambio</td>
         </tr>
         <tr style="background:rgba(0,232,120,0.06);">
-            <td style="color:var(--green);font-weight:700;">Subtotal via ppal.</td>
+            <td style="color:var(--green);font-weight:700;">Subtotal vía ppal.</td>
             <td style="color:var(--red);font-weight:700;">41</td>
             <td style="color:var(--green);font-weight:700;">25</td>
             <td style="color:var(--green);font-weight:700;">&minus;39%</td>
         </tr>
-        <tr><td colspan="4" style="text-align:left;color:var(--blue);font-weight:700;font-size:11px;padding:8px 12px 4px;border:none;">VIAS LOCALES (internas, 8&ndash;15 km)</td></tr>
+        <tr><td colspan="4" style="text-align:left;color:var(--blue);font-weight:700;font-size:11px;padding:8px 12px 4px;border:none;">VÍAS LOCALES (internas, 8&ndash;15 km)</td></tr>
         <tr>
             <td style="color:var(--text2);">Finca &rarr; Hub</td>
             <td>0</td>
@@ -483,7 +563,7 @@
 
     <div class="highlight-box yellow" style="margin-top:16px;max-width:800px;">
         <span style="color:var(--yellow);font-weight:700;">Lectura honesta:</span>
-        <span style="color:var(--text2);"> Los viajes totales <b style="color:var(--text);">suben</b> de 41 a 51. Pero los 26 nuevos viajes finca&rarr;hub son <b style="color:var(--text);">cortos</b> (8&ndash;15 km) y en <b style="color:var(--text);">vias locales/internas</b>, no en la carretera congestionada de un solo carril. El beneficio real es la <b style="color:var(--green);">reduccion de 41 a 25 en la via principal (&minus;39%)</b>, con carga contenerizada.</span>
+        <span style="color:var(--text2);"> Los viajes totales <b style="color:var(--text);">suben</b> de 41 a 51. Pero los 26 nuevos viajes finca&rarr;hub son <b style="color:var(--text);">cortos</b> (8&ndash;15 km) y en <b style="color:var(--text);">vías locales/internas</b>, no en la carretera congestionada de un solo carril. El beneficio real es la <b style="color:var(--green);">reducción de 41 a 25 en la vía principal (&minus;39%)</b>, con carga contenerizada.</span>
     </div>
 </div>
 
@@ -492,8 +572,8 @@
 <!-- ============================================================ -->
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--yellow);">Supuestos Paso a Paso</div>
-    <div class="slide-title" style="font-size:32px;">Como se calcula el costo<br>del hub por caja</div>
-    <div style="margin-bottom:16px;font-size:13px;color:var(--text3);">Escenario acido: $0 descuento G20 (peor caso posible)</div>
+    <div class="slide-title" style="font-size:32px;">Cómo se calcula el costo<br>del hub por caja</div>
+    <div style="margin-bottom:16px;font-size:13px;color:var(--text3);">Escenario ácido: $0 descuento G20 (peor caso posible)</div>
 
     <div class="block-stack">
         <div class="block" style="background:rgba(240,160,48,0.1);border:1px solid rgba(240,160,48,0.2);">
@@ -501,7 +581,7 @@
                 <div class="step-num" style="background:rgba(240,160,48,0.2);color:var(--yellow);">1</div>
                 <div>
                     <div class="block-label"><b style="color:var(--text);">Hub &rarr; Puerto Antioquia</b> (flete mula)</div>
-                    <div class="block-math">10 mulas/dia &times; $720K/mula &divide; 12,674 cajas/dia</div>
+                    <div class="block-math">10 mulas/día &times; $720K/mula &divide; 12,674 cajas/día</div>
                 </div>
             </div>
             <div class="block-val" style="color:var(--yellow);font-size:20px;">$568</div>
@@ -510,7 +590,7 @@
             <div style="display:flex;align-items:center;gap:12px;">
                 <div class="step-num" style="background:rgba(56,152,255,0.15);color:var(--blue);">2</div>
                 <div>
-                    <div class="block-label"><b style="color:var(--text);">Consolidacion</b> (paletizar + inspeccionar + cargar)</div>
+                    <div class="block-label"><b style="color:var(--text);">Consolidación</b> (paletizar + inspeccionar + cargar)</div>
                     <div class="block-math">Costo operativo por caja en el centro</div>
                 </div>
             </div>
@@ -531,7 +611,7 @@
                 <div class="step-num" style="background:rgba(0,232,120,0.2);color:var(--green);">=</div>
                 <div>
                     <div class="block-label"><b style="color:var(--green);font-size:16px;">TOTAL HUB POR CAJA</b></div>
-                    <div class="block-math">$568 + $42 + $200 = total (escenario acido, sin descuento)</div>
+                    <div class="block-math">$568 + $42 + $200 = total (escenario ácido, sin descuento)</div>
                 </div>
             </div>
             <div class="block-val" style="color:var(--green);font-size:28px;">$810</div>
@@ -547,7 +627,7 @@
 <!-- SLIDE 7: ESCENARIO ACIDO -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--yellow);">Escenario Acido (Base)</div>
+    <div class="slide-tag" style="color:var(--yellow);">Escenario Ácido (Base)</div>
     <div class="slide-title" style="font-size:34px;">En el peor caso,<br>el hub se paga solo</div>
 
     <div style="display:flex;align-items:center;gap:0;width:100%;max-width:900px;margin:16px 0 24px;">
@@ -560,7 +640,7 @@
         <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0;">
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Con Hub (10 mulas Centro)</div>
             <div class="kpi-val" style="font-size:32px;color:var(--green);">$810</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$/caja (acido, $0 descuento)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$/caja (ácido, $0 descuento)</div>
         </div>
         <div style="padding:8px 12px;color:var(--green);font-size:20px;font-weight:800;">&rarr;</div>
         <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0 10px 10px 0;">
@@ -573,12 +653,12 @@
     <div class="three-col" style="max-width:900px;">
         <div class="kpi-box" style="border-color:rgba(240,160,48,0.2);">
             <div class="kpi-val" style="font-size:24px;color:var(--yellow);">$360M</div>
-            <div class="kpi-label">Ahorro bruto / ano</div>
+            <div class="kpi-label">Ahorro bruto / año</div>
             <div style="font-size:10px;color:var(--text3);margin-top:4px;">$109 &times; 3.30M cajas Centro</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.2);">
             <div class="kpi-val" style="font-size:24px;color:var(--red);">-$77M</div>
-            <div class="kpi-label">Neto / ano (deficit)</div>
+            <div class="kpi-label">Neto / año (deficit)</div>
             <div style="font-size:10px;color:var(--text3);margin-top:4px;">$360M &minus; $437M OPEX</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.2);">
@@ -604,8 +684,8 @@
     <div class="four-col" style="margin:16px 0;">
         <div class="kpi-box">
             <div class="kpi-val" style="font-size:28px;color:var(--cyan);">12,860</div>
-            <div class="kpi-label">Viajes / ano</div>
-            <div style="font-size:9px;color:var(--text3);margin-top:4px;">42.4 viajes/dia promedio</div>
+            <div class="kpi-label">Viajes / año</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">42.4 viajes/día promedio</div>
         </div>
         <div class="kpi-box">
             <div class="kpi-val" style="font-size:28px;color:var(--cyan);">5.06M</div>
@@ -614,13 +694,13 @@
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:28px;color:var(--red);">72.8%</div>
-            <div class="kpi-label">Ocupacion real</div>
+            <div class="kpi-label">Ocupación real</div>
             <div style="font-size:9px;color:var(--text3);margin-top:4px;">393 cajas/viaje de 540</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:28px;color:var(--red);">39.6%</div>
             <div class="kpi-label">Llegadas fuera de hora</div>
-            <div style="font-size:9px;color:var(--text3);margin-top:4px;">Solo 2.3% en hora optima</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">Solo 2.3% en hora óptima</div>
         </div>
     </div>
 
@@ -637,20 +717,20 @@
             </table>
         </div>
         <div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Patrones criticos</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Patrones críticos</div>
             <ul class="bullets red">
                 <li>52% de salidas entre 16:00-20:00</li>
-                <li>485 vehiculos, 691 conductores</li>
+                <li>485 vehículos, 691 conductores</li>
                 <li>Transito medio: 2.2h (mediana 1h)</li>
-                <li>Top 5 vehiculos mueven 44% viajes</li>
-                <li>Martes = dia mas cargado (23%)</li>
+                <li>Top 5 vehículos mueven 44% viajes</li>
+                <li>Martes = día más cargado (23%)</li>
             </ul>
         </div>
     </div>
 
     <div class="highlight-box blue" style="margin-top:12px;max-width:1000px;">
         <span style="color:var(--blue);font-weight:700;">Fuente:</span>
-        <span style="color:var(--text2);"> Viajes 2025 GrupoVeinte.xlsx &mdash; 24,888 registros, 303 dias operativos, 19 fincas.</span>
+        <span style="color:var(--text2);"> Viajes 2025 GrupoVeinte.xlsx &mdash; 24,888 registros, 303 días operativos, 19 fincas.</span>
     </div>
 </div>
 
@@ -675,7 +755,7 @@
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:28px;color:var(--red);">18%</div>
             <div class="kpi-label">Viajes con espera &gt; 1 hora</div>
-            <div style="font-size:9px;color:var(--text3);margin-top:4px;">~2,315 viajes/ano afectados</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">~2,315 viajes/año afectados</div>
         </div>
     </div>
 
@@ -694,7 +774,167 @@
 
     <div class="highlight-box red" style="margin-top:12px;max-width:900px;">
         <span style="color:var(--red);font-weight:700;">Riesgo regulatorio:</span>
-        <span style="color:var(--text2);"> SICE-TAC regula tiempos muertos. A $20K-$30K/hora, el standby total es <b style="color:var(--text);">$42-83M COP/ano</b>. El embarcadero Zungo agrega <b>$163M</b> potenciales. Total exposicion: <b style="color:var(--red);">$218-246M/ano</b>.</span>
+        <span style="color:var(--text2);"> SICE-TAC regula tiempos muertos. A $20K-$30K/hora, el standby total es <b style="color:var(--text);">$42-83M COP/año</b>. El embarcadero Zungo agrega <b>$163M</b> potenciales. Total exposición: <b style="color:var(--red);">$218-246M/año</b>.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9b: CALCULO DE SERVILLETA - STANDBY Y NOCTURNOS -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--cyan);">Cálculo de Servilleta (1/2)</div>
+    <div class="slide-title" style="font-size:30px;">Cómo llegamos a<br>$142M en palancas</div>
+    <div class="slide-body" style="margin-bottom:12px;max-width:1000px;">
+        Dos palancas cuantificables con datos reales. Cada cifra es multiplicación simple, sin modelos complejos.
+    </div>
+
+    <div class="two-col" style="gap:20px;">
+
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">PALANCA A: STANDBY EVITADO</div>
+            <div class="block-stack">
+                <div class="block" style="background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">Viajes con espera &gt; 1h</b><br><span style="color:var(--text3);font-size:9px;">Geocercas: 18% de 12,860 viajes</span></div>
+                    <div style="color:var(--cyan);font-weight:700;font-size:13px;">2,315</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; Espera promedio</b><br><span style="color:var(--text3);font-size:9px;">Media exceso sobre 30 min de cargue</span></div>
+                    <div style="color:var(--cyan);font-weight:700;font-size:13px;">0.92 h</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; Tarifa standby</b><br><span style="color:var(--text3);font-size:9px;">Propuesta cooperativas (rango $20K&ndash;$30K)</span></div>
+                    <div style="color:var(--cyan);font-weight:700;font-size:13px;">$20,000/h</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.12);border:1px solid rgba(24,216,208,0.25);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">= Exposición total</b><br><span style="color:var(--text3);font-size:9px;">2,315 &times; 0.92 &times; $20K</span></div>
+                    <div style="color:var(--cyan);font-weight:800;font-size:14px;">$42.6M</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.15);border:2px solid rgba(24,216,208,0.35);padding:12px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; 50% evitado con hub</b><br><span style="color:var(--text3);font-size:9px;">Supuesto conservador (ajustable)</span></div>
+                    <div style="color:var(--cyan);font-weight:800;font-size:18px;">$21M</div>
+                </div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:8px;">
+                Escenario optimista ($30K, 100%): <b style="color:var(--cyan);">$128M/año</b>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">PALANCA B: PALLETS NOCTURNOS EVITADOS</div>
+            <div class="block-stack">
+                <div class="block" style="background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">Pallets nocturnos / año</b><br><span style="color:var(--text3);font-size:9px;">Reuniones: 400/día &times; 5 &times; 52 &times; 48%</span></div>
+                    <div style="color:var(--cyan);font-weight:700;font-size:13px;">50,000</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; Costo nocturno/pallet</b><br><span style="color:var(--text3);font-size:9px;">Tarifa 2026 (2024: $3,800)</span></div>
+                    <div style="color:var(--cyan);font-weight:700;font-size:13px;">$4,200</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.12);border:1px solid rgba(24,216,208,0.25);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">= Costo total nocturnos</b><br><span style="color:var(--text3);font-size:9px;">50,000 &times; $4,200</span></div>
+                    <div style="color:var(--cyan);font-weight:800;font-size:14px;">$210M</div>
+                </div>
+                <div class="block" style="background:rgba(24,216,208,0.15);border:2px solid rgba(24,216,208,0.35);padding:12px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; 50% capturado con hub</b><br><span style="color:var(--text3);font-size:9px;">JP: "apuntémosle a la mitad"</span></div>
+                    <div style="color:var(--cyan);font-weight:800;font-size:18px;">$105M</div>
+                </div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:8px;">
+                El hub opera en turnos (hasta 22h) evitando recogida nocturna en finca.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="highlight-box" style="margin-top:14px;max-width:1100px;background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.25);">
+        <span style="color:var(--cyan);font-weight:700;">Suma palancas operativas:</span>
+        <span style="color:var(--text2);"> $21M (standby) + $105M (nocturnos) = <b style="color:var(--cyan);">~$126M/año</b>. Con escenario medio ($20K/h, 50% captura ambos): estamos usando <b style="color:var(--cyan);">$142M/año</b> en el modelo. Fuente: Geocercas + reuniones Mar 2026.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9c: CALCULO DE SERVILLETA - SERVICIO A TERCEROS -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--green);">Cálculo de Servilleta (2/2)</div>
+    <div class="slide-title" style="font-size:30px;">Cómo llegamos a<br>$652M en terceros</div>
+    <div class="slide-body" style="margin-bottom:12px;max-width:1000px;">
+        Con el hub construido, sobra capacidad para consolidar fruta de fincas vecinas (402 bananeras en zona). Ingreso adicional puro.
+    </div>
+
+    <div class="two-col" style="gap:20px;">
+
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">SUPUESTOS (SERVILLETA)</div>
+            <div class="block-stack">
+                <div class="block" style="background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">Producción regional anual</b><br><span style="color:var(--text3);font-size:9px;">Urabá: ~114M cajas/año (Uniban + Banacol + otros)</span></div>
+                    <div style="color:var(--green);font-weight:700;font-size:13px;">114M cajas</div>
+                </div>
+                <div class="block" style="background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; Penetración objetivo</b><br><span style="color:var(--text3);font-size:9px;">Conservador: 10% de la región</span></div>
+                    <div style="color:var(--green);font-weight:700;font-size:13px;">10%</div>
+                </div>
+                <div class="block" style="background:rgba(0,232,120,0.12);border:1px solid rgba(0,232,120,0.25);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">= Cajas terceros/año</b><br><span style="color:var(--text3);font-size:9px;">114M &times; 10%</span></div>
+                    <div style="color:var(--green);font-weight:800;font-size:14px;">11.4M cajas</div>
+                </div>
+                <div class="block" style="background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.15);padding:10px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">&times; Tarifa servicio</b><br><span style="color:var(--text3);font-size:9px;">Piso: $42 (costo) + margen comercial</span></div>
+                    <div style="color:var(--green);font-weight:700;font-size:13px;">$57/caja</div>
+                </div>
+                <div class="block" style="background:rgba(0,232,120,0.15);border:2px solid rgba(0,232,120,0.35);padding:12px 14px;">
+                    <div style="font-size:11px;"><b style="color:var(--text);">= Ingreso terceros/año</b><br><span style="color:var(--text3);font-size:9px;">11.4M &times; $57</span></div>
+                    <div style="color:var(--green);font-weight:800;font-size:18px;">$652M</div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">MATRIZ DE SENSIBILIDAD</div>
+            <table class="sens-table" style="font-size:11px;">
+                <tr>
+                    <th style="text-align:left;">Tarifa</th>
+                    <th>5%</th>
+                    <th>10%</th>
+                    <th>25%</th>
+                </tr>
+                <tr style="background:rgba(255,59,78,0.04);">
+                    <td style="color:var(--text3);">$42 (costo)</td>
+                    <td style="color:var(--text3);">$239M</td>
+                    <td style="color:var(--text3);">$479M</td>
+                    <td style="color:var(--text3);">$1,197M</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text);">$50</td>
+                    <td>$285M</td>
+                    <td>$570M</td>
+                    <td>$1,425M</td>
+                </tr>
+                <tr style="background:rgba(0,232,120,0.08);">
+                    <td style="color:var(--green);font-weight:700;">$57 &larr; base</td>
+                    <td>$325M</td>
+                    <td style="color:var(--green);font-weight:700;">$652M</td>
+                    <td>$1,625M</td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text);">$80</td>
+                    <td>$456M</td>
+                    <td>$912M</td>
+                    <td>$2,280M</td>
+                </tr>
+            </table>
+            <div style="margin-top:12px;padding:12px 14px;background:rgba(0,232,120,0.06);border:1px solid rgba(0,232,120,0.15);border-radius:8px;font-size:11px;color:var(--text2);">
+                <b style="color:var(--green);">¿Por qué esto funciona?</b><br>
+                El hub tiene capacidad diseñada para 120 pallets simultáneos. Consolidar 12 fincas G20 usa ~70% del espacio. El 30% restante puede servir terceros <b style="color:var(--text);">sin CAPEX adicional</b>. Es el caso clásico de utilización ociosa.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="highlight-box" style="margin-top:12px;max-width:1100px;">
+        <span style="color:var(--green);font-weight:700;">Lectura pedagógica:</span>
+        <span style="color:var(--text2);"> $652M es <b style="color:var(--text);">ingreso</b> (no ahorro). Cubre el OPEX completo ($437M) y deja $215M netos solo de terceros. Combinado con palancas + transporte: el proyecto se vuelve viable. Fuente: datos Uniban (402 fincas zona), costo de consolidación $42 (reuniones).</span>
     </div>
 </div>
 
@@ -736,25 +976,25 @@
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ Descuento $75K mula</div>
             <div class="kpi-val" style="font-size:24px;color:var(--yellow);">$296M</div>
             <div class="kpi-label">Neto anual</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--yellow);">13.6 anos</b></div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--yellow);">13.6 años</b></div>
         </div>
         <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ Terceros (10% region)</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ Terceros (10% región)</div>
             <div class="kpi-val" style="font-size:24px;color:var(--green);">$717M</div>
             <div class="kpi-label">Neto anual</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">5.6 anos</b></div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">5.6 años</b></div>
         </div>
         <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Escenario completo</div>
             <div class="kpi-val" style="font-size:24px;color:var(--green);">$948M</div>
             <div class="kpi-label">Neto anual</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">4.2 anos</b></div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">4.2 años</b></div>
         </div>
     </div>
 
     <div class="highlight-box" style="margin-top:16px;max-width:1000px;">
         <span style="color:var(--green);font-weight:700;">Conclusion:</span>
-        <span style="color:var(--text2);"> Con CAPEX real ($4,020M), el proyecto requiere la <b style="color:var(--green);">estrategia completa</b>: palancas operativas + servicio a terceros. Con 10% de penetracion regional: payback <b style="color:var(--green);">5.6 anos</b>. Con todo: <b style="color:var(--green);">4.2 anos</b>.</span>
+        <span style="color:var(--text2);"> Con CAPEX real ($4,020M), el proyecto requiere la <b style="color:var(--green);">estrategia completa</b>: palancas operativas + servicio a terceros. Con 10% de penetración regional: payback <b style="color:var(--green);">5.6 años</b>. Con todo: <b style="color:var(--green);">4.2 años</b>.</span>
     </div>
 </div>
 
@@ -763,7 +1003,7 @@
 <!-- ============================================================ -->
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--green);">Sensibilidad</div>
-    <div class="slide-title" style="font-size:34px;">Que pasa si G20<br>negocia descuento?</div>
+    <div class="slide-title" style="font-size:34px;">¿Qué pasa si G20<br>negocia descuento?</div>
     <div class="slide-body" style="margin-bottom:20px;">
         G20 puede negociar hasta <b style="color:var(--green);">$150,000 menos por viaje de mula</b>. Cada peso negociado mejora directamente el retorno.
     </div>
@@ -774,7 +1014,7 @@
             <th>Tarifa mula</th>
             <th>Hub total</th>
             <th>Ahorro/caja</th>
-            <th>Neto/ano (c/palancas)</th>
+            <th>Neto/año (c/palancas)</th>
             <th>Payback</th>
         </tr>
         <tr class="row-worst">
@@ -791,7 +1031,7 @@
             <td style="color:var(--text);">$763</td>
             <td style="color:var(--text);">$156</td>
             <td style="color:var(--yellow);">$216M</td>
-            <td style="color:var(--text);">18.6 anos</td>
+            <td style="color:var(--text);">18.6 años</td>
         </tr>
         <tr>
             <td style="color:var(--text);">$75K</td>
@@ -799,7 +1039,7 @@
             <td style="color:var(--text);">$739</td>
             <td style="color:var(--text);">$180</td>
             <td style="color:var(--yellow);">$296M</td>
-            <td style="color:var(--text);">13.6 anos</td>
+            <td style="color:var(--text);">13.6 años</td>
         </tr>
         <tr>
             <td style="color:var(--text);">$100K</td>
@@ -807,24 +1047,24 @@
             <td style="color:var(--text);">$715</td>
             <td style="color:var(--text);">$204</td>
             <td style="color:var(--green);">$376M</td>
-            <td style="color:var(--text);">10.7 anos</td>
+            <td style="color:var(--text);">10.7 años</td>
         </tr>
         <tr class="row-best">
-            <td style="color:var(--green);font-weight:700;">$150K (maximo)</td>
+            <td style="color:var(--green);font-weight:700;">$150K (máximo)</td>
             <td style="color:var(--text2);">$540K</td>
             <td style="color:var(--green);font-weight:600;">$668</td>
             <td style="color:var(--green);font-weight:600;">$251</td>
             <td style="color:var(--green);font-weight:600;">$532M</td>
-            <td style="color:var(--green);font-weight:600;">7.6 anos</td>
+            <td style="color:var(--green);font-weight:600;">7.6 años</td>
         </tr>
     </table>
 
     <div class="highlight-box" style="margin-top:16px;max-width:900px;">
         <span style="color:var(--green);font-weight:700;">Lectura:</span>
-        <span style="color:var(--text2);"> Con CAPEX real ($4,020M), el descuento solo no es suficiente. Pero combinado con palancas ($142M) y terceros ($652M), incluso $0 descuento da payback <b style="color:var(--green);">5.6 anos</b>. El descuento <b style="color:var(--green);">acelera</b> el retorno.</span>
+        <span style="color:var(--text2);"> Con CAPEX real ($4,020M), el descuento solo no es suficiente. Pero combinado con palancas ($142M) y terceros ($652M), incluso $0 descuento da payback <b style="color:var(--green);">5.6 años</b>. El descuento <b style="color:var(--green);">acelera</b> el retorno.</span>
     </div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
-        CAPEX $4,020M. OPEX $437M/ano. 10 mulas/dia &times; 260 dias. Palancas: standby $42M + nocturnos $100M.
+        CAPEX $4,020M. OPEX $437M/año. 10 mulas/día &times; 260 días. Palancas: standby $42M + nocturnos $100M.
     </div>
 </div>
 
@@ -835,7 +1075,7 @@
     <div class="slide-tag" style="color:var(--yellow);">Segunda Variable Clave</div>
     <div class="slide-title" style="font-size:34px;">Sensibilidad: costo<br>Finca &rarr; Hub</div>
     <div class="slide-body" style="margin-bottom:20px;">
-        El acido asume F&rarr;H = <b style="color:var(--text);">$200/caja</b>, pero el rango real es <b style="color:var(--text);">$80&ndash;$300</b>. Hub total = $568 (flete) + $42 (consol) + F&rarr;H:
+        El escenario ácido asume F&rarr;H = <b style="color:var(--text);">$200/caja</b>, pero el rango real es <b style="color:var(--text);">$80&ndash;$300</b>. Hub total = $568 (flete) + $42 (consol) + F&rarr;H:
     </div>
 
     <table class="sens-table">
@@ -868,7 +1108,7 @@
             <td style="color:var(--text);">6.3a</td>
         </tr>
         <tr class="row-base">
-            <td style="color:var(--yellow);font-weight:700;">$200 &larr; ACIDO</td>
+            <td style="color:var(--yellow);font-weight:700;">$200 &larr; ÁCIDO</td>
             <td style="color:var(--yellow);font-weight:600;">$810</td>
             <td style="color:var(--text);">$109</td>
             <td style="color:var(--yellow);">~$0</td>
@@ -904,16 +1144,16 @@
 <!-- SLIDE 9: CAPEX -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--blue);">Inversion</div>
-    <div class="slide-title" style="font-size:32px;">Cuanto cuesta construir<br>el centro? (Costos reales 2026)</div>
+    <div class="slide-tag" style="color:var(--blue);">Inversión</div>
+    <div class="slide-title" style="font-size:32px;">¿Cuánto cuesta construir<br>el centro? (Costos reales 2026)</div>
     <div class="two-col" style="margin-top:8px;">
         <div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:12px;">CAPEX — INFRAESTRUCTURA REAL (1,800 m&sup2; construidos)</div>
             <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:12px;border-collapse:collapse;">
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Lote 5,000 m&sup2; (Chinita)</td><td style="text-align:right;color:var(--text);font-weight:600;">$200M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Bodega consolidacion (1,000 m&sup2;)</td><td style="text-align:right;color:var(--text);font-weight:600;">$1,900M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Bodega consolidación (1,000 m&sup2;)</td><td style="text-align:right;color:var(--text);font-weight:600;">$1,900M</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Plataformas + muelles (250 m&sup2;)</td><td style="text-align:right;color:var(--text);font-weight:600;">$475M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Pergolas + circulaciones (400 m&sup2;)</td><td style="text-align:right;color:var(--text);font-weight:600;">$640M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Pérgolas + circulaciones (400 m&sup2;)</td><td style="text-align:right;color:var(--text);font-weight:600;">$640M</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Oficinas + servicios (150 m&sup2;)</td><td style="text-align:right;color:var(--text);font-weight:600;">$405M</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Equipos (dock levelers, montacargas)</td><td style="text-align:right;color:var(--text);font-weight:600;">$250M</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Capital de trabajo</td><td style="text-align:right;color:var(--text);font-weight:600;">$150M</td></tr>
@@ -926,17 +1166,17 @@
             <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:12px;border-collapse:collapse;">
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Personal (6 personas)</td><td style="text-align:right;color:var(--text);font-weight:600;">$215M</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Servicios</td><td style="text-align:right;color:var(--text);font-weight:600;">$73M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Mantenimiento (2% construccion)</td><td style="text-align:right;color:var(--text);font-weight:600;">$73M</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Mantenimiento (2% construcción)</td><td style="text-align:right;color:var(--text);font-weight:600;">$73M</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Seguros (1% CAPEX)</td><td style="text-align:right;color:var(--text);font-weight:600;">$40M</td></tr>
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Administracion</td><td style="text-align:right;color:var(--text);font-weight:600;">$36M</td></tr>
-                <tr><td style="padding:10px 0;color:var(--yellow);font-weight:800;font-size:16px;">TOTAL OPEX</td><td style="text-align:right;color:var(--yellow);font-weight:800;font-size:20px;">$437M/ano</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 0;color:var(--text2);">Administración</td><td style="text-align:right;color:var(--text);font-weight:600;">$36M</td></tr>
+                <tr><td style="padding:10px 0;color:var(--yellow);font-weight:800;font-size:16px;">TOTAL OPEX</td><td style="text-align:right;color:var(--yellow);font-weight:800;font-size:20px;">$437M/año</td></tr>
             </table>
             <div style="margin-top:12px;font-size:10px;color:var(--text3);line-height:1.6;">
                 <b style="color:var(--text);">Especificaciones:</b><br>
-                4 muelles (2 recepcion + 2 despacho 24p)<br>
+                4 muelles (2 recepción + 2 despacho 24p)<br>
                 Patio maniobra 1,500 m&sup2;, radio giro 12 m<br>
                 Bodega altura 6&ndash;8 m, dock levelers<br>
-                Preinstalacion cadena frio
+                Preinstalación cadena frio
             </div>
         </div>
     </div>
@@ -947,12 +1187,12 @@
 <!-- ============================================================ -->
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--cyan);">Beneficios Estrategicos</div>
-    <div class="slide-title" style="font-size:34px;">Mas que un ahorro<br>en transporte</div>
+    <div class="slide-title" style="font-size:34px;">Más que un ahorro<br>en transporte</div>
     <div class="three-col" style="margin-top:8px;">
         <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
             <div class="kpi-val" style="font-size:36px;color:var(--green);">-39%</div>
-            <div class="kpi-label">Via principal</div>
-            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">41 &rarr; 25 en via ppal.<br>+26 cortos finca&rarr;hub.</div>
+            <div class="kpi-label">Vía principal</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;">41 &rarr; 25 en vía ppal.<br>+26 cortos finca&rarr;hub.</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(24,216,208,0.2);">
             <div class="kpi-val" style="font-size:36px;color:var(--cyan);">&lt;1h</div>
@@ -969,9 +1209,9 @@
         <div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Hoy (sin centro)</div>
             <ul class="bullets red" style="font-size:13px;line-height:2;">
-                <li>Recoleccion a las 2&ndash;3 AM</li>
+                <li>Recolección a las 2&ndash;3 AM</li>
                 <li>Camiones devueltos a las 11 PM</li>
-                <li>Coordinacion manual 19 fincas</li>
+                <li>Coordinación manual 19 fincas</li>
                 <li>Sin trazabilidad</li>
             </ul>
         </div>
@@ -994,15 +1234,15 @@
     <div class="slide-tag" style="color:var(--cyan);">Escalabilidad</div>
     <div class="slide-title" style="font-size:34px;">Servicio a terceros:<br>acelerando el payback</div>
     <div class="slide-body" style="margin-bottom:16px;">
-        G20 = 4.7% region. Consolidacion cuesta <b style="color:var(--text);">$42/caja</b> &rarr; tarifa minima a terceros: <b style="color:var(--text);">&gt;$42</b>.
+        G20 = 4.7% región. Consolidación cuesta <b style="color:var(--text);">$42/caja</b> &rarr; tarifa mínima a terceros: <b style="color:var(--text);">&gt;$42</b>.
     </div>
 
     <table class="sens-table" style="max-width:800px;margin-bottom:16px;">
         <tr>
             <th style="text-align:left;">Tarifa/caja</th>
-            <th>5% region</th>
-            <th>10% region</th>
-            <th>25% region</th>
+            <th>5% región</th>
+            <th>10% región</th>
+            <th>25% región</th>
         </tr>
         <tr style="background:rgba(255,59,78,0.05);">
             <td style="color:var(--text3);">$42 (= costo)</td>
@@ -1031,11 +1271,11 @@
     </table>
 
     <div class="highlight-box" style="max-width:800px;">
-        <b style="color:var(--green);">Con $60/caja y 10% region:</b>
-        <span style="color:var(--text2);"> ingreso <b style="color:var(--green);">$652M</b> &gt; OPEX $437M. Combinado con transporte + palancas: neto <b style="color:var(--green);">$717M/ano</b>, payback <b style="color:var(--green);">5.6 anos</b>. <b style="color:var(--text);">Terceros son la pieza clave de viabilidad</b> con CAPEX real ($4,020M).</span>
+        <b style="color:var(--green);">Con $60/caja y 10% región:</b>
+        <span style="color:var(--text2);"> ingreso <b style="color:var(--green);">$652M</b> &gt; OPEX $437M. Combinado con transporte + palancas: neto <b style="color:var(--green);">$717M/año</b>, payback <b style="color:var(--green);">5.6 años</b>. <b style="color:var(--text);">Terceros son la pieza clave de viabilidad</b> con CAPEX real ($4,020M).</span>
     </div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
-        CAPEX $4,020M. PA 7M ton. Uniban 250+ fincas. 402 bananeras en zona. Piso = costo consolidacion $42/caja.
+        CAPEX $4,020M. PA 7M ton. Uniban 250+ fincas. 402 bananeras en zona. Piso = costo consolidación $42/caja.
     </div>
 </div>
 
@@ -1046,7 +1286,7 @@
     <div class="slide-tag" style="color:var(--green);">La Herramienta</div>
     <div class="slide-title" style="font-size:36px;">Gemelo Digital Interactivo</div>
     <div class="slide-subtitle center" style="margin-bottom:24px;">
-        Todo lo que presentamos hoy esta vivo en una herramienta que pueden explorar,<br>
+        Todo lo que presentamos hoy está vivo en una herramienta que pueden explorar,<br>
         ajustar parametros, y ver resultados en tiempo real.
     </div>
     <div style="width:100%;max-width:900px;aspect-ratio:16/9;background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;position:relative;">
@@ -1065,17 +1305,17 @@
     <div class="slide-title" style="font-size:38px;">La pregunta para la Junta</div>
     <div style="max-width:900px;margin:0 auto;">
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:20px;">
-            <b style="color:var(--text);">Sin hub:</b> $919/caja ($474K/viaje prom.), 26 sencillos Centro, 41 viajes/dia total.<br>
-            <b style="color:var(--green);">Con hub (acido):</b> $810/caja, 10 mulas Centro, 25 viajes/dia. <b style="color:var(--green);">Ahorro $109/caja &rarr; equilibrio.</b><br>
-            <b style="color:var(--green);">Con negociacion $75K desc:</b> payback 5.2a, neto $231M/ano.<br>
+            <b style="color:var(--text);">Sin hub:</b> $919/caja ($474K/viaje prom.), 26 sencillos Centro, 41 viajes/día total.<br>
+            <b style="color:var(--green);">Con hub (ácido):</b> $810/caja, 10 mulas Centro, 25 viajes/día. <b style="color:var(--green);">Ahorro $109/caja &rarr; equilibrio.</b><br>
+            <b style="color:var(--green);">Con negociación $75K desc:</b> payback 5.2a, neto $231M/año.<br>
             <b style="color:var(--blue);">Con terceros (10%, $60/caja):</b> $652M ingresos adicionales.<br>
-            <b style="color:var(--green);">Via ppal:</b> &minus;39% (41&rarr;25), +26 cortos finca&rarr;hub. Contenerizado, &lt;1h espera.
+            <b style="color:var(--green);">Vía ppal:</b> &minus;39% (41&rarr;25), +26 cortos finca&rarr;hub. Contenerizado, &lt;1h espera.
         </div>
     </div>
     <div style="margin-top:36px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <div class="kpi-box" style="padding:16px 28px;border-color:rgba(0,232,120,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);font-weight:700;">1. VALIDAR CAPEX</div>
-            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Cotizacion detallada construccion</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Cotización detallada construcción</div>
         </div>
         <div class="kpi-box" style="padding:16px 28px;border-color:rgba(56,152,255,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);font-weight:700;">2. COSTEO OPERATIVO</div>
@@ -1083,28 +1323,28 @@
         </div>
         <div class="kpi-box" style="padding:16px 28px;border-color:rgba(240,160,48,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);font-weight:700;">3. NEGOCIAR MULA</div>
-            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Cuanto descuento logra G20?</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">¿Cuánto descuento logra G20?</div>
         </div>
         <div class="kpi-box" style="padding:16px 28px;border-color:rgba(24,216,208,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);font-weight:700;">4. TIMELINE</div>
-            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Definir cronograma construccion</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Definir cronograma construcción</div>
         </div>
         <div class="kpi-box" style="padding:16px 28px;border-color:rgba(24,216,208,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);font-weight:700;">5. CUANTIFICAR TIEMPOS MUERTOS</div>
-            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Geocercas permanente + negociacion standby</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Geocercas permanente + negociación standby</div>
         </div>
     </div>
     <div style="margin-top:32px;">
         <a href="https://gemelo-digital-uraba.vercel.app" target="_blank" class="cta-btn">VER GEMELO DIGITAL EN VIVO &#x2197;</a>
     </div>
-    <div class="slide-footer">Observatorio de Datos y Analisis SAS &bull; Datos reales Anderson Mestra, Marzo 2026</div>
+    <div class="slide-footer">Observatorio de Datos y Análisis SAS &bull; Datos reales Anderson Mestra, Marzo 2026</div>
 </div>
 
 </div><!-- /deck -->
 
 <!-- NAVIGATION -->
 <div class="nav">
-    <span class="nav-counter" id="counter">1 / 19</span>
+    <span class="nav-counter" id="counter">1 / 22</span>
     <button class="nav-btn" onclick="prev()">&#x2190;</button>
     <button class="nav-btn" onclick="next()">&#x2192;</button>
 </div>
