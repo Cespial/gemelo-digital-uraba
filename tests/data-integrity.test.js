@@ -49,6 +49,10 @@ const FLOOD_ZONES = extractJSObject('FLOOD_ZONES');
 const rMatch = html.match(/const R\s*=\s*(\{[\s\S]*?\});\s*\n/);
 const R = new Function(`return ${rMatch[1]}`)();
 
+// OPS_2025 operational data — extract via Function eval
+const ops2025Match = html.match(/const OPS_2025\s*=\s*(\{[\s\S]*?\n\});/);
+const OPS_2025 = ops2025Match ? new Function(`return ${ops2025Match[1]}`)() : null;
+
 // ---- GeoJSON file loaders ----
 function loadGeoJSON(relPath) {
   return JSON.parse(readFileSync(resolve(root, relPath), 'utf-8'));
@@ -155,4 +159,38 @@ describe('Data Integrity', () => {
       expect(zone.coords.length).toBeGreaterThan(3);
     }
   });
+});
+
+// ============================================================
+describe('OPS_2025 operational data', () => {
+    it('has correct trip totals from real 2025 data', () => {
+        expect(OPS_2025).toBeDefined();
+        expect(OPS_2025.totalTrips).toBe(12860);
+        expect(OPS_2025.totalBoxesShipped).toBe(5057968);
+        expect(OPS_2025.totalBoxesReceived).toBe(5349445);
+        expect(OPS_2025.avgBoxesPerTrip).toBe(393);
+        expect(OPS_2025.avgOccupancy).toBeCloseTo(0.728, 2);
+    });
+    it('has geocerca standby stats per farm', () => {
+        expect(OPS_2025.standby).toBeDefined();
+        expect(OPS_2025.standby.totalEvents).toBe(132488);
+        expect(OPS_2025.standby.vehicles).toBe(16);
+        expect(OPS_2025.standby.farmMedianMin).toBe(14);
+        expect(OPS_2025.standby.farmMeanMin).toBeCloseTo(52.9, 0);
+        expect(OPS_2025.standby.farmP90Min).toBeCloseTo(97.3, 0);
+        expect(OPS_2025.standby.embarqueroMedianMin).toBe(113);
+    });
+    it('has nocturnal pallet data', () => {
+        expect(OPS_2025.nocturnos).toBeDefined();
+        expect(OPS_2025.nocturnos.palletsYear).toBe(50000);
+        expect(OPS_2025.nocturnos.costPerPallet).toBe(4200);
+        expect(OPS_2025.nocturnos.totalCostYear).toBe(210);
+    });
+    it('has per-farm standby detail for G20 farms', () => {
+        expect(OPS_2025.standby.farms).toBeDefined();
+        const tucanes = OPS_2025.standby.farms.find(f => f.name === 'Tucanes');
+        expect(tucanes).toBeDefined();
+        expect(tucanes.medianMin).toBe(47);
+        expect(tucanes.p90Min).toBe(128);
+    });
 });

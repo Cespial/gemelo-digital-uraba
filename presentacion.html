@@ -194,8 +194,9 @@
             <div class="kpi-label">viajes/dia en via</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="kpi-val" style="font-size:36px;color:var(--red);">76%</div>
+            <div class="kpi-val" style="font-size:36px;color:var(--red);">72.8%</div>
             <div class="kpi-label">llenado promedio</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">Dato real 2025 (antes: 76% estimado)</div>
         </div>
         <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
             <div class="kpi-val" style="font-size:36px;color:var(--red);">5-6h</div>
@@ -588,8 +589,172 @@
     </div>
 
     <div class="highlight-box yellow" style="margin-top:16px;max-width:900px;">
-        <span style="color:var(--yellow);font-weight:700;">Este es el peor caso posible:</span>
-        <span style="color:var(--text2);"> $0 descuento mula, finca&rarr;hub $200/caja (alto), hub&rarr;PA tarifa Chinita sin negociar. Aun asi, <b style="color:var(--text);">el hub se paga solo en transporte</b>. Todo descuento que G20 negocie es ganancia pura.</span>
+        <span style="color:var(--yellow);font-weight:700;">Este es el peor caso en transporte puro.</span>
+        <span style="color:var(--text2);"> $0 descuento mula, finca&rarr;hub $200/caja. Pero con datos operativos 2025, aparecen <b style="color:var(--cyan);">nuevas palancas</b> (standby evitado + nocturnos) que convierten el equilibrio en <b style="color:var(--green);">$142M positivos</b>. Ver siguiente slide.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: DATOS REALES 2025 -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--cyan);">Datos Reales 2025</div>
+    <div class="slide-title" style="font-size:32px;">12,860 viajes procesados<br>confirman el problema</div>
+
+    <div class="four-col" style="margin:16px 0;">
+        <div class="kpi-box">
+            <div class="kpi-val" style="font-size:28px;color:var(--cyan);">12,860</div>
+            <div class="kpi-label">Viajes / ano</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">42.4 viajes/dia promedio</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-val" style="font-size:28px;color:var(--cyan);">5.06M</div>
+            <div class="kpi-label">Cajas remitidas</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">5.35M recibidas (+5.8%)</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">72.8%</div>
+            <div class="kpi-label">Ocupacion real</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">393 cajas/viaje de 540</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">39.6%</div>
+            <div class="kpi-label">Llegadas fuera de hora</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">Solo 2.3% en hora optima</div>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top:8px;max-width:1000px;">
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Top fincas por volumen</div>
+            <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;border-collapse:collapse;">
+                <tr style="color:var(--text3);font-size:9px;"><th style="text-align:left;padding:4px 8px;">Finca</th><th>Cajas</th><th>Ha</th></tr>
+                <tr><td style="padding:3px 8px;">Chinita</td><td style="text-align:right;">525K</td><td style="text-align:right;">235</td></tr>
+                <tr><td style="padding:3px 8px;">Matogroso 2</td><td style="text-align:right;">410K</td><td style="text-align:right;">213</td></tr>
+                <tr><td style="padding:3px 8px;">Santa Marta</td><td style="text-align:right;">398K</td><td style="text-align:right;">133</td></tr>
+                <tr><td style="padding:3px 8px;">Tucanes</td><td style="text-align:right;">383K</td><td style="text-align:right;">136</td></tr>
+                <tr><td style="padding:3px 8px;">Punto Fijo</td><td style="text-align:right;">370K</td><td style="text-align:right;">171</td></tr>
+            </table>
+        </div>
+        <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Patrones criticos</div>
+            <ul class="bullets red">
+                <li>52% de salidas entre 16:00-20:00</li>
+                <li>485 vehiculos, 691 conductores</li>
+                <li>Transito medio: 2.2h (mediana 1h)</li>
+                <li>Top 5 vehiculos mueven 44% viajes</li>
+                <li>Martes = dia mas cargado (23%)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight-box blue" style="margin-top:12px;max-width:1000px;">
+        <span style="color:var(--blue);font-weight:700;">Fuente:</span>
+        <span style="color:var(--text2);"> Viajes 2025 GrupoVeinte.xlsx &mdash; 24,888 registros, 303 dias operativos, 19 fincas.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: TIEMPOS MUERTOS CUANTIFICADOS -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--red);">Tiempos Muertos (Geocercas 2025)</div>
+    <div class="slide-title" style="font-size:32px;">132,488 eventos GPS<br>cuantifican la espera</div>
+
+    <div class="three-col" style="margin:16px 0;">
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">53 min</div>
+            <div class="kpi-label">Espera media en finca</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">Mediana: 14 min, P90: 1h37m</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">1h53m</div>
+            <div class="kpi-label">Mediana en Zungo</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">P90: 4h09m &mdash; cuello de botella</div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">18%</div>
+            <div class="kpi-label">Viajes con espera &gt; 1 hora</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px;">~2,315 viajes/ano afectados</div>
+        </div>
+    </div>
+
+    <div style="width:100%;max-width:900px;margin-top:8px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Peores fincas G20 por espera mediana</div>
+        <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;border-collapse:collapse;">
+            <tr style="color:var(--text3);font-size:9px;border-bottom:1px solid var(--border);">
+                <th style="text-align:left;padding:6px 8px;">Finca</th><th>Visitas</th><th>Mediana</th><th>P90</th><th style="color:var(--red);">Costo @$20K/h</th></tr>
+            <tr style="border-bottom:1px solid var(--bg3);"><td style="padding:4px 8px;">Nueva Colonia</td><td style="text-align:right;">393</td><td style="text-align:right;color:var(--red);">1h19m</td><td style="text-align:right;">3h54m</td><td style="text-align:right;color:var(--red);">$16,333</td></tr>
+            <tr style="border-bottom:1px solid var(--bg3);"><td style="padding:4px 8px;">Castillete</td><td style="text-align:right;">471</td><td style="text-align:right;color:var(--red);">55m</td><td style="text-align:right;">2h21m</td><td style="text-align:right;color:var(--red);">$8,333</td></tr>
+            <tr style="border-bottom:1px solid var(--bg3);"><td style="padding:4px 8px;">Tucanes</td><td style="text-align:right;">597</td><td style="text-align:right;color:var(--yellow);">47m</td><td style="text-align:right;">2h08m</td><td style="text-align:right;color:var(--yellow);">$5,667</td></tr>
+            <tr style="border-bottom:1px solid var(--bg3);"><td style="padding:4px 8px;">San Juan</td><td style="text-align:right;">482</td><td style="text-align:right;color:var(--yellow);">43m</td><td style="text-align:right;">2h15m</td><td style="text-align:right;color:var(--yellow);">$4,333</td></tr>
+            <tr><td style="padding:4px 8px;">Chinita</td><td style="text-align:right;">509</td><td style="text-align:right;color:var(--yellow);">40m</td><td style="text-align:right;">1h57m</td><td style="text-align:right;color:var(--yellow);">$3,333</td></tr>
+        </table>
+    </div>
+
+    <div class="highlight-box red" style="margin-top:12px;max-width:900px;">
+        <span style="color:var(--red);font-weight:700;">Riesgo regulatorio:</span>
+        <span style="color:var(--text2);"> SICE-TAC regula tiempos muertos. A $20K-$30K/hora, el standby total es <b style="color:var(--text);">$42-83M COP/ano</b>. El embarcadero Zungo agrega <b>$163M</b> potenciales. Total exposicion: <b style="color:var(--red);">$218-246M/ano</b>.</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: NUEVAS PALANCAS — EL CASO VIABLE -->
+<!-- ============================================================ -->
+<div class="slide left-align">
+    <div class="slide-tag" style="color:var(--green);">Nuevas Palancas (Datos 2025)</div>
+    <div class="slide-title" style="font-size:32px;">El hub no solo se paga solo:<br>ahora genera valor</div>
+
+    <div style="display:flex;align-items:center;gap:0;width:100%;max-width:1000px;margin:16px 0 24px;">
+        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(240,160,48,0.3);border-radius:10px 0 0 10px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Caso Acido (Antes)</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--yellow);">~$0</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Equilibrio transporte</div>
+        </div>
+        <div style="padding:8px 10px;font-size:10px;color:var(--text3);">+</div>
+        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(24,216,208,0.3);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Standby Evitado</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--cyan);">$42M</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Conservador ($20K/h, 50%)</div>
+        </div>
+        <div style="padding:8px 10px;font-size:10px;color:var(--text3);">+</div>
+        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(24,216,208,0.3);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Nocturnos Evitados</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--cyan);">$100M</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">50K pallets &times; $4,200</div>
+        </div>
+        <div style="padding:8px 10px;color:var(--green);font-size:18px;font-weight:800;">=</div>
+        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0 10px 10px 0;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Neto con Palancas</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--green);">$142M</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback ~8 anos (sin descuento)</div>
+        </div>
+    </div>
+
+    <div class="three-col" style="margin-top:8px;max-width:1000px;">
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Con descuento $75K mula</div>
+            <div class="kpi-val" style="font-size:24px;color:var(--green);">$373M</div>
+            <div class="kpi-label">Neto anual</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">3.2 anos</b></div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Con terceros (10% region)</div>
+            <div class="kpi-val" style="font-size:24px;color:var(--green);">$794M</div>
+            <div class="kpi-label">Neto anual</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">1.5 anos</b></div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Escenario completo</div>
+            <div class="kpi-val" style="font-size:24px;color:var(--green);">$1,025M</div>
+            <div class="kpi-label">Neto anual</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Descuento + Terceros + Palancas</div>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:16px;max-width:1000px;">
+        <span style="color:var(--green);font-weight:700;">Conclusion:</span>
+        <span style="color:var(--text2);"> Con datos reales de 2025, el proyecto pasa de <b style="color:var(--yellow);">equilibrio</b> a <b style="color:var(--green);">viable</b> incluso en el escenario mas conservador ($0 descuento mula, sin terceros). Cada palanca adicional es pura ganancia.</span>
     </div>
 </div>
 
@@ -917,6 +1082,10 @@
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);font-weight:700;">4. TIMELINE</div>
             <div style="font-size:11px;color:var(--text3);margin-top:4px;">Definir cronograma construccion</div>
         </div>
+        <div class="kpi-box" style="padding:16px 28px;border-color:rgba(24,216,208,0.2);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);font-weight:700;">5. CUANTIFICAR TIEMPOS MUERTOS</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px;">Geocercas permanente + negociacion standby</div>
+        </div>
     </div>
     <div style="margin-top:32px;">
         <a href="https://gemelo-digital-uraba.vercel.app" target="_blank" class="cta-btn">VER GEMELO DIGITAL EN VIVO &#x2197;</a>
@@ -928,7 +1097,7 @@
 
 <!-- NAVIGATION -->
 <div class="nav">
-    <span class="nav-counter" id="counter">1 / 16</span>
+    <span class="nav-counter" id="counter">1 / 19</span>
     <button class="nav-btn" onclick="prev()">&#x2190;</button>
     <button class="nav-btn" onclick="next()">&#x2192;</button>
 </div>

@@ -65,7 +65,20 @@ function computeFinancials(params = {}) {
   const annualSaveG20 = savePerBox * annualBoxes / 1e6;
   const extIncomeMonth = (extBoxes * 1000 * 4.33 * extRate) / 1e6;
   const extIncomeYear = extIncomeMonth * 12;
-  const totalIncomeYear = annualSaveG20 + extIncomeYear;
+
+  // Standby avoided
+  const standbyRate = params.standbyRate ?? 20000;
+  const standbyPct = params.standbyPct ?? 50;
+  const tripsWithWait = Math.round(12860 * 18 / 100); // OPS_2025.totalTrips * pctOver1Hr
+  const standbyTotalYear = tripsWithWait * 0.92 * standbyRate / 1e6;
+  const standbyEvitadoYear = standbyTotalYear * standbyPct / 100;
+
+  // Nocturnal pallets avoided
+  const noctPct = params.noctPct ?? 50;
+  const nocTotalYear = 50000 * 4200 / 1e6; // 210
+  const nocturnoEvitadoYear = nocTotalYear * noctPct / 100;
+
+  const totalIncomeYear = annualSaveG20 + extIncomeYear + standbyEvitadoYear + nocturnoEvitadoYear;
 
   // Depreciation
   const depYear = depreciableAssets / 10;
@@ -120,7 +133,7 @@ function computeFinancials(params = {}) {
     pl.push({ income, opex, ebitda, dep: depYear, util });
   }
 
-  return { capexTotal, opexMonth, opexYear, totalIncomeYear, annualSaveG20, vpn, tir, paybackMonths, roi, cashflows, pl, depYear };
+  return { capexTotal, opexMonth, opexYear, totalIncomeYear, annualSaveG20, extIncomeYear, standbyEvitadoYear, nocturnoEvitadoYear, vpn, tir, paybackMonths, roi, cashflows, pl, depYear };
 }
 
 // ---- simResults-style data structure (mirrors what updateSim writes) ----
@@ -314,8 +327,8 @@ describe('Financial Module — Cashflow', () => {
     }
   });
 
-  it('cashflow year 1 is negative at low congestion defaults', () => {
-    const f = computeFinancials({ savePerBox: 88 });
+  it('cashflow year 1 is negative at low congestion defaults (no standby/nocturnal)', () => {
+    const f = computeFinancials({ savePerBox: 88, standbyRate: 0, standbyPct: 0, noctPct: 0 });
     expect(f.cashflows[1]).toBeLessThan(0);
   });
 
@@ -510,4 +523,47 @@ describe('Financial Module — Dashboard HTML Structure', () => {
     expect(html).toContain('const simResults');
     expect(html).toContain('simResults.savePerBox');
   });
+});
+
+// ============================================================
+describe('Standby and nocturnal income streams', () => {
+    it('calculates standby savings correctly', () => {
+        const standbyRate = 20000;
+        const tripsWithWait = Math.round(12860 * 18 / 100);
+        const standbyTotal = tripsWithWait * 0.92 * standbyRate / 1e6;
+        const standbyEvitado = standbyTotal * 50 / 100;
+        expect(tripsWithWait).toBe(2315);
+        expect(standbyTotal).toBeCloseTo(42.6, 0);
+        expect(standbyEvitado).toBeCloseTo(21.3, 0);
+    });
+
+    it('calculates nocturnal savings correctly', () => {
+        const nocTotal = 50000 * 4200 / 1e6;
+        expect(nocTotal).toBe(210);
+        expect(nocTotal * 50 / 100).toBe(105);
+    });
+
+    it('new income streams add to total income', () => {
+        const result = computeFinancials({ savePerBox: 109, standbyRate: 20000, standbyPct: 50, noctPct: 50 });
+        expect(result.standbyEvitadoYear).toBeGreaterThan(0);
+        expect(result.nocturnoEvitadoYear).toBeGreaterThan(0);
+        expect(result.totalIncomeYear).toBeGreaterThan(result.annualSaveG20 + result.extIncomeYear);
+    });
+
+    it('zero standby/nocturnal gives original totals', () => {
+        const base = computeFinancials({ savePerBox: 109, standbyRate: 0, standbyPct: 0, noctPct: 0 });
+        expect(base.standbyEvitadoYear).toBe(0);
+        expect(base.nocturnoEvitadoYear).toBe(0);
+    });
+
+    it('combined palancas improve VPN', () => {
+        const acid = computeFinancials({ savePerBox: 109, standbyRate: 0, noctPct: 0, standbyPct: 0 });
+        const withPalancas = computeFinancials({ savePerBox: 109, standbyRate: 20000, standbyPct: 50, noctPct: 50 });
+        expect(withPalancas.vpn).toBeGreaterThan(acid.vpn);
+    });
+
+    it('nocturnal at 100% capture = $210M/year', () => {
+        const result = computeFinancials({ noctPct: 100, standbyRate: 0, standbyPct: 0 });
+        expect(result.nocturnoEvitadoYear).toBeCloseTo(210, 0);
+    });
 });
