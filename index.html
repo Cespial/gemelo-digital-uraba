@@ -574,6 +574,68 @@
         .ctx-title{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:4px;}
         .ctx-body{color:var(--text2);}
 
+        /* EXPLAINER (click cifra → ver cómo se calculó) */
+        .explainable{cursor:help;position:relative;border-bottom:1px dotted rgba(56,152,255,0.4);transition:all 0.2s;}
+        .explainable:hover{border-bottom-color:var(--blue);background:rgba(56,152,255,0.06);box-shadow:0 0 0 2px rgba(56,152,255,0.15);}
+        .explainable::after{content:'?';position:absolute;top:-4px;right:-10px;font-size:7px;font-weight:800;
+            background:var(--blue);color:#fff;border-radius:50%;width:10px;height:10px;
+            display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;
+            opacity:0;transition:opacity 0.2s;pointer-events:none;}
+        .explainable:hover::after{opacity:1;}
+
+        .xp-modal-overlay{position:fixed;inset:0;background:rgba(6,8,10,0.85);backdrop-filter:blur(4px);
+            z-index:300;display:none;align-items:center;justify-content:center;padding:20px;}
+        .xp-modal-overlay.open{display:flex;animation:fadeIn 0.2s;}
+        .xp-modal{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;
+            max-width:560px;width:100%;max-height:85vh;overflow-y:auto;
+            box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(56,152,255,0.15);
+            animation:xpModalIn 0.25s cubic-bezier(0.4,0,0.2,1);}
+        @keyframes xpModalIn{from{opacity:0;transform:scale(0.94) translateY(8px);}to{opacity:1;transform:scale(1) translateY(0);}}
+        .xp-modal::-webkit-scrollbar{width:5px;}
+        .xp-modal::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+        .xp-hdr{padding:18px 22px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+        .xp-hdr-l{flex:1;}
+        .xp-tag{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;
+            letter-spacing:1px;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:6px;}
+        .xp-tag-blue{background:rgba(56,152,255,0.12);color:var(--blue);border:1px solid rgba(56,152,255,0.25);}
+        .xp-tag-red{background:rgba(255,59,78,0.12);color:var(--red);border:1px solid rgba(255,59,78,0.25);}
+        .xp-tag-yellow{background:rgba(240,160,48,0.12);color:var(--yellow);border:1px solid rgba(240,160,48,0.25);}
+        .xp-tag-cyan{background:rgba(24,216,208,0.12);color:var(--cyan);border:1px solid rgba(24,216,208,0.25);}
+        .xp-tag-green{background:rgba(0,232,120,0.12);color:var(--green);border:1px solid rgba(0,232,120,0.25);}
+        .xp-title{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;color:var(--text);line-height:1.3;}
+        .xp-value{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800;margin-top:6px;}
+        .xp-close{background:transparent;border:1px solid var(--border);color:var(--text2);
+            border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:16px;font-family:inherit;
+            display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .xp-close:hover{background:var(--bg3);color:var(--text);border-color:var(--red);}
+        .xp-body{padding:14px 22px 22px;}
+        .xp-section{margin-bottom:14px;}
+        .xp-section:last-child{margin-bottom:0;}
+        .xp-section-h{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;
+            letter-spacing:1px;color:var(--text3);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+        .xp-section-h::before{content:'';width:3px;height:10px;background:var(--blue);border-radius:1px;}
+        .xp-formula{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 14px;
+            font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);line-height:1.6;
+            white-space:pre-wrap;word-break:break-word;}
+        .xp-inputs{list-style:none;padding:0;margin:0;font-family:'JetBrains Mono',monospace;font-size:11px;}
+        .xp-inputs li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;gap:12px;}
+        .xp-inputs li:last-child{border-bottom:none;}
+        .xp-inputs .xp-il{color:var(--text2);}
+        .xp-inputs .xp-iv{color:var(--text);font-weight:600;text-align:right;flex-shrink:0;}
+        .xp-inputs .xp-isrc{font-size:9px;color:var(--text3);}
+        .xp-source{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);
+            border-radius:6px;border-left:3px solid var(--blue);}
+        .xp-source-icon{font-size:12px;color:var(--blue);}
+        .xp-source-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);line-height:1.5;}
+        .xp-assumptions{font-family:'Inter',sans-serif;font-size:11px;color:var(--text2);line-height:1.6;
+            padding:10px 12px;background:rgba(240,160,48,0.06);border:1px solid rgba(240,160,48,0.15);
+            border-radius:6px;}
+        .xp-related{display:flex;flex-wrap:wrap;gap:6px;}
+        .xp-related-chip{font-family:'JetBrains Mono',monospace;font-size:9px;padding:4px 8px;
+            background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--text2);
+            cursor:pointer;transition:all 0.15s;}
+        .xp-related-chip:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+
         /* AUDIT PANEL */
         .audit-panel{position:fixed;top:48px;left:0;width:100%;height:calc(100vh - 48px);
             background:rgba(6,8,10,0.95);backdrop-filter:blur(8px);z-index:60;
@@ -687,6 +749,9 @@
         <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
     </div>
 </div>
+
+<!-- EXPLAINER MODAL OVERLAY (click cifra → ver cómo se calculó) -->
+<div class="xp-modal-overlay" id="xp-modal-overlay"></div>
 
 <!-- AUDIT PANEL -->
 <div class="audit-panel" id="audit-panel">
@@ -908,7 +973,7 @@
         <div class="kpi-strip-div"></div>
         <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--green);" id="strip-trucks">-39%</div><div class="kpi-strip-l">Carretera</div></div>
         <div class="kpi-strip-div"></div>
-        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">Equilibrio</div><div class="kpi-strip-l">Payback</div></div>
+        <div class="kpi-strip-item"><div class="kpi-strip-v" style="color:var(--blue);" id="strip-payback">5.6a</div><div class="kpi-strip-l">Payback (con palancas)</div></div>
         <div class="kpi-strip-div"></div>
         <div class="kpi-strip-item"><div class="kpi-strip-v" id="strip-status" style="color:var(--red);">HOY: Sin Centro</div><div class="kpi-strip-l">Escenario</div></div>
     </div>
@@ -964,7 +1029,7 @@
         <div style="text-align:center;padding:8px;margin-top:6px;background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.2);border-radius:6px;">
             <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Ahorro con Centro (peor caso)</div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;color:var(--green);margin-top:2px;">$109/caja</div>
-            <div style="font-size:9px;color:var(--text3);">$919 sin centro → $810 con centro · Equilibrio en transporte</div>
+            <div style="font-size:9px;color:var(--text3);">$919 sin centro → $810 con centro · Deficit solo transporte (CAPEX $4,020M)</div>
         </div>
     </div>
 
@@ -994,9 +1059,9 @@
             </div>
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:4px;font-size:8px;color:var(--text3);line-height:1.5;">
                 <div style="display:flex;justify-content:space-between;"><span>Bruto/año:</span><span id="hub-bruto">$360M</span></div>
-                <div style="display:flex;justify-content:space-between;"><span>OPEX:</span><span>-$362M</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>OPEX:</span><span>-$437M</span></div>
                 <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--text);"><span>Neto/año:</span><span id="hub-neto">~$0</span></div>
-                <div style="display:flex;justify-content:space-between;"><span>CAPEX:</span><span>$1,200M</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>CAPEX:</span><span>$4,020M</span></div>
                 <div style="display:flex;justify-content:space-between;font-weight:600;"><span>Payback:</span><span id="hub-payback">N/A</span></div>
             </div>
             <div style="margin-top:4px;font-size:7px;color:var(--text3);line-height:1.4;padding:3px 6px;background:var(--bg);border-radius:3px;border:1px solid var(--border);">
@@ -1287,10 +1352,10 @@
     <!-- ACID SCENARIO BOX -->
     <div class="fin-full">
         <div style="padding:10px 16px;background:var(--yellow-bg);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte (conservador)</span><br>SC2 Centro: <b style="color:var(--red);">$919</b>/caja<br>Hub total (mula $0 desc): <b style="color:var(--yellow);">$810</b>/caja<br>Ahorro: <b style="color:var(--green);">$109</b>/caja</div>
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Conservador</span><br>Terreno $100M + Pérgola $600M<br>Equipos $200M + WK $100M<br>Contingencia $200M = <b>$1,200M</b></div>
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado Conservador</span><br>Bruto $360M - OPEX $362M<br><b style="color:var(--yellow);">Neto ~$0</b> (equilibrio)<br>Con terceros: <b style="color:var(--green);">+$652M</b></div>
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Nuevas Palancas (2025)</span><br>Standby evitado: <b style="color:var(--cyan);">$42-83M</b>/año<br>Nocturnos evitados: <b style="color:var(--cyan);">$100M</b>/año<br>Con palancas: <b style="color:var(--green);">+$142M</b></div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte (conservador)</span><br>SC2 Centro: <b style="color:var(--red);" data-explain="acid-919">$919</b>/caja<br>Hub total (mula $0 desc): <b style="color:var(--yellow);" data-explain="acid-810">$810</b>/caja<br>Ahorro: <b style="color:var(--green);" data-explain="acid-109">$109</b>/caja</div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Real (infraestructura)</span><br>Lote $200M + Bodega $1,900M<br>Plataformas $475M + Pérgolas $640M<br>Oficinas $405M + Equipos $250M + WK $150M<br>= <b data-explain="acid-capex">$4,020M</b></div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado solo transporte</span><br>Bruto $360M − OPEX <b data-explain="acid-opex">$437M</b><br><b style="color:var(--red);" data-explain="acid-deficit">Neto −$77M</b> (deficit)<br>Con terceros: <b style="color:var(--green);">+$652M</b></div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Nuevas Palancas (2025)</span><br>Standby evitado: <b style="color:var(--cyan);" data-explain="fd-standby-save">$42M</b>/año<br>Nocturnos evitados: <b style="color:var(--cyan);" data-explain="fd-noct-save">$100M</b>/año<br>Con palancas: <b style="color:var(--green);" data-explain="acid-palancas">+$142M</b></div>
         </div>
     </div>
 
@@ -1371,13 +1436,13 @@
             <div class="div" style="border-top:1px solid var(--border);margin:8px 0;"></div>
             <div class="dc-h" style="margin-bottom:4px;"><span class="dc-t" style="font-size:10px;color:var(--cyan);">Datos Operativos 2025 (Geocercas + Viajes)</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
-                <div class="kpi" style="padding:8px;"><div class="kpi-v b" style="font-size:13px;">12,860</div><div class="kpi-l">Viajes/año</div></div>
-                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">72.8%</div><div class="kpi-l">Ocupación real</div></div>
-                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">39.6%</div><div class="kpi-l">Llegadas fuera hora</div></div>
+                <div class="kpi" style="padding:8px;" data-explain="ops-trips"><div class="kpi-v b" style="font-size:13px;">12,860</div><div class="kpi-l">Viajes/año</div></div>
+                <div class="kpi" style="padding:8px;" data-explain="ops-occupancy"><div class="kpi-v r" style="font-size:13px;">72.8%</div><div class="kpi-l">Ocupación real</div></div>
+                <div class="kpi" style="padding:8px;" data-explain="ops-inconvenient"><div class="kpi-v r" style="font-size:13px;">39.6%</div><div class="kpi-l">Llegadas fuera hora</div></div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
-                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">53 min</div><div class="kpi-l">Espera media finca</div></div>
-                <div class="kpi" style="padding:8px;"><div class="kpi-v r" style="font-size:13px;">1h53m</div><div class="kpi-l">Espera media Zungo</div></div>
+                <div class="kpi" style="padding:8px;" data-explain="ops-wait-farm"><div class="kpi-v r" style="font-size:13px;">53 min</div><div class="kpi-l">Espera media finca</div></div>
+                <div class="kpi" style="padding:8px;" data-explain="ops-wait-zungo"><div class="kpi-v r" style="font-size:13px;">1h53m</div><div class="kpi-l">Espera media Zungo</div></div>
             </div>
             <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);margin-bottom:8px;">PALANCAS ADICIONALES CON CENTRO DE CONSOLIDACION</div>
             <div class="fin-input-g">
@@ -1539,7 +1604,7 @@
             </div>
         </div>
         <div style="margin-top:12px;font-size:13px;color:var(--text2);line-height:1.6;">
-            <b style="color:var(--yellow);">Sin ninguna condición:</b> el Centro se paga solo en transporte (equilibrio).<br>
+            <b style="color:var(--red);">Sin ninguna condición (con CAPEX real):</b> solo transporte da deficit −$77M/año. Requiere al menos palancas operativas + terceros.<br>
             <b style="color:var(--green);">Con las 3 condiciones:</b> payback ~2.6 años, neto $465M + terceros.
         </div>
     </div>
@@ -1627,9 +1692,9 @@
         Hub total: $568 + $42 + $200 = <strong>$810/caja</strong>.<br>
         SC2 Centro sin hub: <strong>$919/caja</strong> (26 viajes individuales sencillo, promedio ponderado 12 fincas).<br>
         Ahorro: $919 - $810 = <strong>$109/caja</strong> × 3.30M cajas Centro/año = <strong>$360M bruto</strong>.<br>
-        OPEX: <strong>$362M/año</strong> (6 personas $215M + servicios $73M + mant/seg $38M + admin $36M).<br>
-        Neto: $360M - $362M = <strong>~$0/año</strong> (equilibrio en transporte).<br>
-        CAPEX: <strong>$1,200M</strong> (terreno $100M + pérgola $600M + equipos $200M + WK $100M + contingencia $200M).</p>
+        OPEX: <strong>$437M/año</strong> (personal $215M + servicios $73M + mant 2% $73M + seguros 1% $40M + admin $36M).<br>
+        Neto solo transporte: $360M − $437M = <strong style="color:var(--red);">−$77M/año</strong> (deficit con CAPEX real).<br>
+        CAPEX: <strong>$4,020M</strong> (lote $200M + bodega $1,900M + plataformas $475M + pérgolas $640M + oficinas $405M + equipos $250M + WK $150M).</p>
         <p><strong>Sensibilidad descuento mula G20:</strong> G20 puede negociar hasta $150K menos por viaje mula.
         Con $50K desc: hub $763, ahorro $156, neto $152M, payback 7.9a.
         Con $75K desc: hub $739, ahorro $180, neto $231M, payback 5.2a.
@@ -1968,7 +2033,7 @@ const FARM_DATA = [
 const _chinitaVPA = 300000;
 const _mulaTarifa20 = _chinitaVPA * 2 - DESC_MULA_G20; // $600K base mula (20p) — sin descuento
 const _mulaTarifa24 = Math.round(_mulaTarifa20 * FACTOR_24); // $720K mula llena (24p)
-const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 200, CONSOL: 42, CAPEX: 1200, OPEX: 362 };
+const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 200, CONSOL: 42, CAPEX: 4020, OPEX: 437 };
 const _centroFD = FARM_DATA.filter(f=>f.g==='centro');
 const _centroPD = _centroFD.reduce((s,f)=>s+f.pd,0);
 const _centroTripsHub = Math.ceil(_centroPD / MULA_PALL); // 10 mulas/día (antes 20 sencillos)
@@ -2895,7 +2960,7 @@ function openFarmPanel(farmId) {
     html += 'Hub→PA: $' + (ACID.HUB_PA_VIAJE/1000) + 'K/mula (conservador: Chinita $300K×2=$600K×1.2, $0 desc).<br>';
     html += 'F→H: $200/caja = $130K/viaje (escenario conservador).<br>';
     html += 'Consolidación: $42/caja (paletizar+inspeccionar).<br>';
-    html += 'CAPEX: $1,200M. OPEX: $362M/año.<br>';
+    html += 'CAPEX: $4,020M. OPEX: $437M/año.<br>';
     html += 'Fuente: Anderson Mestra, Grupo 20, Marzo 2026.';
     html += '</div>';
     html += '</div>';
@@ -4515,8 +4580,640 @@ document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === '1') setScenario('sc1');
     if (e.key === '3') setScenario('sc3');
-    if (e.key === 'Escape') { closeFarmPanel(); if (typeof closeAuditPanel === 'function') closeAuditPanel(); }
+    if (e.key === 'Escape') { closeFarmPanel(); if (typeof closeAuditPanel === 'function') closeAuditPanel(); closeExplainer(); }
     if (e.key === '?') document.getElementById('onboarding').style.display = '';
+});
+
+// ============================================================
+// EXPLAINER SYSTEM — click cifra → ver fuente + cálculo
+// ============================================================
+// Las 4 fuentes de datos
+const SOURCES = {
+    excel: { tag: 'EXCEL VIAJES 2025', color: 'blue', desc: 'Viajes 2025 GrupoVeinte.xlsx — 24,888 registros, 12,860 viajes únicos, 303 días operativos.' },
+    geo: { tag: 'GEOCERCAS GPS', color: 'red', desc: 'geocercasvehiculos.zip — 132,488 eventos GPS, 16 vehículos, Mar–Dic 2025.' },
+    reun: { tag: 'REUNIONES MAR 2026', color: 'yellow', desc: 'Talleres Anderson Mestra + Juan Pablo López, 31 Marzo 2026 (2 transcripciones).' },
+    arq: { tag: 'INFRAESTRUCTURA', color: 'cyan', desc: 'INPUTS CENTRO DE CONSOLIDACIÓN.pdf — Evaluación profesional arquitectura, precios 2026.' },
+    osrm: { tag: 'OSRM ROUTING', color: 'cyan', desc: 'OpenStreetMap Routing Machine — 39 rutas reales finca↔hub↔puerto.' },
+    bpr: { tag: 'MODELO BPR', color: 'yellow', desc: 'Bureau of Public Roads congestion: t = t_base × (1 + (V/C)^3). Base OSRM + factor congestión.' },
+    calc: { tag: 'CÁLCULO MODELO', color: 'green', desc: 'Derivado del modelo, combina múltiples fuentes.' }
+};
+
+const EXPLAINS = {
+    // ============= MAP HEADER KPIs =============
+    'kpi-trucks': {
+        title: 'Camiones en carretera',
+        getValue: () => document.getElementById('kpi-trucks').textContent,
+        formula: 'SC1 (Hoy):  41 viajes = sum(ceil(pallets_día/12)) por finca\nSC3 (Hub):  10 mulas Centro + 4 mini-hub + 11 zungo = 25 vía + 26 cortos finca→hub',
+        inputs: [
+            { l: 'Producción G20', v: '101K cajas/sem', s: 'Viajes 2025 (real)' },
+            { l: 'Cajas/día (÷5)', v: '~20,200', s: 'Calculado' },
+            { l: 'Capacidad sencillo', v: '12 pallets × 54 = 648 cajas', s: 'Estándar' },
+            { l: 'Capacidad mula', v: '24 pallets × 54 = 1,296 cajas', s: 'Estándar' }
+        ],
+        source: 'excel',
+        assumptions: 'Base: 6 días operativos/semana. SC3 reemplaza 26 sencillos Centro por 10 mulas (consolidación), agrega 26 viajes cortos finca→hub en vías locales (8–15 km).',
+        related: ['cost-direct', 'cost-hub']
+    },
+    'kpi-time': {
+        title: 'Tiempo promedio Hub→Puerto',
+        getValue: () => document.getElementById('kpi-time').textContent + ' min',
+        formula: 't = bt × (1 + (V/C)^3)\nbt = 28 min (base OSRM)\nV = total viajes G20 + carga regional\nC = 800 cajas/día (capacidad vial)',
+        inputs: [
+            { l: 'Tiempo base OSRM', v: '28 min', s: 'OSRM Hub Chinita→Puerto' },
+            { l: 'Capacidad vial', v: '800 cajas/día', s: 'Modelo BPR' },
+            { l: 'Power exponente', v: '3 (cubic)', s: 'BPR estándar' },
+            { l: 'Cap del hub (driver)', v: '1.3× max', s: 'Hub reduce penalty' }
+        ],
+        source: 'bpr',
+        assumptions: 'Modelo BPR (Bureau of Public Roads). El factor de congestión cf depende de la carga total en la vía — con hub el cf se cap a 1.3× porque hay menos vehículos.',
+        related: ['kpi-trucks']
+    },
+    'kpi-dist': {
+        title: 'Distancia promedio',
+        getValue: () => document.getElementById('kpi-dist').textContent + ' km',
+        formula: 'SC1: distancia ponderada finca→Zungo (8–28 km)\nSC2: distancia finca→Puerto Antioquia (9–52 km)\nSC3: distancia finca→hub asignado',
+        inputs: [
+            { l: 'Rutas', v: '39 OSRM-snapped', s: 'OSRM' },
+            { l: 'Centro (12 fincas)', v: '12.4 km a hub', s: 'Promedio' },
+            { l: 'Zungo (4 fincas)', v: '~10 km a embarcadero', s: 'OSRM' },
+            { l: 'Mini-hub (3 fincas)', v: '~10 km a Puerto', s: 'OSRM' }
+        ],
+        source: 'osrm'
+    },
+
+    // ============= COST CARD =============
+    'cost-direct': {
+        title: '$/caja Directo (Sin Hub)',
+        getValue: () => document.getElementById('cost-direct').textContent,
+        formula: 'Modo $/CAJA: tarifa plana G20 = $359/caja\nModo $/VIAJE: $919/caja (promedio ponderado 12 fincas Centro a Puerto Antioquia)\n  = sum(viajes × tarifa_PA × factor_1.2) / cajas_totales',
+        inputs: [
+            { l: 'Modelo activo', v: 'cambiar con botón $/CAJA / $/VIAJE', s: 'UI' },
+            { l: 'Tarifa Chinita (10p)', v: '$300K', s: 'Anderson Mestra Mar 2026' },
+            { l: 'Factor 12p (sencillo carga 12, no 10)', v: '×1.2', s: 'Reuniones' },
+            { l: 'Cajas/viaje sencillo', v: '12 × 54 = 648', s: 'Estándar' }
+        ],
+        source: 'reun',
+        assumptions: '$919/caja es el escenario crítico SC2: todos los Centro despachan a Puerto Antioquia con tarifa nueva por viaje (no por caja). +126% sobre el costo actual de $406/caja.',
+        related: ['cost-hub', 'cost-save']
+    },
+    'cost-hub': {
+        title: '$/caja con Hub',
+        getValue: () => document.getElementById('cost-hub').textContent,
+        formula: 'Hub total = Hub→PA flete + Consolidación + Finca→Hub\n         = $568 + $42 + $200 = $810/caja',
+        inputs: [
+            { l: 'Hub→PA (flete mula)', v: '$568/caja', s: '10 mulas × $720K ÷ 12,674 cajas/día' },
+            { l: 'Consolidación', v: '$42/caja', s: 'Paletizar + inspeccionar + cargar' },
+            { l: 'Finca→Hub', v: '$200/caja', s: 'Supuesto ácido (rango: $80–$300)' },
+            { l: 'Tarifa mula 24p', v: '$720K', s: 'Chinita $300K × 2 × 1.2' },
+            { l: 'Descuento G20', v: '$0 (ácido)', s: 'Conservador' }
+        ],
+        source: 'reun',
+        assumptions: 'Escenario ácido: $0 descuento mula G20 (rango real $0–$150K), $200 finca→hub (alto). Con $75K descuento: $739. Con $200→$80 finca→hub: $690.',
+        related: ['cost-direct', 'cost-save', 'cost-annual']
+    },
+    'cost-save': {
+        title: 'Ahorro $/caja con Hub',
+        getValue: () => document.getElementById('cost-save').textContent,
+        formula: '% ahorro = (directo − hub) / directo × 100\n        = ($919 − $810) / $919 × 100\n        = 11.9%',
+        inputs: [
+            { l: 'Directo (sin hub)', v: '$919/caja', s: 'SC2 ácido' },
+            { l: 'Hub (con consolidación)', v: '$810/caja', s: 'SC3 ácido' },
+            { l: 'Ahorro absoluto', v: '$109/caja', s: 'Diferencia' }
+        ],
+        source: 'calc',
+        related: ['cost-annual']
+    },
+    'cost-annual': {
+        title: 'Ahorro Anual G20',
+        getValue: () => document.getElementById('cost-annual').textContent,
+        formula: '($directo − $hub) × cajas_año\n= $109 × 3,295,000 cajas Centro\n= $360M COP/año',
+        inputs: [
+            { l: 'Ahorro/caja', v: '$109', s: 'Calculado' },
+            { l: 'Cajas Centro/año', v: '3.30M', s: 'Sum 12 fincas Centro' },
+            { l: 'Ahorro bruto', v: '$360M/año', s: 'Calculado' },
+            { l: '− OPEX hub', v: '−$437M/año', s: 'Personal + mant + servicios' },
+            { l: '= Neto transporte solo', v: '−$77M/año (deficit)', s: 'Con CAPEX real $4,020M' }
+        ],
+        source: 'calc',
+        assumptions: 'Solo cuenta el ahorro de transporte. NO incluye palancas operativas ($142M) ni servicio a terceros ($652M). Para ver el caso viable completo, ver "Ingreso total anual".',
+        related: ['cost-hub', 'fd-standby-save', 'fd-noct-save']
+    },
+
+    // ============= PRICING IMPACT PANEL =============
+    'pi-flete': {
+        title: 'Tarifa Flete por Caja (modelo SICE-TAC)',
+        getValue: () => document.getElementById('pi-flete').textContent,
+        formula: '$919/caja = promedio ponderado 12 fincas Centro a Puerto Antioquia\nFórmula por finca: ceil(pallets_día/12) × tarifa_PA(10p) × 1.2 / cajas_día',
+        inputs: [
+            { l: 'Tarifa Chinita PA (10p)', v: '$300K', s: 'Anderson Mar 2026' },
+            { l: 'Tarifa Sierra PA (10p)', v: '$370K', s: 'Anderson Mar 2026' },
+            { l: 'Factor 12p', v: '×1.2', s: 'Sencillo carga 12, tarifa 10' }
+        ],
+        source: 'reun',
+        related: ['cost-direct']
+    },
+    'pi-standby': {
+        title: 'Standby (tiempos muertos)',
+        getValue: () => '$0 (incluido en tarifa SC2)',
+        formula: 'En SC2 está incluido implícitamente en la tarifa\nPero las geocercas muestran exposición real:\n2,315 viajes × 0.92h × $20K/h = $42.6M/año',
+        inputs: [
+            { l: 'Viajes con espera >1h', v: '2,315 (18% de 12,860)', s: 'Geocercas 2025' },
+            { l: 'Espera promedio (exceso sobre 30 min)', v: '0.92h', s: 'Geocercas P50/P90' },
+            { l: 'Tarifa standby cooperativas', v: '$20K–$30K/hora', s: 'Reuniones Mar 2026' }
+        ],
+        source: 'geo',
+        assumptions: 'SICE-TAC regula los tiempos muertos. Si el transportador empieza a cobrarlos formalmente, la exposición es $42-83M/año solo en finca + $163M en Zungo.',
+        related: ['fd-standby-save']
+    },
+
+    // ============= COMPARISON CARDS (3 ESCENARIOS) =============
+    'sc-comp-caja1': {
+        title: 'SC1 Hoy: $/caja',
+        getValue: () => document.getElementById('sc-comp-caja1').textContent,
+        formula: '$406 = sum(tarifa_finca × cajas_finca) / cajas_totales\nDonde tarifa_finca es la tarifa plana actual ($/caja) que paga G20',
+        inputs: [
+            { l: 'Tarifa Chinita', v: '$499/caja', s: 'Anderson Mar 2026' },
+            { l: 'Tarifa Matogroso 2', v: '$295/caja', s: 'Anderson' },
+            { l: 'Tarifa Maritú', v: '$453/caja → $484 (renegociada +20%)', s: 'Reuniones Mar 2026' },
+            { l: 'Promedio ponderado', v: '$406/caja', s: 'Calculado' }
+        ],
+        source: 'reun'
+    },
+    'sc-comp-caja2': {
+        title: 'SC2 Riesgo: $/caja Puerto Antioquia',
+        getValue: () => document.getElementById('sc-comp-caja2').textContent,
+        formula: 'Tarifa nueva por viaje (SICE-TAC)\n$919/caja = promedio ponderado 12 fincas Centro\n+126% vs $406 actual',
+        inputs: [
+            { l: 'Tarifa Chinita PA (10p)', v: '$300K', s: 'Anderson Mar 2026' },
+            { l: 'Factor 12p (×1.2)', v: '$360K real', s: 'Reuniones' },
+            { l: '÷ 648 cajas', v: '$556/caja Chinita', s: 'Calculado' }
+        ],
+        source: 'reun',
+        assumptions: 'Los transportadores llevan 2 años exigiendo este cambio. SICE-TAC del MinTransporte ya lo regula.'
+    },
+    'sc-comp-caja3': {
+        title: 'SC3 Solución: $/caja con Hub',
+        getValue: () => document.getElementById('sc-comp-caja3').textContent,
+        formula: 'Hub flete + Consolidación + Finca→Hub\n= $568 + $42 + $200\n= $810/caja (ácido, sin descuento)',
+        inputs: [
+            { l: 'Hub→PA mulas (10/día)', v: '$720K × 10 ÷ 12,674', s: '$568/caja' },
+            { l: 'Consolidación', v: '$42/caja', s: 'Operación interna' },
+            { l: 'Finca→Hub corta', v: '$200/caja', s: 'Estimado conservador' }
+        ],
+        source: 'calc',
+        related: ['cost-hub']
+    },
+
+    // ============= DATOS OPERATIVOS 2025 =============
+    'ops-trips': {
+        title: 'Viajes/año (2025 real)',
+        getValue: () => '12,860',
+        formula: 'Conteo directo de viajes únicos en Excel\n12,860 viajes / 303 días operativos = 42.4 viajes/día',
+        inputs: [
+            { l: 'Excel', v: 'Viajes 2025 GrupoVeinte.xlsx', s: 'Anderson' },
+            { l: 'Registros totales', v: '24,888', s: 'Producto-nivel' },
+            { l: 'Viajes únicos (por documento)', v: '12,860', s: 'Distinct' },
+            { l: 'Días operativos', v: '303', s: '2025 completo' },
+            { l: 'Cajas remitidas', v: '5,057,968', s: 'Sum' },
+            { l: 'Cajas recibidas', v: '5,349,445', s: '+5.8% (sobreentrega)' }
+        ],
+        source: 'excel'
+    },
+    'ops-occupancy': {
+        title: 'Ocupación real 2025',
+        getValue: () => '72.8%',
+        formula: '393 cajas/viaje promedio ÷ 540 cajas capacidad sencillo (10p × 54)\n= 72.8%',
+        inputs: [
+            { l: 'Promedio cajas/viaje', v: '393', s: 'Excel 2025' },
+            { l: 'Mediana', v: '378', s: 'Excel 2025' },
+            { l: 'Capacidad nominal (10p)', v: '540', s: '10 × 54' },
+            { l: 'Pallets/viaje promedio', v: '7.8', s: 'Excel 2025' }
+        ],
+        source: 'excel',
+        assumptions: 'Antes asumíamos 76% — el dato real es 72.8%. Base de cálculo: capacidad sencillo 10 pallets (no 12) porque la tarifa es por 10p. Si se usara 12p (648), ocupación sería 60.6%.',
+        related: ['kpi-trucks']
+    },
+    'ops-inconvenient': {
+        title: 'Llegadas fuera de hora',
+        getValue: () => '39.6%',
+        formula: 'Conteo de viajes con hora_recepcion > 20:00 o < 08:00\n39.6% de 12,860 viajes',
+        inputs: [
+            { l: 'Categoría Inconveniente', v: '39.6%', s: 'Excel column "categoria tiempo"' },
+            { l: 'Categoría Esperado (12-20)', v: '58.2%', s: 'Excel' },
+            { l: 'Categoría Óptima (8-12)', v: '2.3%', s: 'Excel' },
+            { l: 'Pico de salidas', v: '16:00–20:00 (52% de salidas)', s: 'Excel' }
+        ],
+        source: 'excel',
+        assumptions: 'Patrón estructural: 52% de las salidas de finca son entre 16:00–20:00, lo que causa que la mayoría llegue al embarcadero/puerto en hora inconveniente.',
+        related: ['ops-wait-farm']
+    },
+    'ops-wait-farm': {
+        title: 'Espera media en finca',
+        getValue: () => '53 min',
+        formula: 'Media de duración del evento de geocerca en finca (>1 min)\nMediana: 14 min, Media: 52.9 min, P90: 1h37m',
+        inputs: [
+            { l: 'Total eventos finca', v: '37,541', s: 'Geocercas' },
+            { l: 'Filtrados >1 min', v: '22,819', s: 'Geocercas' },
+            { l: 'Mediana', v: '14 min', s: 'P50' },
+            { l: 'Media', v: '52.9 min', s: 'AVG' },
+            { l: 'P90', v: '97.3 min (1h37m)', s: 'P90' },
+            { l: 'P95', v: '152.9 min (2h33m)', s: 'P95' }
+        ],
+        source: 'geo',
+        assumptions: 'La media (53 min) es alta vs mediana (14 min) por una cola larga: 18% de visitas tienen espera >1 hora. Estos son los viajes con costo standby cobrable.',
+        related: ['fd-standby-save']
+    },
+    'ops-wait-zungo': {
+        title: 'Espera media en Zungo (embarcadero)',
+        getValue: () => '1h53m',
+        formula: 'Mediana de duración en geocerca "Z - EMBARCADERO UNIBAN"\n4,739 visitas registradas',
+        inputs: [
+            { l: 'Visitas Zungo Uniban', v: '4,739', s: 'Geocercas' },
+            { l: 'Mediana', v: '1h53m (113 min)', s: 'P50' },
+            { l: 'Media', v: '2h09m (129 min)', s: 'AVG' },
+            { l: 'P90', v: '4h09m (249 min)', s: 'P90' }
+        ],
+        source: 'geo',
+        assumptions: 'Zungo es el cuello de botella estructural. Con el hub, esta espera se evita porque Centro despacha directo a Puerto Antioquia (que tiene ANS de 20-30 min puerta-adentro).'
+    },
+
+    // ============= FINANCIAL DASHBOARD KPI BANNER =============
+    'fd-vpn': {
+        title: 'VPN (Valor Presente Neto)',
+        getValue: () => document.getElementById('fd-vpn').textContent,
+        formula: 'VPN = −CAPEX + Σ FCF[y] / (1 + r)^y\n      para y = 1..horizon\nr = tasa descuento (default 12%)',
+        inputs: [
+            { l: 'CAPEX', v: '$4,020M (real, infraestructura)', s: 'INPUTS PDF' },
+            { l: 'Tasa descuento', v: '12% (ajustable)', s: 'WACC banano' },
+            { l: 'Horizonte', v: '10 años', s: 'Default' },
+            { l: 'FCF anual base', v: 'Ingresos − OPEX', s: 'Calculado por año' }
+        ],
+        source: 'calc',
+        assumptions: 'Asume crecimiento producción 3%/año, inflación OPEX 3%/año, depreciación lineal 10 años. NO incluye impuestos. EBITDA = FCF (simplificado).',
+        related: ['fd-tir', 'fd-payback', 'fd-roi']
+    },
+    'fd-tir': {
+        title: 'TIR (Tasa Interna de Retorno)',
+        getValue: () => document.getElementById('fd-tir').textContent,
+        formula: 'TIR = r tal que VPN(r) = 0\nResolución: Newton-Raphson iterativo',
+        inputs: [
+            { l: 'Cashflows', v: '[−CAPEX, FCF1, FCF2, ..., FCFn]', s: 'Modelo' },
+            { l: 'Convergencia', v: '<1e-6', s: 'Newton-Raphson' }
+        ],
+        source: 'calc',
+        related: ['fd-vpn']
+    },
+    'fd-payback': {
+        title: 'Payback (años para recuperar CAPEX)',
+        getValue: () => document.getElementById('fd-payback').textContent,
+        formula: 'Año en que cumulative_FCF ≥ 0\nInterpolación lineal sub-año para precisión',
+        inputs: [
+            { l: 'CAPEX inicial', v: '$4,020M', s: 'Year 0' },
+            { l: 'FCF anuales', v: 'Crecientes con producción', s: 'Modelo' }
+        ],
+        source: 'calc',
+        assumptions: 'Solo transporte: payback >60 años (no recuperable). Con palancas: ~8 años. Con descuento $75K: 13.6a. Con terceros 10%: 5.6a. Con todo: 4.2a.',
+        related: ['fd-vpn', 'fd-roi']
+    },
+    'fd-roi': {
+        title: 'ROI (Return on Investment)',
+        getValue: () => document.getElementById('fd-roi').textContent,
+        formula: 'ROI = Σ FCF / CAPEX × 100%',
+        inputs: [
+            { l: 'Total FCF (10 años)', v: 'Sum yearly FCF', s: 'Modelo' },
+            { l: 'CAPEX', v: '$4,020M', s: 'INPUTS PDF' }
+        ],
+        source: 'calc',
+        related: ['fd-vpn']
+    },
+    'fd-annual': {
+        title: 'Ahorro/Ingreso Anual (Year 1)',
+        getValue: () => document.getElementById('fd-annual').textContent,
+        formula: 'Total = ahorro_G20 + ingreso_externo + standby_evitado + nocturnos_evitados',
+        inputs: [
+            { l: 'Ahorro G20 transporte', v: '$/caja × 3.30M cajas', s: 'Modelo' },
+            { l: 'Servicio terceros', v: 'cajas_ext × tarifa', s: 'Slider' },
+            { l: 'Standby evitado', v: '50% de exposición', s: 'Geocercas' },
+            { l: 'Nocturnos evitados', v: '50% de $210M', s: 'Reuniones' }
+        ],
+        source: 'calc',
+        related: ['fd-standby-save', 'fd-noct-save', 'fd-ext-income']
+    },
+    'fd-capex': {
+        title: 'CAPEX Total',
+        getValue: () => document.getElementById('fd-capex').textContent,
+        formula: 'Lote + Bodega + Plataformas + Pérgolas + Oficinas + Equipos + WK\n= $200M + $1,900M + $475M + $640M + $405M + $250M + $150M\n= $4,020M',
+        inputs: [
+            { l: 'Lote 5,000 m²', v: '$200M', s: 'Mercado Chinita' },
+            { l: 'Bodega 1,000 m²', v: '$1,900M ($1.9M/m²)', s: 'INPUTS PDF' },
+            { l: 'Plataformas + 4 muelles', v: '$475M (250 m²)', s: 'INPUTS PDF' },
+            { l: 'Pérgolas + circulaciones', v: '$640M (400 m²)', s: 'INPUTS PDF' },
+            { l: 'Oficinas + servicios', v: '$405M (150 m²)', s: 'INPUTS PDF' },
+            { l: 'Equipos (dock levelers, montacargas)', v: '$250M', s: 'INPUTS PDF' },
+            { l: 'Capital de trabajo', v: '$150M', s: 'Buffer 45 días' }
+        ],
+        source: 'arq',
+        assumptions: 'Costos 2026 reales. Bodega: $1.6–$2.2M/m². Admin: $2.2–$3.0M/m². Incluye indirectos 15–20% (diseño, licencias, interventoría, imprevistos). Anterior estimado era $1,200M (subestimado).'
+    },
+
+    // ============= INCOME SECTION =============
+    'fd-cost-direct': {
+        title: '$/caja Directo (modo financiero)',
+        getValue: () => document.getElementById('fd-cost-direct').textContent,
+        formula: 'Mismo que cost-direct del header del mapa',
+        inputs: [],
+        source: 'reun',
+        related: ['cost-direct']
+    },
+    'fd-cost-hub': {
+        title: '$/caja Hub (modo financiero)',
+        getValue: () => document.getElementById('fd-cost-hub').textContent,
+        formula: 'Mismo que cost-hub del header del mapa',
+        inputs: [],
+        source: 'calc',
+        related: ['cost-hub']
+    },
+    'fd-save-box': {
+        title: 'Ahorro por caja',
+        getValue: () => document.getElementById('fd-save-box').textContent,
+        formula: 'directo − hub = $109/caja (ácido)',
+        inputs: [
+            { l: 'Sin hub', v: '$919', s: 'SC2 ácido' },
+            { l: 'Con hub', v: '$810', s: 'SC3 ácido' }
+        ],
+        source: 'calc'
+    },
+    'fd-save-annual': {
+        title: 'Ahorro Anual G20 (transporte)',
+        getValue: () => document.getElementById('fd-save-annual').textContent,
+        formula: 'Ahorro_caja × cajas_año\n= $109 × 3.30M = $360M/año',
+        inputs: [
+            { l: 'Ahorro/caja', v: '$109', s: 'Calculado' },
+            { l: 'Cajas Centro/año', v: '3.30M', s: '12 fincas Centro' }
+        ],
+        source: 'calc',
+        assumptions: 'Solo cuenta el ahorro de transporte vs SC2 (escenario tarifa nueva). NO incluye palancas ni terceros.'
+    },
+    'fd-standby-save': {
+        title: 'Standby evitado / año',
+        getValue: () => document.getElementById('fd-standby-save').textContent,
+        formula: 'Viajes_con_espera × espera_promedio × tarifa_standby × % evitado\n\n= 2,315 × 0.92h × $20,000/h × 50%\n= $42.6M × 50%\n= $21M/año (default)',
+        inputs: [
+            { l: 'Viajes con espera >1h', v: '2,315 (18% de 12,860)', s: 'Geocercas 2025' },
+            { l: 'Espera promedio (exceso)', v: '0.92h', s: 'Geocercas' },
+            { l: 'Tarifa standby', v: '$20K/h (slider)', s: 'Cooperativas' },
+            { l: '% evitado con hub', v: '50% (slider)', s: 'Conservador' }
+        ],
+        source: 'geo',
+        assumptions: 'Base: $20K/h y 50% evitado. Escenario optimista: $30K/h × 100% = $128M/año. El hub elimina la espera porque el carrusel finca→hub→puerto es cronometrable.',
+        related: ['ops-wait-farm', 'fd-noct-save']
+    },
+    'fd-noct-save': {
+        title: 'Nocturnos evitados / año',
+        getValue: () => document.getElementById('fd-noct-save').textContent,
+        formula: 'Pallets_nocturnos × costo_pallet × % capturado\n\n= 50,000 × $4,200 × 50%\n= $210M × 50%\n= $105M/año (default)',
+        inputs: [
+            { l: 'Pallets nocturnos/año', v: '50,000', s: 'Reuniones (400/día × 5 × 52 × 48%)' },
+            { l: 'Costo nocturno/pallet', v: '$4,200', s: 'Tarifa 2026 (2024: $3,800)' },
+            { l: 'Costo total nocturnos', v: '$210M/año', s: 'Calculado' },
+            { l: '% capturado con hub', v: '50% (slider)', s: 'JP: "apuntémosle a la mitad"' }
+        ],
+        source: 'reun',
+        assumptions: 'Hoy los transportadores cobran un sobreprecio por recoger pallets después de 16:30–17:00. Con el hub operando turnos hasta 22h, se eliminan estas recogidas tardías.',
+        related: ['fd-standby-save']
+    },
+    'fd-ext-income': {
+        title: 'Ingreso ext. anual (servicio a terceros)',
+        getValue: () => document.getElementById('fd-ext-income').textContent,
+        formula: 'cajas_externas/sem × 1,000 × 4.33 sem/mes × tarifa × 12 meses',
+        inputs: [
+            { l: 'Cajas externas/sem', v: 'Slider (default 0K)', s: 'UI' },
+            { l: 'Tarifa servicio', v: '$80/caja (slider)', s: 'Mercado' },
+            { l: 'Piso costo (consolidación)', v: '$42/caja', s: 'Operación' }
+        ],
+        source: 'reun',
+        assumptions: 'Hay 402 bananeras en zona, Uniban tiene 250+ fincas. Con 10% del mercado a $60/caja: $652M/año. Esta es la pieza CLAVE de viabilidad con CAPEX real.',
+        related: ['fd-total-income']
+    },
+    'fd-total-income': {
+        title: 'Ingreso total anual',
+        getValue: () => document.getElementById('fd-total-income').textContent,
+        formula: 'Ahorro_G20 + Ingreso_externo + Standby_evitado + Nocturnos_evitados',
+        inputs: [
+            { l: '+ Ahorro G20 transporte', v: 'Variable', s: 'Cálculo' },
+            { l: '+ Servicio externo', v: 'Variable', s: 'Slider' },
+            { l: '+ Standby evitado', v: 'Variable', s: 'Geocercas' },
+            { l: '+ Nocturnos evitados', v: 'Variable', s: 'Reuniones' }
+        ],
+        source: 'calc',
+        related: ['fd-vpn', 'fd-payback']
+    },
+
+    // ============= ACID BOX =============
+    'acid-919': {
+        title: 'SC2 Centro: $919/caja',
+        getValue: () => '$919',
+        formula: 'Promedio ponderado 12 fincas Centro a Puerto Antioquia\n(tarifa por viaje SICE-TAC nueva)',
+        inputs: [
+            { l: 'Chinita', v: '$300K × 1.2 / 648 = $556', s: 'Anderson' },
+            { l: 'Sierra', v: '$370K × 1.2 / 648 = $685', s: 'Anderson' },
+            { l: 'Maritú', v: '$444K / 648 = $685', s: 'Anderson' },
+            { l: 'María Bonita', v: '$540K / 648 = $833', s: 'Anderson' },
+            { l: 'Promedio ponderado', v: '$919/caja', s: 'Calculado' }
+        ],
+        source: 'reun'
+    },
+    'acid-810': {
+        title: 'Hub total: $810/caja',
+        getValue: () => '$810',
+        formula: '$568 (flete mula) + $42 (consolidación) + $200 (finca→hub)\n= $810/caja (escenario ácido sin descuento)',
+        inputs: [
+            { l: 'Flete Hub→PA', v: '$568/caja', s: '10 mulas × $720K ÷ 12,674 cajas/día' },
+            { l: 'Consolidación', v: '$42/caja', s: 'Paletizar+inspeccionar+cargar' },
+            { l: 'Finca→Hub', v: '$200/caja', s: 'Conservador' }
+        ],
+        source: 'calc',
+        related: ['acid-109']
+    },
+    'acid-109': {
+        title: 'Ahorro $109/caja',
+        getValue: () => '$109',
+        formula: '$919 (sin hub) − $810 (con hub) = $109/caja',
+        inputs: [],
+        source: 'calc'
+    },
+    'acid-capex': {
+        title: 'CAPEX Real $4,020M',
+        getValue: () => '$4,020M',
+        formula: 'Ver desglose detallado en CAPEX Total',
+        inputs: [],
+        source: 'arq',
+        related: ['fd-capex']
+    },
+    'acid-opex': {
+        title: 'OPEX $437M/año',
+        getValue: () => '$437M',
+        formula: 'Personal + Servicios + Mantenimiento + Seguros + Admin\n= $215M + $73M + $73M + $40M + $36M\n= $437M/año',
+        inputs: [
+            { l: 'Personal (6 personas)', v: '$215M', s: '~$3M/persona/año' },
+            { l: 'Servicios', v: '$73M', s: 'Utilities + comms' },
+            { l: 'Mantenimiento (2% construcción)', v: '$73M', s: '$3,420M × 2%' },
+            { l: 'Seguros (1% CAPEX)', v: '$40M', s: '$4,020M × 1%' },
+            { l: 'Administración', v: '$36M', s: 'Office + admin' }
+        ],
+        source: 'arq'
+    },
+    'acid-deficit': {
+        title: 'Neto solo transporte: −$77M (deficit)',
+        getValue: () => '−$77M',
+        formula: 'Ahorro bruto − OPEX = $360M − $437M = −$77M/año',
+        inputs: [
+            { l: 'Ahorro bruto', v: '$360M', s: '$109 × 3.30M cajas' },
+            { l: 'OPEX', v: '$437M', s: 'Anual' }
+        ],
+        source: 'calc',
+        assumptions: 'SOLO transporte. Con palancas + terceros, la cuenta es totalmente diferente (ver siguientes cifras).'
+    },
+    'acid-palancas': {
+        title: 'Nuevas Palancas: +$142M/año',
+        getValue: () => '+$142M',
+        formula: 'Standby evitado + Nocturnos evitados\n= $42M + $100M\n= $142M/año (default 50% en ambos)',
+        inputs: [
+            { l: 'Standby evitado', v: '$42M (default)', s: 'Geocercas' },
+            { l: 'Nocturnos evitados', v: '$100M (default)', s: 'Reuniones' }
+        ],
+        source: 'calc',
+        related: ['fd-standby-save', 'fd-noct-save']
+    }
+};
+
+// ============================================================
+// EXPLAINER MODAL — open/close + populate
+// ============================================================
+function openExplainer(key) {
+    const data = EXPLAINS[key];
+    if (!data) {
+        console.warn('No explainer for key:', key);
+        return;
+    }
+    const src = SOURCES[data.source] || SOURCES.calc;
+    const overlay = document.getElementById('xp-modal-overlay');
+    const value = (typeof data.getValue === 'function') ? data.getValue() : (data.value || '');
+
+    let html = '';
+    html += '<div class="xp-modal" onclick="event.stopPropagation()">';
+    html += '<div class="xp-hdr">';
+    html += '<div class="xp-hdr-l">';
+    html += '<span class="xp-tag xp-tag-' + src.color + '">' + src.tag + '</span>';
+    html += '<div class="xp-title">' + data.title + '</div>';
+    if (value) html += '<div class="xp-value" style="color:var(--' + src.color + ');">' + value + '</div>';
+    html += '</div>';
+    html += '<button class="xp-close" onclick="closeExplainer()">×</button>';
+    html += '</div>';
+
+    html += '<div class="xp-body">';
+
+    // Formula
+    if (data.formula) {
+        html += '<div class="xp-section">';
+        html += '<div class="xp-section-h">Fórmula / Cálculo</div>';
+        html += '<div class="xp-formula">' + data.formula.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>') + '</div>';
+        html += '</div>';
+    }
+
+    // Inputs
+    if (data.inputs && data.inputs.length > 0) {
+        html += '<div class="xp-section">';
+        html += '<div class="xp-section-h">Inputs y valores</div>';
+        html += '<ul class="xp-inputs">';
+        data.inputs.forEach(i => {
+            html += '<li>';
+            html += '<span class="xp-il">' + i.l + (i.s ? ' <span class="xp-isrc">(' + i.s + ')</span>' : '') + '</span>';
+            html += '<span class="xp-iv">' + i.v + '</span>';
+            html += '</li>';
+        });
+        html += '</ul>';
+        html += '</div>';
+    }
+
+    // Source
+    html += '<div class="xp-section">';
+    html += '<div class="xp-section-h">Fuente de los datos</div>';
+    html += '<div class="xp-source" style="border-left-color:var(--' + src.color + ');">';
+    html += '<span class="xp-source-icon" style="color:var(--' + src.color + ');">●</span>';
+    html += '<div class="xp-source-text"><b style="color:var(--' + src.color + ');">' + src.tag + '</b> — ' + src.desc + '</div>';
+    html += '</div>';
+    html += '</div>';
+
+    // Assumptions
+    if (data.assumptions) {
+        html += '<div class="xp-section">';
+        html += '<div class="xp-section-h" style="color:var(--yellow);">Supuestos importantes</div>';
+        html += '<div class="xp-assumptions">' + data.assumptions + '</div>';
+        html += '</div>';
+    }
+
+    // Related
+    if (data.related && data.related.length > 0) {
+        html += '<div class="xp-section">';
+        html += '<div class="xp-section-h">Cifras relacionadas</div>';
+        html += '<div class="xp-related">';
+        data.related.forEach(r => {
+            const rel = EXPLAINS[r];
+            if (rel) html += '<span class="xp-related-chip" onclick="openExplainer(\'' + r + '\')">' + rel.title + '</span>';
+        });
+        html += '</div>';
+        html += '</div>';
+    }
+
+    html += '</div>'; // xp-body
+    html += '</div>'; // xp-modal
+
+    overlay.innerHTML = html;
+    overlay.classList.add('open');
+}
+
+function closeExplainer() {
+    const overlay = document.getElementById('xp-modal-overlay');
+    if (overlay) overlay.classList.remove('open');
+}
+
+// Click-outside-to-close
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('xp-modal-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) closeExplainer();
+        });
+    }
+
+    // Wire up explainable elements: anything with [data-explain] becomes clickable
+    function wireExplains() {
+        document.querySelectorAll('[data-explain]').forEach(el => {
+            if (el._xpWired) return;
+            el._xpWired = true;
+            el.classList.add('explainable');
+            el.addEventListener('click', e => {
+                e.stopPropagation();
+                openExplainer(el.getAttribute('data-explain'));
+            });
+        });
+        // Also: any element with id matching a key in EXPLAINS
+        Object.keys(EXPLAINS).forEach(key => {
+            const el = document.getElementById(key);
+            if (el && !el._xpWired && !el.hasAttribute('data-explain')) {
+                el._xpWired = true;
+                el.classList.add('explainable');
+                el.addEventListener('click', e => {
+                    e.stopPropagation();
+                    openExplainer(key);
+                });
+            }
+        });
+    }
+    wireExplains();
+    // Re-wire periodically because some elements are dynamically created
+    setInterval(wireExplains, 2000);
 });
 </script>
 </body>
