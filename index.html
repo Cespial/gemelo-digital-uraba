@@ -1044,7 +1044,7 @@
             </div>
             <div class="sl-g" style="margin:6px 0 2px;">
                 <div class="sl-h"><span class="sl-t">Finca→Hub $/caja</span><span class="sl-v y" id="hub-fh-display">$200</span></div>
-                <input type="range" id="sl-fh" min="80" max="300" value="200" oninput="updateHubModel()">
+                <input type="range" id="sl-fh" min="80" max="400" value="400" oninput="updateHubModel()">
                 <div class="sl-r"><span>$80 (optimista)</span><span>$300 (extremo)</span></div>
             </div>
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:2px;">
@@ -2224,7 +2224,7 @@ const FARM_DATA = [
 const _chinitaVMula20 = 470000; // mula negociada Chinita mayo 2026
 const _mulaTarifa20 = _chinitaVMula20; // sin recargo adicional, ya negociada
 const _mulaTarifa24 = Math.round(_mulaTarifa20 * FACTOR_24); // $564K mula llena (24p)
-const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 200, CONSOL: 42, CAPEX: 4020, OPEX: 437 };
+const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 400, CONSOL: 42, CAPEX: 4020, OPEX: 437 };
 const _centroFD = FARM_DATA.filter(f=>f.g==='centro');
 const _centroPD = _centroFD.reduce((s,f)=>s+f.pd,0);
 const _centroTripsHub = Math.ceil(_centroPD / MULA_PALL); // 10 mulas/día (mulas llenas 24p)

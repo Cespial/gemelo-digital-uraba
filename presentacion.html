@@ -583,10 +583,10 @@
 <!-- SLIDE 5c: DETALLE DE LOS 4 CARRUSELES -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--green);">Carruseles Geográficos</div>
+    <div class="slide-tag" style="color:var(--green);">Carruseles Geográficos <span style="color:var(--yellow);">(Tentativos)</span></div>
     <div class="slide-title" style="font-size:32px;">Los 4 carruseles<br>y qué fincas cubre cada uno</div>
     <div class="slide-body" style="margin-bottom:14px;font-size:13px;">
-        Las 11 fincas externas del Centro se agrupan en 4 carruseles por proximidad geográfica al hub (Chinita). <b style="color:var(--text);">F06 Chinita</b> es la sede del hub &mdash; su fruta no requiere transporte.
+        Las 11 fincas externas del Centro se agrupan en 4 carruseles por proximidad geográfica al hub (Chinita). <b style="color:var(--text);">F06 Chinita</b> es la sede del hub &mdash; su fruta no requiere transporte. <span style="color:var(--yellow);">Pendiente validación Anderson Rivera: algunas agrupaciones pueden cambiar (carreteras reales entre fincas).</span>
     </div>
 
     <table style="width:100%;max-width:1180px;font-family:'JetBrains Mono',monospace;font-size:11px;border-collapse:collapse;margin-bottom:14px;">
@@ -665,7 +665,7 @@
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--yellow);">Supuestos Paso a Paso</div>
     <div class="slide-title" style="font-size:32px;">Cómo se calcula el costo<br>del hub por caja</div>
-    <div style="margin-bottom:16px;font-size:13px;color:var(--text3);">Tarifas negociadas Mayo 2026. F&rarr;H sigue como supuesto (pendiente negociar).</div>
+    <div style="margin-bottom:16px;font-size:13px;color:var(--text3);">Tarifas negociadas Mayo 2026. F&rarr;H es el supuesto más sensible &mdash; pendiente negociar específicamente (sensibilizado abajo).</div>
 
     <div class="block-stack">
         <div class="block" style="background:rgba(240,160,48,0.1);border:1px solid rgba(240,160,48,0.2);">
@@ -688,30 +688,30 @@
             </div>
             <div class="block-val" style="color:var(--blue);font-size:20px;">$42</div>
         </div>
-        <div class="block" style="background:rgba(24,216,208,0.08);border:1px solid rgba(24,216,208,0.15);">
+        <div class="block" style="background:rgba(255,59,78,0.08);border:2px solid rgba(255,59,78,0.25);">
             <div style="display:flex;align-items:center;gap:12px;">
-                <div class="step-num" style="background:rgba(24,216,208,0.15);color:var(--cyan);">3</div>
+                <div class="step-num" style="background:rgba(255,59,78,0.15);color:var(--red);">3</div>
                 <div>
-                    <div class="block-label"><b style="color:var(--text);">Finca &rarr; Hub</b> (transporte interno, ~8-15 km)</div>
-                    <div class="block-math">$130K/viaje supuesto (pendiente negociar específicamente)</div>
+                    <div class="block-label"><b style="color:var(--text);">Finca &rarr; Hub</b> (transporte interno, ~8-15 km) <span style="color:var(--red);font-weight:700;">← supuesto crítico</span></div>
+                    <div class="block-math">Supuesto conservador (rango sensibilizado $80&ndash;$400). Pendiente cifra real con Anderson + Vera.</div>
                 </div>
             </div>
-            <div class="block-val" style="color:var(--cyan);font-size:20px;">$200</div>
+            <div class="block-val" style="color:var(--red);font-size:20px;">$400</div>
         </div>
-        <div class="block" style="background:rgba(0,232,120,0.1);border:2px solid rgba(0,232,120,0.3);">
+        <div class="block" style="background:rgba(240,160,48,0.1);border:2px solid rgba(240,160,48,0.3);">
             <div style="display:flex;align-items:center;gap:12px;">
-                <div class="step-num" style="background:rgba(0,232,120,0.2);color:var(--green);">=</div>
+                <div class="step-num" style="background:rgba(240,160,48,0.2);color:var(--yellow);">=</div>
                 <div>
-                    <div class="block-label"><b style="color:var(--green);font-size:16px;">TOTAL HUB POR CAJA</b></div>
-                    <div class="block-math">$445 + $42 + $200 = total (tarifa negociada Mayo 2026)</div>
+                    <div class="block-label"><b style="color:var(--yellow);font-size:16px;">TOTAL HUB POR CAJA (base conservadora)</b></div>
+                    <div class="block-math">$445 + $42 + $400 = $887/cj. Si F&rarr;H baja a $200: $687/cj. Si $80: $567/cj.</div>
                 </div>
             </div>
-            <div class="block-val" style="color:var(--green);font-size:28px;">$687</div>
+            <div class="block-val" style="color:var(--yellow);font-size:28px;">$887</div>
         </div>
     </div>
 
-    <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);max-width:700px;">
-        Mula $564K = Chinita mula negociada $470K (20 pallets) &times; 1.2 (llenado 24p) = $564K.
+    <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);max-width:780px;">
+        Mula $564K = Chinita mula negociada $470K (20 pallets) &times; 1.2 (llenado 24p). F&rarr;H $400/cj equivale a ~$260K/viaje sencillo (12p &times; 54 cajas), o ~$3M/día por camión carrusel (caso conservador pendiente negociación).
     </div>
 </div>
 
@@ -772,9 +772,9 @@
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Destino mayoría Centro</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">Embarcadero Zungo</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">Puerto Antioquia (directo)</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);">Centro Chinita → PA</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">Híbrido: Zungo + Nva Colonia</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">19 fincas → PA directo</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);">Centro→hub; Mini-Hub directo PA; Zungo embarcadero</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Viajes/día vía principal</td>
@@ -802,7 +802,7 @@
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Distancia promedio Centro</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">~18 km (a Zungo)</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">18 km Zungo / 30 km NC (mix)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">~30 km (a PA directo)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);">8&ndash;15 F→H + 17 hub→PA</td>
             </tr>
@@ -810,22 +810,22 @@
             <!-- COSTO ANUAL -->
             <tr><td colspan="4" style="padding:10px 10px 4px;font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">Costo anual transporte (Centro, 3.30M cajas)</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:5px 10px;color:var(--text2);">Costo Centro/año</td>
+                <td style="padding:5px 10px;color:var(--text2);">Costo Centro/año (F&rarr;H $400)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);font-weight:700;color:var(--red);">$1,416M</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);font-weight:700;color:var(--yellow);">$3,135M</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);font-weight:700;color:var(--green);">$2,267M</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);font-weight:700;color:var(--yellow);">$2,927M</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Δ vs Actual</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">&mdash;</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);color:var(--red);font-weight:600;">+$1,719M/año</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);font-weight:600;">+$851M/año</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);font-weight:600;">+$1,511M/año</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Δ vs SC2 (escenario inminente)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);color:var(--green);">&minus;$1,719M (ya pasó)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">&mdash; (base)</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">&minus;$867M/año ahorro</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);font-weight:700;">&minus;$208M/año ahorro</td>
             </tr>
 
             <!-- INVERSIÓN -->
@@ -843,22 +843,22 @@
                 <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">$437M/año</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:5px 10px;color:var(--text2);">Ahorro neto/año vs SC2</td>
+                <td style="padding:5px 10px;color:var(--text2);">Neto/año (sólo transporte, F&rarr;H $400)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">&mdash;</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">&mdash;</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">+$430M/año</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--red);font-weight:700;">&minus;$229M (deficit)</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:5px 10px;color:var(--text2);">Payback CAPEX (solo transporte)</td>
+                <td style="padding:5px 10px;color:var(--text2);">Payback CAPEX (F&rarr;H $400)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">&mdash;</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">&mdash;</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">9.3 años</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--red);font-weight:700;">&gt;10 años</td>
             </tr>
             <tr>
-                <td style="padding:5px 10px;color:var(--text2);">Payback con palancas + terceros</td>
+                <td style="padding:5px 10px;color:var(--text2);">Si F&rarr;H se negocia a $200</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">&mdash;</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">&mdash;</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">~3.5 años</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">Payback 4.7a (con palancas + terceros)</td>
             </tr>
         </tbody>
     </table>
@@ -868,9 +868,9 @@
             <span style="color:var(--red);font-weight:700;">Actual vs Full PA:</span>
             <span style="color:var(--text2);"> +$1,719M/año adicionales. El cambio tarifario ya está firmado, este sobrecosto es inminente sin acción.</span>
         </div>
-        <div class="highlight-box" style="margin:0;background:rgba(0,232,120,0.06);border-color:rgba(0,232,120,0.25);">
-            <span style="color:var(--green);font-weight:700;">Actual vs Hub:</span>
-            <span style="color:var(--text2);"> +$851M/año adicionales (vs +$1,719M sin hub). El hub absorbe el 50% del shock y deja $430M para amortizar CAPEX.</span>
+        <div class="highlight-box" style="margin:0;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.3);">
+            <span style="color:var(--yellow);font-weight:700;">Actual vs Hub (F&rarr;H $400):</span>
+            <span style="color:var(--text2);"> +$1,511M/año (apenas −$208M vs SC2). Con F&rarr;H actual, hub no se paga. <b style="color:var(--text);">Si se negocia F&rarr;H a $200, el hub absorbe el 50% del shock y queda +$430M netos.</b> La palanca decisiva es la negociación con transportadores para el tramo finca&rarr;hub.</span>
         </div>
     </div>
 </div>
@@ -882,7 +882,7 @@
     <div class="slide-tag" style="color:var(--cyan);">Detalle por Finca</div>
     <div class="slide-title" style="font-size:30px;">Tarifas por finca,<br>3 escenarios lado a lado</div>
     <div class="slide-body" style="margin-bottom:10px;font-size:12px;">
-        Las 19 fincas G20 con $/cj actual (Zungo) y $/cj equivalente bajo SC2 (sencillo 12p × tarifa neg) y SC3 (hub para Centro, directo PA para Mini-Hub, embarcadero para Zungo).
+        <b style="color:var(--text);">SC1 (Actual) es híbrido</b> &mdash; las fincas despachan a Zungo (mayoría) y Nueva Colonia (transición a PA en marcha). <b style="color:var(--text);">SC2 (Full PA)</b>: las 19 fincas van directo a PA. <b style="color:var(--text);">SC3 (Hub)</b>: 12 Centro pagan $887/cj con hub (incluye F&rarr;H $400); las 3 Mini-Hub van directo a PA; las 4 Zungo siguen al embarcadero.
     </div>
 
     <table style="width:100%;max-width:1200px;font-family:'JetBrains Mono',monospace;font-size:10px;border-collapse:collapse;">
@@ -902,19 +902,19 @@
         </thead>
         <tbody style="font-size:10px;">
             <tr><td colspan="10" style="padding:6px 8px;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">CENTRO (12 fincas, van al hub)</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F06</td><td><b>Chinita</b> (hub)</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">10,113</td><td style="text-align:right;color:var(--red);">$499</td><td style="text-align:right;">$270K</td><td style="text-align:right;">$470K</td><td style="text-align:right;color:var(--yellow);">$641</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--red);">-$46</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F07</td><td>Santa Marta Fabio</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">7,731</td><td style="text-align:right;color:var(--red);">$499</td><td style="text-align:right;">$270K</td><td style="text-align:right;">$470K</td><td style="text-align:right;color:var(--yellow);">$629</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--red);">-$58</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F08</td><td>La Llave</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,104</td><td style="text-align:right;color:var(--red);">$499</td><td style="text-align:right;">$270K</td><td style="text-align:right;">$470K</td><td style="text-align:right;color:var(--yellow);">$789</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$102</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F11</td><td>Sierra</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">2,784</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$862</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$175</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F12</td><td>Villa Fresia</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">3,071</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$782</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$95</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F13</td><td>Tagual</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,464</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$1,075</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$388</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F14</td><td>San Felipe</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,982</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$963</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$276</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F15</td><td>Maritú</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">2,530</td><td style="text-align:right;color:var(--red);">$484</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$800K</td><td style="text-align:right;color:var(--yellow);">$949</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$262</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F16</td><td>San Juan</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,235</td><td style="text-align:right;color:var(--red);">$426</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,360</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$673</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F17</td><td>Santa Helena</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">3,357</td><td style="text-align:right;color:var(--red);">$426</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,716</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$1,029</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F18</td><td>María Bonita</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">7,827</td><td style="text-align:right;color:var(--red);">$304</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,104</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$417</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td>F19</td><td>Tucanes</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">8,173</td><td style="text-align:right;color:var(--red);">$304</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,057</td><td style="text-align:right;color:var(--green);">$687</td><td style="text-align:right;color:var(--green);">+$370</td></tr>
-            <tr style="background:rgba(0,232,120,0.06);border-bottom:1px solid var(--border2);"><td colspan="4" style="padding:6px 8px;color:var(--green);font-weight:700;">Promedio ponderado Centro</td><td style="text-align:right;color:var(--red);font-weight:700;">$429</td><td colspan="2" style="color:var(--text3);text-align:center;font-size:9px;">12 fincas</td><td style="text-align:right;color:var(--yellow);font-weight:700;">$950</td><td style="text-align:right;color:var(--green);font-weight:700;">$687</td><td style="text-align:right;color:var(--green);font-weight:700;">+$263</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F06</td><td><b>Chinita</b> (hub)</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">10,113</td><td style="text-align:right;color:var(--red);">$499</td><td style="text-align:right;">$270K</td><td style="text-align:right;">$470K</td><td style="text-align:right;color:var(--yellow);">$641</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--red);">-$246</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F07</td><td>Santa Marta Fabio</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">7,731</td><td style="text-align:right;color:var(--red);">$499</td><td style="text-align:right;">$270K</td><td style="text-align:right;">$470K</td><td style="text-align:right;color:var(--yellow);">$629</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--red);">-$258</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F08</td><td>La Llave</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,104</td><td style="text-align:right;color:var(--red);">$499</td><td style="text-align:right;">$270K</td><td style="text-align:right;">$470K</td><td style="text-align:right;color:var(--yellow);">$789</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--red);">-$98</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F11</td><td>Sierra</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">2,784</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$862</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--red);">-$25</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F12</td><td>Villa Fresia</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">3,071</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$782</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--red);">-$105</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F13</td><td>Tagual</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,464</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$1,075</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$188</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F14</td><td>San Felipe</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,982</td><td style="text-align:right;color:var(--red);">$453</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$750K</td><td style="text-align:right;color:var(--yellow);">$963</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$76</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F15</td><td>Maritú</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">2,530</td><td style="text-align:right;color:var(--red);">$484</td><td style="text-align:right;">$400K</td><td style="text-align:right;">$800K</td><td style="text-align:right;color:var(--yellow);">$949</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$62</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F16</td><td>San Juan</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">4,235</td><td style="text-align:right;color:var(--red);">$426</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,360</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$473</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F17</td><td>Santa Helena</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">3,357</td><td style="text-align:right;color:var(--red);">$426</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,716</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$829</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F18</td><td>María Bonita</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">7,827</td><td style="text-align:right;color:var(--red);">$304</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,104</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$217</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td>F19</td><td>Tucanes</td><td style="color:var(--green);">Centro</td><td style="text-align:right;">8,173</td><td style="text-align:right;color:var(--red);">$304</td><td style="text-align:right;">$480K</td><td style="text-align:right;">$850K</td><td style="text-align:right;color:var(--yellow);">$1,057</td><td style="text-align:right;color:var(--yellow);">$887</td><td style="text-align:right;color:var(--green);">+$170</td></tr>
+            <tr style="background:rgba(240,160,48,0.06);border-bottom:1px solid var(--border2);"><td colspan="4" style="padding:6px 8px;color:var(--yellow);font-weight:700;">Promedio ponderado Centro (F&rarr;H $400)</td><td style="text-align:right;color:var(--red);font-weight:700;">$429</td><td colspan="2" style="color:var(--text3);text-align:center;font-size:9px;">12 fincas</td><td style="text-align:right;color:var(--yellow);font-weight:700;">$950</td><td style="text-align:right;color:var(--yellow);font-weight:700;">$887</td><td style="text-align:right;color:var(--yellow);font-weight:700;">+$63</td></tr>
 
             <tr><td colspan="10" style="padding:6px 8px;font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">MINI-HUB (3 fincas, directo a PA)</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td>F03</td><td>Oasis</td><td style="color:var(--cyan);">Mini-Hub</td><td style="text-align:right;">3,430</td><td style="text-align:right;color:var(--red);">$519</td><td style="text-align:right;">$230K</td><td style="text-align:right;">$350K</td><td style="text-align:right;color:var(--yellow);">$805</td><td style="text-align:right;color:var(--green);">$805</td><td style="text-align:right;color:var(--text3);">N/A (directo)</td></tr>
@@ -932,7 +932,7 @@
 
     <div class="highlight-box" style="margin-top:10px;max-width:1200px;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.25);font-size:11px;">
         <span style="color:var(--yellow);font-weight:700;">Lectura:</span>
-        <span style="color:var(--text2);"> Bajo SC2 (sin hub), TODAS las fincas pagan más caro. La estructura del hub neutraliza esto para las Centro al pasar todo por mula consolidada Chinita→PA ($564K/mula 24p). Mini-Hub van directo (cercanas a PA, no ganan con hub). Zungo siguen al embarcadero fluvial (tarifa plana actual les conviene más que cualquier viaje a PA).</span>
+        <span style="color:var(--text2);"> Con F&rarr;H = $400 (base conservadora) el hub deja a las Centro en <b style="color:var(--text);">$887/cj</b> &mdash; mejor que SC2 sólo para las fincas más lejanas (Tagual, San Juan, Sta Helena, Maria Bonita, Tucanes). Las cercanas (Chinita, Sta Marta, La Llave, Sierra, Villa Fresia) pagan más con hub que en SC2 directo. Promedio ponderado Centro ahorra apenas +$63/cj con F&rarr;H $400. <b style="color:var(--yellow);">Si F&rarr;H baja a $200, hub total = $687/cj y ahorro sube a $263/cj.</b> Mini-Hub van directo a PA, Zungo siguen al embarcadero.</span>
     </div>
 </div>
 
@@ -950,7 +950,7 @@
         <thead>
             <tr style="border-bottom:2px solid var(--border2);">
                 <th style="text-align:left;padding:8px 10px;color:var(--text3);font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Etapa</th>
-                <th style="padding:8px 10px;background:rgba(255,59,78,0.06);border-bottom:2px solid var(--red);color:var(--red);font-size:10px;">SC1 — ACTUAL<br><span style="font-size:8px;color:var(--text3);">a Zungo</span></th>
+                <th style="padding:8px 10px;background:rgba(255,59,78,0.06);border-bottom:2px solid var(--red);color:var(--red);font-size:10px;">SC1 — ACTUAL<br><span style="font-size:8px;color:var(--text3);">híbrido: Zungo + Nva Colonia</span></th>
                 <th style="padding:8px 10px;background:rgba(240,160,48,0.06);border-bottom:2px solid var(--yellow);color:var(--yellow);font-size:10px;">SC2 — FULL PA<br><span style="font-size:8px;color:var(--text3);">directo</span></th>
                 <th style="padding:8px 10px;background:rgba(0,232,120,0.06);border-bottom:2px solid var(--green);color:var(--green);font-size:10px;">SC3 — CON HUB<br><span style="font-size:8px;color:var(--text3);">carrusel + mula</span></th>
             </tr>
@@ -979,7 +979,7 @@
             <tr><td colspan="4" style="padding:9px 10px 3px;font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">En ruta (transporte)</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Distancia promedio Centro</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">~18 km</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);">18 km (Zungo) / 30 km (NC)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);">~30 km</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);">8-15 F→H + 17 H→PA</td>
             </tr>
@@ -999,13 +999,13 @@
             <tr><td colspan="4" style="padding:9px 10px 3px;font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">En destino (descarga)</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Espera mediana destino</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);color:var(--red);">1h 53min (Zungo)</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);color:var(--red);">1h 53min Zungo / 5-6h NC</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);color:var(--red);">5-6h (PA, dispersos)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:600;">&lt;1h (contenerizado)</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 10px;color:var(--text2);">Espera P90 destino</td>
-                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);color:var(--red);">4h 09min (Zungo)</td>
+                <td style="text-align:center;padding:5px 10px;background:rgba(255,59,78,0.03);color:var(--red);">4h 09min Zungo / 6-8h NC</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(240,160,48,0.03);color:var(--red);">6-8h (PA, sin slot)</td>
                 <td style="text-align:center;padding:5px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">&lt;1h 30min</td>
             </tr>
@@ -1044,50 +1044,50 @@
 <!-- SLIDE 7: ESCENARIO NEGOCIADO -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--green);">Escenario Negociado (Mayo 2026)</div>
-    <div class="slide-title" style="font-size:34px;">Con tarifas negociadas,<br>el hub paga +$430M/año</div>
+    <div class="slide-tag" style="color:var(--yellow);">Escenario Base Conservador (F&rarr;H $400)</div>
+    <div class="slide-title" style="font-size:32px;">El caso depende totalmente<br>de la negociación finca&rarr;hub</div>
 
     <div style="display:flex;align-items:center;gap:0;width:100%;max-width:900px;margin:16px 0 24px;">
         <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(255,59,78,0.3);border-radius:10px 0 0 10px;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Sin Hub (26 sencillos Centro)</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">SC2 Sin Hub (12 Centro a PA)</div>
             <div class="kpi-val" style="font-size:32px;color:var(--red);">$950</div>
             <div style="font-size:10px;color:var(--text3);margin-top:4px;">$/caja prom. ponderado</div>
         </div>
         <div style="padding:8px 12px;color:var(--text3);font-size:20px;">&rarr;</div>
-        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Con Hub (10 mulas Centro)</div>
-            <div class="kpi-val" style="font-size:32px;color:var(--green);">$687</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$/caja (negociado)</div>
+        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(240,160,48,0.3);border-radius:0;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">SC3 Hub (F&rarr;H $400)</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--yellow);">$887</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$/caja Centro (con hub)</div>
         </div>
-        <div style="padding:8px 12px;color:var(--green);font-size:20px;font-weight:800;">&rarr;</div>
-        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0 10px 10px 0;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Ahorro por caja</div>
-            <div class="kpi-val" style="font-size:32px;color:var(--green);">$263</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$950 &minus; $687</div>
+        <div style="padding:8px 12px;color:var(--yellow);font-size:20px;font-weight:800;">&rarr;</div>
+        <div style="flex:1;text-align:center;padding:16px;background:var(--bg2);border:1px solid rgba(240,160,48,0.3);border-radius:0 10px 10px 0;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Ahorro por caja</div>
+            <div class="kpi-val" style="font-size:32px;color:var(--yellow);">$63</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$950 &minus; $887 (marginal)</div>
         </div>
     </div>
 
     <div class="three-col" style="max-width:900px;">
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
-            <div class="kpi-val" style="font-size:24px;color:var(--green);">$867M</div>
+        <div class="kpi-box" style="border-color:rgba(240,160,48,0.3);">
+            <div class="kpi-val" style="font-size:24px;color:var(--yellow);">$208M</div>
             <div class="kpi-label">Ahorro bruto / año</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$263 &times; 3.30M cajas Centro</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$63 &times; 3.30M cajas Centro</div>
         </div>
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
-            <div class="kpi-val" style="font-size:24px;color:var(--green);">+$430M</div>
-            <div class="kpi-label">Neto / año</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$867M &minus; $437M OPEX</div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:24px;color:var(--red);">&minus;$229M</div>
+            <div class="kpi-label">Neto solo transporte</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">$208M &minus; $437M OPEX (deficit)</div>
         </div>
-        <div class="kpi-box" style="border-color:rgba(240,160,48,0.2);">
-            <div class="kpi-val" style="font-size:24px;color:var(--yellow);">9.3 años</div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:24px;color:var(--red);">&gt;10 años</div>
             <div class="kpi-label">Payback solo transporte</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">CAPEX $4,020M &divide; $430M/año</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Necesita palancas + terceros</div>
         </div>
     </div>
 
-    <div class="highlight-box green" style="margin-top:16px;max-width:900px;">
-        <span style="color:var(--green);font-weight:700;">Con tarifas negociadas Mayo 2026, el hub paga solo con transporte (payback 9.3a).</span>
-        <span style="color:var(--text2);"> Y este escenario aún no incluye 3 palancas cuantificadas: <b style="color:var(--cyan);">standby evitado</b>, <b style="color:var(--cyan);">nocturnos</b>, y <b style="color:var(--cyan);">servicio a terceros</b>. Con las 3 palancas: payback baja a ~4 años.</span>
+    <div class="highlight-box yellow" style="margin-top:16px;max-width:900px;background:rgba(240,160,48,0.08);border-color:rgba(240,160,48,0.3);">
+        <span style="color:var(--yellow);font-weight:700;">Lectura clave:</span>
+        <span style="color:var(--text2);"> Con F&rarr;H supuesto en $400/cj (conservador), el ahorro de transporte por sí solo NO paga el CAPEX. <b style="color:var(--text);">Si se negocia F&rarr;H a $200/cj, hub total = $687 y ahorro sube a $263/cj ($867M/año bruto, payback 9.3a)</b>. La negociación con transportadores para el tramo finca&rarr;hub es la palanca más material del modelo &mdash; ver sensibilización detallada en slides siguientes.</span>
     </div>
 </div>
 
@@ -1359,14 +1359,14 @@
 <!-- SLIDE 10: NUEVAS PALANCAS — EL CASO VIABLE -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--green);">Nuevas Palancas (Datos 2025)</div>
-    <div class="slide-title" style="font-size:32px;">El hub se paga solo,<br>y aún hay más upside</div>
+    <div class="slide-tag" style="color:var(--yellow);">Cómo se construye el caso viable</div>
+    <div class="slide-title" style="font-size:32px;">Construcción del caso<br>(F&rarr;H $400 base, sensible)</div>
 
     <div style="display:flex;align-items:center;gap:0;width:100%;max-width:1000px;margin:16px 0 24px;">
-        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:10px 0 0 10px;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Solo Transporte</div>
-            <div class="kpi-val" style="font-size:28px;color:var(--green);">+$430M</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Base negociada Mayo 2026</div>
+        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(255,59,78,0.3);border-radius:10px 0 0 10px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Solo Transporte</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">&minus;$229M</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Deficit con F&rarr;H $400</div>
         </div>
         <div style="padding:8px 10px;font-size:10px;color:var(--text3);">+</div>
         <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(24,216,208,0.3);">
@@ -1380,119 +1380,51 @@
             <div class="kpi-val" style="font-size:28px;color:var(--cyan);">$100M</div>
             <div style="font-size:10px;color:var(--text3);margin-top:4px;">50K pallets &times; $4,200</div>
         </div>
-        <div style="padding:8px 10px;color:var(--green);font-size:18px;font-weight:800;">=</div>
-        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(0,232,120,0.3);border-radius:0 10px 10px 0;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Neto con Palancas</div>
-            <div class="kpi-val" style="font-size:28px;color:var(--green);">$572M</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback 7.0 años</div>
+        <div style="padding:8px 10px;color:var(--yellow);font-size:18px;font-weight:800;">=</div>
+        <div style="flex:1;text-align:center;padding:14px;background:var(--bg2);border:1px solid rgba(240,160,48,0.3);border-radius:0 10px 10px 0;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Neto con Palancas</div>
+            <div class="kpi-val" style="font-size:28px;color:var(--red);">&minus;$87M</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Aún deficit, falta terceros</div>
         </div>
     </div>
 
     <div class="three-col" style="margin-top:8px;max-width:1000px;">
         <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ Re-negociar mula -$75K</div>
-            <div class="kpi-val" style="font-size:24px;color:var(--green);">$807M</div>
-            <div class="kpi-label">Neto anual</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">5.0 años</b></div>
-        </div>
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ Terceros (10% región)</div>
+            <div class="kpi-val" style="font-size:24px;color:var(--green);">$565M</div>
+            <div class="kpi-label">Neto anual (F&rarr;H $400)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">~7.1 años</b></div>
+        </div>
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ F&rarr;H neg. a $200</div>
             <div class="kpi-val" style="font-size:24px;color:var(--green);">$1,224M</div>
             <div class="kpi-label">Neto anual</div>
             <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">3.3 años</b></div>
         </div>
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.2);">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Escenario máximo</div>
-            <div class="kpi-val" style="font-size:24px;color:var(--green);">$1,459M</div>
-            <div class="kpi-label">Neto anual</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">2.8 años</b></div>
+        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">+ F&rarr;H neg. a $80</div>
+            <div class="kpi-val" style="font-size:24px;color:var(--green);">$1,620M</div>
+            <div class="kpi-label">Neto anual (óptimo)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback <b style="color:var(--green);">2.5 años</b></div>
         </div>
     </div>
 
-    <div class="highlight-box" style="margin-top:16px;max-width:1000px;">
-        <span style="color:var(--green);font-weight:700;">Conclusión:</span>
-        <span style="color:var(--text2);"> Con tarifas negociadas Mayo 2026, la base ya es viable (payback 9.3a solo transporte). Con palancas operativas: <b style="color:var(--green);">7.0a</b>. + Terceros: <b style="color:var(--green);">3.3a</b>. + Re-negociar mula: <b style="color:var(--green);">2.8a</b>. <b style="color:var(--text);">CAPEX $4,020M se recupera en cualquier escenario.</b></span>
+    <div class="highlight-box yellow" style="margin-top:16px;max-width:1000px;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.3);">
+        <span style="color:var(--yellow);font-weight:700;">Conclusión:</span>
+        <span style="color:var(--text2);"> Con F&rarr;H $400 (base conservadora), <b style="color:var(--text);">incluso con palancas operativas el modelo es deficit −$87M/año</b>. Se requieren los $652M de terceros para que el caso sea viable (payback ~7.1a). <b style="color:var(--text);">La negociación finca&rarr;hub es la palanca decisiva</b>: bajar F&rarr;H a $200 saca al modelo de la zona crítica y lleva el payback a 3.3a sin depender 100% de terceros.</span>
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- SLIDE 8: SENSIBILIDAD — EL UPSIDE -->
-<!-- ============================================================ -->
-<div class="slide left-align">
-    <div class="slide-tag" style="color:var(--green);">Sensibilidad</div>
-    <div class="slide-title" style="font-size:34px;">¿Qué pasa si G20<br>negocia descuento?</div>
-    <div class="slide-body" style="margin-bottom:20px;">
-        G20 puede negociar hasta <b style="color:var(--green);">$150,000 menos por viaje de mula</b>. Cada peso negociado mejora directamente el retorno.
-    </div>
-
-    <table class="sens-table">
-        <tr>
-            <th style="text-align:left;">Re-negociar mula</th>
-            <th>Mula 20p</th>
-            <th>Hub total</th>
-            <th>Ahorro/caja</th>
-            <th>Neto/año</th>
-            <th>Payback</th>
-        </tr>
-        <tr class="row-base">
-            <td style="color:var(--yellow);font-weight:700;">$0 (negociado May'26)</td>
-            <td style="color:var(--text);">$470K</td>
-            <td style="color:var(--yellow);font-weight:600;">$687</td>
-            <td style="color:var(--text);">$263</td>
-            <td style="color:var(--green);">$430M</td>
-            <td style="color:var(--text);">9.3 años</td>
-        </tr>
-        <tr>
-            <td style="color:var(--text);">-$50K</td>
-            <td style="color:var(--text2);">$420K</td>
-            <td style="color:var(--text);">$640</td>
-            <td style="color:var(--text);">$310</td>
-            <td style="color:var(--green);">$584M</td>
-            <td style="color:var(--text);">6.9 años</td>
-        </tr>
-        <tr>
-            <td style="color:var(--text);">-$75K</td>
-            <td style="color:var(--text2);">$395K</td>
-            <td style="color:var(--text);">$616</td>
-            <td style="color:var(--text);">$334</td>
-            <td style="color:var(--green);">$664M</td>
-            <td style="color:var(--text);">6.1 años</td>
-        </tr>
-        <tr>
-            <td style="color:var(--text);">-$100K</td>
-            <td style="color:var(--text2);">$370K</td>
-            <td style="color:var(--text);">$592</td>
-            <td style="color:var(--text);">$358</td>
-            <td style="color:var(--green);">$743M</td>
-            <td style="color:var(--text);">5.4 años</td>
-        </tr>
-        <tr class="row-best">
-            <td style="color:var(--green);font-weight:700;">-$150K (objetivo)</td>
-            <td style="color:var(--text2);">$320K</td>
-            <td style="color:var(--green);font-weight:600;">$545</td>
-            <td style="color:var(--green);font-weight:600;">$405</td>
-            <td style="color:var(--green);font-weight:600;">$897M</td>
-            <td style="color:var(--green);font-weight:600;">4.5 años</td>
-        </tr>
-    </table>
-
-    <div class="highlight-box" style="margin-top:16px;max-width:900px;">
-        <span style="color:var(--green);font-weight:700;">Lectura:</span>
-        <span style="color:var(--text2);"> Tarifa negociada base ya da payback 9.3a. Re-negociar mula -$50K acorta a 6.9a. Sumando palancas ($142M) y terceros ($652M): incluso base da payback <b style="color:var(--green);">~3.5 años</b>.</span>
-    </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;">
-        CAPEX $4,020M. OPEX $437M/año. 10 mulas/día. Base: tarifa Chinita mula $470K (20p) negociada Mayo 2026. Re-negociar = descuento adicional sobre esa base.
-    </div>
-</div>
+<!-- SLIDE 8 (sensibilidad mula) eliminada — mula ya negociada Mayo 2026, no aplica re-negociar -->
 
 <!-- ============================================================ -->
 <!-- SLIDE 8b: SENSIBILIDAD F→H -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--yellow);">Segunda Variable Clave</div>
+    <div class="slide-tag" style="color:var(--red);">Variable Crítica del Modelo</div>
     <div class="slide-title" style="font-size:34px;">Sensibilidad: costo<br>Finca &rarr; Hub</div>
     <div class="slide-body" style="margin-bottom:20px;">
-        El modelo asume F&rarr;H = <b style="color:var(--text);">$200/caja</b>, pero el rango real es <b style="color:var(--text);">$80&ndash;$300</b>. Hub total = $445 (flete mula negociada) + $42 (consol) + F&rarr;H:
+        El modelo base usa F&rarr;H = <b style="color:var(--red);">$400/caja (conservador)</b>, pero el rango sensibilizable es <b style="color:var(--text);">$80&ndash;$400</b>. Hub total = $445 (flete mula negociada) + $42 (consol) + F&rarr;H. <b style="color:var(--text);">Esta es la palanca que decide si el caso de negocio funciona.</b>
     </div>
 
     <table class="sens-table">
@@ -1500,33 +1432,26 @@
             <th style="text-align:left;">F&rarr;H $/caja</th>
             <th>Hub total</th>
             <th>Ahorro/caja</th>
-            <th>Neto/a&ntilde;o</th>
+            <th>Neto/a&ntilde;o (sólo Tx)</th>
             <th>Payback</th>
         </tr>
         <tr class="row-best">
             <td style="color:var(--green);font-weight:700;">$80 (optimista)</td>
             <td style="color:var(--green);font-weight:600;">$567</td>
             <td style="color:var(--green);font-weight:600;">$383</td>
-            <td style="color:var(--green);font-weight:600;">$825M</td>
+            <td style="color:var(--green);font-weight:600;">$826M</td>
             <td style="color:var(--green);font-weight:600;">4.9a</td>
         </tr>
         <tr>
-            <td style="color:var(--text);">$120</td>
-            <td style="color:var(--text);">$607</td>
-            <td style="color:var(--text);">$343</td>
-            <td style="color:var(--green);">$693M</td>
-            <td style="color:var(--text);">5.8a</td>
+            <td style="color:var(--text);">$130</td>
+            <td style="color:var(--text);">$617</td>
+            <td style="color:var(--text);">$333</td>
+            <td style="color:var(--green);">$662M</td>
+            <td style="color:var(--text);">6.1a</td>
         </tr>
         <tr>
-            <td style="color:var(--text);">$150</td>
-            <td style="color:var(--text);">$637</td>
-            <td style="color:var(--text);">$313</td>
-            <td style="color:var(--green);">$594M</td>
-            <td style="color:var(--text);">6.8a</td>
-        </tr>
-        <tr class="row-base">
-            <td style="color:var(--yellow);font-weight:700;">$200 &larr; SUPUESTO</td>
-            <td style="color:var(--yellow);font-weight:600;">$687</td>
+            <td style="color:var(--text);">$200</td>
+            <td style="color:var(--text);">$687</td>
             <td style="color:var(--text);">$263</td>
             <td style="color:var(--green);">$430M</td>
             <td style="color:var(--text);">9.3a</td>
@@ -1535,25 +1460,39 @@
             <td style="color:var(--text);">$250</td>
             <td style="color:var(--text);">$737</td>
             <td style="color:var(--text);">$213</td>
-            <td style="color:var(--yellow);">$265M</td>
-            <td style="color:var(--text2);">15.2a</td>
+            <td style="color:var(--yellow);">$266M</td>
+            <td style="color:var(--text2);">15.1a</td>
         </tr>
-        <tr class="row-worst">
-            <td style="color:var(--red);font-weight:700;">$300 (extremo)</td>
-            <td style="color:var(--red);font-weight:600;">$787</td>
+        <tr>
+            <td style="color:var(--text);">$300</td>
+            <td style="color:var(--text);">$787</td>
             <td style="color:var(--text);">$163</td>
-            <td style="color:var(--red);font-weight:600;">$100M</td>
-            <td style="color:var(--text2);">40.2a</td>
+            <td style="color:var(--yellow);">$101M</td>
+            <td style="color:var(--text2);">39.8a</td>
+        </tr>
+        <tr>
+            <td style="color:var(--text);">$350</td>
+            <td style="color:var(--text);">$837</td>
+            <td style="color:var(--text);">$113</td>
+            <td style="color:var(--red);">&minus;$64M</td>
+            <td style="color:var(--text3);">N/A</td>
+        </tr>
+        <tr class="row-base" style="background:rgba(240,160,48,0.12);">
+            <td style="color:var(--yellow);font-weight:800;">$400 &larr; BASE CONSERVADORA</td>
+            <td style="color:var(--yellow);font-weight:700;">$887</td>
+            <td style="color:var(--yellow);font-weight:700;">$63</td>
+            <td style="color:var(--red);font-weight:700;">&minus;$229M (deficit)</td>
+            <td style="color:var(--red);font-weight:700;">N/A</td>
         </tr>
     </table>
 
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:10px;max-width:900px;">
-        Hub total = $445 + $42 + F&rarr;H. Mula negociada Mayo 2026. Las dos sensibilidades son variables independientes.
+        Hub total = $445 + $42 + F&rarr;H. Mula negociada Mayo 2026. Neto/año = ahorro $/cj × 3.30M cajas Centro − OPEX $437M. Payback = CAPEX $4,020M ÷ neto.
     </div>
 
-    <div class="highlight-box" style="margin-top:16px;max-width:900px;">
-        <b style="color:var(--green);">F&rarr;H es la variable más sensible.</b>
-        <span style="color:var(--text2);"> Negociar finca&rarr;hub a $80 baja el payback a 4.9a sin re-negociar mula. Esta es la próxima negociación clave con transportadores.</span>
+    <div class="highlight-box yellow" style="margin-top:16px;max-width:900px;background:rgba(240,160,48,0.08);border-color:rgba(240,160,48,0.3);">
+        <b style="color:var(--yellow);">Conclusión:</b>
+        <span style="color:var(--text2);"> Si terminamos pagando F&rarr;H = $400/cj, el ahorro de transporte solo no paga el CAPEX (deficit -$229M/año). <b style="color:var(--text);">Cada $50/cj negociado mejora el neto ~$165M/año.</b> El objetivo de negociación con Anderson + Vera es llevar F&rarr;H a $200 (payback 9.3a) o idealmente $130 (payback 6.1a). Las palancas (standby+nocturnos $142M) y terceros ($652M) ayudan, pero no compensan un F&rarr;H mal negociado.</span>
     </div>
 </div>
 
@@ -1564,7 +1503,7 @@
     <div class="slide-tag" style="color:var(--green);">Beneficios Cuantificados</div>
     <div class="slide-title" style="font-size:30px;">Todos los beneficios<br>del Centro, con su valor</div>
     <div class="slide-body" style="margin-bottom:10px;font-size:12px;">
-        El ahorro de transporte ($263/cj) es solo la pieza más grande. Hay otros 7 beneficios cuantificables que el modelo financiero suma como upside.
+        Con F&rarr;H base $400/cj el ahorro de transporte queda en $63/cj — insuficiente solo. Las otras 7 palancas cuantificables son las que cierran el caso (y se materializan independientemente de F&rarr;H).
     </div>
 
     <table style="width:100%;max-width:1200px;font-family:'JetBrains Mono',monospace;font-size:11px;border-collapse:collapse;">
@@ -1578,13 +1517,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td colspan="5" style="padding:8px 10px 3px;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">A. CUANTIFICADOS EN EL MODELO BASE ($1,009M/año)</td></tr>
+            <tr><td colspan="5" style="padding:8px 10px 3px;font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">A. CUANTIFICADOS EN EL MODELO BASE (F&rarr;H $400)</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:7px 10px;color:var(--text);font-weight:600;">1</td>
-                <td style="padding:7px 10px;color:var(--green);font-weight:700;">Ahorro de transporte</td>
-                <td style="padding:7px 10px;color:var(--text2);">Mulas llenas 24p hub→PA vs 26 sencillos dispersos. Tarifa negociada $470K mula vs $480K sencillo = $263/cj.</td>
-                <td style="text-align:right;padding:7px 10px;color:var(--green);font-weight:700;">$867M</td>
-                <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Tarifas neg. Mayo 2026</td>
+                <td style="padding:7px 10px;color:var(--yellow);font-weight:700;">Ahorro de transporte</td>
+                <td style="padding:7px 10px;color:var(--text2);">Hub vs SC2: $950 − $887 = $63/cj × 3.30M cajas. <b style="color:var(--text);">Si F&rarr;H se negocia a $200: $263/cj × 3.30M = $867M.</b></td>
+                <td style="text-align:right;padding:7px 10px;color:var(--yellow);font-weight:700;">$208M<br><span style="font-size:9px;color:var(--green);">($867M si $200)</span></td>
+                <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Sensible a F&rarr;H</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:7px 10px;color:var(--text);font-weight:600;">2</td>
@@ -1601,20 +1540,13 @@
                 <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Reuniones Op. Mar 2026</td>
             </tr>
 
-            <tr><td colspan="5" style="padding:8px 10px 3px;font-size:9px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">B. UPSIDE — TERCEROS Y RE-NEGOCIACIÓN</td></tr>
+            <tr><td colspan="5" style="padding:8px 10px 3px;font-size:9px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">B. UPSIDE COMERCIAL</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:7px 10px;color:var(--text);font-weight:600;">4</td>
                 <td style="padding:7px 10px;color:var(--blue);font-weight:700;">Servicio a terceros (10% región)</td>
-                <td style="padding:7px 10px;color:var(--text2);">30% del hub libre. 402 bananeras en zona, PA 7M ton/año. Capturar 10% región × $60/cj cobranza.</td>
+                <td style="padding:7px 10px;color:var(--text2);">30% del hub libre. 402 bananeras en zona, PA 7M ton/año. Capturar 10% región × $60/cj cobranza. Ramp-up 4 años (0% → 100%).</td>
                 <td style="text-align:right;padding:7px 10px;color:var(--blue);font-weight:700;">$652M</td>
-                <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Datos Uniban, ramp-up 4 años</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:7px 10px;color:var(--text);font-weight:600;">5</td>
-                <td style="padding:7px 10px;color:var(--blue);font-weight:700;">Re-negociar mula -$75K</td>
-                <td style="padding:7px 10px;color:var(--text2);">Mula Chinita $470K (20p) negociada. Acelerar a $395K bajaría hub flete de $445 a $374/cj = +$71/cj ahorro.</td>
-                <td style="text-align:right;padding:7px 10px;color:var(--blue);font-weight:700;">+$234M</td>
-                <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Sensibilidad, palanca real</td>
+                <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Datos Uniban</td>
             </tr>
 
             <tr><td colspan="5" style="padding:8px 10px 3px;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">C. CUALITATIVOS / VALOR OPCIONAL (no en modelo base)</td></tr>
@@ -1654,8 +1586,13 @@
                 <td style="padding:7px 10px;color:var(--text3);font-size:10px;">Capital relacional con MinTransporte</td>
             </tr>
 
-            <tr style="background:rgba(0,232,120,0.08);border-top:2px solid var(--border2);">
-                <td colspan="3" style="padding:8px 10px;color:var(--text);font-weight:800;">TOTAL CUANTIFICADO (A + B base)</td>
+            <tr style="background:rgba(240,160,48,0.08);border-top:2px solid var(--border2);">
+                <td colspan="3" style="padding:8px 10px;color:var(--text);font-weight:800;">TOTAL CUANTIFICADO (F&rarr;H $400 base)</td>
+                <td style="text-align:right;padding:8px 10px;color:var(--yellow);font-weight:800;font-size:13px;">$1,002M</td>
+                <td style="padding:8px 10px;color:var(--text3);font-size:10px;">$208+$42+$100+$652</td>
+            </tr>
+            <tr style="background:rgba(0,232,120,0.06);">
+                <td colspan="3" style="padding:8px 10px;color:var(--text);font-weight:800;">TOTAL CUANTIFICADO (si F&rarr;H se negocia a $200)</td>
                 <td style="text-align:right;padding:8px 10px;color:var(--green);font-weight:800;font-size:13px;">$1,661M</td>
                 <td style="padding:8px 10px;color:var(--text3);font-size:10px;">$867+$42+$100+$652</td>
             </tr>
@@ -1667,9 +1604,9 @@
         </tbody>
     </table>
 
-    <div class="highlight-box" style="margin-top:12px;max-width:1200px;background:rgba(0,232,120,0.06);border-color:rgba(0,232,120,0.25);font-size:11px;">
-        <span style="color:var(--green);font-weight:700;">Conclusión:</span>
-        <span style="color:var(--text2);"> El modelo financiero base usa solo los <b style="color:var(--text);">3 primeros</b> beneficios cuantificados rigurosamente ($1,009M/año bruto). Los #6-10 son <b style="color:var(--yellow);">upside conservador</b>. El #4 (terceros) es la palanca más material del upside ($652M/año) pero requiere ramp-up y contratos comerciales.</span>
+    <div class="highlight-box" style="margin-top:12px;max-width:1200px;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.3);font-size:11px;">
+        <span style="color:var(--yellow);font-weight:700;">Conclusión:</span>
+        <span style="color:var(--text2);"> Con F&rarr;H base $400, el bruto cuantificado es <b style="color:var(--yellow);">$1,002M</b> (vs OPEX $437M = neto $565M, payback ~7a). Si se negocia F&rarr;H a $200, el bruto sube a <b style="color:var(--green);">$1,661M</b> (neto $1,224M, payback ~3a). <b style="color:var(--text);">El #4 terceros aporta $652M/año pero requiere ramp-up.</b> Los cualitativos (#6-9) son upside no contabilizado.</span>
     </div>
 </div>
 
@@ -1719,10 +1656,10 @@
 <!-- SLIDE 9b: FLUJO DE CAJA PROYECTADO 10 AÑOS -->
 <!-- ============================================================ -->
 <div class="slide left-align">
-    <div class="slide-tag" style="color:var(--green);">Flujo de Caja Proyectado</div>
-    <div class="slide-title" style="font-size:30px;">Proyección 10 años:<br>CAPEX, OPEX, ingresos, FCF</div>
+    <div class="slide-tag" style="color:var(--yellow);">Flujo de Caja Proyectado (Base Conservadora F&rarr;H $400)</div>
+    <div class="slide-title" style="font-size:28px;">Proyección 10 años:<br>caso depende de negociar F&rarr;H</div>
     <div class="slide-body" style="margin-bottom:10px;font-size:12px;">
-        Modelo: tarifas negociadas Mayo 2026 + palancas operativas ($142M) + ramp-up terceros (0% → 100% año 5). Inflación OPEX 3%/año. Tasa descuento 12%.
+        Modelo: tarifas negociadas Mayo 2026 + <b style="color:var(--yellow);">F&rarr;H = $400 (conservador, pendiente)</b> + palancas operativas ($142M) + ramp-up terceros (0% → 100% año 5). Inflación OPEX 3%/año. Tasa descuento 12%. <b style="color:var(--text);">El caso de negocio depende totalmente de cuánto se logre negociar F&rarr;H abajo de $400.</b>
     </div>
 
     <table style="width:100%;max-width:1200px;font-family:'JetBrains Mono',monospace;font-size:10px;border-collapse:collapse;margin-bottom:14px;">
@@ -1730,7 +1667,7 @@
             <tr style="border-bottom:2px solid var(--border2);">
                 <th style="text-align:left;padding:6px 8px;color:var(--text3);font-size:9px;">Año</th>
                 <th style="padding:6px 8px;color:var(--yellow);font-size:9px;">CAPEX</th>
-                <th style="padding:6px 8px;color:var(--green);font-size:9px;">Bruto Tx<br>($263×3.30M)</th>
+                <th style="padding:6px 8px;color:var(--yellow);font-size:9px;">Bruto Tx<br>($63×3.30M)</th>
                 <th style="padding:6px 8px;color:var(--cyan);font-size:9px;">Palancas<br>(stby+noct)</th>
                 <th style="padding:6px 8px;color:var(--blue);font-size:9px;">Terceros<br>(ramp 0→100%)</th>
                 <th style="padding:6px 8px;color:var(--red);font-size:9px;">OPEX<br>(infl 3%)</th>
@@ -1752,133 +1689,175 @@
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">1</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--text3);">$0 (0%)</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$437</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$572</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,448</td>
-                <td style="text-align:right;padding:5px 8px;">$511</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,509</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);font-weight:600;">-$87</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$4,107</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$78</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$4,098</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">2</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$130 (20%)</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$450</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$689</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,759</td>
-                <td style="text-align:right;padding:5px 8px;">$549</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,960</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);font-weight:600;">$30</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$4,077</td>
+                <td style="text-align:right;padding:5px 8px;">$24</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$4,074</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">3</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$326 (50%)</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$464</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$871</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$1,888</td>
-                <td style="text-align:right;padding:5px 8px;">$620</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,340</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$212</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,865</td>
+                <td style="text-align:right;padding:5px 8px;">$151</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,923</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">4</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$554 (85%)</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$478</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$1,085</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$803</td>
-                <td style="text-align:right;padding:5px 8px;">$690</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$1,650</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$426</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,439</td>
+                <td style="text-align:right;padding:5px 8px;">$271</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,652</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border);background:rgba(0,232,120,0.08);">
-                <td style="padding:6px 8px;color:var(--green);font-weight:700;">5 ←</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:5px 8px;color:var(--text2);">5</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);font-weight:700;">$652 (100%)</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$492</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:700;">$1,169</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:700;">+$366 ✓</td>
-                <td style="text-align:right;padding:5px 8px;">$663</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$987</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$510</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,929</td>
+                <td style="text-align:right;padding:5px 8px;">$289</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,363</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">6</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$652</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$507</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$1,154</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$1,520</td>
-                <td style="text-align:right;padding:5px 8px;">$585</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$402</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$495</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,434</td>
+                <td style="text-align:right;padding:5px 8px;">$251</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$3,112</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border);background:rgba(56,152,255,0.05);">
-                <td style="padding:6px 8px;color:var(--blue);font-weight:700;">7 ←</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:5px 8px;color:var(--text2);">7</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$652</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$522</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$1,139</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$2,659</td>
-                <td style="text-align:right;padding:5px 8px;">$515</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:700;">+$113 ✓ VPN&gt;0</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$480</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$1,954</td>
+                <td style="text-align:right;padding:5px 8px;">$217</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,895</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">8</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$652</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$537</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$1,124</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$3,783</td>
-                <td style="text-align:right;padding:5px 8px;">$454</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$567</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$465</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$1,489</td>
+                <td style="text-align:right;padding:5px 8px;">$188</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,707</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:5px 8px;color:var(--text2);">9</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$652</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$554</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$1,107</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$4,890</td>
-                <td style="text-align:right;padding:5px 8px;">$399</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$966</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$448</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$1,041</td>
+                <td style="text-align:right;padding:5px 8px;">$162</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);">-$2,545</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:5px 8px;color:var(--text2);">10</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">$867</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
+            <tr style="border-bottom:1px solid var(--border);background:rgba(255,59,78,0.06);">
+                <td style="padding:5px 8px;color:var(--text);font-weight:700;">10</td><td style="text-align:right;padding:5px 8px;color:var(--text3);">—</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--yellow);">$208</td><td style="text-align:right;padding:5px 8px;color:var(--cyan);">$142</td>
                 <td style="text-align:right;padding:5px 8px;color:var(--blue);">$652</td><td style="text-align:right;padding:5px 8px;color:var(--red);">$570</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$1,091</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);">+$5,981</td>
-                <td style="text-align:right;padding:5px 8px;">$351</td>
-                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:700;">+$1,317</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--green);font-weight:600;">$432</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);font-weight:700;">-$609</td>
+                <td style="text-align:right;padding:5px 8px;">$139</td>
+                <td style="text-align:right;padding:5px 8px;color:var(--red);font-weight:700;">-$2,406</td>
             </tr>
         </tbody>
     </table>
 
     <div class="three-col" style="max-width:1200px;margin:0;">
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
-            <div class="kpi-val" style="font-size:32px;color:var(--green);">4.7 años</div>
-            <div class="kpi-label">Payback simple</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Break-even FCF acumulado entre año 4 y 5</div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:30px;color:var(--red);">&gt;10 años</div>
+            <div class="kpi-label">Payback (F&rarr;H $400)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">No se paga en 10 años con F&rarr;H = $400</div>
         </div>
-        <div class="kpi-box" style="border-color:rgba(56,152,255,0.3);">
-            <div class="kpi-val" style="font-size:32px;color:var(--blue);">$1,317M</div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:30px;color:var(--red);">&minus;$2,406M</div>
             <div class="kpi-label">VPN @ 12% (10 años)</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">VPN positivo desde año 7</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">Destruye valor a F&rarr;H $400</div>
         </div>
-        <div class="kpi-box" style="border-color:rgba(0,232,120,0.3);">
-            <div class="kpi-val" style="font-size:32px;color:var(--green);">18.6%</div>
-            <div class="kpi-label">TIR (10 años)</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:4px;">vs WACC 12% asumido → spread +6.6 pts</div>
+        <div class="kpi-box" style="border-color:rgba(255,59,78,0.3);">
+            <div class="kpi-val" style="font-size:30px;color:var(--red);">&minus;2.4%</div>
+            <div class="kpi-label">TIR (F&rarr;H $400)</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px;">TIR &lt; WACC 12% → rechazar</div>
         </div>
+    </div>
+
+    <div style="background:rgba(0,232,120,0.06);border:1px solid rgba(0,232,120,0.3);border-radius:10px;padding:14px;margin-top:14px;max-width:1200px;">
+        <div style="color:var(--green);font-weight:700;font-size:13px;margin-bottom:8px;">El upside está en negociar F&rarr;H hacia abajo:</div>
+        <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;border-collapse:collapse;">
+            <tr style="border-bottom:1px solid var(--border);">
+                <th style="text-align:left;padding:6px 10px;color:var(--text3);font-size:9px;">Escenario F&rarr;H</th>
+                <th style="padding:6px 10px;color:var(--text3);font-size:9px;">Bruto Tx/año</th>
+                <th style="padding:6px 10px;color:var(--text3);font-size:9px;">Payback simple</th>
+                <th style="padding:6px 10px;color:var(--text3);font-size:9px;">VPN @ 12% (10a)</th>
+                <th style="padding:6px 10px;color:var(--text3);font-size:9px;">TIR</th>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:rgba(255,59,78,0.05);">
+                <td style="padding:5px 10px;color:var(--red);font-weight:700;">$400 (base actual)</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--red);">$208M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--red);">&gt;10a</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--red);">&minus;$2,406M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--red);">&minus;2.4%</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:5px 10px;color:var(--yellow);font-weight:600;">$300</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--text);">$538M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--text);">~5.5a</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">+$~1M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--text);">~12%</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);background:rgba(0,232,120,0.05);">
+                <td style="padding:5px 10px;color:var(--green);font-weight:700;">$200 (objetivo)</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">$867M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">4.7a</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">+$1,317M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">18.6%</td>
+            </tr>
+            <tr>
+                <td style="padding:5px 10px;color:var(--green);font-weight:700;">$80 (óptimo)</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">$1,263M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">3.6a</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">+$~2,400M</td>
+                <td style="text-align:right;padding:5px 10px;color:var(--green);">~28%</td>
+            </tr>
+        </table>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:1200px;margin-top:14px;">
         <div class="highlight-box" style="margin:0;background:rgba(0,232,120,0.06);border-color:rgba(0,232,120,0.25);font-size:11px;">
             <span style="color:var(--green);font-weight:700;">Supuestos clave (justificados):</span>
             <ul style="color:var(--text2);margin:6px 0 0 18px;padding:0;line-height:1.6;">
-                <li><b>Bruto tx $867M:</b> $263/cj × 3.30M cajas Centro/año (tarifas neg. Mayo 2026, flat real)</li>
+                <li><b>Bruto tx $208M (base):</b> $63/cj × 3.30M cajas Centro/año con F&rarr;H $400</li>
                 <li><b>Palancas $142M:</b> $42M standby (geocercas) + $100M nocturnos (50K pallets × $4,200 × 50%)</li>
-                <li><b>Terceros ramp:</b> 0% año 1 → 20% año 2 → 50% año 3 → 85% año 4 → 100% año 5+ ($652M)</li>
-                <li><b>OPEX:</b> $437M base, infla 3% anual (salarios, servicios)</li>
-                <li><b>WACC 12%:</b> tasa descuento estándar agronegocio Colombia</li>
+                <li><b>Terceros ramp:</b> 0% → 20% → 50% → 85% → 100% año 5+ ($652M tope)</li>
+                <li><b>OPEX:</b> $437M base, infla 3% anual</li>
+                <li><b>WACC 12%:</b> tasa descuento agronegocio Colombia</li>
             </ul>
         </div>
-        <div class="highlight-box" style="margin:0;background:rgba(255,59,78,0.05);border-color:rgba(255,59,78,0.2);font-size:11px;">
-            <span style="color:var(--red);font-weight:700;">Riesgos / sensibilidades:</span>
+        <div class="highlight-box" style="margin:0;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.3);font-size:11px;">
+            <span style="color:var(--yellow);font-weight:700;">Negociación crítica con Anderson + Vera:</span>
             <ul style="color:var(--text2);margin:6px 0 0 18px;padding:0;line-height:1.6;">
-                <li><b>Terceros NO se materializa:</b> payback sin terceros = 7.0a (con palancas) o 9.3a (sin nada). VPN sigue positivo pero menor.</li>
-                <li><b>F→H sube a $300:</b> ahorro/cj baja a $163 → bruto $538M → payback ~10a</li>
-                <li><b>Tarifa transporte re-negociada al alza:</b> riesgo a 3-5 años cuando contratos venzan</li>
-                <li><b>Cualitativos NO incluidos:</b> contenerización, vida verde, buffer (+$140-290M conservador)</li>
+                <li><b>Si F&rarr;H queda en $400:</b> el caso no funciona (VPN −$2,406M)</li>
+                <li><b>F&rarr;H $300:</b> apenas se paga, sin margen (VPN ~$0)</li>
+                <li><b>F&rarr;H $200 (objetivo razonable):</b> caso bueno, VPN +$1,317M, TIR 18.6%</li>
+                <li><b>F&rarr;H $80 (óptimo):</b> caso excelente, TIR ~28%, payback 3.6a</li>
+                <li>Cada $50/cj negociado = $165M/año de impacto en FCF</li>
             </ul>
         </div>
     </div>
@@ -2008,9 +1987,9 @@
     <div style="max-width:900px;margin:0 auto;">
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:20px;">
             <b style="color:var(--text);">Sin hub:</b> $950/caja ($480-720K/viaje), 26 sencillos Centro, 41 viajes/día total.<br>
-            <b style="color:var(--green);">Con hub (negociado May'26):</b> $687/caja, 10 mulas Centro, 25 viajes/día. <b style="color:var(--green);">Ahorro $263/caja &rarr; payback 9.3a transporte solo.</b><br>
-            <b style="color:var(--green);">Con re-negociar mula -$75K:</b> payback 6.1a, neto $664M/año.<br>
-            <b style="color:var(--blue);">Con terceros (10%, $60/caja):</b> $652M ingresos adicionales &rarr; payback ~3.5a base.<br>
+            <b style="color:var(--green);">Con hub (negociado May'26, F&rarr;H $400 base):</b> $887/caja, 10 mulas Centro, ~25 viajes/día. <b style="color:var(--text2);">Ahorro $63/caja &rarr; transporte solo no paga el CAPEX (deficit -$229M/año).</b><br>
+            <b style="color:var(--green);">Con F&rarr;H re-negociado a $200:</b> ahorro $263/cj &rarr; payback 9.3a transporte solo.<br>
+            <b style="color:var(--green);">Con palancas (standby+nocturnos $142M) + terceros ($652M):</b> payback ~3.5a base.<br>
             <b style="color:var(--green);">Vía ppal:</b> &minus;39% (41&rarr;25), +19 carruseles finca&rarr;hub. Contenerizado, &lt;1h espera.
         </div>
     </div>
@@ -2046,7 +2025,7 @@
 
 <!-- NAVIGATION -->
 <div class="nav">
-    <span class="nav-counter" id="counter">1 / 28</span>
+    <span class="nav-counter" id="counter">1 / 27</span>
     <button class="nav-btn" onclick="prev()">&#x2190;</button>
     <button class="nav-btn" onclick="next()">&#x2192;</button>
 </div>
