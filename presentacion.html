@@ -654,70 +654,90 @@
 <!-- ============================================================ -->
 <div class="slide left-align">
     <div class="slide-tag" style="color:var(--cyan);">Viajes por Día</div>
-    <div class="slide-title" style="font-size:32px;">3 escenarios de viajes,<br>con detalle del carrusel</div>
-    <div class="slide-body" style="margin-bottom:12px;font-size:13px;">
+    <div class="slide-title" style="font-size:28px;">5 escenarios de viajes &mdash; SC1 y SC3 son híbridos<br><span style="font-size:14px;color:var(--text3);">El caso base es SC3b (Híbrido PA + Zungo). Full Hub y Full Zungo son cotas teóricas.</span></div>
+    <div class="slide-body" style="margin-bottom:12px;font-size:12px;">
         En SC3, cada "viaje finca&rarr;hub" es en realidad un <b style="color:var(--green);">carrusel</b>: un sencillo hace un loop pasando por 2&ndash;3 fincas, llena 12 pallets, descarga en hub, repite.
     </div>
 
-    <table style="width:100%;max-width:1100px;font-family:'JetBrains Mono',monospace;font-size:11px;border-collapse:collapse;margin-bottom:14px;">
+    <table style="width:100%;max-width:1240px;font-family:'JetBrains Mono',monospace;font-size:10.5px;border-collapse:collapse;margin-bottom:14px;">
         <thead>
+            <tr>
+                <th rowspan="2" style="text-align:left;padding:6px 8px;color:var(--text3);font-size:9px;border-bottom:2px solid var(--border2);">Tipo de viaje</th>
+                <th colspan="2" style="padding:6px 8px;background:rgba(255,59,78,0.06);border-bottom:1px solid var(--red);color:var(--red);font-size:10px;">SC1 &mdash; ACTUAL</th>
+                <th rowspan="2" style="padding:6px 8px;background:rgba(240,160,48,0.06);border-bottom:2px solid var(--yellow);color:var(--yellow);font-size:10px;">SC2<br><span style="font-size:8px;color:var(--text3);">Full PA</span></th>
+                <th colspan="2" style="padding:6px 8px;background:rgba(0,232,120,0.06);border-bottom:1px solid var(--green);color:var(--green);font-size:10px;">SC3 &mdash; CON HUB</th>
+            </tr>
             <tr style="border-bottom:2px solid var(--border2);">
-                <th style="text-align:left;padding:7px 10px;color:var(--text3);font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Tipo de viaje</th>
-                <th style="padding:7px 10px;background:rgba(255,59,78,0.06);border-bottom:2px solid var(--red);color:var(--red);font-size:10px;">SC1 — ACTUAL</th>
-                <th style="padding:7px 10px;background:rgba(240,160,48,0.06);border-bottom:2px solid var(--yellow);color:var(--yellow);font-size:10px;">SC2 — FULL PA</th>
-                <th style="padding:7px 10px;background:rgba(0,232,120,0.06);border-bottom:2px solid var(--green);color:var(--green);font-size:10px;">SC3 — CON HUB</th>
+                <th style="padding:5px 6px;background:rgba(255,59,78,0.04);color:var(--text3);font-size:9px;border-right:1px solid var(--border);">SC1a Full Zungo<br><span style="color:var(--text3);font-size:8px;font-weight:400;">(teórico)</span></th>
+                <th style="padding:5px 6px;background:rgba(255,59,78,0.04);color:var(--text2);font-size:9px;font-weight:700;">SC1b Híbrido<br><span style="color:var(--text3);font-size:8px;font-weight:400;">(Z + NC) ← actual</span></th>
+                <th style="padding:5px 6px;background:rgba(0,232,120,0.04);color:var(--text3);font-size:9px;border-right:1px solid var(--border);">SC3a Full PA via Hub<br><span style="color:var(--text3);font-size:8px;font-weight:400;">(teórico)</span></th>
+                <th style="padding:5px 6px;background:rgba(0,232,120,0.04);color:var(--text2);font-size:9px;font-weight:700;">SC3b Híbrido<br><span style="color:var(--text3);font-size:8px;font-weight:400;">(PA + Z) ← caso base</span></th>
             </tr>
         </thead>
         <tbody>
-            <tr><td colspan="4" style="padding:8px 10px 3px;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">VÍA PRINCIPAL (carretera 1 carril, congestionada)</td></tr>
+            <tr><td colspan="6" style="padding:8px 10px 3px;font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">VÍA PRINCIPAL (carretera 1 carril, congestionada)</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:4px 10px;color:var(--text2);">Centro (12 fincas) &rarr; destino</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">26 sencillos &rarr; Zungo</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">26 sencillos &rarr; PA</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--text3);">&mdash; reemplazados</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:4px 10px;color:var(--text2);">Hub &rarr; PA (mulas llenas 24p)</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);color:var(--text3);">&mdash;</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--text3);">&mdash;</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:600;">10 mulas</td>
+                <td style="padding:4px 8px;color:var(--text2);">Centro (12) &rarr; destino</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);border-right:1px solid var(--border);">26 sencillos &rarr; Z</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);">26 sencillos &rarr; Z</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(240,160,48,0.03);">26 sencillos &rarr; PA</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--text3);border-right:1px solid var(--border);">&mdash; al hub</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--text3);">&mdash; al hub</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:4px 10px;color:var(--text2);">Mini-Hub &rarr; PA (3 fincas)</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">4</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">4</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);">4</td>
+                <td style="padding:4px 8px;color:var(--text2);">Hub &rarr; PA (mulas 24p)</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);color:var(--text3);border-right:1px solid var(--border);">&mdash;</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);color:var(--text3);">&mdash;</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(240,160,48,0.03);color:var(--text3);">&mdash;</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--green);border-right:1px solid var(--border);">~16 mulas</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">10 mulas</td>
             </tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:4px 10px;color:var(--text2);">Zungo &rarr; Embarcadero (4 fincas)</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">11</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">11</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);">11</td>
+                <td style="padding:4px 8px;color:var(--text2);">Mini-Hub (3) &rarr; destino</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);border-right:1px solid var(--border);">4 &rarr; Z</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);">4 &rarr; NC</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(240,160,48,0.03);">4 &rarr; PA</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--text3);border-right:1px solid var(--border);">&mdash; al hub</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);">4 &rarr; PA</td>
             </tr>
-            <tr style="background:rgba(0,232,120,0.08);border-bottom:1px solid var(--border2);">
-                <td style="padding:6px 10px;color:var(--text);font-weight:700;">Subtotal vía principal</td>
-                <td style="text-align:center;padding:6px 10px;background:rgba(255,59,78,0.06);color:var(--red);font-weight:700;">41</td>
-                <td style="text-align:center;padding:6px 10px;background:rgba(240,160,48,0.06);color:var(--red);font-weight:700;">41</td>
-                <td style="text-align:center;padding:6px 10px;background:rgba(0,232,120,0.1);color:var(--green);font-weight:700;">25 (&minus;39%)</td>
-            </tr>
-            <tr><td colspan="4" style="padding:8px 10px 3px;font-size:9px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">VÍAS LOCALES (internas, 1.6&ndash;16 km del hub)</td></tr>
             <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:4px 10px;color:var(--text2);">Carruseles finca &rarr; hub</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">0</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">0</td>
-                <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--blue);font-weight:600;">19 loops (4 clusters)</td>
+                <td style="padding:4px 8px;color:var(--text2);">Zungo (4) &rarr; destino</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);border-right:1px solid var(--border);">11 &rarr; Z emb.</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);">11 &rarr; Z emb.</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(240,160,48,0.03);">11 &rarr; PA</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--text3);border-right:1px solid var(--border);">&mdash; al hub</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);">11 &rarr; Z emb.</td>
             </tr>
-            <tr style="background:rgba(240,160,48,0.08);border-top:2px solid var(--border2);">
-                <td style="padding:7px 10px;color:var(--text);font-weight:800;">TOTAL viajes/día</td>
-                <td style="text-align:center;padding:7px 10px;color:var(--text);font-weight:800;">41</td>
-                <td style="text-align:center;padding:7px 10px;color:var(--text);font-weight:800;">41</td>
-                <td style="text-align:center;padding:7px 10px;color:var(--yellow);font-weight:800;">44 (+3, +7%)</td>
+            <tr style="background:rgba(0,232,120,0.04);border-bottom:1px solid var(--border2);">
+                <td style="padding:6px 8px;color:var(--text);font-weight:700;">Subtotal vía principal</td>
+                <td style="text-align:center;padding:6px 8px;background:rgba(255,59,78,0.05);color:var(--red);font-weight:700;border-right:1px solid var(--border);">41</td>
+                <td style="text-align:center;padding:6px 8px;background:rgba(255,59,78,0.05);color:var(--red);font-weight:700;">41</td>
+                <td style="text-align:center;padding:6px 8px;background:rgba(240,160,48,0.05);color:var(--red);font-weight:700;">41</td>
+                <td style="text-align:center;padding:6px 8px;background:rgba(0,232,120,0.06);color:var(--green);font-weight:700;border-right:1px solid var(--border);">~16</td>
+                <td style="text-align:center;padding:6px 8px;background:rgba(0,232,120,0.1);color:var(--green);font-weight:800;">25 (−39%)</td>
+            </tr>
+            <tr><td colspan="6" style="padding:8px 10px 3px;font-size:9px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:700;border:none;">VÍAS LOCALES (internas, 1.6&ndash;16 km del hub)</td></tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:4px 8px;color:var(--text2);">Carruseles finca &rarr; hub</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);border-right:1px solid var(--border);">0</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(255,59,78,0.03);">0</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(240,160,48,0.03);">0</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--blue);border-right:1px solid var(--border);">~30 loops (19 fincas)</td>
+                <td style="text-align:center;padding:4px 8px;background:rgba(0,232,120,0.03);color:var(--blue);font-weight:700;">19 loops (12 Centro)</td>
+            </tr>
+            <tr style="background:rgba(240,160,48,0.06);border-top:2px solid var(--border2);">
+                <td style="padding:7px 8px;color:var(--text);font-weight:800;">TOTAL viajes/día</td>
+                <td style="text-align:center;padding:7px 8px;color:var(--text);font-weight:800;border-right:1px solid var(--border);">41</td>
+                <td style="text-align:center;padding:7px 8px;color:var(--text);font-weight:800;">41</td>
+                <td style="text-align:center;padding:7px 8px;color:var(--text);font-weight:800;">41</td>
+                <td style="text-align:center;padding:7px 8px;color:var(--yellow);font-weight:800;border-right:1px solid var(--border);">~46</td>
+                <td style="text-align:center;padding:7px 8px;color:var(--yellow);font-weight:800;">44 (+3)</td>
             </tr>
         </tbody>
     </table>
 
-    <div class="highlight-box yellow" style="margin:0 0 12px 0;max-width:1100px;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.25);">
-        <span style="color:var(--yellow);font-weight:700;">Honesto: el hub NO reduce viajes totales.</span>
+    <div class="highlight-box yellow" style="margin:0 0 12px 0;max-width:1240px;background:rgba(240,160,48,0.06);border-color:rgba(240,160,48,0.25);">
+        <span style="color:var(--yellow);font-weight:700;">Honesto: el caso base SC3b NO reduce viajes totales.</span>
         <span style="color:var(--text2);"> El total sube de <b style="color:var(--text);">41 a 44 viajes</b> (+3, +7%). El beneficio no está en el número total sino en <b style="color:var(--text);">DÓNDE</b> ocurren los viajes:</span>
         <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
             <div style="background:rgba(0,232,120,0.08);padding:8px 12px;border-radius:6px;border-left:3px solid var(--green);">
@@ -727,6 +747,9 @@
                 <b style="color:var(--blue);">Vías locales (cortos, descongestionadas):</b> <span style="color:var(--text2);">0 &rarr; <b style="color:var(--blue);">19 carruseles</b>. Cada uno cubre 2&ndash;3 fincas en loops de 7&ndash;32 km. Solo necesita 3 sencillos rotando.</span>
             </div>
         </div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-top:6px;max-width:1240px;line-height:1.5;">
+        <b style="color:var(--text2);">Sub-escenarios teóricos (no recomendados):</b> SC1a Full Zungo asume todas las G20 al embarcadero (sin Mini-Hub propio en NC). SC3a Full PA via Hub asume todas las G20 al hub Chinita (forzar Zungo y MH al hub agrega ~30km de F→H, sub-óptimo). El modelo financiero del deck se basa en SC1b → SC2 inminente → SC3b híbrido.
     </div>
 </div>
 
