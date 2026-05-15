@@ -120,11 +120,13 @@ Cheatsheet para presentación. Ten esto a mano cuando preguntas "¿de dónde sal
 - **Total G20:** −$1,366M/año ahorro
 
 ### 10 años acumulado (nominal, sin descontar)
-- **NO Construir** (SC2 G20): $50,650M = **$50.6B**
-- **Construir** (SC3 G20 + OPEX + CAPEX − palancas − terceros), F→H $400: $39,008M = **$39.0B**
-- **Construir** F→H $200: $32,418M = **$32.4B**
-- **Diferencia ahorro F→H $400:** $11.6B
-- **Diferencia ahorro F→H $200:** $18.2B
+> **Cifras en COP.** En español "billón" = millón de millones (10¹²). Para evitar ambigüedad, todas las cifras en este documento están en **millones de pesos colombianos (M COP)**. NO usamos la notación "$XB" porque puede leerse como "billones" (10¹²) en lugar de "miles de millones" (10⁹).
+
+- **NO Construir** (SC2 G20): **$50,650M COP** (cincuenta mil seiscientos cincuenta millones)
+- **Construir** (SC3 G20 + OPEX + CAPEX − palancas − terceros), F→H $400: **$39,008M COP**
+- **Construir** F→H $200: **$32,418M COP**
+- **Diferencia ahorro F→H $400:** **$11,642M COP** (~$11,600M)
+- **Diferencia ahorro F→H $200:** **$18,232M COP** (~$18,200M)
 
 ### Indicadores FCF (con palancas + terceros ramp, WACC 12%, 10a)
 | F→H | Payback FCF | VPN @ 12% | TIR |

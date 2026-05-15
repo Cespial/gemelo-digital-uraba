@@ -7,7 +7,7 @@
 ## A. Sobre el caso financiero
 
 ### Q1. Si el VPN es −$2,406M con F→H $400, ¿por qué pedir aprobar construcción?
-**A:** Porque NO construir cuesta $11.6B más en 10 años (slide 9a). El VPN aislado del proyecto es negativo en el caso pesimista, pero el contrafactual (status quo modificado, todas a PA inminente) es peor. Construir es la opción menos mala incluso en nuestra peor hipótesis F→H. Si la negociación F→H baja a $200, el VPN se vuelve **+$1,317M** y el proyecto paga financieramente Y estratégicamente.
+**A:** Porque NO construir cuesta $11,600M COP más en 10 años (slide 9a). El VPN aislado del proyecto es negativo en el caso pesimista, pero el contrafactual (status quo modificado, todas a PA inminente) es peor. Construir es la opción menos mala incluso en nuestra peor hipótesis F→H. Si la negociación F→H baja a $200, el VPN se vuelve **+$1,317M COP** y el proyecto paga financieramente Y estratégicamente.
 **📍 Slides 9a, 9b, 10**
 
 ### Q2. ¿Cómo defienden $4,020M CAPEX? ¿Hay cotización detallada?
@@ -108,7 +108,7 @@ El hub no nos vuelve independientes de PA, pero sí reduce la fragilidad operati
 
 ### Q17. ¿Por qué construir AHORA vs esperar 1-2 años?
 **A:** Tres razones:
-1. **Costo de inacción $11.6B/10a empieza el día 1** del cambio tarifario mayo'26. Cada año que esperamos = ~$1.2B perdidos.
+1. **Costo de inacción $11,600M COP / 10a empieza el día 1** del cambio tarifario mayo'26. Cada año que esperamos = ~$1,160M COP perdidos.
 2. **Negociación F→H se debilita** sin hub propio (los transportadores saben que no tenemos opción).
 3. **Ventana competitiva:** si otro grupo construye primero en zona, capturan los terceros antes que nosotros.
 **📍 Slide 9a, Slide 10**

@@ -2408,16 +2408,28 @@ const map = new mapboxgl.Map({
     attributionControl:false
 });
 
+// Error handling resiliente: solo muestra error si el mapa NO carga después de 12s.
+// Errores transitorios (tiles lentos, rate limits) NO disparan el mensaje al usuario.
+let _mapLoaded = false;
+let _mapErrorEl = null;
+map.on('load', () => {
+    _mapLoaded = true;
+    if (_mapErrorEl) { _mapErrorEl.remove(); _mapErrorEl = null; }
+});
 map.on('error', (e) => {
+    if (e && e.error) console.warn('[mapbox]', e.error.message || e.error);
+});
+setTimeout(() => {
+    if (_mapLoaded) return;
     const mapEl = document.getElementById('map');
     if (mapEl && !mapEl.querySelector('.map-error')) {
-        const err = document.createElement('div');
-        err.className = 'map-error';
-        err.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--red);font-family:JetBrains Mono,monospace;font-size:12px;text-align:center;z-index:5;';
-        err.textContent = 'Error cargando mapa. Verifique conexión.';
-        mapEl.appendChild(err);
+        _mapErrorEl = document.createElement('div');
+        _mapErrorEl.className = 'map-error';
+        _mapErrorEl.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--red);font-family:JetBrains Mono,monospace;font-size:12px;text-align:center;z-index:5;background:rgba(0,0,0,0.7);padding:12px 18px;border-radius:6px;';
+        _mapErrorEl.innerHTML = 'Mapa demora más de lo normal.<br><span style="color:var(--text3);font-size:10px;">Verifique conexión o recargue.</span>';
+        mapEl.appendChild(_mapErrorEl);
     }
-});
+}, 12000);
 
 map.addControl(new mapboxgl.NavigationControl({showCompass:true}),'top-right');
 map.addControl(new mapboxgl.ScaleControl({maxWidth:120}),'bottom-right');
