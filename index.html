@@ -2578,6 +2578,17 @@ map.on('load',()=>{
             'line-width':['match',['get','highway'],'trunk',2.5,'primary',2,'secondary',1.5,1],
             'line-opacity':['match',['get','highway'],'trunk',0.5,'primary',0.4,'secondary',0.25,0.15]
         },layout:{visibility:'none','line-cap':'round','line-join':'round'}});
+        // Capa congestión vive sobre la misma fuente — debe crearse aquí adentro
+        // del .then() porque osm-roads se carga async y antes no existía.
+        if(!map.getLayer('osm-roads-congestión')){
+            map.addLayer({id:'osm-roads-congestión',type:'line',source:'osm-roads',paint:{
+                'line-color':'#ff3b4e',
+                'line-width':['match',['get','highway'],'trunk',6,'primary',5,'secondary',3.5,2.5],
+                'line-opacity':0
+            },layout:{'line-cap':'round','line-join':'round'}});
+        }
+        // Forzar updateSim para aplicar congestión si el sim ya corrió antes de cargar la capa
+        if (typeof updateSim === 'function') updateSim();
         setLoad(65);
     }).catch(e=>{console.error('OSM roads layer failed:',e.message);});
 
@@ -2737,9 +2748,9 @@ map.on('load',()=>{
         if(map.getLayer('sc1-chaos-flow')){
             map.setPaintProperty('sc1-chaos-flow','line-dasharray',[cd1,cd2,cd3,cd4>0?cd4:0.01]);
         }
-        // SC1 route breathing (congestión pulse)
+        // SC1 route breathing (congestión pulse) — base >= amp para que no clampe en 0
         if(curSc==='sc1' && map.getLayer('sc1-routes-glow')){
-            const pulse = 0.12 + 0.20 * Math.sin(chaosDashStep * 0.15);
+            const pulse = 0.22 + 0.18 * Math.sin(chaosDashStep * 0.15);
             map.setPaintProperty('sc1-routes-glow','line-opacity', pulse);
         }
         // SC2 flow animation
@@ -2852,15 +2863,8 @@ map.on('load',()=>{
         map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
     });
 
-    // ---- CONGESTION OVERLAY on OSM roads ----
-    // Duplicate osm-roads source for congestión heat effect
-    if(map.getSource('osm-roads')){
-        map.addLayer({id:'osm-roads-congestión',type:'line',source:'osm-roads',paint:{
-            'line-color':'#ff3b4e',
-            'line-width':['match',['get','highway'],'trunk',6,'primary',5,'secondary',3.5,2.5],
-            'line-opacity':0
-        },layout:{'line-cap':'round','line-join':'round'}});
-    }
+    // (osm-roads-congestión se crea dentro del .then() de safeFetch('data/osm_roads.geojson')
+    //  porque su fuente carga async — el getSource() aquí siempre devolvía undefined)
 
     setLoad(75);
 
