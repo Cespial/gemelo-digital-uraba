@@ -106,11 +106,6 @@ git clone <repo-url>
 cd gemelo-digital-uraba
 ```
 
-Crear `config.js`:
-```js
-const MAPBOX_TOKEN = 'pk.tu_token_aqui';
-```
-
 Servir:
 ```bash
 npx serve .
@@ -119,6 +114,8 @@ python3 -m http.server 3000
 ```
 
 Abrir `http://localhost:3000`.
+
+El token Mapbox público viene embebido. Para override local, usar `?token=pk.tu_token` en la URL o `localStorage.setItem('mapbox_token','pk.tu_token')`.
 
 ### Trafico en vivo (opcional)
 
@@ -149,7 +146,6 @@ gemelo-digital-uraba/
 ├── presentacion.pdf        # PDF generado
 ├── api/
 │   └── traffic.js          # Vercel serverless proxy Google Maps
-├── config.js               # Token Mapbox (gitignored)
 ├── vercel.json             # Config Vercel
 ├── data/
 │   ├── fincas_g20.geojson          # 19 fincas G20 (47 KB)
