@@ -742,8 +742,8 @@
     <div class="onboarding-box">
         <div class="onboarding-title">GEMELO DIGITAL LOGISTICO</div>
         <div class="onboarding-desc">
-            Hoy el transporte de las 12 fincas Centro nos cuesta <b style="color:var(--text);">$429/caja</b> promedio. Con tarifas negociadas mayo 2026 sube a <b style="color:var(--red);">$950/caja</b>.<br><br>
-            Con un <b style="color:var(--green);">Centro de Consolidación</b>, el costo baja a <b style="color:var(--text);">$687/caja</b> (tarifas negociadas mayo 2026). Menos camiones en la carretera, carga contenerizada.<br><br>
+            Hoy el transporte de las 10 fincas Centro nos cuesta <b style="color:var(--text);">$429/caja</b> promedio. Con tarifas negociadas mayo 2026 sube a <b style="color:var(--red);">$964/caja</b> (G20 ponderado).<br><br>
+            Con un <b style="color:var(--green);">Centro de Consolidación</b>, el costo baja a <b style="color:var(--text);">$626/caja</b> (G20 ponderado, tarifas negociadas mayo 2026). Menos camiones en la carretera, carga contenerizada.<br><br>
             <span style="color:var(--text3);">Click <b style="color:var(--red);">HOY</b> para ver la situación actual. Click <b style="color:var(--green);">SOLUCIÓN</b> para ver el Centro.</span>
         </div>
         <div class="onboarding-hint">Click en cualquier lugar para continuar</div>
@@ -809,16 +809,16 @@
     <div class="c" id="pricing-card" style="border-color:rgba(240,160,48,0.25);">
         <div class="c-h"><span class="c-t">Modelo Tarifario</span><span class="badge" style="color:var(--yellow);border-color:rgba(240,160,48,0.3);background:var(--yellow-bg);" id="pricing-badge">$/CAJA</span></div>
         <div class="sc-btns">
-            <button class="sc-btn a-sc1" id="btn-pcaja" onclick="setPricingModel('caja')" style="font-size:10px;padding:8px 6px;">$/CAJA<br><span style="font-size:8px;font-weight:400;opacity:0.7;">Modelo actual</span></button>
-            <button class="sc-btn" id="btn-pviaje" onclick="setPricingModel('viaje')" style="font-size:10px;padding:8px 6px;">$/VIAJE<br><span style="font-size:8px;font-weight:400;opacity:0.7;">SICE-TAC nuevo</span></button>
+            <button class="sc-btn" id="btn-pcaja" onclick="setPricingModel('caja')" style="font-size:10px;padding:8px 6px;">$/CAJA<br><span style="font-size:8px;font-weight:400;opacity:0.7;">Tarifa plana</span></button>
+            <button class="sc-btn a-viaje" id="btn-pviaje" onclick="setPricingModel('viaje')" style="font-size:10px;padding:8px 6px;">$/VIAJE<br><span style="font-size:8px;font-weight:400;opacity:0.7;">Negociado may26</span></button>
         </div>
         <div id="pricing-impact" style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;display:none;">
             <div style="background:var(--red-bg);padding:8px;border-radius:4px;border:1px solid rgba(255,59,78,0.2);">
                 <div style="color:var(--red);font-weight:700;margin-bottom:4px;">IMPACTO MODELO POR VIAJE</div>
                 <div style="color:var(--text2);line-height:1.7;">
-                    Sin hub: <span style="color:var(--text);" id="pi-flete">$950</span>/caja (26 viajes, 76% fill)<br>
+                    Sin hub: <span style="color:var(--text);" id="pi-flete">$964</span>/caja (26 viajes, 76% fill)<br>
                     Stand-by: <span style="color:var(--text);" id="pi-standby">(incluido en tarifa)</span><br>
-                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$950</span>/caja<br>
+                    Costo directo: <span style="color:var(--red);font-weight:600;" id="pi-direct-caja">$964</span>/caja<br>
                     Costo con Hub: <span style="color:var(--green);font-weight:600;" id="pi-hub-caja">$810</span>/caja<br>
                     <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,59,78,0.15);">
                         Ahorro anual: <span style="color:var(--green);font-weight:800;font-size:12px;" id="pi-annual-save">~$0 (conservador)</span>
@@ -832,10 +832,10 @@
     <div class="c">
         <div class="c-h"><span class="c-t">Indicadores Clave</span><span id="sc-icon" style="font-size:13px;">&#x26A0;</span></div>
         <div class="kpi-g">
-            <div class="kpi tip" data-tip="Camiones en CARRETERA. SC1: 41 (todo en vía). SC3: 25 en vía (10 mulas + 4 mini-hub + 11 zungo) + 19 carruseles cortos finca-hub en vías locales."><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Camiones en carretera</div></div>
+            <div class="kpi tip" data-tip="Camiones en CARRETERA. SC1: 41 (todo en vía). SC3: 23 en vía (8 mulas + 4 mini-hub + 11 zungo) + 19 carruseles cortos finca-hub en vías locales."><div class="kpi-v r" id="kpi-trucks">41</div><div class="kpi-l">Camiones en carretera</div></div>
             <div class="kpi tip" data-tip="Tiempo promedio ponderado por producción. BPR: t_congestión = t_base × (1 + (volumen/capacidad)^3). Base OSRM + factor congestión."><div class="kpi-v y" id="kpi-time">47</div><div class="kpi-l">Min promedio</div></div>
             <div class="kpi tip" data-tip="Distancia promedio ponderada por producción. SC1: distancia a Zungo (8-28 km). SC2: distancia a PA (9-52 km). SC3: distancia al hub asignado."><div class="kpi-v b" id="kpi-dist">38.2</div><div class="kpi-l">Km promedio</div></div>
-            <div class="kpi tip" data-tip="Ahorro negociado: $950 - $687 = $263/caja (tarifas mayo 2026). Vía principal: 41→25 (-39%, donde está el cuello). Total: 41→44 (+3 netos: 16 sencillos salen de vía ppal, entran 19 carruseles cortos en vías locales). El total NO baja; baja la congestión en la carretera."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro por caja</div></div>
+            <div class="kpi tip" data-tip="Ahorro G20 ponderado: $964 - $626 = $338/caja (tarifas negociadas mayo 2026). Vía principal: 41→25 (-39%, donde está el cuello). Total: 41→44 (+3 netos: 16 sencillos salen de vía ppal, entran 19 carruseles cortos en vías locales). El total NO baja; baja la congestión en la carretera."><div class="kpi-v" id="kpi-save">--</div><div class="kpi-l">Ahorro por caja</div></div>
         </div>
     </div>
 
@@ -930,7 +930,7 @@
         <div class="mi-i"><div class="mi-c" style="background:rgba(160,140,60,0.3);border:1px solid rgba(180,160,80,0.4);"></div>Plantaciones regionales (402)</div>
         <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
         <div class="mi-t" style="margin-top:4px;">RUTAS POR NODO</div>
-        <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Centro (12 fincas)</div>
+        <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>Ruta Centro (10 fincas)</div>
         <div class="mi-i"><div class="mi-ln" style="background:var(--cyan);height:3px;"></div>Ruta Mini-Hub (3 fincas)</div>
         <div class="mi-i"><div class="mi-ln" style="background:var(--orange);height:3px;"></div>Ruta Zungo (4 fincas)</div>
         <div class="mi-i"><div class="mi-ln" style="background:var(--red);"></div>Ruta directa (ancho=vol)</div>
@@ -1017,7 +1017,7 @@
             </div>
             <div id="sc-comp-3" style="text-align:center;padding:6px 4px;border-radius:4px;border:1px solid var(--border);">
                 <div style="font-size:7px;color:var(--green);text-transform:uppercase;letter-spacing:0.5px;">SC3 Hub</div>
-                <div style="font-size:16px;font-weight:800;color:var(--green);" id="sc-comp-caja3">$687</div>
+                <div style="font-size:16px;font-weight:800;color:var(--green);" id="sc-comp-caja3">$626</div>
                 <div style="font-size:7px;color:var(--text3);">/caja (negociado)</div>
                 <div style="font-size:8px;color:var(--text2);margin-top:2px;" id="sc-comp-viaje3">$564K/mula</div>
                 <div style="font-size:8px;color:var(--text3);" id="sc-comp-trips3">25 vía + 26 local</div>
@@ -1028,8 +1028,8 @@
         </div>
         <div style="text-align:center;padding:8px;margin-top:6px;background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.2);border-radius:6px;">
             <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Ahorro con Centro (negociado mayo 2026)</div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;color:var(--green);margin-top:2px;">$263/caja</div>
-            <div style="font-size:9px;color:var(--text3);">$950 sin centro → $687 con centro · CAPEX $4,020M</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;color:var(--green);margin-top:2px;">$338/caja</div>
+            <div style="font-size:9px;color:var(--text3);">$964 sin centro → $626 con centro (G20 ponderado) · CAPEX $4,520M</div>
         </div>
     </div>
 
@@ -1038,7 +1038,7 @@
         <div class="c-h"><span class="c-t">Modelo Costo Hub (Negociado Mayo 2026)</span><span class="badge" style="color:var(--green);border-color:rgba(0,232,120,0.3);background:rgba(0,232,120,0.08);">NEGOCIADO</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;">
             <div style="display:grid;grid-template-columns:auto 1fr auto;gap:2px 8px;align-items:center;">
-                <span style="color:var(--text3);">1.</span><span style="color:var(--text2);">Hub→PA ($564K×10 mulas)</span><span style="color:var(--text);font-weight:600;">$445/caja</span>
+                <span style="color:var(--text3);">1.</span><span style="color:var(--text2);">Hub→PA ($564K×8 mulas)</span><span style="color:var(--text);font-weight:600;">$476/caja</span>
                 <span style="color:var(--text3);">2.</span><span style="color:var(--text2);">Consolidación</span><span style="color:var(--text);font-weight:600;">$42/caja</span>
                 <span style="color:var(--text3);">3.</span><span style="color:var(--text2);">Finca→Hub (supuesto)</span><span style="color:var(--yellow);font-weight:600;" id="hub-fh-val">$200/caja</span>
             </div>
@@ -1050,22 +1050,22 @@
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:2px;">
                 <div style="display:flex;justify-content:space-between;">
                     <span style="color:var(--text2);">Hub TOTAL</span>
-                    <span style="font-weight:800;font-size:13px;color:var(--yellow);" id="hub-total-val">$687/caja</span>
+                    <span style="font-weight:800;font-size:13px;color:var(--yellow);" id="hub-total-val">$626/caja</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;margin-top:2px;">
-                    <span style="color:var(--text3);font-size:8px;">SC2 Centro: $950</span>
-                    <span style="font-weight:700;font-size:10px;" id="hub-ahorro-val">Ahorro: $263/caja</span>
+                    <span style="color:var(--text3);font-size:8px;">SC2 G20: $964</span>
+                    <span style="font-weight:700;font-size:10px;" id="hub-ahorro-val">Ahorro: $338/caja</span>
                 </div>
             </div>
             <div style="border-top:1px solid var(--border);padding-top:4px;margin-top:4px;font-size:8px;color:var(--text3);line-height:1.5;">
-                <div style="display:flex;justify-content:space-between;"><span>Bruto/año:</span><span id="hub-bruto">$866M</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>Bruto/año (G20):</span><span id="hub-bruto">$1,775M</span></div>
                 <div style="display:flex;justify-content:space-between;"><span>OPEX:</span><span>-$437M</span></div>
-                <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--text);"><span>Neto/año:</span><span id="hub-neto">~$430M</span></div>
-                <div style="display:flex;justify-content:space-between;"><span>CAPEX:</span><span>$4,020M</span></div>
-                <div style="display:flex;justify-content:space-between;font-weight:600;"><span>Payback:</span><span id="hub-payback">9.3 años</span></div>
+                <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--text);"><span>Neto/año (G20):</span><span id="hub-neto">~$1,338M</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>CAPEX:</span><span>$4,520M</span></div>
+                <div style="display:flex;justify-content:space-between;font-weight:600;"><span>Payback:</span><span id="hub-payback">3.4 años</span></div>
             </div>
             <div style="margin-top:4px;font-size:7px;color:var(--text3);line-height:1.4;padding:3px 6px;background:var(--bg);border-radius:3px;border:1px solid var(--border);">
-                Hub flete: 10 mulas × $564K ÷ 12,674 cajas Centro/día. Mula negociada Chinita $470K (20p) × 1.2 = $564K (24p). F→H: slider (equiv. $130K/viaje a $200). CAPEX $4,020M: lote $200M + bodega $1,900M + plataformas $475M + pérgolas $640M + oficinas $405M + equipos $250M + WK $150M.
+                Hub flete: 8 mulas × $564K ÷ 9,477 cajas Centro/día (10 fincas post-reclasificación). Mula negociada Chinita $470K (20p) × 1.2 = $564K (24p). F→H: slider (equiv. $260K/viaje a $400 default conservador). CAPEX $4,520M: lote $200M + bodega $1,900M + plataformas $475M + pérgolas $640M + oficinas $405M + equipos $250M + vigilancia $500M + WK $150M.
             </div>
         </div>
     </div>
@@ -1079,7 +1079,7 @@
         <div id="sens-table" class="scroll-hint" style="overflow-x:auto;"></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--text3);margin-top:4px;line-height:1.4;">
             Base negociada mayo 2026: $0 descuento adicional. Cada $50K negociados = ~$50/cj más de ahorro.<br>
-            Chinita mula negociada $470K (20p) × 1.2 = $564K (24p). 10 mulas/día.
+            Chinita mula negociada $470K (20p) × 1.2 = $564K (24p). 8 mulas/día (10 fincas Centro).
         </div>
     </div>
 
@@ -1089,7 +1089,7 @@
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
                 <div style="width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green);flex-shrink:0;"></div>
                 <div><b style="color:var(--green);">Centro Consolidación</b> <span style="color:var(--text2);">7.9017, -76.6277</span><br>
-                <span style="color:var(--text2);">12 fincas | 985 ha | <span id="centro-prod" style="color:var(--text);">--</span> cajas/sem</span></div>
+                <span style="color:var(--text2);">10 fincas | 985 ha | <span id="centro-prod" style="color:var(--text);">--</span> cajas/sem</span></div>
             </div>
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
                 <div style="width:10px;height:10px;background:var(--cyan);border-radius:50%;box-shadow:0 0 6px var(--cyan);flex-shrink:0;"></div>
@@ -1158,7 +1158,7 @@
         <div class="c-h"><span class="c-t">Costos Logísticos</span><span class="badge badge-b" id="cost-model-badge">$/CAJA</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:8px;" id="cost-model-desc">Modelo parametrico basado en distancia, tiempo y flota</div>
         <div class="kpi-g">
-            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$950</div><div class="kpi-l">$/caja Directo</div></div>
+            <div class="kpi"><div class="kpi-v r" style="font-size:16px;" id="cost-direct">$964</div><div class="kpi-l">$/caja Directo</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-hub">$810</div><div class="kpi-l">$/caja Hub</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-save">-12%</div><div class="kpi-l">Ahorro $/caja</div></div>
             <div class="kpi"><div class="kpi-v g" style="font-size:16px;" id="cost-annual">~$0</div><div class="kpi-l">Ahorro anual</div></div>
@@ -1173,7 +1173,7 @@
                     <tr><td id="cd-toll-label">Peajes</td><td id="cd-toll-d">$35</td><td id="cd-toll-h">$18</td><td class="sav" id="cd-toll-s">-49%</td></tr>
                     <tr><td id="cd-wear-label">Desgaste vehic.</td><td id="cd-wear-d">$68</td><td id="cd-wear-h">$52</td><td class="sav" id="cd-wear-s">-24%</td></tr>
                     <tr><td>Consolidación Hub</td><td id="cd-cons-d">--</td><td id="cd-cons-h">$42</td><td style="color:var(--yellow);" id="cd-cons-s">+$42</td></tr>
-                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$950</td><td style="color:var(--green);" id="cd-tot-h">$687</td><td class="sav" id="cd-tot-s">-28%</td></tr>
+                    <tr style="border-top:2px solid var(--border);font-weight:700;"><td>TOTAL</td><td style="color:var(--red);" id="cd-tot-d">$964</td><td style="color:var(--green);" id="cd-tot-h">$626</td><td class="sav" id="cd-tot-s">-35%</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1218,7 +1218,7 @@
                 </div>
                 <div style="font-size:18px;color:var(--red);font-weight:800;">&#x2192;</div>
                 <div class="kpi" style="border-color:rgba(255,59,78,0.3);">
-                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$950</div>
+                    <div class="kpi-v r" style="font-size:14px;" id="tm-nuevo-precio">$964</div>
                     <div class="kpi-l">$/caja Centro ($/viaje)</div>
                     <div style="font-size:8px;color:var(--text3);margin-top:2px;">Cobro por viaje</div>
                 </div>
@@ -1227,12 +1227,12 @@
                 <div style="color:var(--red);font-weight:600;margin-bottom:4px;">Modelo nuevo, tarifas negociadas mayo 2026:</div>
                 Flete sencillo (10p): <span style="color:var(--text);">$230K-$480K COP/viaje</span><br>
                 Flete mula (20p): <span style="color:var(--text);">$350K-$875K COP/viaje (descuento 0-13% vs &times;2)</span><br>
-                Equivalente por caja Centro: <span style="color:var(--red);font-weight:600;">$950 COP (+121% vs $429 hoy)</span><br>
+                Equivalente por caja G20 ponderado: <span style="color:var(--red);font-weight:600;">$964 COP (+136% vs $429 hoy)</span><br>
                 <span style="color:var(--text3);font-size:8px;">Sencillo 10p tarifa base, 12p max. Mula 20p tarifa, 24p max. Descuento implícito en tarifa negociada (no proporcional).</span>
             </div>
             <div style="margin-top:6px;background:var(--green-bg);padding:8px;border-radius:4px;border:1px solid rgba(0,232,120,0.15);">
                 <span style="color:var(--green);font-weight:700;">Con Centro + mulas consolidadas (negociado):</span><br>
-                <span style="color:var(--text2);">Hub (10 mulas/día): <span style="color:var(--green);" id="tm-hub-precio">$687</span>/caja. Ahorro $263/caja. Con re-negociación $150K: hasta $404/caja</span>
+                <span style="color:var(--text2);">Hub G20 ponderado (8 mulas/día Centro): <span style="color:var(--green);" id="tm-hub-precio">$626</span>/caja. Ahorro $338/caja. Con re-negociación $150K: hasta $440/caja</span>
             </div>
             <div style="margin-top:6px;text-align:center;padding:6px;background:var(--bg);border-radius:4px;border:1px solid var(--border);">
                 <span style="font-size:8px;color:var(--text3);">SIMULAR CON MODELO $/VIAJE:</span><br>
@@ -1282,14 +1282,14 @@
         <div class="c-h"><span class="c-t" style="color:var(--green);">Resumen Ejecutivo</span></div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);line-height:1.8;">
             <span style="color:var(--green);">Modelo:</span> 3 nodos (Centro + Mini-Hub + Zungo)<br>
-            <span style="color:var(--green);">Centro Consolidación:</span> 12 fincas, 985 ha (49% G20)<br>
+            <span style="color:var(--green);">Centro Consolidación:</span> 10 fincas, 985 ha (49% G20)<br>
             <span style="color:var(--green);">Mini-Hub Puerto:</span> 3 fincas (devoluciones + envío)<br>
             <span style="color:var(--green);">Embarcadero Zungo:</span> 4 fincas (occidente)<br>
             <span style="color:var(--green);">Centro-Puerto OSRM:</span> <span id="exec-hp-dist">--</span><br>
             <span style="color:var(--green);">Isocronas Centro:</span> <span id="iso-stats">cargando...</span><br>
             <span style="color:var(--green);">Vía principal:</span> 41→25 viajes (-39%), +19 carruseles finca→hub<br>
             <span style="color:var(--green);">Ahorro logístico:</span> <span id="exec-cost-save">calculando...</span><br>
-            <span style="color:var(--green);">Riesgo transporte:</span> $950/caja ($/viaje negociado) vs $429/caja actual Centro<br>
+            <span style="color:var(--green);">Riesgo transporte:</span> $964/caja G20 ponderado ($/viaje negociado) vs $429/caja actual Centro<br>
             <span style="color:var(--green);">SIPRA:</span> 113,640 ha aptitud alta<br>
             <span style="color:var(--green);">Municipios:</span> 9 DANE &bull; <span style="color:var(--green);">Veredas:</span> 611 UPRA
         </div>
@@ -1352,9 +1352,9 @@
     <!-- ACID SCENARIO BOX -->
     <div class="fin-full">
         <div style="padding:10px 16px;background:var(--yellow-bg);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte (negociado)</span><br>SC2 Centro: <b style="color:var(--red);" data-explain="acid-919">$950</b>/caja<br>Hub total (negociado mayo): <b style="color:var(--yellow);" data-explain="acid-810">$687</b>/caja<br>Ahorro: <b style="color:var(--green);" data-explain="acid-109">$263</b>/caja</div>
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Real (infraestructura)</span><br>Lote $200M + Bodega $1,900M<br>Plataformas $475M + Pérgolas $640M<br>Oficinas $405M + Equipos $250M + WK $150M<br>= <b data-explain="acid-capex">$4,020M</b></div>
-            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado solo transporte (negociado)</span><br>Bruto $867M − OPEX <b data-explain="acid-opex">$437M</b><br><b style="color:var(--green);" data-explain="acid-deficit">Neto +$430M</b> (payback 9.3a)<br>Con terceros: <b style="color:var(--green);">+$1,224M</b> (3.3a)</div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Transporte (negociado, G20 ponderado)</span><br>SC2 G20: <b style="color:var(--red);" data-explain="acid-919">$964</b>/caja<br>Hub total G20 (negociado mayo): <b style="color:var(--yellow);" data-explain="acid-810">$626</b>/caja<br>Ahorro: <b style="color:var(--green);" data-explain="acid-109">$338</b>/caja</div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">CAPEX Real (infraestructura)</span><br>Lote $200M + Bodega $1,900M<br>Plataformas $475M + Pérgolas $640M<br>Oficinas $405M + Equipos $250M<br>+ Vigilancia $500M + WK $150M<br>= <b data-explain="acid-capex">$4,520M</b></div>
+            <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Resultado solo transporte (G20 ponderado)</span><br>Bruto $1,775M − OPEX <b data-explain="acid-opex">$437M</b><br><b style="color:var(--green);" data-explain="acid-deficit">Neto +$1,338M</b> (payback 3.4a)<br>Con terceros: <b style="color:var(--green);">+$2,132M</b> (1.9a)</div>
             <div><span style="color:var(--text3);font-size:7px;text-transform:uppercase;">Nuevas Palancas (2025)</span><br>Standby evitado: <b style="color:var(--cyan);" data-explain="fd-standby-save">$42M</b>/año<br>Nocturnos evitados: <b style="color:var(--cyan);" data-explain="fd-noct-save">$100M</b>/año<br>Con palancas: <b style="color:var(--green);" data-explain="acid-palancas">+$142M</b></div>
         </div>
     </div>
@@ -1368,8 +1368,8 @@
                 <div class="fin-slider"><input type="range" id="fs-land-ha" min="0" max="20" step="0.5" value="0.5" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Costo terreno (COP M/ha)</span><span class="fin-val" id="fv-land-cost">400</span>
                 <div class="fin-slider"><input type="range" id="fs-land-cost" min="50" max="500" step="10" value="400" oninput="updateFinancialDashboard()"></div>
-                <span class="fin-label">Construcción (COP M)</span><span class="fin-val" id="fv-build">3420</span>
-                <div class="fin-slider"><input type="range" id="fs-build" min="200" max="5000" step="50" value="3420" oninput="updateFinancialDashboard()"></div>
+                <span class="fin-label">Construcción + vigilancia (COP M)</span><span class="fin-val" id="fv-build">3920</span>
+                <div class="fin-slider"><input type="range" id="fs-build" min="200" max="5000" step="50" value="3920" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Equipos paletización (COP M)</span><span class="fin-val" id="fv-equip">250</span>
                 <div class="fin-slider"><input type="range" id="fs-equip" min="100" max="800" step="25" value="250" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Vehículos adicionales (COP M)</span><span class="fin-val" id="fv-vehicles">0</span>
@@ -1380,7 +1380,7 @@
             <div class="capex-bar" id="fd-capex-bar"></div>
             <div class="fin-total">
                 <span class="fin-total-l">CAPEX Total</span>
-                <span class="fin-total-v g" id="fin-capex-total">$4,020M</span>
+                <span class="fin-total-v g" id="fin-capex-total">$4,520M</span>
             </div>
         </div>
     </div>
@@ -1397,7 +1397,7 @@
                 <span class="fin-label">Servicios (COP M/mes)</span><span class="fin-val" id="fv-services">6</span>
                 <div class="fin-slider"><input type="range" id="fs-services" min="2" max="40" value="6" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Mant. equipos (% CAPEX/año)</span><span class="fin-val" id="fv-maint">2%</span>
-                <div class="fin-slider"><input type="range" id="fs-maint" min="1" max="10" value="2" oninput="updateFinancialDashboard()"></div>
+                <div class="fin-slider"><input type="range" id="fs-maint" min="1" max="10" step="0.25" value="1.75" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Seguros (% CAPEX/año)</span><span class="fin-val" id="fv-insurance">1%</span>
                 <div class="fin-slider"><input type="range" id="fs-insurance" min="1" max="5" value="1" oninput="updateFinancialDashboard()"></div>
                 <span class="fin-label">Administración (COP M/mes)</span><span class="fin-val" id="fv-admin">3</span>
@@ -1578,8 +1578,8 @@
 <div id="resumen-dashboard">
 <div class="resumen-inner">
 
-    <div class="hero-save" id="res-hero-save" style="color:var(--green);">$263/caja</div>
-    <div class="hero-sub">AHORRO POR CAJA (NEGOCIADO MAYO 2026: HUB→PA MULA $564K + F→H $200)</div>
+    <div class="hero-save" id="res-hero-save" style="color:var(--green);">$338/caja</div>
+    <div class="hero-sub">AHORRO POR CAJA G20 PONDERADO (NEGOCIADO MAYO 2026: HUB→PA MULA $564K + F→H $400)</div>
 
     <div style="max-width:900px;margin:0 auto 24px;padding:20px 28px;background:rgba(0,232,120,0.08);border:2px solid rgba(0,232,120,0.3);border-radius:12px;">
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Recomendación</div>
@@ -1590,7 +1590,7 @@
             <div style="padding:12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);">
                 <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);font-weight:700;">1. RE-NEGOCIAR MULA</div>
                 <div style="font-size:12px;color:var(--text2);margin-top:4px;">Bajar mula Chinita de $470K (negociada) hacia $370K</div>
-                <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback: 9.3 años base, 6.9a con $50K más</div>
+                <div style="font-size:10px;color:var(--text3);margin-top:4px;">Payback: 3.4 años base, 2.9a con $50K más</div>
             </div>
             <div style="padding:12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);">
                 <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);font-weight:700;">2. TERCEROS</div>
@@ -1604,8 +1604,8 @@
             </div>
         </div>
         <div style="margin-top:12px;font-size:13px;color:var(--text2);line-height:1.6;">
-            <b style="color:var(--yellow);">Base negociada (sin palancas):</b> $263/cj ahorro, neto $430M/año, payback ~9.3 años. Viable pero lento.<br>
-            <b style="color:var(--green);">Con las 3 condiciones:</b> payback ~4 años, neto >$700M + terceros.
+            <b style="color:var(--yellow);">Base negociada (sin palancas, G20 ponderado):</b> $338/cj ahorro, neto $1,338M/año, payback ~3.4 años. Viable y rápido.<br>
+            <b style="color:var(--green);">Con las 3 condiciones:</b> payback ~2 años, neto >$1,500M + terceros.
         </div>
     </div>
 
@@ -1633,11 +1633,11 @@
             <div class="res-metric-l">Tractomulas en vía</div>
         </div>
         <div class="res-metric">
-            <div class="res-metric-v g" id="res-save-box">-$263</div>
-            <div class="res-metric-l">Ahorro por caja (negociado)</div>
+            <div class="res-metric-v g" id="res-save-box">-$338</div>
+            <div class="res-metric-l">Ahorro por caja (G20 ponderado)</div>
         </div>
         <div class="res-metric">
-            <div class="res-metric-v y">$950</div>
+            <div class="res-metric-v y">$964</div>
             <div class="res-metric-l">Riesgo nuevo modelo $/caja</div>
         </div>
         <div class="res-metric">
@@ -1654,8 +1654,8 @@
             <div class="res-risk-l">COP/caja MODELO ACTUAL<br>Cobro por caja al transportador</div>
         </div>
         <div class="res-risk-box" style="border-color:rgba(255,59,78,0.3);">
-            <div class="res-risk-v" style="color:var(--red);">$950</div>
-            <div class="res-risk-l">COP/caja SC2 Centro ($/viaje negociado)<br>12 fincas Centro promedio ponderado</div>
+            <div class="res-risk-v" style="color:var(--red);">$964</div>
+            <div class="res-risk-l">COP/caja SC2 G20 ($/viaje negociado)<br>19 fincas G20 promedio ponderado (10C+6Z+3MH)</div>
         </div>
     </div>
 
@@ -1688,14 +1688,14 @@
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">$/caja prom. Centro</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);color:var(--red);font-weight:700;">$429</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--yellow);font-weight:700;">$950</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">$687</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--yellow);font-weight:700;">$964</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">$626</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">Δ vs Actual</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">—</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--red);">+$521 (+121%)</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">+$258 (+60%)</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--red);">+$535 (+136%)</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">+$197 (+46%)</td>
                 </tr>
 
                 <tr><td colspan="4" style="padding:9px 8px 3px;font-size:8px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;">Operación</td></tr>
@@ -1742,24 +1742,24 @@
                     <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);">8-15 F→H + 17 hub→PA</td>
                 </tr>
 
-                <tr><td colspan="4" style="padding:9px 8px 3px;font-size:8px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;">Costo anual (Centro, 3.30M cajas)</td></tr>
+                <tr><td colspan="4" style="padding:9px 8px 3px;font-size:8px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;">Costo anual G20 ponderado (5.3M cajas/año)</td></tr>
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">Costo transporte/año</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);color:var(--red);font-weight:700;">$1,416M</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--yellow);font-weight:700;">$3,135M</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">$2,267M</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);color:var(--red);font-weight:700;">$2,137M</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--yellow);font-weight:700;">$5,064M</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">$3,289M</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">Δ vs Actual</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">—</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--red);">+$1,719M/año</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">+$851M/año</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);color:var(--red);">+$2,927M/año</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">+$1,152M/año</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">Δ vs SC2 (inminente)</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);color:var(--green);">−$1,719M (ya pasó)</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);color:var(--green);">−$2,927M (ya pasó)</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">base</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">−$867M (ahorro)</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">−$1,775M (ahorro bruto)</td>
                 </tr>
 
                 <tr><td colspan="4" style="padding:9px 8px 3px;font-size:8px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700;">Inversión y retorno</td></tr>
@@ -1767,7 +1767,7 @@
                     <td style="padding:4px 10px;color:var(--text2);">CAPEX</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">$0</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">$0</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">$4,020M</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--yellow);">$4,520M</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">OPEX adicional/año</td>
@@ -1779,19 +1779,19 @@
                     <td style="padding:4px 10px;color:var(--text2);">Ahorro neto/año vs SC2</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">—</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">—</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">+$430M</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">+$1,338M</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:4px 10px;color:var(--text2);">Payback transporte solo</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">—</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">—</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">9.3 años</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">3.4 años</td>
                 </tr>
                 <tr>
                     <td style="padding:4px 10px;color:var(--text2);">Payback + palancas + terceros</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(255,59,78,0.03);">—</td>
                     <td style="text-align:center;padding:4px 10px;background:rgba(240,160,48,0.03);">—</td>
-                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">~3.5 años</td>
+                    <td style="text-align:center;padding:4px 10px;background:rgba(0,232,120,0.03);color:var(--green);font-weight:700;">~2.0 años</td>
                 </tr>
             </tbody>
         </table>
@@ -1799,11 +1799,11 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div style="background:rgba(255,59,78,0.06);border:1px solid rgba(255,59,78,0.25);border-radius:8px;padding:12px 14px;">
             <div style="color:var(--red);font-weight:700;font-size:11px;margin-bottom:4px;">ACTUAL vs FULL PA</div>
-            <div style="font-size:11px;color:var(--text2);line-height:1.5;">+$1,719M/año adicionales. Cambio tarifario ya firmado May 2026 — este sobrecosto es inminente sin acción.</div>
+            <div style="font-size:11px;color:var(--text2);line-height:1.5;">+$2,927M/año adicionales (G20 ponderado). Cambio tarifario ya firmado May 2026 — este sobrecosto es inminente sin acción.</div>
         </div>
         <div style="background:rgba(0,232,120,0.06);border:1px solid rgba(0,232,120,0.25);border-radius:8px;padding:12px 14px;">
             <div style="color:var(--green);font-weight:700;font-size:11px;margin-bottom:4px;">ACTUAL vs CON HUB</div>
-            <div style="font-size:11px;color:var(--text2);line-height:1.5;">+$851M/año adicionales (vs +$1,719M sin hub). El hub absorbe 50% del shock y deja $430M netos para amortizar CAPEX.</div>
+            <div style="font-size:11px;color:var(--text2);line-height:1.5;">+$1,152M/año adicionales (vs +$2,927M sin hub). El hub absorbe 60% del shock y deja $1,338M netos para amortizar CAPEX.</div>
         </div>
     </div>
 
@@ -1878,19 +1878,19 @@
     <div class="res-section-t">ESCENARIO NEGOCIADO MAYO 2026: SUPUESTOS Y CÁLCULOS</div>
     <div class="narrative" style="font-size:11px;">
         <p><strong>Supuestos del escenario negociado (tarifas firmadas mayo 2026):</strong></p>
-        <p>Hub→PA: <strong>mulas 24p, $564K/viaje</strong> (Chinita mula negociada $470K (20p) × 1.2 fill = $564K). 10 mulas/día × $564K ÷ 12,674 cajas Centro/día = <strong>$445/caja</strong>.<br>
-        Finca→Hub: <strong>$200/caja</strong> = $130K/viaje (~8-15 km, supuesto pendiente de negociación específica).<br>
+        <p>Hub→PA: <strong>mulas 24p, $564K/viaje</strong> (Chinita mula negociada $470K (20p) × 1.2 fill = $564K). 8 mulas/día × $564K ÷ 9,477 cajas Centro/día (10 fincas) = <strong>$476/caja</strong>.<br>
+        Finca→Hub: <strong>$400/caja</strong> = $260K/viaje (default conservador presentación; slider $80-$400).<br>
         Consolidación: <strong>$42/caja</strong> (paletizar + inspeccionar + cargar).<br>
-        Hub total: $445 + $42 + $200 = <strong>$687/caja</strong>.<br>
-        SC2 Centro sin hub: <strong>$950/caja</strong> (26 viajes individuales sencillo negociado, promedio ponderado 12 fincas).<br>
-        Ahorro: $950 - $687 = <strong>$263/caja</strong> × 3.30M cajas Centro/año = <strong>$867M bruto</strong>.<br>
+        Hub Centro puro: $476 + $42 + $400 = <strong>$918/caja</strong>. Promedio ponderado G20 (10C + 6Z + 3MH): <strong>$626/caja</strong>.<br>
+        SC2 G20 sin hub: <strong>$964/caja</strong> (promedio ponderado 19 fincas con tarifa por viaje negociada).<br>
+        Ahorro: $964 - $626 = <strong>$338/caja</strong> × 5.3M cajas G20/año = <strong>$1,775M bruto</strong>.<br>
         OPEX: <strong>$437M/año</strong> (personal $215M + servicios $73M + mant 2% $73M + seguros 1% $40M + admin $36M).<br>
-        Neto solo transporte: $867M − $437M = <strong style="color:var(--green);">+$430M/año</strong>.<br>
-        CAPEX: <strong>$4,020M</strong> → <strong>payback 9.3 años</strong> solo transporte.</p>
-        <p><strong>Sensibilidad re-negociar mula Chinita (sobre $470K negociado):</strong>
-        Con $50K extra: hub $645, ahorro $305, payback 7.8a.
-        Con $100K extra: hub $603, ahorro $347, payback 6.6a.
-        Con $150K extra: hub $560, ahorro $390, payback 5.7a.</p>
+        Neto solo transporte: $1,775M − $437M = <strong style="color:var(--green);">+$1,338M/año</strong>.<br>
+        CAPEX: <strong>$4,520M</strong> (incluye vigilancia) → <strong>payback 3.4 años</strong> solo transporte.</p>
+        <p><strong>Sensibilidad re-negociar mula Chinita (sobre $470K negociado, G20 ponderado):</strong>
+        Con $50K extra: hub G20 $594, ahorro $370, payback 2.9a.
+        Con $100K extra: hub G20 $562, ahorro $402, payback 2.5a.
+        Con $150K extra: hub G20 $530, ahorro $434, payback 2.2a.</p>
         <p><strong>Fuentes:</strong> Tarifas negociadas mayo 2026 (tarifas_negociadas_mayo_2025.xlsx, TTE FRUTA 6052026.xlsx). Producción real por finca (produccion_anual.xlsx). Sencillo: 12p × 54 cajas = 648/viaje (tarifa 10p × 1.2). Mula: 24p × 54 = 1,296/viaje (tarifa 20p × 1.2). Sensibilidad cj/pallet: 48-60 mueve $/cj ±12%.</p>
     </div>
 
@@ -1907,8 +1907,8 @@
     <div class="res-section-t">CONTEXTO DEL PROYECTO</div>
     <div class="narrative">
         <p><strong>Contratamos a Observatorio de Datos y Análisis SAS para viabilizar el centro de consolidación,</strong> y en el camino mapeamos la crisis logística de la región.</p>
-        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>41 viajes diarios de tractomulas</strong> en una vía de un solo carril. Cada mula espera 5-6 horas en puerto. Las tarifas negociadas mayo 2026 con los transportadores migran de cobro por caja a cobro por viaje, llevando el costo del Centro (12 fincas) de $429 a $950/caja (+121%).</p>
-        <p>El Centro de Consolidación Central resuelve esto: <strong>12 fincas despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas salen llenas (24 pallets) hacia Puerto Antioquia. En la <strong>vía principal: 26 sencillos se reemplazan por 10 mulas (-62%)</strong>. Se agregan <strong>19 carruseles cortos finca→hub</strong> (cada uno pasa por 2-3 fincas del cluster, 7-32 km de loop, vías locales). <strong>Ahorro: $263/caja</strong> bajo tarifas negociadas. Con re-negociación adicional mula: hasta $390/caja.</p>
+        <p>Hoy las 19 fincas del Grupo 20 despachan individualmente hacia Embarcadero Zungo y Puerto Antioquia, generando <strong>41 viajes diarios de tractomulas</strong> en una vía de un solo carril. Cada mula espera 5-6 horas en puerto. Las tarifas negociadas mayo 2026 con los transportadores migran de cobro por caja a cobro por viaje, llevando el costo G20 ponderado de $407 a $964/caja (+136%).</p>
+        <p>El Centro de Consolidación Central resuelve esto: <strong>10 fincas Centro despachan a un punto central</strong> donde se consolida, paletiza y conteneriza. Las mulas salen llenas (24 pallets) hacia Puerto Antioquia. En la <strong>vía principal: 26 sencillos se reemplazan por 8 mulas (-69%)</strong>. Se agregan <strong>19 carruseles cortos finca→hub</strong> (cada uno pasa por 2-3 fincas del cluster, 7-32 km de loop, vías locales). <strong>Ahorro G20: $338/caja</strong> bajo tarifas negociadas. Con re-negociación adicional mula: hasta $434/caja.</p>
         <p>El modelo de 3 nodos (Centro + Mini-Hub Puerto + Embarcadero Zungo) cubre las 19 fincas y 985 hectáreas, con capacidad de escalar a otros generadores de carga de la región.</p>
     </div>
 
@@ -1998,7 +1998,7 @@ const CONFIG = {
   bpr: { bt: 28, bc: 800, pce: 2.5 },
   cost: { DIESEL_KM: 3200, DRIVER_HR: 28000, TOLL_TRIP: 0, TOLL_HUB: 0, WEAR_KM: 1800, HUB_CONSOL: 42, BOXES_TRUCK: 960,
           TARIFA_CAJA: 359, FINCA_HUB: 200 },
-  // Tarifas NEGOCIADAS mayo 2026. Hub→PA mula Chinita $470K (20p) × 1.2 fill = $564K (24p) = $445/caja.
+  // Tarifas NEGOCIADAS mayo 2026. Hub→PA mula Chinita $470K (20p) × 1.2 fill = $564K (24p) = $476/caja (8 mulas / 10 fincas Centro).
   trip: { TARIFA_VIAJE: 713, HUB_FLETE: 445, HUB_STANDBY: 0 },
   regional: { ANNUAL_CAJAS: 114e6 },
   standby: { RATE_HR: 20000, AVG_WAIT_HR: 0.92, TRIPS_WITH_WAIT_PCT: 18 },
@@ -2159,7 +2159,7 @@ const FARMS = [
     {id:"F03",name:"Guadalupe",lat:7.939188,lng:-76.678878,prod:2205,cl:"hub",hub:"mini_hub"},
     {id:"F04",name:"La Llave",lat:7.922546,lng:-76.614476,prod:4514,cl:"hub",hub:"centro"},
     {id:"F05",name:"Los Almendros",lat:7.774879,lng:-76.748002,prod:10526,cl:"sur",hub:"zungo"},
-    {id:"F06",name:"María Bonita",lat:7.830482,lng:-76.71388,prod:6399,cl:"central",hub:"centro"},
+    {id:"F06",name:"María Bonita",lat:7.830482,lng:-76.71388,prod:6399,cl:"central",hub:"zungo"},
     {id:"F07",name:"Maritú",lat:7.806553,lng:-76.658093,prod:2196,cl:"sur",hub:"centro"},
     {id:"F08",name:"Matogroso 1",lat:7.803754,lng:-76.751925,prod:6926,cl:"sur",hub:"zungo"},
     {id:"F09",name:"Matogroso 2",lat:7.81516,lng:-76.758019,prod:9864,cl:"sur",hub:"zungo"},
@@ -2171,7 +2171,7 @@ const FARMS = [
     {id:"F15",name:"Santa Marta Fabio",lat:7.908251,lng:-76.619877,prod:7137,cl:"norte",hub:"centro"},
     {id:"F16",name:"Sierra",lat:7.865646,lng:-76.642122,prod:2408,cl:"central",hub:"centro"},
     {id:"F17",name:"Tagual",lat:7.866454,lng:-76.674814,prod:4468,cl:"central",hub:"centro"},
-    {id:"F18",name:"Tucanes",lat:7.845336,lng:-76.709664,prod:6449,cl:"central",hub:"centro"},
+    {id:"F18",name:"Tucanes",lat:7.845336,lng:-76.709664,prod:6449,cl:"central",hub:"zungo"},
     {id:"F19",name:"Villa Fresia",lat:7.854896,lng:-76.625407,prod:2754,cl:"central",hub:"centro"},
 ];
 // Hub assignment summary
@@ -2183,7 +2183,7 @@ const HUB_STATS = {
 const TOTAL_HA_G20 = 2000;
 
 // ============================================================
-// FARM DETAIL — Tarifas NEGOCIADAS mayo 2026 (12 Centro fuente: tarifas_negociadas_mayo_2025.xlsx)
+// FARM DETAIL — Tarifas NEGOCIADAS mayo 2026 (10 Centro fuente: tarifas_negociadas_mayo_2025.xlsx)
 // Tarifas Zungo (F01-F02, F09-F10) y Mini-Hub (F03-F05): supuesto basado en TTE FRUTA 6052026.xlsx
 // vPA = sencillo 10p negociado | vMula = mula 20p negociado (NO proporcional, ya incluye descuento)
 // ============================================================
@@ -2213,8 +2213,8 @@ const FARM_DATA = [
     {id:'F15',name:'Maritú',       g:'centro',   cs:2530,  pd:9.4, tz:484,tc:484,vPA:400000,vMula:800000,dZ:19.5,tZ:32,dPA:30.5,tPA:44},
     {id:'F16',name:'San Juan',     g:'centro',   cs:4235,  pd:15.7,tz:426,tc:514,vPA:480000,vMula:850000,dZ:22.8,tZ:37,dPA:38.2,tPA:54},
     {id:'F17',name:'Santa Helena', g:'centro',   cs:3357,  pd:12.4,tz:426,tc:514,vPA:480000,vMula:850000,dZ:24.5,tZ:40,dPA:40.1,tPA:57},
-    {id:'F18',name:'María Bonita', g:'centro',   cs:7827,  pd:29.0,tz:304,tc:514,vPA:480000,vMula:850000,dZ:12.3,tZ:21,dPA:35.8,tPA:51},
-    {id:'F19',name:'Tucanes',      g:'centro',   cs:8173,  pd:30.3,tz:304,tc:514,vPA:480000,vMula:850000,dZ:13.8,tZ:23,dPA:33.2,tPA:48},
+    {id:'F18',name:'María Bonita', g:'zungo',    cs:7827,  pd:29.0,tz:304,tc:514,vPA:480000,vMula:850000,dZ:12.3,tZ:21,dPA:35.8,tPA:51},
+    {id:'F19',name:'Tucanes',      g:'zungo',    cs:8173,  pd:30.3,tz:304,tc:514,vPA:480000,vMula:850000,dZ:13.8,tZ:23,dPA:33.2,tPA:48},
 ];
 
 // Pre-compute per-farm scenario costs
@@ -2223,13 +2223,13 @@ const FARM_DATA = [
 const _chinitaVMula20 = 470000; // mula negociada Chinita mayo 2026
 const _mulaTarifa20 = _chinitaVMula20; // sin recargo adicional, ya negociada
 const _mulaTarifa24 = Math.round(_mulaTarifa20 * FACTOR_24); // $564K mula llena (24p)
-const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 400, CONSOL: 42, CAPEX: 4020, OPEX: 437 };
+const ACID = { HUB_PA_VIAJE: _mulaTarifa24, FH_CAJA: 400, CONSOL: 42, CAPEX: 4520, OPEX: 437 };
 const _centroFD = FARM_DATA.filter(f=>f.g==='centro');
 const _centroPD = _centroFD.reduce((s,f)=>s+f.pd,0);
-const _centroTripsHub = Math.ceil(_centroPD / MULA_PALL); // 10 mulas/día (mulas llenas 24p)
+const _centroTripsHub = Math.ceil(_centroPD / MULA_PALL); // 8 mulas/día (mulas llenas 24p, 10 fincas Centro)
 const _centroCajasDia = _centroFD.reduce((s,f)=>s+f.cs/5,0);
-const _hubFleteCaja = Math.round(_centroTripsHub * ACID.HUB_PA_VIAJE / _centroCajasDia); // ~$445 (negociado)
-const _hubTotal = _hubFleteCaja + ACID.CONSOL + ACID.FH_CAJA; // ~$687 (negociado)
+const _hubFleteCaja = Math.round(_centroTripsHub * ACID.HUB_PA_VIAJE / _centroCajasDia); // ~$476 (negociado, 8 mulas/10 fincas)
+const _hubTotal = _hubFleteCaja + ACID.CONSOL + ACID.FH_CAJA; // ~$918 Centro puro / G20 ponderado ~$626
 
 FARM_DATA.forEach(f => {
     const cd = f.cs / 5; // cajas/día
@@ -2255,16 +2255,44 @@ FARM_DATA.forEach(f => {
     f.cajasDia = cd;
 });
 
-// Aggregates
+// Aggregates G20 ponderado — coincide con metodología presentación Junta (19 fincas)
+// SC3 ponderado = (Σ Centro: hubTotal × cd + Σ Zungo: tz × cd + Σ MH: sc2.caja × cd) / Σ cd_total
+const _g20CajasDia = FARM_DATA.reduce((s,f)=>s+f.cajasDia,0);
+const _sc3CostDiaG20 = FARM_DATA.reduce((s,f)=>{
+    const c = f.g==='centro' ? _hubTotal : (f.g==='mini_hub' ? f.sc2.caja : f.tz);
+    return s + c * f.cajasDia;
+}, 0);
+
 const SC_TOTALS = {
-    sc1: { viajes: FARM_DATA.reduce((s,f)=>s+f.sc1.trips,0), costProm: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc1.costDia,0)/FARM_DATA.reduce((s,f)=>s+f.cajasDia,0)), costAnual: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc1.costDia,0)*5*52/1e6) },
-    sc2: { viajes: FARM_DATA.reduce((s,f)=>s+f.sc2.trips,0), costProm: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc2.costDia,0)/FARM_DATA.reduce((s,f)=>s+f.cajasDia,0)), costAnual: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc2.costDia,0)*5*52/1e6) },
-    sc3: { viajes: _centroTripsHub + FARM_DATA.filter(f=>f.g!=='centro').reduce((s,f)=>s+f.sc1.trips,0), hubTotal: _hubTotal, sc2Centro: Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia), ahorroCaja: Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia) - _hubTotal }
+    sc1: { viajes: FARM_DATA.reduce((s,f)=>s+f.sc1.trips,0), costProm: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc1.costDia,0)/_g20CajasDia), costAnual: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc1.costDia,0)*5*52/1e6) },
+    sc2: { viajes: FARM_DATA.reduce((s,f)=>s+f.sc2.trips,0), costProm: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc2.costDia,0)/_g20CajasDia), costAnual: Math.round(FARM_DATA.reduce((s,f)=>s+f.sc2.costDia,0)*5*52/1e6) },
+    sc3: {
+        viajes: _centroTripsHub + FARM_DATA.filter(f=>f.g!=='centro').reduce((s,f)=>s+f.sc1.trips,0),
+        // Centro puro (composición $hubFlete + $consol + $FH) — preservado para tooltips finca
+        hubTotal: _hubTotal,
+        // Legacy: solo Centro (preservado para compat con consumidores no migrados)
+        sc2Centro: Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia),
+        ahorroCaja: Math.round(_centroFD.reduce((s,f)=>s+f.sc2.costDia,0)/_centroCajasDia) - _hubTotal,
+        // === G20 PONDERADO (modelo presentación Junta) ===
+        costPromG20: Math.round(_sc3CostDiaG20 / _g20CajasDia),
+        cajasDiaG20: _g20CajasDia
+    }
 };
+SC_TOTALS.sc2.costPromG20 = SC_TOTALS.sc2.costProm; // sc2 ya es G20 ponderado
+// Contribución fija de Zungo+MH al costo SC3 G20 (no varía con slider F→H, solo Centro varía)
+SC_TOTALS.sc3._zungoMhCostDia = FARM_DATA.filter(f=>f.g!=='centro').reduce((s,f)=>{
+    const c = f.g==='mini_hub' ? f.sc2.caja : f.tz;
+    return s + c * f.cajasDia;
+}, 0);
+SC_TOTALS.sc3.ahorroCajaG20 = SC_TOTALS.sc2.costPromG20 - SC_TOTALS.sc3.costPromG20;
+SC_TOTALS.sc3.brutoAnualG20 = Math.round(SC_TOTALS.sc3.ahorroCajaG20 * _g20CajasDia * 5 * 52 / 1e6);
+SC_TOTALS.sc3.netoAnualG20 = SC_TOTALS.sc3.brutoAnualG20 - ACID.OPEX;
+SC_TOTALS.sc3.paybackG20 = SC_TOTALS.sc3.netoAnualG20 > 0 ? (ACID.CAPEX / SC_TOTALS.sc3.netoAnualG20).toFixed(2) : 'N/A';
+// Legacy aggregates (preservado)
 SC_TOTALS.sc3.brutoAnual = Math.round(SC_TOTALS.sc3.ahorroCaja * _centroCajasDia * 5 * 52 / 1e6);
 SC_TOTALS.sc3.netoAnual = SC_TOTALS.sc3.brutoAnual - ACID.OPEX;
 SC_TOTALS.sc3.payback = SC_TOTALS.sc3.netoAnual > 0 ? (ACID.CAPEX / SC_TOTALS.sc3.netoAnual).toFixed(1) : 'N/A';
-CONFIG.trip.HUB_FLETE = _hubFleteCaja; // mula-based negociado (~$445)
+CONFIG.trip.HUB_FLETE = _hubFleteCaja; // mula-based negociado (~$476, 8 mulas/10 fincas)
 
 // Sensibilidad: impacto de re-negociar la mula Chinita (descuento adicional sobre tarifa negociada)
 // (debe ir DESPUES de FARM_DATA.forEach porque necesita f.sc2.costDia)
@@ -2996,7 +3024,7 @@ map.on('load',()=>{
     const hubEl=document.createElement('div');
     hubEl.style.cssText='width:24px;height:24px;background:#00e878;border:3px solid #fff;border-radius:50%;box-shadow:0 0 20px #00e878,0 0 40px rgba(0,232,120,0.3);cursor:pointer;display:none;animation:hubPulse 2s ease-in-out infinite;';
     window._markerHub = new mapboxgl.Marker({element:hubEl}).setLngLat([NODES.hub.lng,NODES.hub.lat])
-        .setPopup(new mapboxgl.Popup({offset:15}).setHTML(`<div class="p-t" style="color:#00e878;">CENTRO CONSOLIDACION CENTRAL</div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">PROPUESTO</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.9017, -76.6277</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">12 fincas (985 ha)</span></div><div class="p-r"><span class="p-k">Cobertura:</span><span class="p-v">49% del Grupo 20</span></div><div class="p-r"><span class="p-k">Función:</span><span class="p-v">Hub principal, consolidación + contenerizacion</span></div>`)).addTo(map);
+        .setPopup(new mapboxgl.Popup({offset:15}).setHTML(`<div class="p-t" style="color:#00e878;">CENTRO CONSOLIDACION CENTRAL</div><div class="p-r"><span class="p-k">Estado:</span><span class="p-v">PROPUESTO</span></div><div class="p-r"><span class="p-k">Coord:</span><span class="p-v">7.9017, -76.6277</span></div><div class="p-r"><span class="p-k">Fincas:</span><span class="p-v">10 fincas (985 ha)</span></div><div class="p-r"><span class="p-k">Cobertura:</span><span class="p-v">49% del Grupo 20</span></div><div class="p-r"><span class="p-k">Función:</span><span class="p-v">Hub principal, consolidación + contenerizacion</span></div>`)).addTo(map);
 
     // Mini-Hub Puerto (cyan) — SC3 only
     const mhEl=document.createElement('div');
@@ -3164,9 +3192,9 @@ function openFarmPanel(farmId) {
     html += 'Mula: 24p × 54 cajas = 1,296 cajas/viaje (tarifa 20p × 1.2).<br>';
     html += 'Tarifa mula NEGOCIADA por finca (mayo 2026). Descuento implícito 0-13% vs ×2 proporcional.<br>';
     html += 'Hub→PA: $' + (ACID.HUB_PA_VIAJE/1000) + 'K/mula (Chinita mula negociada $470K × 1.2 fill).<br>';
-    html += 'F→H: $200/caja = $130K/viaje (supuesto pendiente de negociación específica).<br>';
+    html += 'F→H: $400/caja = $260K/viaje (default conservador presentación; slider $80-$400).<br>';
     html += 'Consolidación: $42/caja (paletizar+inspeccionar).<br>';
-    html += 'CAPEX: $4,020M. OPEX: $437M/año.<br>';
+    html += 'CAPEX: $4,520M. OPEX: $437M/año.<br>';
     html += 'Fuente: Tarifas negociadas mayo 2026 (Grupo 20).';
     html += '</div>';
     html += '</div>';
@@ -3217,7 +3245,7 @@ function renderAuditPanel() {
         ['Finca→Hub (conservador)', '$' + ACID.FH_CAJA + '/caja', '$' + Math.round(ACID.FH_CAJA*CAJAS_SENC/1000) + 'K/viaje. Estimado por $/km promedio (~8-15 km)'],
         ['Consolidación', '$' + ACID.CONSOL + '/caja', 'Paletizar + inspeccionar + cargar'],
         ['Hub TOTAL', '$' + _hubTotal + '/caja', '$' + _hubFleteCaja + ' + $' + ACID.CONSOL + ' + $' + ACID.FH_CAJA],
-        ['CAPEX', '$' + ACID.CAPEX + 'M', 'Terreno $100M + pérgola $600M + equipos $200M + WK $100M + contingencia $200M'],
+        ['CAPEX', '$' + ACID.CAPEX + 'M', 'Lote $200M + bodega $1,900M + plataformas $475M + pérgolas $640M + oficinas $405M + equipos $250M + vigilancia $500M + WK $150M'],
         ['OPEX', '$' + ACID.OPEX + 'M/año', '6 personas $215M + servicios $73M + mant/seg $38M + admin $36M'],
         ['$/km promedio (tabla)', '$13,140', 'Promedio ponderado de las 19 rutas tabla Anderson'],
     ];
@@ -3225,7 +3253,7 @@ function renderAuditPanel() {
     h += '</div>';
 
     // 2. POR FINCA
-    h += '<div class="audit-section"><div class="audit-title">2. Datos por Finca (19 fincas)</div>';
+    h += '<div class="audit-section"><div class="audit-title">2. Datos por Finca (19 fincas: 10C + 6Z + 3MH)</div>';
     h += '<div class="audit-row" style="font-weight:700;border-bottom:1px solid var(--border);"><span>Finca</span><span>Grupo</span><span>Cajas/sem | Pall/día | SC1 $/caja | SC1 $/viaje | SC2 $/viaje | SC2 $/caja | SC3 $/caja | Ahorro SC3</span></div>';
     FARM_DATA.forEach(fd => {
         h += '<div class="audit-row"><span class="audit-k">'+fd.name+'</span><span class="audit-v">'+fd.g+'</span><span class="audit-f">'+
@@ -3244,7 +3272,7 @@ function renderAuditPanel() {
         ['SC2 $/caja promedio', '$' + SC_TOTALS.sc2.costProm, 'Ponderado: tarifa PA × 1.2 × viajes ÷ cajas'],
         ['SC2 costo anual', '$' + SC_TOTALS.sc2.costAnual + 'M', ''],
         ['SC3 vía principal', SC_TOTALS.sc3.viajes, 'Hub ' + _centroTripsHub + ' mulas + MH ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' + Z ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0) + '. +19 carruseles finca→hub (4 clusters, vías locales 7-32 km)'],
-        ['SC3 SC2 Centro prom', '$' + SC_TOTALS.sc3.sc2Centro, '12 fincas Centro promedio ponderado bajo SC2'],
+        ['SC3 SC2 Centro prom', '$' + SC_TOTALS.sc3.sc2Centro, '10 fincas Centro promedio ponderado bajo SC2'],
         ['SC3 Hub total (conservador)', '$' + _hubTotal, '$' + _hubFleteCaja + ' flete + $' + ACID.CONSOL + ' consol + $' + ACID.FH_CAJA + ' f→h'],
         ['SC3 ahorro/caja', '$' + SC_TOTALS.sc3.ahorroCaja, '$' + SC_TOTALS.sc3.sc2Centro + ' - $' + _hubTotal],
         ['SC3 ahorro bruto/año', '$' + SC_TOTALS.sc3.brutoAnual + 'M', '$' + SC_TOTALS.sc3.ahorroCaja + ' × ' + Math.round(_centroCajasDia) + ' cajas/día × 5 días × 52 sem'],
@@ -3258,7 +3286,7 @@ function renderAuditPanel() {
     h += '<div class="audit-section"><div class="audit-title">4. Fuentes de Datos</div>';
     h += '<div style="font-family:\'JetBrains Mono\',monospace;font-size:9px;color:var(--text2);line-height:1.8;">';
     h += 'Tarifas de transporte: Negociadas mayo 2026 (tarifas_negociadas_mayo_2025.xlsx + TTE FRUTA 6052026.xlsx)<br>';
-    h += 'Producción por finca: produccion_anual.xlsx (12 Centro), promedio 2026<br>';
+    h += 'Producción por finca: produccion_anual.xlsx (10 Centro + 6 Zungo + 3 Mini-Hub), promedio 2026<br>';
     h += 'Vehículos: sencillo 12p (tarifa 10p), mula 24p (tarifa 20p). Pallet 54 cajas (sens. 48-60)<br>';
     h += 'Distancias y tiempos: OSRM routing real (39 rutas calculadas)<br>';
     h += 'Geocercas GPS: 7 vehículos, 9-12 Marzo 2026<br>';
@@ -3310,19 +3338,24 @@ function updateHubModel() {
     const fh = +document.getElementById('sl-fh').value;
     document.getElementById('hub-fh-display').textContent = '$' + fh;
     document.getElementById('hub-fh-val').textContent = '$' + fh + '/caja';
-    const hubTotal = _hubFleteCaja + ACID.CONSOL + fh;
-    const ahorro = SC_TOTALS.sc3.sc2Centro - hubTotal;
-    const bruto = Math.round(ahorro * _centroCajasDia * 5 * 52 / 1e6);
-    const neto = bruto - ACID.OPEX;
-    const pb = neto > 0 ? (ACID.CAPEX / neto).toFixed(1) + ' años' : 'N/A';
-    document.getElementById('hub-total-val').textContent = '$' + hubTotal + '/caja';
-    document.getElementById('hub-ahorro-val').textContent = 'Ahorro: $' + ahorro + '/caja';
-    document.getElementById('hub-ahorro-val').style.color = ahorro > 0 ? 'var(--green)' : 'var(--red)';
-    document.getElementById('hub-bruto').textContent = '$' + bruto + 'M';
-    document.getElementById('hub-neto').textContent = neto > 0 ? '$' + neto + 'M' : '-$' + Math.abs(neto) + 'M';
-    document.getElementById('hub-neto').style.color = neto > 0 ? 'var(--green)' : 'var(--red)';
-    document.getElementById('hub-payback').textContent = pb;
-    document.getElementById('hub-payback').style.color = neto > 0 ? 'var(--green)' : 'var(--red)';
+    // Centro puro (composición pedagógica)
+    const hubTotalCentro = _hubFleteCaja + ACID.CONSOL + fh;
+    // G20 ponderado (modelo presentación: 10C + 6Z + 3MH)
+    const sc3CostDiaG20 = _centroCajasDia * hubTotalCentro + SC_TOTALS.sc3._zungoMhCostDia;
+    const sc3PromG20 = Math.round(sc3CostDiaG20 / _g20CajasDia);
+    const ahorroG20 = SC_TOTALS.sc2.costPromG20 - sc3PromG20;
+    const brutoG20 = Math.round(ahorroG20 * _g20CajasDia * 5 * 52 / 1e6);
+    const netoG20 = brutoG20 - ACID.OPEX;
+    const pbG20 = netoG20 > 0 ? (ACID.CAPEX / netoG20).toFixed(2) + ' años' : 'N/A';
+    document.getElementById('hub-total-val').textContent = '$' + sc3PromG20 + '/caja';
+    document.getElementById('hub-total-val').title = 'G20 ponderado (10C + 6Z + 3MH). Centro puro: $' + hubTotalCentro + '/caja';
+    document.getElementById('hub-ahorro-val').textContent = 'Ahorro: $' + ahorroG20 + '/caja';
+    document.getElementById('hub-ahorro-val').style.color = ahorroG20 > 0 ? 'var(--green)' : 'var(--red)';
+    document.getElementById('hub-bruto').textContent = '$' + brutoG20 + 'M';
+    document.getElementById('hub-neto').textContent = netoG20 > 0 ? '$' + netoG20 + 'M' : '-$' + Math.abs(netoG20) + 'M';
+    document.getElementById('hub-neto').style.color = netoG20 > 0 ? 'var(--green)' : 'var(--red)';
+    document.getElementById('hub-payback').textContent = pbG20;
+    document.getElementById('hub-payback').style.color = netoG20 > 0 ? 'var(--green)' : 'var(--red)';
 }
 
 // ============================================================
@@ -3343,7 +3376,7 @@ function updateScenarioComparison() {
     // Update values from SC_TOTALS
     document.getElementById('sc-comp-caja1').textContent = '$' + SC_TOTALS.sc1.costProm;
     document.getElementById('sc-comp-caja2').textContent = '$' + SC_TOTALS.sc2.costProm;
-    document.getElementById('sc-comp-caja3').textContent = '$' + _hubTotal;
+    document.getElementById('sc-comp-caja3').textContent = '$' + SC_TOTALS.sc3.costPromG20;
     document.getElementById('sc-comp-trips1').textContent = SC_TOTALS.sc1.viajes + ' viajes';
     document.getElementById('sc-comp-trips2').textContent = SC_TOTALS.sc2.viajes + ' viajes';
     document.getElementById('sc-comp-trips3').textContent = SC_TOTALS.sc3.viajes + ' vía + 26 local';
@@ -3358,11 +3391,11 @@ function updateContextBox() {
     if (curSc === 'sc1') {
         if (box) box.style.borderColor = 'rgba(255,59,78,0.3)';
         el.innerHTML = '<span style="color:var(--red);font-weight:700;">HOY</span><br>' +
-            'Situación actual: 41 camiónes/día dispersos en la carretera. $429/caja promedio Centro.';
+            'Situación actual: 41 camiónes/día dispersos en la carretera. $407/caja promedio G20 ponderado.';
     } else if (curSc === 'sc2') {
         if (box) box.style.borderColor = 'rgba(240,160,48,0.3)';
         el.innerHTML = '<span style="color:var(--yellow);font-weight:700;">RIESGO</span><br>' +
-            'Tarifas negociadas mayo 2026: $950/caja Centro con cobro por viaje (+121% vs $429 actual).';
+            'Tarifas negociadas mayo 2026: $964/caja G20 ponderado con cobro por viaje (+136% vs $407 actual).';
     } else {
         if (box) box.style.borderColor = 'rgba(0,232,120,0.3)';
         el.innerHTML = '<span style="color:var(--green);font-weight:700;">SOLUCIÓN</span><br>' +
@@ -3388,15 +3421,15 @@ function showScenarioBanner(sc) {
     if (sc === 'sc1') {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--red);">HOY: Sin Centro de Consolidación</div>' +
-            '<div class="sc-banner-desc">19 fincas despachan individualmente. $429/caja promedio Centro. 41 camiónes/día en carretera.</div>';
+            '<div class="sc-banner-desc">19 fincas despachan individualmente. $407/caja promedio G20 ponderado. 41 camiónes/día en carretera.</div>';
     } else if (sc === 'sc2') {
         el.classList.add('sc1-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--yellow);">RIESGO: Modelo $/Viaje Negociado</div>' +
-            '<div class="sc-banner-desc">Sin centro, con tarifas negociadas: $950/caja Centro (+121% vs $429 hoy). Cambio tarifario ya firmado mayo 2026.</div>';
+            '<div class="sc-banner-desc">Sin centro, con tarifas negociadas: $964/caja G20 ponderado (+136% vs $407 hoy). Cambio tarifario ya firmado mayo 2026.</div>';
     } else {
         el.classList.add('sc3-bg');
         el.innerHTML = '<div class="sc-banner-title" style="color:var(--green);">SOLUCIÓN: Centro de Consolidación</div>' +
-            '<div class="sc-banner-desc">12 fincas consolidadas en 10 mulas. 25 camiones en carretera (-39%). $687/caja (negociado).</div>';
+            '<div class="sc-banner-desc">10 fincas Centro consolidadas en 8 mulas. 25 camiones en carretera (-39%). $626/caja G20 ponderado (negociado).</div>';
     }
     el.style.display = '';
     el.style.animation = 'none';
@@ -3500,7 +3533,7 @@ function updateMapAnnotations() {
         addAnn('puerto', 'Espera: 5-6h / ' + totalViajes + ' viajes/día', 'ann-red', 12);
         addAnn('zungo', '4 fincas despacho directo', 'ann-red', 12);
     } else {
-        addAnn('hub', '12 fincas &rarr; ' + hubMulas + ' mulas/día', 'ann-green', 12);
+        addAnn('hub', '10 fincas &rarr; ' + hubMulas + ' mulas/día', 'ann-green', 12);
         addAnn('puerto', 'Espera: &lt;1h / Contenerizado', 'ann-green', 12);
         addAnn('zungo', '4 fincas &rarr; Zungo', 'ann-green', 12);
     }
@@ -3663,7 +3696,7 @@ function toggleLy(name){
 // ============================================================
 // PRICING MODEL — $/caja (actual) vs $/viaje (SICE-TAC nuevo)
 // ============================================================
-let pricingModel = 'caja'; // 'caja' or 'viaje'
+let pricingModel = 'viaje'; // 'caja' or 'viaje' — default $/VIAJE para mostrar modelo G20 negociado mayo 2026
 
 function setPricingModel(model) {
     pricingModel = model;
@@ -3801,12 +3834,12 @@ function updateSim(){
         totalHub = TARIFA_CAJA;
         row1Direct = TARIFA_CAJA; row1Hub = TARIFA_CAJA;
     } else {
-        // === MODELO $/VIAJE: $950/caja Centro sin hub (tarifas negociadas mayo 2026) ===
+        // === MODELO $/VIAJE: $964/caja G20 ponderado sin hub (tarifas negociadas mayo 2026) ===
         // Sin hub: tarifa ponderada (flete + stand-by incluidos)
         totalDirect = TARIFA_VIAJE;
         row1Direct = TARIFA_VIAJE;
 
-        // Con hub: mula negociada Chinita $470K (20p) × 1.2 = $564K (24p) → $445/caja + standby $0 + consolidación $42 + finca→hub $200
+        // Con hub: mula negociada Chinita $470K (20p) × 1.2 = $564K (24p) → $476/caja (8 mulas, 10 fincas) + standby $0 + consolidación $42 + finca→hub $400 default
         row1Hub = HUB_FLETE;
         row2Hub = HUB_STANDBY;
         totalHub = HUB_FLETE + HUB_STANDBY + HUB_CONSOL + FINCA_HUB;
@@ -3910,12 +3943,21 @@ function updateSim(){
     if(execCost) execCost.innerHTML = `<span style="color:var(--green);">-${savePct}% ($${annualSave}M/año)</span>`;
 
     // --- Write to simResults for financial dashboard ---
+    // En modo $/VIAJE el ahorro G20 ponderado se toma de SC_TOTALS (modelo 19 fincas presentación).
+    // En modo $/CAJA (tarifa plana) no hay ahorro diferencial — fallback a 0.
     simResults.prodK = p;
     simResults.annualBoxes = annualBoxes;
-    simResults.savePerBox = totalDirect - totalHub;
-    simResults.costDirect = totalDirect;
-    simResults.costHub = totalHub;
-    simResults.annualSave = annualSave;
+    if (pricingModel === 'viaje' && typeof SC_TOTALS !== 'undefined') {
+        simResults.savePerBox = SC_TOTALS.sc3.ahorroCajaG20;
+        simResults.costDirect = SC_TOTALS.sc2.costPromG20;
+        simResults.costHub = SC_TOTALS.sc3.costPromG20;
+        simResults.annualSave = SC_TOTALS.sc3.brutoAnualG20;
+    } else {
+        simResults.savePerBox = totalDirect - totalHub;
+        simResults.costDirect = totalDirect;
+        simResults.costHub = totalHub;
+        simResults.annualSave = annualSave;
+    }
     simResults.savePct = savePct;
     simResults.congestiónFactor = cf;
     simResults.totalViajes = totalViajes;
@@ -4617,7 +4659,7 @@ function updateResumenDashboard(){
     const hubViajes = SC_TOTALS ? SC_TOTALS.sc3.viajes : 35;
     const trucksPct = totalViajes > 0 ? Math.round(((totalViajes - hubViajes)/totalViajes)*100) : 15;
 
-    document.getElementById('res-hero-save').textContent = SC_TOTALS ? '$' + SC_TOTALS.sc3.ahorroCaja + '/caja' : '$263/caja';
+    document.getElementById('res-hero-save').textContent = SC_TOTALS ? '$' + SC_TOTALS.sc3.ahorroCajaG20 + '/caja' : '$311/caja';
     document.getElementById('res-trucks-pct').textContent = `-${trucksPct}%`;
     document.getElementById('res-save-box').textContent = `-$${Math.round(savePerBox)}`;
 
@@ -4679,13 +4721,13 @@ function updateLegend(){
     } else {
         info.innerHTML = `
             <div class="mi-t">Leyenda - Centro Operando</div>
-            <div class="mi-i"><div class="mi-c" style="background:var(--green);box-shadow:0 0 4px var(--green);"></div>Centro Consolidación (12 fincas)</div>
+            <div class="mi-i"><div class="mi-c" style="background:var(--green);box-shadow:0 0 4px var(--green);"></div>Centro Consolidación (10 fincas)</div>
             <div class="mi-i"><div class="mi-c" style="background:var(--cyan);box-shadow:0 0 4px var(--cyan);"></div>Mini-Hub Consolidación (3 fincas)</div>
             <div class="mi-i"><div class="mi-c" style="background:var(--orange);box-shadow:0 0 4px var(--orange);"></div>Emb. Zungo (4 fincas)</div>
             <div class="mi-i"><div class="mi-c" style="background:var(--blue);box-shadow:0 0 4px var(--blue);"></div>Puerto Antioquia</div>
             <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
             <div class="mi-t" style="margin-top:4px;">FLUJOS CONSOLIDADOS</div>
-            <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>12 fincas → Centro</div>
+            <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:4px;"></div>10 fincas → Centro</div>
             <div class="mi-i"><div class="mi-ln" style="background:var(--cyan);height:3px;"></div>3 fincas → Mini-Hub</div>
             <div class="mi-i"><div class="mi-ln" style="background:var(--orange);height:3px;"></div>4 fincas → Zungo</div>
             <div class="mi-i"><div class="mi-ln" style="background:var(--green);height:2px;"></div>Troncal Centro → Puerto (OSRM)</div>
@@ -4809,7 +4851,7 @@ const EXPLAINS = {
     'kpi-trucks': {
         title: 'Camiones en carretera',
         getValue: () => document.getElementById('kpi-trucks').textContent,
-        formula: 'SC1 (Hoy):  41 viajes = sum(ceil(pallets_día/12)) por finca\nSC3 (Hub):  10 mulas Centro + 4 mini-hub + 11 zungo = 25 vía + 19 carruseles finca→hub (4 clusters)',
+        formula: 'SC1 (Hoy):  41 viajes = sum(ceil(pallets_día/12)) por finca\nSC3 (Hub):  8 mulas Centro + 4 mini-hub + 11 zungo = 23 vía + 19 carruseles finca→hub (4 clusters)',
         inputs: [
             { l: 'Producción G20', v: '101K cajas/sem', s: 'Viajes 2025 (real)' },
             { l: 'Cajas/día (÷5)', v: '~20,200', s: 'Calculado' },
@@ -4817,7 +4859,7 @@ const EXPLAINS = {
             { l: 'Capacidad mula', v: '24 pallets × 54 = 1,296 cajas', s: 'Estándar' }
         ],
         source: 'excel',
-        assumptions: 'Base: 6 días operativos/semana. SC3 reemplaza 26 sencillos Centro por 10 mulas (consolidación), agrega 26 viajes cortos finca→hub en vías locales (8–15 km).',
+        assumptions: 'Base: 6 días operativos/semana. SC3 reemplaza 26 sencillos Centro por 8 mulas (consolidación, 10 fincas), agrega 19 viajes cortos finca→hub en vías locales (8–15 km).',
         related: ['cost-direct', 'cost-hub']
     },
     'kpi-time': {
@@ -4840,7 +4882,7 @@ const EXPLAINS = {
         formula: 'SC1: distancia ponderada finca→Zungo (8–28 km)\nSC2: distancia finca→Puerto Antioquia (9–52 km)\nSC3: distancia finca→hub asignado',
         inputs: [
             { l: 'Rutas', v: '39 OSRM-snapped', s: 'OSRM' },
-            { l: 'Centro (12 fincas)', v: '12.4 km a hub', s: 'Promedio' },
+            { l: 'Centro (10 fincas)', v: '12.4 km a hub', s: 'Promedio' },
             { l: 'Zungo (4 fincas)', v: '~10 km a embarcadero', s: 'OSRM' },
             { l: 'Mini-hub (3 fincas)', v: '~10 km a Puerto', s: 'OSRM' }
         ],
@@ -4851,7 +4893,7 @@ const EXPLAINS = {
     'cost-direct': {
         title: '$/caja Directo (Sin Hub)',
         getValue: () => document.getElementById('cost-direct').textContent,
-        formula: 'Modo $/CAJA: tarifa plana G20 = $359/caja\nModo $/VIAJE: $950/caja (negociado mayo 2026, promedio ponderado 12 fincas Centro a Puerto Antioquia)\n  = sum(viajes × tarifa_PA × factor_1.2) / cajas_totales',
+        formula: 'Modo $/CAJA: tarifa plana G20 = $359/caja\nModo $/VIAJE: $964/caja G20 ponderado (negociado mayo 2026, 19 fincas: 10C + 6Z + 3MH a Puerto Antioquia)\n  = sum(viajes × tarifa_PA × factor_1.2) / cajas_totales',
         inputs: [
             { l: 'Modelo activo', v: 'cambiar con botón $/CAJA / $/VIAJE', s: 'UI' },
             { l: 'Tarifa Chinita (10p)', v: '$270K', s: 'Negociado Mayo 2026' },
@@ -4859,32 +4901,32 @@ const EXPLAINS = {
             { l: 'Cajas/viaje sencillo', v: '12 × 54 = 648', s: 'Estándar' }
         ],
         source: 'reun',
-        assumptions: '$950/caja es el escenario crítico SC2: todos los Centro despachan a Puerto Antioquia con tarifa negociada por viaje. +121% sobre el costo actual Centro de $429/caja.',
+        assumptions: '$964/caja es el escenario crítico SC2 G20 ponderado: todas las 19 fincas despachan a Puerto Antioquia con tarifa negociada por viaje. +136% sobre el costo actual G20 de $407/caja.',
         related: ['cost-hub', 'cost-save']
     },
     'cost-hub': {
         title: '$/caja con Hub',
         getValue: () => document.getElementById('cost-hub').textContent,
-        formula: 'Hub total = Hub→PA flete + Consolidación + Finca→Hub\n         = $445 + $42 + $200 = $687/caja',
+        formula: 'Hub Centro puro = Hub→PA flete + Consolidación + Finca→Hub\n              = $476 + $42 + $400 = $918/caja\nG20 ponderado (10C + 6Z + 3MH) = $626/caja',
         inputs: [
-            { l: 'Hub→PA (flete mula)', v: '$445/caja', s: '10 mulas × $564K ÷ 12,674 cajas/día' },
+            { l: 'Hub→PA (flete mula)', v: '$476/caja', s: '8 mulas × $564K ÷ 9,477 cajas/día (10 fincas)' },
             { l: 'Consolidación', v: '$42/caja', s: 'Paletizar + inspeccionar + cargar' },
-            { l: 'Finca→Hub', v: '$200/caja', s: 'Supuesto pendiente (rango: $80–$300)' },
+            { l: 'Finca→Hub', v: '$400/caja', s: 'Default conservador presentación (slider $80–$400)' },
             { l: 'Tarifa mula 24p', v: '$564K', s: 'Chinita negociada $470K × 1.2 fill' },
             { l: 'Descuento adicional G20', v: '$0', s: 'Ya implícito en negociada' }
         ],
         source: 'reun',
-        assumptions: 'Tarifa negociada mayo 2026. Re-negociar mula Chinita -$50K = hub $645. Re-negociar finca→hub a $80 = hub $567.',
+        assumptions: 'Tarifa negociada mayo 2026. G20 ponderado promedia 10 fincas Centro consolidadas + 6 Zungo + 3 Mini-Hub. Re-negociar mula Chinita -$50K = hub G20 $594.',
         related: ['cost-direct', 'cost-save', 'cost-annual']
     },
     'cost-save': {
         title: 'Ahorro $/caja con Hub',
         getValue: () => document.getElementById('cost-save').textContent,
-        formula: '% ahorro = (directo − hub) / directo × 100\n        = ($950 − $687) / $950 × 100\n        = 27.7%',
+        formula: '% ahorro = (directo − hub) / directo × 100\n        = ($964 − $626) / $964 × 100\n        = 35.1%',
         inputs: [
-            { l: 'Directo (sin hub)', v: '$950/caja', s: 'SC2 negociado' },
-            { l: 'Hub (con consolidación)', v: '$687/caja', s: 'SC3 negociado' },
-            { l: 'Ahorro absoluto', v: '$263/caja', s: 'Diferencia' }
+            { l: 'Directo (sin hub)', v: '$964/caja', s: 'SC2 G20 ponderado negociado' },
+            { l: 'Hub (con consolidación)', v: '$626/caja', s: 'SC3 G20 ponderado negociado' },
+            { l: 'Ahorro absoluto', v: '$338/caja', s: 'Diferencia' }
         ],
         source: 'calc',
         related: ['cost-annual']
@@ -4892,16 +4934,16 @@ const EXPLAINS = {
     'cost-annual': {
         title: 'Ahorro Anual G20',
         getValue: () => document.getElementById('cost-annual').textContent,
-        formula: '($directo − $hub) × cajas_año\n= $263 × 3,295,000 cajas Centro\n= $866M COP/año',
+        formula: '($directo − $hub) × cajas_año G20\n= $338 × 5,253,000 cajas G20 ponderado\n= $1,775M COP/año',
         inputs: [
-            { l: 'Ahorro/caja', v: '$263', s: 'Calculado' },
-            { l: 'Cajas Centro/año', v: '3.30M', s: 'Sum 12 fincas Centro' },
-            { l: 'Ahorro bruto', v: '$866M/año', s: 'Calculado' },
+            { l: 'Ahorro/caja G20', v: '$338', s: 'Calculado' },
+            { l: 'Cajas G20/año', v: '5.3M', s: 'Sum 19 fincas (10C + 6Z + 3MH)' },
+            { l: 'Ahorro bruto', v: '$1,775M/año', s: 'Calculado' },
             { l: '− OPEX hub', v: '−$437M/año', s: 'Personal + mant + servicios' },
-            { l: '= Neto transporte solo', v: '+$430M/año', s: 'Payback ~9.3a (CAPEX $4,020M)' }
+            { l: '= Neto transporte solo', v: '+$1,338M/año', s: 'Payback ~3.4a (CAPEX $4,520M)' }
         ],
         source: 'calc',
-        assumptions: 'Solo cuenta el ahorro de transporte. NO incluye palancas operativas ($142M) ni servicio a terceros ($652M). Para ver el caso viable completo, ver "Ingreso total anual".',
+        assumptions: 'Solo cuenta el ahorro de transporte G20 ponderado. NO incluye palancas operativas ($142M) ni servicio a terceros ($652M). Para ver el caso viable completo, ver "Ingreso total anual".',
         related: ['cost-hub', 'fd-standby-save', 'fd-noct-save']
     },
 
@@ -4909,7 +4951,7 @@ const EXPLAINS = {
     'pi-flete': {
         title: 'Tarifa Flete por Caja (modelo SICE-TAC)',
         getValue: () => document.getElementById('pi-flete').textContent,
-        formula: '$950/caja = promedio ponderado 12 fincas Centro a Puerto Antioquia (negociado mayo 2026)\nFórmula por finca: ceil(pallets_día/12) × tarifa_PA(10p) × 1.2 / cajas_día',
+        formula: '$964/caja = promedio ponderado G20 (19 fincas) a Puerto Antioquia (negociado mayo 2026)\nFórmula por finca: ceil(pallets_día/12) × tarifa_PA(10p) × 1.2 / cajas_día',
         inputs: [
             { l: 'Tarifa Chinita PA (10p)', v: '$270K', s: 'Negociado Mayo 2026' },
             { l: 'Tarifa Sierra PA (10p)', v: '$400K', s: 'Negociado Mayo 2026' },
@@ -4936,7 +4978,7 @@ const EXPLAINS = {
     'sc-comp-caja1': {
         title: 'SC1 Hoy: $/caja Centro',
         getValue: () => document.getElementById('sc-comp-caja1').textContent,
-        formula: '$429 = sum(tarifa_finca × cajas_finca) / cajas_centro\nPromedio ponderado de las 12 fincas Centro (tarifa plana $/caja a Zungo)',
+        formula: '$429 = sum(tarifa_finca × cajas_finca) / cajas_centro\nPromedio ponderado de las 10 fincas Centro (tarifa plana $/caja a Zungo)',
         inputs: [
             { l: 'Tarifa Chinita', v: '$499/caja', s: 'Histórica Zungo' },
             { l: 'Tarifa Matogroso 2', v: '$295/caja', s: 'Histórica Zungo' },
@@ -4949,7 +4991,7 @@ const EXPLAINS = {
     'sc-comp-caja2': {
         title: 'SC2 Riesgo: $/caja Puerto Antioquia',
         getValue: () => document.getElementById('sc-comp-caja2').textContent,
-        formula: 'Tarifa negociada por viaje (mayo 2026)\n$950/caja = promedio ponderado 12 fincas Centro\n+121% vs $429 actual Centro',
+        formula: 'Tarifa negociada por viaje (mayo 2026)\n$964/caja = promedio ponderado G20 (19 fincas)\n+136% vs $407 actual G20',
         inputs: [
             { l: 'Tarifa Chinita PA (10p)', v: '$270K', s: 'Negociado Mayo 2026' },
             { l: 'Factor 12p (×1.2)', v: '$324K real', s: 'Sencillo lleva 12p' },
@@ -4961,11 +5003,11 @@ const EXPLAINS = {
     'sc-comp-caja3': {
         title: 'SC3 Solución: $/caja con Hub',
         getValue: () => document.getElementById('sc-comp-caja3').textContent,
-        formula: 'Hub flete + Consolidación + Finca→Hub\n= $445 + $42 + $200\n= $687/caja (negociado mayo 2026)',
+        formula: 'Hub Centro = Hub flete + Consolidación + Finca→Hub\n           = $476 + $42 + $400 = $918/caja\nG20 ponderado (10C + 6Z + 3MH) = $626/caja',
         inputs: [
-            { l: 'Hub→PA mulas (10/día)', v: '$564K × 10 ÷ 12,674', s: '$445/caja' },
+            { l: 'Hub→PA mulas (8/día)', v: '$564K × 8 ÷ 9,477', s: '$476/caja' },
             { l: 'Consolidación', v: '$42/caja', s: 'Operación interna' },
-            { l: 'Finca→Hub corta', v: '$200/caja', s: 'Supuesto pendiente' }
+            { l: 'Finca→Hub corta', v: '$400/caja', s: 'Default conservador presentación' }
         ],
         source: 'calc',
         related: ['cost-hub']
@@ -5050,7 +5092,7 @@ const EXPLAINS = {
         getValue: () => document.getElementById('fd-vpn').textContent,
         formula: 'VPN = −CAPEX + Σ FCF[y] / (1 + r)^y\n      para y = 1..horizon\nr = tasa descuento (default 12%)',
         inputs: [
-            { l: 'CAPEX', v: '$4,020M (real, infraestructura)', s: 'INPUTS PDF' },
+            { l: 'CAPEX', v: '$4,520M (real, +vigilancia)', s: 'INPUTS PDF' },
             { l: 'Tasa descuento', v: '12% (ajustable)', s: 'WACC banano' },
             { l: 'Horizonte', v: '10 años', s: 'Default' },
             { l: 'FCF anual base', v: 'Ingresos − OPEX', s: 'Calculado por año' }
@@ -5075,11 +5117,11 @@ const EXPLAINS = {
         getValue: () => document.getElementById('fd-payback').textContent,
         formula: 'Año en que cumulative_FCF ≥ 0\nInterpolación lineal sub-año para precisión',
         inputs: [
-            { l: 'CAPEX inicial', v: '$4,020M', s: 'Year 0' },
+            { l: 'CAPEX inicial', v: '$4,520M', s: 'Year 0' },
             { l: 'FCF anuales', v: 'Crecientes con producción', s: 'Modelo' }
         ],
         source: 'calc',
-        assumptions: 'Solo transporte: payback >60 años (no recuperable). Con palancas: ~8 años. Con descuento $75K: 13.6a. Con terceros 10%: 5.6a. Con todo: 4.2a.',
+        assumptions: 'Solo transporte G20 ponderado: payback 3.4 años. Con descuento $75K mula: ~2.7a. Con terceros 10%: 2.4a. Con palancas + terceros: ~2.0a.',
         related: ['fd-vpn', 'fd-roi']
     },
     'fd-roi': {
@@ -5088,7 +5130,7 @@ const EXPLAINS = {
         formula: 'ROI = Σ FCF / CAPEX × 100%',
         inputs: [
             { l: 'Total FCF (10 años)', v: 'Sum yearly FCF', s: 'Modelo' },
-            { l: 'CAPEX', v: '$4,020M', s: 'INPUTS PDF' }
+            { l: 'CAPEX', v: '$4,520M', s: 'INPUTS PDF' }
         ],
         source: 'calc',
         related: ['fd-vpn']
@@ -5098,7 +5140,7 @@ const EXPLAINS = {
         getValue: () => document.getElementById('fd-annual').textContent,
         formula: 'Total = ahorro_G20 + ingreso_externo + standby_evitado + nocturnos_evitados',
         inputs: [
-            { l: 'Ahorro G20 transporte', v: '$/caja × 3.30M cajas', s: 'Modelo' },
+            { l: 'Ahorro G20 transporte', v: '$/caja × 5.3M cajas G20', s: 'Modelo G20 ponderado' },
             { l: 'Servicio terceros', v: 'cajas_ext × tarifa', s: 'Slider' },
             { l: 'Standby evitado', v: '50% de exposición', s: 'Geocercas' },
             { l: 'Nocturnos evitados', v: '50% de $210M', s: 'Reuniones' }
@@ -5109,7 +5151,7 @@ const EXPLAINS = {
     'fd-capex': {
         title: 'CAPEX Total',
         getValue: () => document.getElementById('fd-capex').textContent,
-        formula: 'Lote + Bodega + Plataformas + Pérgolas + Oficinas + Equipos + WK\n= $200M + $1,900M + $475M + $640M + $405M + $250M + $150M\n= $4,020M',
+        formula: 'Lote + Bodega + Plataformas + Pérgolas + Oficinas + Equipos + Vigilancia + WK\n= $200M + $1,900M + $475M + $640M + $405M + $250M + $500M + $150M\n= $4,520M',
         inputs: [
             { l: 'Lote 5,000 m²', v: '$200M', s: 'Mercado Chinita' },
             { l: 'Bodega 1,000 m²', v: '$1,900M ($1.9M/m²)', s: 'INPUTS PDF' },
@@ -5117,6 +5159,7 @@ const EXPLAINS = {
             { l: 'Pérgolas + circulaciones', v: '$640M (400 m²)', s: 'INPUTS PDF' },
             { l: 'Oficinas + servicios', v: '$405M (150 m²)', s: 'INPUTS PDF' },
             { l: 'Equipos (dock levelers, montacargas)', v: '$250M', s: 'INPUTS PDF' },
+            { l: 'Vigilancia (cerramiento + caseta + CCTV)', v: '$500M', s: 'Adicionado en revisión' },
             { l: 'Capital de trabajo', v: '$150M', s: 'Buffer 45 días' }
         ],
         source: 'arq',
@@ -5143,23 +5186,23 @@ const EXPLAINS = {
     'fd-save-box': {
         title: 'Ahorro por caja',
         getValue: () => document.getElementById('fd-save-box').textContent,
-        formula: 'directo − hub = $263/caja (negociado mayo 2026)',
+        formula: 'directo − hub = $338/caja G20 ponderado (negociado mayo 2026)',
         inputs: [
-            { l: 'Sin hub', v: '$950', s: 'SC2 negociado' },
-            { l: 'Con hub', v: '$687', s: 'SC3 negociado' }
+            { l: 'Sin hub', v: '$964', s: 'SC2 G20 ponderado negociado' },
+            { l: 'Con hub', v: '$626', s: 'SC3 G20 ponderado negociado' }
         ],
         source: 'calc'
     },
     'fd-save-annual': {
         title: 'Ahorro Anual G20 (transporte)',
         getValue: () => document.getElementById('fd-save-annual').textContent,
-        formula: 'Ahorro_caja × cajas_año\n= $263 × 3.30M = $866M/año',
+        formula: 'Ahorro_caja × cajas_año G20\n= $338 × 5.3M = $1,775M/año',
         inputs: [
-            { l: 'Ahorro/caja', v: '$109', s: 'Calculado' },
-            { l: 'Cajas Centro/año', v: '3.30M', s: '12 fincas Centro' }
+            { l: 'Ahorro/caja G20', v: '$338', s: 'Calculado G20 ponderado' },
+            { l: 'Cajas G20/año', v: '5.3M', s: '19 fincas (10C + 6Z + 3MH)' }
         ],
         source: 'calc',
-        assumptions: 'Solo cuenta el ahorro de transporte vs SC2 (escenario tarifa nueva). NO incluye palancas ni terceros.'
+        assumptions: 'Solo cuenta el ahorro de transporte G20 ponderado vs SC2 (escenario tarifa nueva). NO incluye palancas ni terceros.'
     },
     'fd-standby-save': {
         title: 'Standby evitado / año',
@@ -5218,41 +5261,42 @@ const EXPLAINS = {
 
     // ============= ACID BOX =============
     'acid-919': {
-        title: 'SC2 Centro: $950/caja',
-        getValue: () => '$950',
-        formula: 'Promedio ponderado 12 fincas Centro a Puerto Antioquia\n(tarifa negociada mayo 2026, por viaje)',
+        title: 'SC2 G20: $964/caja',
+        getValue: () => '$964',
+        formula: 'Promedio ponderado 19 fincas G20 (10C + 6Z + 3MH) a Puerto Antioquia\n(tarifa negociada mayo 2026, por viaje)',
         inputs: [
             { l: 'Chinita', v: '$270K × 1.2 / 648 = $500', s: 'Negociado Mayo 2026' },
             { l: 'Sierra', v: '$400K × 1.2 / 648 = $741', s: 'Negociado Mayo 2026' },
             { l: 'Maritú', v: '$400K × 1.2 / 648 = $741', s: 'Negociado Mayo 2026' },
             { l: 'María Bonita', v: '$480K × 1.2 / 648 = $889', s: 'Negociado Mayo 2026' },
-            { l: 'Promedio ponderado', v: '$950/caja', s: 'Calculado' }
+            { l: 'Promedio ponderado G20', v: '$964/caja', s: 'Calculado' }
         ],
         source: 'reun'
     },
     'acid-810': {
-        title: 'Hub total: $687/caja',
-        getValue: () => '$687',
-        formula: '$445 (flete mula) + $42 (consolidación) + $200 (finca→hub)\n= $687/caja (tarifa negociada mayo 2026)',
+        title: 'Hub total G20: $626/caja',
+        getValue: () => '$626',
+        formula: 'Centro puro: $476 (flete mula) + $42 (consolidación) + $400 (finca→hub) = $918/caja\nG20 ponderado (10C + 6Z + 3MH) = $626/caja',
         inputs: [
-            { l: 'Flete Hub→PA', v: '$445/caja', s: '10 mulas × $564K ÷ 12,674 cajas/día' },
+            { l: 'Flete Hub→PA Centro', v: '$476/caja', s: '8 mulas × $564K ÷ 9,477 cajas/día' },
             { l: 'Consolidación', v: '$42/caja', s: 'Paletizar+inspeccionar+cargar' },
-            { l: 'Finca→Hub', v: '$200/caja', s: 'Supuesto pendiente de negociación' }
+            { l: 'Finca→Hub', v: '$400/caja', s: 'Default conservador presentación' },
+            { l: 'G20 ponderado', v: '$626/caja', s: 'Mezcla 10C Centro + 6Z Zungo + 3MH Mini-Hub' }
         ],
         source: 'calc',
         related: ['acid-109']
     },
     'acid-109': {
-        title: 'Ahorro $263/caja',
-        getValue: () => '$263',
-        formula: '$950 (sin hub) − $687 (con hub) = $263/caja (negociado mayo 2026)',
+        title: 'Ahorro $338/caja (G20 ponderado)',
+        getValue: () => '$338',
+        formula: '$964 (sin hub) − $626 (con hub) = $338/caja G20 ponderado (negociado mayo 2026)',
         inputs: [],
         source: 'calc'
     },
     'acid-capex': {
-        title: 'CAPEX Real $4,020M',
-        getValue: () => '$4,020M',
-        formula: 'Ver desglose detallado en CAPEX Total',
+        title: 'CAPEX Real $4,520M',
+        getValue: () => '$4,520M',
+        formula: 'Ver desglose detallado en CAPEX Total (incluye $500M vigilancia)',
         inputs: [],
         source: 'arq',
         related: ['fd-capex']
@@ -5265,22 +5309,22 @@ const EXPLAINS = {
             { l: 'Personal (6 personas)', v: '$215M', s: '~$3M/persona/año' },
             { l: 'Servicios', v: '$73M', s: 'Utilities + comms' },
             { l: 'Mantenimiento (2% construcción)', v: '$73M', s: '$3,420M × 2%' },
-            { l: 'Seguros (1% CAPEX)', v: '$40M', s: '$4,020M × 1%' },
+            { l: 'Seguros (1% CAPEX)', v: '$40M', s: '$4,020M × 1% (línea base seguros, sin vigilancia)' },
             { l: 'Administración', v: '$36M', s: 'Office + admin' }
         ],
         source: 'arq'
     },
     'acid-deficit': {
-        title: 'Neto solo transporte: +$430M/año',
-        getValue: () => '+$430M',
-        formula: 'Ahorro bruto − OPEX = $867M − $437M = $430M/año\nPayback: $4,020M / $430M = 9.3 años',
+        title: 'Neto solo transporte: +$1,338M/año',
+        getValue: () => '+$1,338M',
+        formula: 'Ahorro bruto − OPEX = $1,775M − $437M = $1,338M/año\nPayback: $4,520M / $1,338M = 3.4 años',
         inputs: [
-            { l: 'Ahorro bruto', v: '$867M', s: '$263 × 3.30M cajas (tarifas negociadas)' },
+            { l: 'Ahorro bruto', v: '$1,775M', s: '$338 × 5.3M cajas G20 (tarifas negociadas)' },
             { l: 'OPEX', v: '$437M', s: 'Anual' },
-            { l: 'Neto solo transporte', v: '+$430M/año', s: 'Payback 9.3a' }
+            { l: 'Neto solo transporte', v: '+$1,338M/año', s: 'Payback 3.4a' }
         ],
         source: 'calc',
-        assumptions: 'Con tarifas negociadas Mayo 2026, el hub se paga solo con transporte (9.3a). Palancas + terceros aceleran payback hasta 2.8-3.3a.'
+        assumptions: 'Con tarifas negociadas Mayo 2026 y modelo G20 ponderado (19 fincas), el hub se paga solo con transporte (3.4a). Palancas + terceros aceleran payback hasta ~2.0a.'
     },
     'acid-palancas': {
         title: 'Nuevas Palancas: +$142M/año',
