@@ -1024,7 +1024,7 @@
             </div>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);margin-top:6px;text-align:center;" id="sc-comp-annual">
-            Anual G20: SC1 $2,137M · SC2 $5,064M · SC3 Centro ~$2,267M + Mini-Hub/Zungo ~$1,520M = ~$3,787M
+            Anual G20 ponderado: SC1 $2,137M · SC2 $5,064M · SC3 ~$3,289M (ahorro $1,775M bruto, $1,338M neto)
         </div>
         <div style="text-align:center;padding:8px;margin-top:6px;background:rgba(0,232,120,0.08);border:1px solid rgba(0,232,120,0.2);border-radius:6px;">
             <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:1px;">Ahorro con Centro (negociado mayo 2026)</div>
@@ -3272,12 +3272,12 @@ function renderAuditPanel() {
         ['SC2 $/caja promedio', '$' + SC_TOTALS.sc2.costProm, 'Ponderado: tarifa PA × 1.2 × viajes ÷ cajas'],
         ['SC2 costo anual', '$' + SC_TOTALS.sc2.costAnual + 'M', ''],
         ['SC3 vía principal', SC_TOTALS.sc3.viajes, 'Hub ' + _centroTripsHub + ' mulas + MH ' + FARM_DATA.filter(f=>f.g==='mini_hub').reduce((s,f)=>s+_trips(f.pd),0) + ' + Z ' + FARM_DATA.filter(f=>f.g==='zungo').reduce((s,f)=>s+_trips(f.pd),0) + '. +19 carruseles finca→hub (4 clusters, vías locales 7-32 km)'],
-        ['SC3 SC2 Centro prom', '$' + SC_TOTALS.sc3.sc2Centro, '10 fincas Centro promedio ponderado bajo SC2'],
-        ['SC3 Hub total (conservador)', '$' + _hubTotal, '$' + _hubFleteCaja + ' flete + $' + ACID.CONSOL + ' consol + $' + ACID.FH_CAJA + ' f→h'],
-        ['SC3 ahorro/caja', '$' + SC_TOTALS.sc3.ahorroCaja, '$' + SC_TOTALS.sc3.sc2Centro + ' - $' + _hubTotal],
-        ['SC3 ahorro bruto/año', '$' + SC_TOTALS.sc3.brutoAnual + 'M', '$' + SC_TOTALS.sc3.ahorroCaja + ' × ' + Math.round(_centroCajasDia) + ' cajas/día × 5 días × 52 sem'],
-        ['SC3 ahorro neto/año', '$' + SC_TOTALS.sc3.netoAnual + 'M', '$' + SC_TOTALS.sc3.brutoAnual + 'M - $' + ACID.OPEX + 'M OPEX'],
-        ['SC3 payback', SC_TOTALS.sc3.payback + ' años', '$' + ACID.CAPEX + 'M ÷ $' + SC_TOTALS.sc3.netoAnual + 'M'],
+        ['SC3 Centro puro (composición)', '$' + _hubTotal, '$' + _hubFleteCaja + ' flete + $' + ACID.CONSOL + ' consol + $' + ACID.FH_CAJA + ' f→h'],
+        ['SC3 G20 ponderado', '$' + SC_TOTALS.sc3.costPromG20, '10 Centro × hubTotal + 6 Zungo × tz + 3 MH × sc2.caja, dividido cajas G20'],
+        ['SC3 ahorro G20/caja', '$' + SC_TOTALS.sc3.ahorroCajaG20, 'SC2 G20 $' + SC_TOTALS.sc2.costPromG20 + ' − SC3 G20 $' + SC_TOTALS.sc3.costPromG20],
+        ['SC3 ahorro bruto/año G20', '$' + SC_TOTALS.sc3.brutoAnualG20 + 'M', '$' + SC_TOTALS.sc3.ahorroCajaG20 + ' × ' + Math.round(_g20CajasDia) + ' cajas/día × 5 × 52'],
+        ['SC3 ahorro neto/año G20', '$' + SC_TOTALS.sc3.netoAnualG20 + 'M', '$' + SC_TOTALS.sc3.brutoAnualG20 + 'M − $' + ACID.OPEX + 'M OPEX'],
+        ['SC3 payback G20', SC_TOTALS.sc3.paybackG20 + ' años', '$' + ACID.CAPEX + 'M ÷ $' + SC_TOTALS.sc3.netoAnualG20 + 'M'],
     ];
     tots.forEach(([k,v,f]) => { h += '<div class="audit-row"><span class="audit-k">'+k+'</span><span class="audit-v">'+v+'</span><span class="audit-f">'+f+'</span></div>'; });
     h += '</div>';
